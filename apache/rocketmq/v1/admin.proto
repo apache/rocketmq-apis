@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package apache.rocketmq.v1;
+
+option cc_enable_arenas = true;
+option java_multiple_files = true;
+option java_package = "apache.rocketmq.v1";
+option java_generate_equals_and_hash = true;
+option java_string_check_utf8 = true;
+
+// Ali Cloud Service
+option java_outer_classname = "ACS";
+
+message ChangeLogLevelRequest {
+  enum Level {
+    TRACE = 0;
+    DEBUG = 1;
+    INFO = 2;
+    WARN = 3;
+    ERROR = 4;
+  }
+  Level level = 1;
+}
+
+message ChangeLogLevelResponse {
+  string remark = 1;
+}
+
+service Admin {
+  rpc ChangeLogLevel(ChangeLogLevelRequest) returns (ChangeLogLevelResponse) {
+  }
+}

@@ -214,6 +214,7 @@ message SystemAttribute {
   repeated string keys = 2;
 
   // Message identifier, client-side generated, remains unique.
+  // if message_id is empty, the send message request will be aborted with status `INVALID_ARGUMENT`
   string message_id = 3;
 
   // Message body digest
@@ -282,6 +283,9 @@ message SystemAttribute {
 message Message {
   Resource topic = 1;
   // User defined key-value pairs.
+  // If user_attribute contains the reserved keys by RocketMQ,
+  // the send message request will be aborted with status `INVALID_ARGUMENT`. See below links for the reserved keys
+  // https://github.com/apache/rocketmq/blob/master/common/src/main/java/org/apache/rocketmq/common/message/MessageConst.java#L58
   map<string, string> user_attribute = 2;
   SystemAttribute system_attribute = 3;
   bytes body = 4;

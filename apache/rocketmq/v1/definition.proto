@@ -9,8 +9,6 @@ option java_multiple_files = true;
 option java_package = "apache.rocketmq.v1";
 option java_generate_equals_and_hash = true;
 option java_string_check_utf8 = true;
-
-// Ali Cloud Service
 option java_outer_classname = "MQDomain";
 
 enum Permission {
@@ -46,7 +44,7 @@ message DeadLetterPolicy {
   //
   // This field will be honored on a best effort basis.
   //
-  // If this parameter is 0, a default value of 5 is used.
+  // If this parameter is 0, a default value of 16 is used.
   int32 max_delivery_attempts = 1;
 
   reserved 2 to 64;

@@ -8,6 +8,10 @@
 
 ## Consumer Flow
 
-## Reserved Fields
+## Error handling
+This API spec adopts a rich error model developed by Google as described [here](https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto). This model enables servers to return and clients to consume additional [error details](https://github.com/googleapis/googleapis/blob/master/google/rpc/error_details.proto) expressed as one or more protobuf messages. It further specifies a standard set of error message types to cover the most common needs (such as invalid parameters, quota violations, and stack traces).
 
-This API spec has reserved the numeric value of PB enum to 64 and the field numeric value of PB message to 64. These reserved values will be used by RocketMQ's official implementation. Beyond the reserved values are free to use by external organizations.
+The whole set of response codes are listed [here](https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto), please refer to `service.proto` file for details about the error responses of each RPC service.
+
+## Reserved Fields
+Messages and enumerations of the API spec reserve the first 64 fields for the evolution of RocketMQ exclusively. Vendor-specific extensions to the protocol are supposed to use fields beyond 64.

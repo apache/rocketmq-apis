@@ -249,20 +249,6 @@ message PullMessageResponse {
   reserved 6 to 64;
 }
 
-message UpdateOffsetRequest {
-  Resource group = 1;
-  Partition partition = 2;
-  int64 partition_offset = 3;
-
-  reserved 4 to 64;
-}
-
-message UpdateOffsetResponse {
-  ResponseCommon common = 1;
-
-  reserved 2 to 64;
-}
-
 message GenericPollingRequest {
   string client_id = 1;
   repeated Resource topics = 2;
@@ -430,8 +416,6 @@ service MessagingService {
   // If there is no new message in the specific topic, returns `OK` with an empty message set. Please note that client
   // may suffer from false empty responses.
   rpc PullMessage(PullMessageRequest) returns (PullMessageResponse) {}
-
-  rpc UpdateOffset(UpdateOffsetRequest) returns (UpdateOffsetResponse) {}
 
   rpc MultiplexingCall(MultiplexingRequest) returns (MultiplexingResponse) {}
 

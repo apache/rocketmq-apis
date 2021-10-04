@@ -323,10 +323,13 @@ message MultiplexingResponse {
 }
 
 message NotifyClientTerminationRequest {
-  Resource group = 1;
-  string client_id = 2;
+  oneof group {
+    Resource producer_group = 1;
+    Resource consumer_group = 2;
+  }
+  string client_id = 3;
 
-  reserved 3 to 64;
+  reserved 4 to 64;
 }
 
 message NotifyClientTerminationResponse {

@@ -26,8 +26,9 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Setup Bazel
-        run: sudo apt install npm
-        run: sudo npm install -g @bazel/bazelisk
+        run: |
+          sudo apt install npm
+          sudo npm install -g @bazel/bazelisk
       - name: Use Bazel
         if: matrix.os != 'windows'
         run: bazel -h

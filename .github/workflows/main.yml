@@ -27,7 +27,7 @@ jobs:
       
       - name: Setup Bazel
         run: |
-          sudo apt -qq install npm
+          sudo apt-get -qq install npm
           sudo npm install -g @bazel/bazelisk
       - name: Use Bazel
         if: matrix.os != 'windows'

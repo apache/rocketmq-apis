@@ -191,19 +191,21 @@ message EndTransactionRequest {
   Resource group = 1;
   string message_id = 2;
   string transaction_id = 3;
+  int64 transaction_state_table_offset = 4;
+  int64 commit_log_offset = 5;
   enum TransactionResolution {
     COMMIT = 0;
     ROLLBACK = 1;
   }
-  TransactionResolution resolution = 4;
+  TransactionResolution resolution = 6;
   enum Source {
     CLIENT = 0;
     SERVER_CHECK = 1;
   }
-  Source source = 5;
-  string trace_context = 6;
+  Source source = 7;
+  string trace_context = 8;
 
-  reserved 7 to 64;
+  reserved 9 to 64;
 }
 
 message EndTransactionResponse {
@@ -297,8 +299,10 @@ message VerifyMessageConsumptionResponse {
 message RecoverOrphanedTransactionRequest {
   Message orphaned_transactional_message = 1;
   string transaction_id = 2;
+  int64 transaction_state_table_offset = 3;
+  int64 commit_log_offset = 4;
 
-  reserved 3 to 64;
+  reserved 5 to 64;
 }
 
 message MultiplexingRequest {
@@ -323,10 +327,13 @@ message MultiplexingResponse {
 }
 
 message NotifyClientTerminationRequest {
-  Resource group = 1;
-  string client_id = 2;
+  oneof group {
+    Resource producer_group = 1;
+    Resource consumer_group = 2;
+  }
+  string client_id = 3;
 
-  reserved 3 to 64;
+  reserved 4 to 64;
 }
 
 message NotifyClientTerminationResponse {

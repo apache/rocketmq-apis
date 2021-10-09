@@ -264,7 +264,55 @@ message PullMessageResponse {
   reserved 6 to 64;
 }
 
-message GenericPollingRequest {
+message NoopCommand {
+  reserved 1 to 64;
+}
+
+message PrintThreadStackTraceCommand {
+  string task_id = 1;
+
+  reserved 2 to 64;
+}
+
+message ReportThreadStackTraceRequest {
+  string task_id = 1;
+  string thread_stack_trace = 2;
+
+  reserved 3 to 64;
+}
+
+message ReportThreadStackTraceResponse {
+  ResponseCommon common = 1;
+
+  reserved 2 to 64;
+}
+
+message VerifyMessageConsumptionCommand {
+  string task_id = 1;
+  Message message = 2;
+
+  reserved 3 to 64;
+}
+
+message ReportMessageConsumptionResultRequest {
+  string task_id = 1;
+  google.rpc.Status status = 2;
+}
+
+message ReportMessageConsumptionResultResponse {
+  ResponseCommon common = 1;
+
+  reserved 2 to 64;
+}
+
+message RecoverOrphanedTransactionCommand {
+  Message orphaned_transactional_message = 1;
+  string transaction_id = 2;
+
+  reserved 3 to 64;
+}
+
+message PollingCommandRequest {
   string client_id = 1;
   repeated Resource topics = 2;
   oneof group {
@@ -275,63 +323,12 @@ message GenericPollingRequest {
   reserved 5 to 64;
 }
 
-message GenericPollingResponse {
-  ResponseCommon common = 1;
-
-  reserved 2 to 64;
-}
-
-message PrintThreadStackRequest {
-  string mid = 1;
-
-  reserved 2 to 64;
-}
-
-message PrintThreadStackResponse {
-  ResponseCommon common = 1;
-  string mid = 2;
-  string stack_trace = 3;
-
-  reserved 4 to 64;
-}
-
-message VerifyMessageConsumptionRequest {
-  string mid = 1;
-  Message message = 2;
-
-  reserved 3 to 64;
-}
-
-message VerifyMessageConsumptionResponse {
-  string mid = 1;
-  ResponseCommon common = 2;
-
-  reserved 3 to 64;
-}
-
-message RecoverOrphanedTransactionRequest {
-  Message orphaned_transactional_message = 1;
-  string transaction_id = 2;
-
-  reserved 3 to 64;
-}
-
-message MultiplexingRequest {
+message PollingCommandResponse {
   oneof type {
-    GenericPollingRequest polling_request = 1;
-    PrintThreadStackResponse print_thread_stack_response = 2;
-    VerifyMessageConsumptionResponse verify_message_consumption_response = 3;
-  }
-
-  reserved 4 to 64;
-}
-
-message MultiplexingResponse {
-  oneof type {
-    GenericPollingResponse polling_response = 1;
-    PrintThreadStackRequest print_thread_stack_request = 2;
-    VerifyMessageConsumptionRequest verify_message_consumption_request = 3;
-    RecoverOrphanedTransactionRequest recover_orphaned_transaction_request = 4;
+    NoopCommand noop_command = 1;
+    PrintThreadStackTraceCommand print_thread_stack_trace_command = 2;
+    VerifyMessageConsumptionCommand verify_message_consumption_command = 3;
+    RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 4;
   }
 
   reserved 5 to 64;
@@ -435,7 +432,11 @@ service MessagingService {
   // may suffer from false empty responses.
   rpc PullMessage(PullMessageRequest) returns (PullMessageResponse) {}
 
-  rpc MultiplexingCall(MultiplexingRequest) returns (MultiplexingResponse) {}
+  rpc PollingCommand(PollingCommandRequest) returns (PollingCommandResponse) {}
+
+  rpc ReportThreadStackTrace(ReportThreadStackTraceRequest) returns (ReportThreadStackTraceResponse) {}
+
+  rpc RepostMessageConsumptionResult(ReportMessageConsumptionResultRequest) returns (ReportMessageConsumptionResultResponse) {}
 
   rpc NotifyClientTermination(NotifyClientTerminationRequest)
       returns (NotifyClientTerminationResponse) {}

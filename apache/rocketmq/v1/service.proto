@@ -312,7 +312,7 @@ message RecoverOrphanedTransactionCommand {
   reserved 3 to 64;
 }
 
-message PollingCommandRequest {
+message PollCommandRequest {
   string client_id = 1;
   repeated Resource topics = 2;
   oneof group {
@@ -323,7 +323,7 @@ message PollingCommandRequest {
   reserved 5 to 64;
 }
 
-message PollingCommandResponse {
+message PollCommandResponse {
   oneof type {
     NoopCommand noop_command = 1;
     PrintThreadStackTraceCommand print_thread_stack_trace_command = 2;
@@ -432,7 +432,7 @@ service MessagingService {
   // may suffer from false empty responses.
   rpc PullMessage(PullMessageRequest) returns (PullMessageResponse) {}
 
-  rpc PollingCommand(PollingCommandRequest) returns (PollingCommandResponse) {}
+  rpc PollCommand(PollCommandRequest) returns (PollCommandResponse) {}
 
   rpc ReportThreadStackTrace(ReportThreadStackTraceRequest) returns (ReportThreadStackTraceResponse) {}
 

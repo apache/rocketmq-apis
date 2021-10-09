@@ -353,33 +353,44 @@ message NotifyClientTerminationResponse {
   reserved 2 to 64;
 }
 
-// For all the rpcs in MessagingService may return below erros:
+// For all the RPCs in MessagingService, the following error handling policies apply:
 //
-// If the request doesn't have a valid authentication credentials, returns `UNAUTHENTICATED`.
-// If the caller doesn't permission to execute the specified operation, returns `PERMISSION_DENIED`.
-// If the per-user rate quota has been exceeded, returns `RESOURCE_EXHAUSTED`.
-// If any unexpected server-side exception occurs, returns `INTERNAL`.
+// If the request doesn't bear a valid authentication credential, return a response with common.status.code == `UNAUTHENTICATED`.
+// If the authenticated user is not granted with sufficient permission to execute the requested operation, return a response with common.status.code == `PERMISSION_DENIED`.
+// If the per-user-resource-based quota is exhausted, return a response with common.status.code == `RESOURCE_EXHAUSTED`.
+// If any unexpected server-side errors raise, return a response with common.status.code == `INTERNAL`.
 service MessagingService {
 
-  // Querys the route info of a topic from specific endpoints, the server returns a set of partition if success.
+  // Querys the route entries of the requested topic in the perspective of the given endpoints.
+  // On success, servers should return a collection of addressable partitions. 
+  // Note servers may return customized route entries based on endpoints provided.
   //
-  // If the corresponding topic doesn't exist, returns `NOT_FOUND`.
+  // If the requested topic doesn't exist, returns `NOT_FOUND`.
   // If the specific endpoints is emtpy, returns `INVALID_ARGUMENT`.
   rpc QueryRoute(QueryRouteRequest) returns (QueryRouteResponse) {}
 
-  // Producer or consumer sends HeartbeatRequest to server in order to report necessary
-  // client-side information, like subscription data of consumer. Returns `OK` if success.
+  // Producer or consumer sends HeartbeatRequest to servers periodically to keep-alive. 
+  // Additionally, it also reports client-side configuration, including topic subscription, load-balancing group name, etc.
   //
-  // If the client language info is invalid, returns `INVALID_ARGUMENT`
+  // Returns `OK` if success.
+  //
+  // If a client specifies a language that is not yet supported by servers, returns `INVALID_ARGUMENT`
   rpc Heartbeat(HeartbeatRequest) returns (HeartbeatResponse) {}
 
-  // Checks the health status of message server, returns `OK` if no network issues.
-  // Clients could use this RPC to detect the availability of server, and adpot necessary isolation measures. 
+  // Checks the health status of message server, returns `OK` if services are online and serving.
+  // Clients may use this RPC to detect availability of messaging service, and take isolation actions when necessary. 
   rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {}
 
-  // Sends one message to the specific partition of a topic, returns message id or transaction id with status `OK`.
+  // Delivers messages to brokers.
+  // Clients may further:
+  // 1. Refine a message destination to topic partition which fulfills parts of FIFO semantic;
+  // 2. Flag a message as transactional, which keeps it invisible to consumers until it commits;
+  // 3. Time a message, making it invisible to consumers till specified time-point;
+  // 4. And more...
+  //  
+  // Returns message-id or transaction-id with status `OK` on success.
   //
-  // If the corresponding topic doesn't exist, returns `NOT_FOUND`.
+  // If the destination topic doesn't exist, returns `NOT_FOUND`.
   rpc SendMessage(SendMessageRequest) returns (SendMessageResponse) {}
 
   // Querys the assigned partition route info of a topic for current consumer, 

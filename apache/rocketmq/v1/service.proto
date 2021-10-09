@@ -436,7 +436,7 @@ service MessagingService {
 
   rpc ReportThreadStackTrace(ReportThreadStackTraceRequest) returns (ReportThreadStackTraceResponse) {}
 
-  rpc RepostMessageConsumptionResult(ReportMessageConsumptionResultRequest) returns (ReportMessageConsumptionResultResponse) {}
+  rpc ReportMessageConsumptionResult(ReportMessageConsumptionResultRequest) returns (ReportMessageConsumptionResultResponse) {}
 
   rpc NotifyClientTermination(NotifyClientTerminationRequest)
       returns (NotifyClientTerminationResponse) {}

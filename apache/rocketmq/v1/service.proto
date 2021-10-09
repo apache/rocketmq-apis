@@ -269,13 +269,13 @@ message NoopCommand {
 }
 
 message PrintThreadStackTraceCommand {
-  string task_id = 1;
+  string command_id = 1;
 
   reserved 2 to 64;
 }
 
 message ReportThreadStackTraceRequest {
-  string task_id = 1;
+  string command_id = 1;
   string thread_stack_trace = 2;
 
   reserved 3 to 64;
@@ -288,14 +288,14 @@ message ReportThreadStackTraceResponse {
 }
 
 message VerifyMessageConsumptionCommand {
-  string task_id = 1;
+  string command_id = 1;
   Message message = 2;
 
   reserved 3 to 64;
 }
 
 message ReportMessageConsumptionResultRequest {
-  string task_id = 1;
+  string command_id = 1;
   google.rpc.Status status = 2;
 }
 

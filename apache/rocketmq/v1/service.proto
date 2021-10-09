@@ -264,7 +264,53 @@ message PullMessageResponse {
   reserved 6 to 64;
 }
 
-message GenericPollingRequest {
+message NoopCommand { reserved 1 to 64; }
+
+message PrintThreadStackTraceCommand {
+  string command_id = 1;
+
+  reserved 2 to 64;
+}
+
+message ReportThreadStackTraceRequest {
+  string command_id = 1;
+  string thread_stack_trace = 2;
+
+  reserved 3 to 64;
+}
+
+message ReportThreadStackTraceResponse {
+  ResponseCommon common = 1;
+
+  reserved 2 to 64;
+}
+
+message VerifyMessageConsumptionCommand {
+  string command_id = 1;
+  Message message = 2;
+
+  reserved 3 to 64;
+}
+
+message ReportMessageConsumptionResultRequest {
+  string command_id = 1;
+  google.rpc.Status status = 2;
+}
+
+message ReportMessageConsumptionResultResponse {
+  ResponseCommon common = 1;
+
+  reserved 2 to 64;
+}
+
+message RecoverOrphanedTransactionCommand {
+  Message orphaned_transactional_message = 1;
+  string transaction_id = 2;
+
+  reserved 3 to 64;
+}
+
+message PollCommandRequest {
   string client_id = 1;
   repeated Resource topics = 2;
   oneof group {
@@ -275,63 +321,16 @@ message GenericPollingRequest {
   reserved 5 to 64;
 }
 
-message GenericPollingResponse {
-  ResponseCommon common = 1;
-
-  reserved 2 to 64;
-}
-
-message PrintThreadStackRequest {
-  string mid = 1;
-
-  reserved 2 to 64;
-}
-
-message PrintThreadStackResponse {
-  ResponseCommon common = 1;
-  string mid = 2;
-  string stack_trace = 3;
-
-  reserved 4 to 64;
-}
-
-message VerifyMessageConsumptionRequest {
-  string mid = 1;
-  Message message = 2;
-
-  reserved 3 to 64;
-}
-
-message VerifyMessageConsumptionResponse {
-  string mid = 1;
-  ResponseCommon common = 2;
-
-  reserved 3 to 64;
-}
-
-message RecoverOrphanedTransactionRequest {
-  Message orphaned_transactional_message = 1;
-  string transaction_id = 2;
-
-  reserved 3 to 64;
-}
-
-message MultiplexingRequest {
+message PollCommandResponse {
   oneof type {
-    GenericPollingRequest polling_request = 1;
-    PrintThreadStackResponse print_thread_stack_response = 2;
-    VerifyMessageConsumptionResponse verify_message_consumption_response = 3;
-  }
-
-  reserved 4 to 64;
-}
-
-message MultiplexingResponse {
-  oneof type {
-    GenericPollingResponse polling_response = 1;
-    PrintThreadStackRequest print_thread_stack_request = 2;
-    VerifyMessageConsumptionRequest verify_message_consumption_request = 3;
-    RecoverOrphanedTransactionRequest recover_orphaned_transaction_request = 4;
+    // Default command when no new command need to be delivered.
+    NoopCommand noop_command = 1;
+    // Request client to print thread stack trace.
+    PrintThreadStackTraceCommand print_thread_stack_trace_command = 2;
+    // Request client to verify the consumption of the appointed message.
+    VerifyMessageConsumptionCommand verify_message_consumption_command = 3;
+    // Request client to recover the orphaned transaction message.
+    RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 4;
   }
 
   reserved 5 to 64;
@@ -435,8 +434,35 @@ service MessagingService {
   // may suffer from false empty responses.
   rpc PullMessage(PullMessageRequest) returns (PullMessageResponse) {}
 
-  rpc MultiplexingCall(MultiplexingRequest) returns (MultiplexingResponse) {}
+  // Multiplexing RPC(s) for various polling requests, which issue different
+  // commands to client.
+  //
+  // Sometimes client may need to receive and process the command from server.
+  // To prevent the complexity of streaming RPC(s), a unary RPC using
+  // long-polling is another solution.
+  //
+  // To mark the request-response of corresponding command, `command_id` in
+  // message is recorded in the subsequent RPC(s). For example, after receiving
+  // command of printing thread stack trace, client would send
+  // `ReportMessageConsumptionResultRequest` to server, which contain both of
+  // the stack trace and `command_id`.
+  //
+  // At same time, `NoopCommand` is delivered from server when no new command is
+  // needed, it is essential for client to maintain the ping-pong.
+  //
+  rpc PollCommand(PollCommandRequest) returns (PollCommandResponse) {}
 
+  // After receiving the corresponding polling command, the thread stack trace
+  // is reported to the server.
+  rpc ReportThreadStackTrace(ReportThreadStackTraceRequest)
+      returns (ReportThreadStackTraceResponse) {}
+
+  // After receiving the corresponding polling command, the consumption result
+  // of appointed message is reported to the server.
+  rpc ReportMessageConsumptionResult(ReportMessageConsumptionResultRequest)
+      returns (ReportMessageConsumptionResultResponse) {}
+
+  // Notify the server that the client is terminated.
   rpc NotifyClientTermination(NotifyClientTerminationRequest)
       returns (NotifyClientTerminationResponse) {}
 }

@@ -264,9 +264,7 @@ message PullMessageResponse {
   reserved 6 to 64;
 }
 
-message NoopCommand {
-  reserved 1 to 64;
-}
+message NoopCommand { reserved 1 to 64; }
 
 message PrintThreadStackTraceCommand {
   string command_id = 1;
@@ -325,9 +323,13 @@ message PollCommandRequest {
 
 message PollCommandResponse {
   oneof type {
+    // Default command when no new command need to be delivered.
     NoopCommand noop_command = 1;
+    // Request client to print thread stack trace.
     PrintThreadStackTraceCommand print_thread_stack_trace_command = 2;
+    // Request client to verify the consumption of the appointed message.
     VerifyMessageConsumptionCommand verify_message_consumption_command = 3;
+    // Request client to recover the orphaned transaction message.
     RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 4;
   }
 
@@ -432,12 +434,35 @@ service MessagingService {
   // may suffer from false empty responses.
   rpc PullMessage(PullMessageRequest) returns (PullMessageResponse) {}
 
+  // Multiplexing RPC(s) for various polling requests, which issue different
+  // commands to client.
+  //
+  // Sometimes client may need to receive and process the command from server.
+  // To prevent the complexity of streaming RPC(s), a unary RPC using
+  // long-polling is another solution.
+  //
+  // To mark the request-response of corresponding command, `command_id` in
+  // message is recorded in the subsequent RPC(s). For example, after receiving
+  // command of printing thread stack trace, client would send
+  // `ReportMessageConsumptionResultRequest` to server, which contain both of
+  // the stack trace and `command_id`.
+  //
+  // At same time, `NoopCommand` is delivered from server when no new command is
+  // needed, it is essential for client to maintain the ping-pong.
+  //
   rpc PollCommand(PollCommandRequest) returns (PollCommandResponse) {}
 
-  rpc ReportThreadStackTrace(ReportThreadStackTraceRequest) returns (ReportThreadStackTraceResponse) {}
+  // After receiving the corresponding polling command, the thread stack trace
+  // is reported to the server.
+  rpc ReportThreadStackTrace(ReportThreadStackTraceRequest)
+      returns (ReportThreadStackTraceResponse) {}
 
-  rpc ReportMessageConsumptionResult(ReportMessageConsumptionResultRequest) returns (ReportMessageConsumptionResultResponse) {}
+  // After receiving the corresponding polling command, the consumption result
+  // of appointed message is reported to the server.
+  rpc ReportMessageConsumptionResult(ReportMessageConsumptionResultRequest)
+      returns (ReportMessageConsumptionResultResponse) {}
 
+  // Notify the server that the client is terminated.
   rpc NotifyClientTermination(NotifyClientTerminationRequest)
       returns (NotifyClientTerminationResponse) {}
 }

@@ -309,6 +309,8 @@ message VerifyMessageConsumptionCommand {
 message ReportMessageConsumptionResultRequest {
   string command_id = 1;
   google.rpc.Status status = 2;
+
+  reserved 3 to 64;
 }
 
 message ReportMessageConsumptionResultResponse {

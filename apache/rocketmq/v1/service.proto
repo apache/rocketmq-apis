@@ -55,7 +55,7 @@ message ResponseCommon {
 // subscribe messages from.
 //
 // QueryRouteRequest shall include source endpoints, aka, configured
-// access-point , which annotates tenant-id, instance-id or other
+// access-point, which annotates tenant-id, instance-id or other
 // vendor-specific settings. Purpose-built name servers may respond customized
 // results based on these particular requirements.
 message QueryRouteRequest {

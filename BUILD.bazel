@@ -1,34 +1,3 @@
-load("@rules_proto//proto:defs.bzl", "proto_library")
-load("@com_google_googleapis_imports//:imports.bzl",
-    "csharp_gapic_assembly_pkg",
-    "csharp_gapic_library",
-    "csharp_grpc_library",
-    "csharp_proto_library",
-    "go_gapic_assembly_pkg",
-    "go_gapic_library",
-    "go_proto_library",
-    "go_test",
-    "java_gapic_assembly_gradle_pkg",
-    "java_gapic_library",
-    "java_gapic_test",
-    "java_grpc_library",
-    "java_proto_library",
-    "nodejs_gapic_assembly_pkg",
-    "nodejs_gapic_library",
-    "php_gapic_assembly_pkg",
-    "php_gapic_library",
-    "php_grpc_library",
-    "php_proto_library",
-    "proto_library_with_info",
-    "py_gapic_assembly_pkg",
-    "py_gapic_library",
-    "ruby_cloud_gapic_library",
-    "ruby_gapic_assembly_pkg",
-    "ruby_grpc_library",
-    "ruby_proto_library",
-)
-load("@rules_proto_grpc//cpp:defs.bzl", "cpp_grpc_library")
-
 package(default_visibility = ["//visibility:public"])
 
 proto_library(
@@ -45,26 +14,5 @@ proto_library(
     ]
 )
 
-java_proto_library(
-    name = "rocketmq_v1_java_library",
-    deps = [
-        ":rocketmq_v1_proto",
-    ]
-)
 
-java_grpc_library(
-    name = "rocketmq_v1_java_grpc",
-    srcs = [":rocketmq_v1_proto"],
-    deps = [":rocketmq_v1_java_library"],
-)
 
-cpp_grpc_library(
-    name = "rocketmq_v1_cpp_grpc_library",
-    protos = [
-        ":rocketmq_v1_proto",
-        "@com_google_googleapis//google/rpc:code_proto",
-        "@com_google_googleapis//google/rpc:error_details_proto",
-        "@com_google_googleapis//google/rpc:status_proto",
-    ],
-    visibility = ["//visibility:public"]
-)

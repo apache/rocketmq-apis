@@ -1,6 +1,13 @@
 workspace(name = "org_apache_rocketmq_apis")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:git.bzl","git_repository")
+load(
+    "//:deps.bzl",
+    "io_grpc_grpc_java",
+)
+
+io_grpc_grpc_java()
 
 http_archive(
     name = "rules_proto",
@@ -27,6 +34,23 @@ load("@rules_jvm_external//:repositories.bzl", "rules_jvm_external_deps")
 rules_jvm_external_deps()
 load("@rules_jvm_external//:setup.bzl", "rules_jvm_external_setup")
 rules_jvm_external_setup()
+load("@rules_jvm_external//:defs.bzl", "maven_install")
+
+maven_install(
+    artifacts = [
+        "com.google.guava:guava:20.0",
+        "com.google.protobuf:protobuf-java:3.12.0",
+        "io.grpc:grpc-core:1.35.0",
+        "io.grpc:grpc-protobuf:1.35.0",
+        "io.grpc:grpc-stub:1.35.0",
+        "io.grpc:grpc-api:1.35.0",
+        "com.google.api.grpc:proto-google-common-protos:2.0.1",
+        "javax.annotation:javax.annotation-api:1.3.2"
+    ],
+    repositories = [
+        "https://repo1.maven.org/maven2",
+    ],
+)
 
 http_archive(
     name = "com_google_googleapis",
@@ -39,7 +63,7 @@ http_archive(
 load("@com_google_googleapis//:repository_rules.bzl", "switched_rules_by_language")
 switched_rules_by_language(
     name = "com_google_googleapis_imports",
- #   cc = True,
+    cc = True,
  #   csharp = True,
  #   gapic = True,
  #   go = True,
@@ -49,6 +73,12 @@ switched_rules_by_language(
  #   php = True,
  #   python = True,
  #   ruby = True,
+)
+
+git_repository(
+    name = "graknlabs_bazel_distribution",
+    remote = "https://github.com/graknlabs/bazel-distribution",
+    commit = "d3d4075a6618edc683a88630bf1f9f58859563b7",
 )
 
 http_archive(

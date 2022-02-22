@@ -1,0 +1,61 @@
+load("//:plugin.bzl", "proto_plugin")
+load("@graknlabs_bazel_distribution//maven:rules.bzl", "assemble_maven", "deploy_maven")
+load(":java_grpc_compile.bzl", "java_grpc_compile")
+
+proto_plugin(
+    name = "java",
+    out = "{name}.jar",
+    visibility = ["//visibility:public"],
+)
+
+# TODO: look into the "enable_deprecated" plugin option.
+proto_plugin(
+    name = "grpc_java",
+    out = "{name}.jar",
+    tool = "@io_grpc_grpc_java//compiler:grpc_java_plugin",
+    visibility = ["//visibility:public"],
+)
+
+
+java_grpc_compile(
+    name = "rocketmq_proto_src",
+    deps = [
+        "//:rocketmq_v1_proto",
+    ]
+)
+
+java_library(
+    name = "rocketmq-proto",
+    srcs = [":rocketmq_proto_src"],
+    deps = [
+        "@maven//:com_google_guava_guava",
+        "@maven//:com_google_protobuf_protobuf_java",
+        "@maven//:io_grpc_grpc_core",
+        "@maven//:io_grpc_grpc_protobuf",
+        "@maven//:io_grpc_grpc_stub",
+        "@maven//:io_grpc_grpc_api",
+        "@maven//:com_google_api_grpc_proto_google_common_protos",
+        "@maven//:javax_annotation_javax_annotation_api", # gRPC needs this in order to compile in Java 11 and Java 14
+    ],
+    tags = ["maven_coordinates=org.apache.rocketmq:rocketmq-proto-test:{pom_version}"]
+)
+
+assemble_maven(
+    name = "assemble-maven",
+    license = "apache",
+    package = "{maven_packages}",
+    project_description = "Common Protocol APIs of Apache RocketMQ",
+    project_name = "Apache RocketMQ APIs",
+    # project_url = "https://github.com/apache/rocketmq-apis",
+    # scm_url = "https://github.com/apache/rocketmq-apis.git",
+    tags = ["manual"],
+    target = ":rocketmq-proto",
+    version_file = ":VERSION",
+)
+
+deploy_maven(
+    name = "deploy-maven",
+    release = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/",
+    snapshot = "https://s01.oss.sonatype.org/content/repositories/snapshots",
+    target = ":assemble-maven",
+)

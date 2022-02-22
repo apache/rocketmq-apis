@@ -20,6 +20,7 @@ import "google/protobuf/duration.proto";
 
 package apache.rocketmq.v1;
 
+option csharp_namespace = "Apache.Rockeqtmq.V1";
 option java_multiple_files = true;
 option java_package = "apache.rocketmq.v1";
 option java_generate_equals_and_hash = true;

@@ -373,7 +373,7 @@ message NotifyClientTerminationResponse {
   reserved 2 to 64;
 }
 
-message ChangeInvisibleTimeRequest {
+message ChangeInvisibleDurationRequest {
   Resource group = 1;
   Resource topic = 2;
 
@@ -385,7 +385,7 @@ message ChangeInvisibleTimeRequest {
   reserved 5 to 64;
 }
 
-message ChangeInvisibleTimeResponse {
+message ChangeInvisibleDurationResponse {
   ResponseCommon common = 1;
 
   // Server may generate a new receipt handle for the message.
@@ -545,7 +545,7 @@ service MessagingService {
   // time. The message is supposed to be processed within the invisible
   // duration. If the client, which is in charge of the invisible message, is
   // not capable of processing the message timely, it may use
-  // ChangeInvisibleTime to lengthen invisible duration.
-  rpc ChangeInvisibleTime(ChangeInvisibleTimeRequest)
-      returns (ChangeInvisibleTimeResponse) {}
+  // ChangeInvisibleDuration to lengthen invisible duration.
+  rpc ChangeInvisibleDuration(ChangeInvisibleDurationRequest)
+      returns (ChangeInvisibleDurationResponse) {}
 }

@@ -172,8 +172,9 @@ message Partition {
   int32 id = 2;
   Permission permission = 3;
   Broker broker = 4;
+  repeated MessageType accept_message_types = 5;
 
-  reserved 5 to 64;
+  reserved 6 to 64;
 }
 
 enum MessageType {

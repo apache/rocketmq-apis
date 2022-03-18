@@ -1,8 +1,8 @@
 package(default_visibility = ["//visibility:public"])
 
 proto_library(
-    name = "rocketmq_v1_proto",
-    srcs = glob(["apache/rocketmq/v1/*.proto"]),
+    name = "rocketmq_v2_proto",
+    srcs = glob(["apache/rocketmq/v2/*.proto"]),
     deps = [
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:field_mask_proto",

@@ -26,5 +26,5 @@ proto_plugin(
 
 cpp_grpc_library(
     name = "rocketmq-proto-cpp-library",
-    deps = ["//:rocketmq_v1_proto"]
+    deps = ["//:rocketmq_v2_proto"]
 )

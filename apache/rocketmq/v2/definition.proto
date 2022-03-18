@@ -18,11 +18,11 @@ syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 
-package apache.rocketmq.v1;
+package apache.rocketmq.v2;
 
-option csharp_namespace = "Apache.Rocketmq.V1";
+option csharp_namespace = "Apache.Rocketmq.V2";
 option java_multiple_files = true;
-option java_package = "apache.rocketmq.v1";
+option java_package = "apache.rocketmq.v2";
 option java_generate_equals_and_hash = true;
 option java_string_check_utf8 = true;
 option java_outer_classname = "MQDomain";

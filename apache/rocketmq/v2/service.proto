@@ -20,13 +20,13 @@ import "google/protobuf/timestamp.proto";
 import "google/rpc/error_details.proto";
 import "google/rpc/status.proto";
 
-import "apache/rocketmq/v1/definition.proto";
+import "apache/rocketmq/v2/definition.proto";
 
-package apache.rocketmq.v1;
+package apache.rocketmq.v2;
 
-option csharp_namespace = "Apache.Rocketmq.V1";
+option csharp_namespace = "Apache.Rocketmq.V2";
 option java_multiple_files = true;
-option java_package = "apache.rocketmq.v1";
+option java_package = "apache.rocketmq.v2";
 option java_generate_equals_and_hash = true;
 option java_string_check_utf8 = true;
 option java_outer_classname = "MQService";

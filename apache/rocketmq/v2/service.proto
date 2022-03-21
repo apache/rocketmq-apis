@@ -128,20 +128,6 @@ message AckMessageResponse {
   ResponseCommon common = 1;
 }
 
-message NackMessageRequest {
-  Resource group = 1;
-  Resource topic = 2;
-  string client_id = 3;
-  string receipt_handle = 4;
-  string message_id = 5;
-  int32 delivery_attempt = 6;
-  int32 max_delivery_attempts = 7;
-}
-
-message NackMessageResponse {
-  ResponseCommon common = 1;
-}
-
 message ForwardMessageToDeadLetterQueueRequest {
   Resource group = 1;
   Resource topic = 2;
@@ -374,14 +360,6 @@ service MessagingService {
   // If the given receipt_handle is illegal or out of date, returns
   // `INVALID_ARGUMENT`.
   rpc AckMessage(AckMessageRequest) returns (AckMessageResponse) {}
-
-  // Signals that the message has not been successfully processed. The message
-  // server should resend the message follow the retry policy defined at
-  // server-side.
-  //
-  // If the corresponding topic or consumer group doesn't exist, returns
-  // `NOT_FOUND`.
-  rpc NackMessage(NackMessageRequest) returns (NackMessageResponse) {}
 
   // Forwards one message to dead letter queue if the DeadLetterPolicy is
   // triggered by this message at client-side, return `OK` if success.

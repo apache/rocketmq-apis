@@ -144,8 +144,7 @@ message ForwardMessageToDeadLetterQueueResponse {
 
 message HeartbeatRequest {
   string client_id = 1;
-  ConsumerData consumer_data = 2;
-  bool fifo_flag = 3;
+  ConsumerData data = 2;
 }
 
 message HeartbeatResponse {

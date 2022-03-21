@@ -114,6 +114,8 @@ message ConsumerData {
   DeadLetterPolicy dead_letter_policy = 4;
 
   ConsumeMessageType consume_type = 5;
+
+  bool fifo = 6;
 }
 
 message SubscriptionEntry {

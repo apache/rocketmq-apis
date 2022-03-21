@@ -38,8 +38,6 @@ message ResponseCommon {
   google.rpc.RetryInfo retry_info = 4;
   google.rpc.DebugInfo debug_info = 5;
   google.rpc.ErrorInfo error_info = 6;
-
-  reserved 7 to 64;
 }
 
 // Topics are destination of messages to publish to or subscribe from. Similar
@@ -63,31 +61,23 @@ message QueryRouteRequest {
   Resource topic = 1;
 
   Endpoints endpoints = 2;
-
-  reserved 3 to 64;
 }
 
 message QueryRouteResponse {
   ResponseCommon common = 1;
 
   repeated Partition partitions = 2;
-
-  reserved 3 to 64;
 }
 
 message SendMessageRequest {
   Message message = 1;
   Partition partition = 2;
-
-  reserved 3 to 64;
 }
 
 message SendMessageResponse {
   ResponseCommon common = 1;
   string message_id = 2;
   string transaction_id = 3;
-
-  reserved 4 to 64;
 }
 
 message QueryAssignmentRequest {
@@ -97,15 +87,11 @@ message QueryAssignmentRequest {
 
   // Service access point
   Endpoints endpoints = 4;
-
-  reserved 5 to 64;
 }
 
 message QueryAssignmentResponse {
   ResponseCommon common = 1;
   repeated Assignment assignments = 2;
-
-  reserved 3 to 64;
 }
 
 message ReceiveMessageRequest {
@@ -119,8 +105,6 @@ message ReceiveMessageRequest {
   google.protobuf.Duration invisible_duration = 8;
   google.protobuf.Duration await_time = 9;
   bool fifo_flag = 10;
-
-  reserved 11 to 64;
 }
 
 message ReceiveMessageResponse {
@@ -128,8 +112,6 @@ message ReceiveMessageResponse {
   repeated Message messages = 2;
   google.protobuf.Timestamp delivery_timestamp = 3;
   google.protobuf.Duration invisible_duration = 4;
-
-  reserved 5 to 64;
 }
 
 message AckMessageRequest {
@@ -141,14 +123,10 @@ message AckMessageRequest {
     int64 offset = 5;
   }
   string message_id = 6;
-
-  reserved 7 to 64;
 }
 
 message AckMessageResponse {
   ResponseCommon common = 1;
-
-  reserved 2 to 64;
 }
 
 message NackMessageRequest {
@@ -159,14 +137,10 @@ message NackMessageRequest {
   string message_id = 5;
   int32 delivery_attempt = 6;
   int32 max_delivery_attempts = 7;
-
-  reserved 8 to 64;
 }
 
 message NackMessageResponse {
   ResponseCommon common = 1;
-
-  reserved 2 to 64;
 }
 
 message ForwardMessageToDeadLetterQueueRequest {
@@ -177,84 +151,53 @@ message ForwardMessageToDeadLetterQueueRequest {
   string message_id = 5;
   int32 delivery_attempt = 6;
   int32 max_delivery_attempts = 7;
-
-  reserved 8 to 64;
 }
 
 message ForwardMessageToDeadLetterQueueResponse {
   ResponseCommon common = 1;
-
-  reserved 2 to 64;
 }
 
 message HeartbeatRequest {
   string client_id = 1;
-  oneof client_data {
-    ProducerData producer_data = 2;
-    ConsumerData consumer_data = 3;
-  }
-  bool fifo_flag = 4;
-
-  reserved 5 to 64;
+  ConsumerData consumer_data = 2;
+  bool fifo_flag = 3;
 }
 
 message HeartbeatResponse {
   ResponseCommon common = 1;
-
-  reserved 2 to 64;
 }
 
 message HealthCheckRequest {
   Resource group = 1;
   string client_host = 2;
-
-  reserved 3 to 64;
 }
 
 message HealthCheckResponse {
   ResponseCommon common = 1;
-
-  reserved 2 to 64;
 }
 
 message EndTransactionRequest {
   Resource group = 1;
   string message_id = 2;
   string transaction_id = 3;
-  enum TransactionResolution {
-    COMMIT = 0;
-    ROLLBACK = 1;
-  }
   TransactionResolution resolution = 4;
-  enum Source {
-    CLIENT = 0;
-    SERVER_CHECK = 1;
-  }
-  Source source = 5;
+  TransactionSource source = 5;
   string trace_context = 6;
-
-  reserved 7 to 64;
 }
 
 message EndTransactionResponse {
   ResponseCommon common = 1;
-
-  reserved 2 to 64;
 }
 
 message QueryOffsetRequest {
   Partition partition = 1;
   QueryOffsetPolicy policy = 2;
   google.protobuf.Timestamp time_point = 3;
-
-  reserved 4 to 64;
 }
 
 message QueryOffsetResponse {
   ResponseCommon common = 1;
   int64 offset = 2;
-
-  reserved 3 to 64;
 }
 
 message PullMessageRequest {
@@ -265,8 +208,6 @@ message PullMessageRequest {
   google.protobuf.Duration await_time = 5;
   FilterExpression filter_expression = 6;
   string client_id = 7;
-
-  reserved 8 to 64;
 }
 
 message PullMessageResponse {
@@ -275,53 +216,37 @@ message PullMessageResponse {
   int64 next_offset = 3;
   int64 max_offset = 4;
   repeated Message messages = 5;
-
-  reserved 6 to 64;
 }
 
 message PrintThreadStackTraceCommand {
   int64 command_id = 1;
-  reserved 2 to 64;
 }
 
 message ThreadStackTrace {
   int64 command_id = 1;
   string thread_stack_trace = 2;
-
-  reserved 3 to 64;
 }
 
 message VerifyMessageCommand {
   int64 command_id = 1;
   Message message = 2;
-
-  reserved 3 to 64;
 }
 
 message VerifyMessageResult {
   int64 command_id = 1;
   ResponseCommon common = 2;
-
-  reserved 3 to 64;
 }
 
 message RecoverOrphanedTransactionCommand {
   int64 command_id = 1;
   Message orphaned_transactional_message = 2;
   string transaction_id = 3;
-
-  reserved 4 to 64;
 }
 
 message Settings {
   string client_id = 1;
   repeated Resource topics = 2;
-  oneof group {
-    Resource producer_group = 3;
-    Resource consumer_group = 4;
-  }
-
-  reserved 5 to 64;
+  Resource group = 3;
 }
 
 message TelemetryCommand {
@@ -342,24 +267,15 @@ message TelemetryCommand {
 
     VerifyMessageResult verify_message_result = 6;
   }
-
-  reserved 7 to 64;
 }
 
 message NotifyClientTerminationRequest {
-  oneof group {
-    Resource producer_group = 1;
-    Resource consumer_group = 2;
-  }
-  string client_id = 3;
-
-  reserved 4 to 64;
+  Resource group = 1;
+  string client_id = 2;
 }
 
 message NotifyClientTerminationResponse {
   ResponseCommon common = 1;
-
-  reserved 2 to 64;
 }
 
 message ChangeInvisibleDurationRequest {
@@ -371,7 +287,6 @@ message ChangeInvisibleDurationRequest {
 
   // New invisible duration
   google.protobuf.Duration invisible_duration = 4;
-  reserved 5 to 64;
 }
 
 message ChangeInvisibleDurationResponse {
@@ -379,8 +294,6 @@ message ChangeInvisibleDurationResponse {
 
   // Server may generate a new receipt handle for the message.
   string receipt_handle = 2;
-
-  reserved 3 to 64;
 }
 
 // For all the RPCs in MessagingService, the following error handling policies

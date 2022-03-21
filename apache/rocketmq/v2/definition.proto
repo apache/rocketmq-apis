@@ -27,27 +27,35 @@ option java_generate_equals_and_hash = true;
 option java_string_check_utf8 = true;
 option java_outer_classname = "MQDomain";
 
-enum Permission {
-  NONE = 0;
-  READ = 1;
-  WRITE = 2;
-  READ_WRITE = 3;
+enum TransactionResolution {
+  TRANSACTION_RESOLUTION_UNSPECIFIED = 0;
+  COMMIT = 1;
+  ROLLBACK = 2;
+}
 
-  reserved 4 to 64;
+enum TransactionSource {
+  SOURCE_UNSPECIFIED = 0;
+  SOURCE_CLIENT = 1;
+  SOURCE_SERVER_CHECK = 2;
+}
+
+enum Permission {
+  PERMISSION_UNSPECIFIED = 0;
+  NONE = 1;
+  READ = 2;
+  WRITE = 3;
+  READ_WRITE = 4;
 }
 
 enum FilterType {
-  TAG = 0;
-  SQL = 1;
-
-  reserved 2 to 64;
+  FILTER_TYPE_UNSPECIFIED = 0;
+  TAG = 1;
+  SQL = 2;
 }
 
 message FilterExpression {
   FilterType type = 1;
   string expression = 2;
-
-  reserved 3 to 64;
 }
 
 // Dead lettering is done on a best effort basis. The same message might be
@@ -62,8 +70,6 @@ message DeadLetterPolicy {
   //
   // If this parameter is 0, a default value of 16 is used.
   int32 max_delivery_attempts = 1;
-
-  reserved 2 to 64;
 }
 
 message Resource {
@@ -72,37 +78,30 @@ message Resource {
   // Resource name identifier, which remains unique within the abstract resource
   // namespace.
   string name = 2;
-
-  reserved 3 to 64;
-}
-
-enum ConsumeModel {
-  CLUSTERING = 0;
-  BROADCASTING = 1;
-
-  reserved 2 to 64;
-}
-
-message ProducerData {
-  Resource group = 1;
-
-  reserved 2 to 64;
 }
 
 enum ConsumePolicy {
-  RESUME = 0;
-  PLAYBACK = 1;
-  DISCARD = 2;
-  TARGET_TIMESTAMP = 3;
+  CONSUME_POLICY_UNSPECIFIED = 0;
+  
+  // Clients are expecting to resume, continuing from positions where they previously progressed.
+  // Normally, servers shall save `offsets` for each client.
+  RESUME = 1;
 
-  reserved 4 to 64;
+  // Clients using this policy expects servers to deliver all existing messages, ignoring previous progress made. 
+  PLAYBACK = 2;
+
+  // Clients using this policy expects servers to discard all existings messages and deliver messages that arrives 
+  // after the connection is established.
+  DISCARD = 3;
+
+  // Clients accepts messages whose `born_time` is equal or greater than specified timestamp.
+  TARGET_TIMESTAMP = 4;
 }
 
 enum ConsumeMessageType {
-  ACTIVE = 0;
-  PASSIVE = 1;
-
-  reserved 2 to 64;
+  CONSUME_MESSAGE_TYPE_UNSPECIFIED = 0;
+  ACTIVE = 1;
+  PASSIVE = 2;
 }
 
 message ConsumerData {
@@ -110,44 +109,33 @@ message ConsumerData {
 
   repeated SubscriptionEntry subscriptions = 2;
 
-  ConsumeModel consume_model = 3;
+  ConsumePolicy consume_policy = 3;
 
-  ConsumePolicy consume_policy = 4;
+  DeadLetterPolicy dead_letter_policy = 4;
 
-  DeadLetterPolicy dead_letter_policy = 5;
-
-  ConsumeMessageType consume_type = 6;
-
-  reserved 7 to 64;
+  ConsumeMessageType consume_type = 5;
 }
 
 message SubscriptionEntry {
   Resource topic = 1;
   FilterExpression expression = 2;
-
-  reserved 3 to 64;
 }
 
 enum AddressScheme {
-  IPv4 = 0;
-  IPv6 = 1;
-  DOMAIN_NAME = 2;
-
-  reserved 3 to 64;
+  ADDRESS_SCHEME_UNSPECIFIED = 0;
+  IPv4 = 1;
+  IPv6 = 2;
+  DOMAIN_NAME = 3;
 }
 
 message Address {
   string host = 1;
   int32 port = 2;
-
-  reserved 3 to 64;
 }
 
 message Endpoints {
   AddressScheme scheme = 1;
   repeated Address addresses = 2;
-
-  reserved 3 to 64;
 }
 
 message Broker {
@@ -163,8 +151,6 @@ message Broker {
   // 2. ipv4:address[:port][,address[:port],...] – IPv4 addresses
   // 3. ipv6:address[:port][,address[:port],...] – IPv6 addresses
   Endpoints endpoints = 3;
-
-  reserved 4 to 64;
 }
 
 message Partition {
@@ -173,40 +159,37 @@ message Partition {
   Permission permission = 3;
   Broker broker = 4;
   repeated MessageType accept_message_types = 5;
-
-  reserved 6 to 64;
 }
 
 enum MessageType {
-  NORMAL = 0;
+  MESSAGE_TYPE_UNSPECIFIED = 0;
+
+  NORMAL = 1;
 
   // Sequenced message
-  FIFO = 1;
+  FIFO = 2;
 
   // Messages that are delivered after the specified duration.
-  DELAY = 2;
+  DELAY = 3;
 
   // Messages that are transactional. Only committed messages are delivered to
   // subscribers.
-  TRANSACTION = 3;
-
-  reserved 4 to 64;
+  TRANSACTION = 4;
 }
 
 enum DigestType {
+  UNKNOWN = 0;
   // CRC algorithm achieves goal of detecting random data error with lowest
   // computation overhead.
-  CRC32 = 0;
+  CRC32 = 1;
 
   // MD5 algorithm achieves good balance between collision rate and computation
   // overhead.
-  MD5 = 1;
+  MD5 = 2;
 
   // SHA-family has substantially fewer collision with fair amount of
   // computation.
-  SHA1 = 2;
-
-  reserved 3 to 64;
+  SHA1 = 3;
 }
 
 // When publishing messages to or subscribing messages from brokers, clients
@@ -227,15 +210,14 @@ enum DigestType {
 message Digest {
   DigestType type = 1;
   string checksum = 2;
-
-  reserved 3 to 64;
 }
 
 enum Encoding {
-  IDENTITY = 0;
-  GZIP = 1;
+  ENCODING_UNSPECIFIED = 0;
 
-  reserved 2 to 64;
+  IDENTITY = 1;
+
+  GZIP = 2;
 }
 
 message SystemAttribute {
@@ -299,18 +281,13 @@ message SystemAttribute {
   // the attempt is 1 not 0 if message is delivered first time.
   int32 delivery_attempt = 17;
 
-  // Message producer load-balance group if applicable.
-  Resource producer_group = 18;
-
-  string message_group = 19;
+  string message_group = 18;
 
   // Trace context.
-  string trace_context = 20;
+  string trace_context = 19;
 
   // Delay time of first recover orphaned transaction request from server.
-  google.protobuf.Duration orphaned_transaction_recovery_period = 21;
-
-  reserved 22 to 64;
+  google.protobuf.Duration orphaned_transaction_recovery_period = 20;
 }
 
 message Message {
@@ -327,25 +304,21 @@ message Message {
   SystemAttribute system_attribute = 3;
 
   bytes body = 4;
-
-  reserved 5 to 64;
 }
 
 message Assignment {
   Partition Partition = 1;
-
-  reserved 2 to 64;
 }
 
 enum QueryOffsetPolicy {
+  QUERY_OFFSET_POLICY_UNSPECIFIED = 0;
+  
   // Use this option if client wishes to playback all existing messages.
-  BEGINNING = 0;
+  BEGINNING = 1;
 
   // Use this option if client wishes to skip all existing messages.
-  END = 1;
+  END = 2;
 
   // Use this option if time-based seek is targeted.
-  TIME_POINT = 2;
-
-  reserved 3 to 64;
+  TIME_POINT = 3;
 }

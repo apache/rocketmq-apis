@@ -322,3 +322,8 @@ enum QueryOffsetPolicy {
   // Use this option if time-based seek is targeted.
   TIME_POINT = 3;
 }
+
+message SendReceipt {
+  string message_id = 1;
+  string transaction_id = 2;
+}

@@ -70,14 +70,13 @@ message QueryRouteResponse {
 }
 
 message SendMessageRequest {
-  Message message = 1;
+  repeated Message message = 1;
   Partition partition = 2;
 }
 
 message SendMessageResponse {
   ResponseCommon common = 1;
-  string message_id = 2;
-  string transaction_id = 3;
+  repeated SendReceipt receipts = 2;
 }
 
 message QueryAssignmentRequest {

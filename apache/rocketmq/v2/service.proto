@@ -50,7 +50,7 @@ message ResponseCommon {
 // failed to maintain alive status.
 //
 // Name servers answer queries of QueryRouteRequest, responding clients with
-// addressable partitions, which they may directly publish messages to or
+// addressable message-queues, which they may directly publish messages to or
 // subscribe messages from.
 //
 // QueryRouteRequest shall include source endpoints, aka, configured
@@ -66,12 +66,12 @@ message QueryRouteRequest {
 message QueryRouteResponse {
   ResponseCommon common = 1;
 
-  repeated Partition partitions = 2;
+  repeated MessageQueue message_queues = 2;
 }
 
 message SendMessageRequest {
   repeated Message messages = 1;
-  Partition partition = 2;
+  MessageQueue message_queue = 2;
 }
 
 message SendMessageResponse {
@@ -96,14 +96,13 @@ message QueryAssignmentResponse {
 message ReceiveMessageRequest {
   Resource group = 1;
   string client_id = 2;
-  Partition partition = 3;
+  MessageQueue message_queue = 3;
   FilterExpression filter_expression = 4;
-  ConsumePolicy consume_policy = 5;
-  google.protobuf.Timestamp initialization_timestamp = 6;
-  int32 batch_size = 7;
-  google.protobuf.Duration invisible_duration = 8;
-  google.protobuf.Duration await_time = 9;
-  bool fifo_flag = 10;
+  google.protobuf.Timestamp initialization_timestamp = 5;
+  int32 batch_size = 6;
+  google.protobuf.Duration invisible_duration = 7;
+  google.protobuf.Duration await_duration = 8;
+  bool fifo = 9;
 }
 
 message ReceiveMessageResponse {
@@ -117,11 +116,8 @@ message AckMessageRequest {
   Resource group = 1;
   Resource topic = 2;
   string client_id = 3;
-  oneof handle {
-    string receipt_handle = 4;
-    int64 offset = 5;
-  }
-  string message_id = 6;
+  string receipt_handle = 4;
+  string message_id = 5;
 }
 
 message AckMessageResponse {
@@ -174,7 +170,7 @@ message EndTransactionResponse {
 }
 
 message QueryOffsetRequest {
-  Partition partition = 1;
+  MessageQueue message_queue = 1;
   QueryOffsetPolicy policy = 2;
   google.protobuf.Timestamp time_point = 3;
 }
@@ -186,7 +182,7 @@ message QueryOffsetResponse {
 
 message PullMessageRequest {
   Resource group = 1;
-  Partition partition = 2;
+  MessageQueue message_queue = 2;
   int64 offset = 3;
   int32 batch_size = 4;
   google.protobuf.Duration await_time = 5;
@@ -293,8 +289,8 @@ service MessagingService {
 
   // Queries the route entries of the requested topic in the perspective of the
   // given endpoints. On success, servers should return a collection of
-  // addressable partitions. Note servers may return customized route entries
-  // based on endpoints provided.
+  // addressable message-queues. Note servers may return customized route
+  // entries based on endpoints provided.
   //
   // If the requested topic doesn't exist, returns `NOT_FOUND`.
   // If the specific endpoints is emtpy, returns `INVALID_ARGUMENT`.
@@ -317,7 +313,7 @@ service MessagingService {
 
   // Delivers messages to brokers.
   // Clients may further:
-  // 1. Refine a message destination to topic partition which fulfills parts of
+  // 1. Refine a message destination to message-queues which fulfills parts of
   // FIFO semantic;
   // 2. Flag a message as transactional, which keeps it invisible to consumers
   // until it commits;
@@ -330,7 +326,7 @@ service MessagingService {
   // If the destination topic doesn't exist, returns `NOT_FOUND`.
   rpc SendMessage(SendMessageRequest) returns (SendMessageResponse) {}
 
-  // Queries the assigned partition route info of a topic for current consumer,
+  // Queries the assigned route info of a topic for current consumer,
   // the returned assignment result is decided by server-side load balancer.
   //
   // If the corresponding topic doesn't exist, returns `NOT_FOUND`.
@@ -367,14 +363,14 @@ service MessagingService {
   // Commits or rollback one transactional message.
   rpc EndTransaction(EndTransactionRequest) returns (EndTransactionResponse) {}
 
-  // Queries the offset of the specific partition, returns the offset with `OK`
-  // if success. The message server should maintain a numerical offset for each
-  // message in a partition.
+  // Queries the offset of the specific message queue, returns the offset with
+  // `OK` if success. The message server should maintain a numerical offset for
+  // each message in a message-queue.
   rpc QueryOffset(QueryOffsetRequest) returns (QueryOffsetResponse) {}
 
-  // Pulls messages from the specific partition, returns a set of messages with
-  // next pull offset. The pulled messages can't be acked or nacked, while the
-  // client is responsible for manage offsets for consumer, typically update
+  // Pulls messages from the specific message-queue, returns a set of messages
+  // with next pull offset. The pulled messages can't be acked or nacked, while
+  // the client is responsible for manage offsets for consumer, typically update
   // consume offset to local memory or a third-party storage service.
   //
   // If the pending concurrent receive requests exceed the quota of the given

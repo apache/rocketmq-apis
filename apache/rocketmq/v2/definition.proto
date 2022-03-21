@@ -80,24 +80,6 @@ message Resource {
   string name = 2;
 }
 
-enum ConsumePolicy {
-  CONSUME_POLICY_UNSPECIFIED = 0;
-  
-  // Clients are expecting to resume, continuing from positions where they previously progressed.
-  // Normally, servers shall save `offsets` for each client.
-  RESUME = 1;
-
-  // Clients using this policy expects servers to deliver all existing messages, ignoring previous progress made. 
-  PLAYBACK = 2;
-
-  // Clients using this policy expects servers to discard all existings messages and deliver messages that arrives 
-  // after the connection is established.
-  DISCARD = 3;
-
-  // Clients accepts messages whose `born_time` is equal or greater than specified timestamp.
-  TARGET_TIMESTAMP = 4;
-}
-
 enum ConsumeMessageType {
   CONSUME_MESSAGE_TYPE_UNSPECIFIED = 0;
   ACTIVE = 1;
@@ -109,13 +91,11 @@ message ConsumerData {
 
   repeated SubscriptionEntry subscriptions = 2;
 
-  ConsumePolicy consume_policy = 3;
+  DeadLetterPolicy dead_letter_policy = 3;
 
-  DeadLetterPolicy dead_letter_policy = 4;
+  ConsumeMessageType consume_type = 4;
 
-  ConsumeMessageType consume_type = 5;
-
-  bool fifo = 6;
+  bool fifo = 5;
 }
 
 message SubscriptionEntry {
@@ -155,7 +135,7 @@ message Broker {
   Endpoints endpoints = 3;
 }
 
-message Partition {
+message MessageQueue {
   Resource topic = 1;
   int32 id = 2;
   Permission permission = 3;
@@ -180,7 +160,8 @@ enum MessageType {
 }
 
 enum DigestType {
-  UNKNOWN = 0;
+  DIGEST_TYPE_UNSPECIFIED = 0;
+
   // CRC algorithm achieves goal of detecting random data error with lowest
   // computation overhead.
   CRC32 = 1;
@@ -252,44 +233,39 @@ message SystemAttribute {
   // Time-point at which the message is stored in the broker.
   google.protobuf.Timestamp store_timestamp = 9;
 
-  // The broker that stores this message. It may be name, IP or arbitrary
-  // identifier that uniquely identify the broker.
+  // The broker that stores this message. It may be broker name, IP or arbitrary
+  // identifier that uniquely identify the server.
   string store_host = 10;
 
-  oneof timed_delivery {
-    // Time-point at which broker delivers to clients.
-    google.protobuf.Timestamp delivery_timestamp = 11;
-
-    // Level-based delay strategy.
-    int32 delay_level = 12;
-  }
+  // Time-point at which broker delivers to clients.
+  google.protobuf.Timestamp delivery_timestamp = 11;
 
   // If a message is acquired by way of POP, this field holds the receipt.
   // Clients use the receipt to acknowledge or negatively acknowledge the
   // message.
-  string receipt_handle = 13;
+  string receipt_handle = 12;
 
-  // Partition identifier in which a message is physically stored.
-  int32 partition_id = 14;
+  // Message queue identifier in which a message is physically stored.
+  int32 queue_id = 13;
 
-  // Partition offset at which a message is stored.
-  int64 partition_offset = 15;
+  // Message-queue offset at which a message is stored.
+  int64 queue_offset = 14;
 
   // Period of time servers would remain invisible once a message is acquired.
-  google.protobuf.Duration invisible_period = 16;
+  google.protobuf.Duration invisible_duration = 15;
 
   // Business code may failed to process messages for the moment. Hence, clients
   // may request servers to deliver them again using certain back-off strategy,
   // the attempt is 1 not 0 if message is delivered first time.
-  int32 delivery_attempt = 17;
+  int32 delivery_attempt = 16;
 
-  string message_group = 18;
+  string message_group = 17;
 
   // Trace context.
-  string trace_context = 19;
+  string trace_context = 18;
 
   // Delay time of first recover orphaned transaction request from server.
-  google.protobuf.Duration orphaned_transaction_recovery_period = 20;
+  google.protobuf.Duration orphaned_transaction_recovery_duration = 19;
 }
 
 message Message {
@@ -308,9 +284,7 @@ message Message {
   bytes body = 4;
 }
 
-message Assignment {
-  Partition Partition = 1;
-}
+message Assignment { MessageQueue message_queue = 1; }
 
 enum QueryOffsetPolicy {
   QUERY_OFFSET_POLICY_UNSPECIFIED = 0;

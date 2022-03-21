@@ -234,7 +234,6 @@ message Settings {
 }
 
 message TelemetryCommand {
-
   oneof command {
     Settings settings = 1;
 

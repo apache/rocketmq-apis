@@ -138,10 +138,7 @@ message ForwardMessageToDeadLetterQueueResponse {
   ResponseCommon common = 1;
 }
 
-message HeartbeatRequest {
-  string client_id = 1;
-  ConsumerData data = 2;
-}
+message HeartbeatRequest { string client_id = 1; }
 
 message HeartbeatResponse {
   ResponseCommon common = 1;
@@ -225,8 +222,10 @@ message RecoverOrphanedTransactionCommand {
 
 message Settings {
   string client_id = 1;
-  repeated Resource topics = 2;
-  Resource group = 3;
+  string access_point = 2;
+  Publish publish = 3;
+  Subscription subscription = 4;
+  Authentication authentication = 5;
 }
 
 message TelemetryCommand {

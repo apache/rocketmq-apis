@@ -72,6 +72,13 @@ message DeadLetterPolicy {
   int32 max_delivery_attempts = 1;
 }
 
+message RetryPolicy {
+  int32 max_attempts = 1;
+  float initial_backoff = 2;
+  float max_backoff = 3;
+  float backoff_multiplier = 4;
+}
+
 message Resource {
   string resource_namespace = 1;
 
@@ -86,7 +93,62 @@ enum ConsumeMessageType {
   PASSIVE = 2;
 }
 
-message ConsumerData {
+message Trace {
+  bool on = 1;
+  Endpoints service_access_point = 2;
+}
+
+enum AuthenticationMethod {
+  AUTHENTICATION_METHOD_UNSPECIFIED = 0;
+  SASL = 1;
+  MUTUAL_TLS = 2;
+  HTTP_BASIC_AUTH = 3;
+}
+
+message Authentication {
+  AuthenticationMethod method = 1;
+  string identity = 2;
+}
+
+// Transport
+message Timeout {
+  google.protobuf.Duration connect = 1;
+
+  google.protobuf.Duration request = 2;
+
+  // Long polling duration
+  google.protobuf.Duration polling = 3;
+}
+
+message Publish {
+  // Publisher normally registers topics in interest, such that
+  // pre-conditions may be examined and validated.
+  repeated Resource topics = 1;
+
+  // If a transactional message stay unresolved for more than
+  // `transaction_orphan_threshold`, it would be regarded as an
+  // orphan. Servers that manages orphan messages would pick up
+  // a capable publisher to resolve
+  google.protobuf.Duration transaction_orphan_threshold = 2;
+
+  // If publishing message experiences RPC failure, `retry_policy` describes
+  // backoff policy before retries are made.
+  RetryPolicy retry_policy = 3;
+
+  // If message body size exceeds `compress_threshold`, it would be desirable to
+  // compress it to relieve network overhead.
+  int32 compress_threshold = 4;
+
+  // Max message size in bytes permitted by server.
+  int32 max_message_bytes = 5;
+}
+
+message CacheLimits {
+  int32 count = 1;
+  int64 bytes = 2;
+}
+
+message Subscription {
   Resource group = 1;
 
   repeated SubscriptionEntry subscriptions = 2;
@@ -96,6 +158,26 @@ message ConsumerData {
   ConsumeMessageType consume_type = 4;
 
   bool fifo = 5;
+
+  // For RPC
+  RetryPolicy retry_policy = 6;
+
+  // For PushConsumer
+  RetryPolicy consume_backoff_policy = 7;
+
+  int32 max_receive_batch_size = 8;
+
+  // After messages are received from servers, consumers normally split them
+  // into multiple mini-batches. Each mini-batch is assigned to a dedicated
+  // task, which will be submitted to thread-pool to run concurrently.
+  int32 messages_per_task = 9;
+
+  CacheLimits cache_limits = 10;
+
+  int32 consume_thread_count = 11;
+
+  // Up to server
+  google.protobuf.Duration max_invisible_duration = 12;
 }
 
 message SubscriptionEntry {

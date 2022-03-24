@@ -138,18 +138,12 @@ message ForwardMessageToDeadLetterQueueResponse {
   ResponseCommon common = 1;
 }
 
-message HeartbeatRequest { string client_id = 1; }
+message HeartbeatRequest {
+  string client_id = 1;
+  Resource group = 2;
+}
 
 message HeartbeatResponse {
-  ResponseCommon common = 1;
-}
-
-message HealthCheckRequest {
-  Resource group = 1;
-  string client_host = 2;
-}
-
-message HealthCheckResponse {
   ResponseCommon common = 1;
 }
 
@@ -304,11 +298,6 @@ service MessagingService {
   // If a client specifies a language that is not yet supported by servers,
   // returns `INVALID_ARGUMENT`
   rpc Heartbeat(HeartbeatRequest) returns (HeartbeatResponse) {}
-
-  // Checks the health status of message server, returns `OK` if services are
-  // online and serving. Clients may use this RPC to detect availability of
-  // messaging service, and take isolation actions when necessary.
-  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {}
 
   // Delivers messages to brokers.
   // Clients may further:

@@ -3,8 +3,8 @@
 
 package apache.rocketmq.v2;
 
-public interface ResponseCommonOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:apache.rocketmq.v2.ResponseCommon)
+public interface StatusOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:apache.rocketmq.v2.Status)
     com.google.protobuf.MessageOrBuilder {
 
   /**

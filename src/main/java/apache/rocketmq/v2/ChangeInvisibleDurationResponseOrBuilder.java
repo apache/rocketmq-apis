@@ -8,19 +8,19 @@ public interface ChangeInvisibleDurationResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.apache.rocketmq.v2.ResponseCommon common = 1;</code>
-   * @return Whether the common field is set.
+   * <code>.apache.rocketmq.v2.Status status = 1;</code>
+   * @return Whether the status field is set.
    */
-  boolean hasCommon();
+  boolean hasStatus();
   /**
-   * <code>.apache.rocketmq.v2.ResponseCommon common = 1;</code>
-   * @return The common.
+   * <code>.apache.rocketmq.v2.Status status = 1;</code>
+   * @return The status.
    */
-  apache.rocketmq.v2.ResponseCommon getCommon();
+  apache.rocketmq.v2.Status getStatus();
   /**
-   * <code>.apache.rocketmq.v2.ResponseCommon common = 1;</code>
+   * <code>.apache.rocketmq.v2.Status status = 1;</code>
    */
-  apache.rocketmq.v2.ResponseCommonOrBuilder getCommonOrBuilder();
+  apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder();
 
   /**
    * <pre>

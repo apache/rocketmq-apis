@@ -14,17 +14,17 @@ public interface VerifyMessageResultOrBuilder extends
   long getCommandId();
 
   /**
-   * <code>.apache.rocketmq.v2.ResponseCommon common = 2;</code>
-   * @return Whether the common field is set.
+   * <code>.apache.rocketmq.v2.Status status = 2;</code>
+   * @return Whether the status field is set.
    */
-  boolean hasCommon();
+  boolean hasStatus();
   /**
-   * <code>.apache.rocketmq.v2.ResponseCommon common = 2;</code>
-   * @return The common.
+   * <code>.apache.rocketmq.v2.Status status = 2;</code>
+   * @return The status.
    */
-  apache.rocketmq.v2.ResponseCommon getCommon();
+  apache.rocketmq.v2.Status getStatus();
   /**
-   * <code>.apache.rocketmq.v2.ResponseCommon common = 2;</code>
+   * <code>.apache.rocketmq.v2.Status status = 2;</code>
    */
-  apache.rocketmq.v2.ResponseCommonOrBuilder getCommonOrBuilder();
+  apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder();
 }

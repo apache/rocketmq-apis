@@ -4,18 +4,18 @@
 package apache.rocketmq.v2;
 
 /**
- * Protobuf type {@code apache.rocketmq.v2.ResponseCommon}
+ * Protobuf type {@code apache.rocketmq.v2.Status}
  */
-public final class ResponseCommon extends
+public final class Status extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:apache.rocketmq.v2.ResponseCommon)
-    ResponseCommonOrBuilder {
+    // @@protoc_insertion_point(message_implements:apache.rocketmq.v2.Status)
+    StatusOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use ResponseCommon.newBuilder() to construct.
-  private ResponseCommon(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use Status.newBuilder() to construct.
+  private Status(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private ResponseCommon() {
+  private Status() {
     code_ = 0;
     message_ = "";
   }
@@ -24,7 +24,7 @@ private static final long serialVersionUID = 0L;
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new ResponseCommon();
+    return new Status();
   }
 
   @java.lang.Override
@@ -32,7 +32,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private ResponseCommon(
+  private Status(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -83,15 +83,15 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ResponseCommon_descriptor;
+    return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_Status_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ResponseCommon_fieldAccessorTable
+    return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_Status_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            apache.rocketmq.v2.ResponseCommon.class, apache.rocketmq.v2.ResponseCommon.Builder.class);
+            apache.rocketmq.v2.Status.class, apache.rocketmq.v2.Status.Builder.class);
   }
 
   public static final int CODE_FIELD_NUMBER = 1;
@@ -197,10 +197,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof apache.rocketmq.v2.ResponseCommon)) {
+    if (!(obj instanceof apache.rocketmq.v2.Status)) {
       return super.equals(obj);
     }
-    apache.rocketmq.v2.ResponseCommon other = (apache.rocketmq.v2.ResponseCommon) obj;
+    apache.rocketmq.v2.Status other = (apache.rocketmq.v2.Status) obj;
 
     if (code_ != other.code_) return false;
     if (!getMessage()
@@ -225,69 +225,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static apache.rocketmq.v2.ResponseCommon parseFrom(
+  public static apache.rocketmq.v2.Status parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static apache.rocketmq.v2.ResponseCommon parseFrom(
+  public static apache.rocketmq.v2.Status parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static apache.rocketmq.v2.ResponseCommon parseFrom(
+  public static apache.rocketmq.v2.Status parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static apache.rocketmq.v2.ResponseCommon parseFrom(
+  public static apache.rocketmq.v2.Status parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static apache.rocketmq.v2.ResponseCommon parseFrom(byte[] data)
+  public static apache.rocketmq.v2.Status parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static apache.rocketmq.v2.ResponseCommon parseFrom(
+  public static apache.rocketmq.v2.Status parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static apache.rocketmq.v2.ResponseCommon parseFrom(java.io.InputStream input)
+  public static apache.rocketmq.v2.Status parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static apache.rocketmq.v2.ResponseCommon parseFrom(
+  public static apache.rocketmq.v2.Status parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static apache.rocketmq.v2.ResponseCommon parseDelimitedFrom(java.io.InputStream input)
+  public static apache.rocketmq.v2.Status parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static apache.rocketmq.v2.ResponseCommon parseDelimitedFrom(
+  public static apache.rocketmq.v2.Status parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static apache.rocketmq.v2.ResponseCommon parseFrom(
+  public static apache.rocketmq.v2.Status parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static apache.rocketmq.v2.ResponseCommon parseFrom(
+  public static apache.rocketmq.v2.Status parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -300,7 +300,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(apache.rocketmq.v2.ResponseCommon prototype) {
+  public static Builder newBuilder(apache.rocketmq.v2.Status prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -316,26 +316,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code apache.rocketmq.v2.ResponseCommon}
+   * Protobuf type {@code apache.rocketmq.v2.Status}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:apache.rocketmq.v2.ResponseCommon)
-      apache.rocketmq.v2.ResponseCommonOrBuilder {
+      // @@protoc_insertion_point(builder_implements:apache.rocketmq.v2.Status)
+      apache.rocketmq.v2.StatusOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ResponseCommon_descriptor;
+      return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_Status_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ResponseCommon_fieldAccessorTable
+      return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_Status_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              apache.rocketmq.v2.ResponseCommon.class, apache.rocketmq.v2.ResponseCommon.Builder.class);
+              apache.rocketmq.v2.Status.class, apache.rocketmq.v2.Status.Builder.class);
     }
 
-    // Construct using apache.rocketmq.v2.ResponseCommon.newBuilder()
+    // Construct using apache.rocketmq.v2.Status.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -363,17 +363,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ResponseCommon_descriptor;
+      return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_Status_descriptor;
     }
 
     @java.lang.Override
-    public apache.rocketmq.v2.ResponseCommon getDefaultInstanceForType() {
-      return apache.rocketmq.v2.ResponseCommon.getDefaultInstance();
+    public apache.rocketmq.v2.Status getDefaultInstanceForType() {
+      return apache.rocketmq.v2.Status.getDefaultInstance();
     }
 
     @java.lang.Override
-    public apache.rocketmq.v2.ResponseCommon build() {
-      apache.rocketmq.v2.ResponseCommon result = buildPartial();
+    public apache.rocketmq.v2.Status build() {
+      apache.rocketmq.v2.Status result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -381,8 +381,8 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public apache.rocketmq.v2.ResponseCommon buildPartial() {
-      apache.rocketmq.v2.ResponseCommon result = new apache.rocketmq.v2.ResponseCommon(this);
+    public apache.rocketmq.v2.Status buildPartial() {
+      apache.rocketmq.v2.Status result = new apache.rocketmq.v2.Status(this);
       result.code_ = code_;
       result.message_ = message_;
       onBuilt();
@@ -423,16 +423,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof apache.rocketmq.v2.ResponseCommon) {
-        return mergeFrom((apache.rocketmq.v2.ResponseCommon)other);
+      if (other instanceof apache.rocketmq.v2.Status) {
+        return mergeFrom((apache.rocketmq.v2.Status)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(apache.rocketmq.v2.ResponseCommon other) {
-      if (other == apache.rocketmq.v2.ResponseCommon.getDefaultInstance()) return this;
+    public Builder mergeFrom(apache.rocketmq.v2.Status other) {
+      if (other == apache.rocketmq.v2.Status.getDefaultInstance()) return this;
       if (other.code_ != 0) {
         setCodeValue(other.getCodeValue());
       }
@@ -455,11 +455,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      apache.rocketmq.v2.ResponseCommon parsedMessage = null;
+      apache.rocketmq.v2.Status parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (apache.rocketmq.v2.ResponseCommon) e.getUnfinishedMessage();
+        parsedMessage = (apache.rocketmq.v2.Status) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -611,41 +611,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:apache.rocketmq.v2.ResponseCommon)
+    // @@protoc_insertion_point(builder_scope:apache.rocketmq.v2.Status)
   }
 
-  // @@protoc_insertion_point(class_scope:apache.rocketmq.v2.ResponseCommon)
-  private static final apache.rocketmq.v2.ResponseCommon DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:apache.rocketmq.v2.Status)
+  private static final apache.rocketmq.v2.Status DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new apache.rocketmq.v2.ResponseCommon();
+    DEFAULT_INSTANCE = new apache.rocketmq.v2.Status();
   }
 
-  public static apache.rocketmq.v2.ResponseCommon getDefaultInstance() {
+  public static apache.rocketmq.v2.Status getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<ResponseCommon>
-      PARSER = new com.google.protobuf.AbstractParser<ResponseCommon>() {
+  private static final com.google.protobuf.Parser<Status>
+      PARSER = new com.google.protobuf.AbstractParser<Status>() {
     @java.lang.Override
-    public ResponseCommon parsePartialFrom(
+    public Status parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new ResponseCommon(input, extensionRegistry);
+      return new Status(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<ResponseCommon> parser() {
+  public static com.google.protobuf.Parser<Status> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<ResponseCommon> getParserForType() {
+  public com.google.protobuf.Parser<Status> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public apache.rocketmq.v2.ResponseCommon getDefaultInstanceForType() {
+  public apache.rocketmq.v2.Status getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

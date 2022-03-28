@@ -50,14 +50,14 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 10: {
-            apache.rocketmq.v2.ResponseCommon.Builder subBuilder = null;
-            if (common_ != null) {
-              subBuilder = common_.toBuilder();
+            apache.rocketmq.v2.Status.Builder subBuilder = null;
+            if (status_ != null) {
+              subBuilder = status_.toBuilder();
             }
-            common_ = input.readMessage(apache.rocketmq.v2.ResponseCommon.parser(), extensionRegistry);
+            status_ = input.readMessage(apache.rocketmq.v2.Status.parser(), extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom(common_);
-              common_ = subBuilder.buildPartial();
+              subBuilder.mergeFrom(status_);
+              status_ = subBuilder.buildPartial();
             }
 
             break;
@@ -100,30 +100,30 @@ private static final long serialVersionUID = 0L;
             apache.rocketmq.v2.ChangeInvisibleDurationResponse.class, apache.rocketmq.v2.ChangeInvisibleDurationResponse.Builder.class);
   }
 
-  public static final int COMMON_FIELD_NUMBER = 1;
-  private apache.rocketmq.v2.ResponseCommon common_;
+  public static final int STATUS_FIELD_NUMBER = 1;
+  private apache.rocketmq.v2.Status status_;
   /**
-   * <code>.apache.rocketmq.v2.ResponseCommon common = 1;</code>
-   * @return Whether the common field is set.
+   * <code>.apache.rocketmq.v2.Status status = 1;</code>
+   * @return Whether the status field is set.
    */
   @java.lang.Override
-  public boolean hasCommon() {
-    return common_ != null;
+  public boolean hasStatus() {
+    return status_ != null;
   }
   /**
-   * <code>.apache.rocketmq.v2.ResponseCommon common = 1;</code>
-   * @return The common.
+   * <code>.apache.rocketmq.v2.Status status = 1;</code>
+   * @return The status.
    */
   @java.lang.Override
-  public apache.rocketmq.v2.ResponseCommon getCommon() {
-    return common_ == null ? apache.rocketmq.v2.ResponseCommon.getDefaultInstance() : common_;
+  public apache.rocketmq.v2.Status getStatus() {
+    return status_ == null ? apache.rocketmq.v2.Status.getDefaultInstance() : status_;
   }
   /**
-   * <code>.apache.rocketmq.v2.ResponseCommon common = 1;</code>
+   * <code>.apache.rocketmq.v2.Status status = 1;</code>
    */
   @java.lang.Override
-  public apache.rocketmq.v2.ResponseCommonOrBuilder getCommonOrBuilder() {
-    return getCommon();
+  public apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder() {
+    return getStatus();
   }
 
   public static final int RECEIPT_HANDLE_FIELD_NUMBER = 2;
@@ -186,8 +186,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (common_ != null) {
-      output.writeMessage(1, getCommon());
+    if (status_ != null) {
+      output.writeMessage(1, getStatus());
     }
     if (!getReceiptHandleBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, receiptHandle_);
@@ -201,9 +201,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (common_ != null) {
+    if (status_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, getCommon());
+        .computeMessageSize(1, getStatus());
     }
     if (!getReceiptHandleBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, receiptHandle_);
@@ -223,10 +223,10 @@ private static final long serialVersionUID = 0L;
     }
     apache.rocketmq.v2.ChangeInvisibleDurationResponse other = (apache.rocketmq.v2.ChangeInvisibleDurationResponse) obj;
 
-    if (hasCommon() != other.hasCommon()) return false;
-    if (hasCommon()) {
-      if (!getCommon()
-          .equals(other.getCommon())) return false;
+    if (hasStatus() != other.hasStatus()) return false;
+    if (hasStatus()) {
+      if (!getStatus()
+          .equals(other.getStatus())) return false;
     }
     if (!getReceiptHandle()
         .equals(other.getReceiptHandle())) return false;
@@ -241,9 +241,9 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasCommon()) {
-      hash = (37 * hash) + COMMON_FIELD_NUMBER;
-      hash = (53 * hash) + getCommon().hashCode();
+    if (hasStatus()) {
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + getStatus().hashCode();
     }
     hash = (37 * hash) + RECEIPT_HANDLE_FIELD_NUMBER;
     hash = (53 * hash) + getReceiptHandle().hashCode();
@@ -380,11 +380,11 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      if (commonBuilder_ == null) {
-        common_ = null;
+      if (statusBuilder_ == null) {
+        status_ = null;
       } else {
-        common_ = null;
-        commonBuilder_ = null;
+        status_ = null;
+        statusBuilder_ = null;
       }
       receiptHandle_ = "";
 
@@ -414,10 +414,10 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public apache.rocketmq.v2.ChangeInvisibleDurationResponse buildPartial() {
       apache.rocketmq.v2.ChangeInvisibleDurationResponse result = new apache.rocketmq.v2.ChangeInvisibleDurationResponse(this);
-      if (commonBuilder_ == null) {
-        result.common_ = common_;
+      if (statusBuilder_ == null) {
+        result.status_ = status_;
       } else {
-        result.common_ = commonBuilder_.build();
+        result.status_ = statusBuilder_.build();
       }
       result.receiptHandle_ = receiptHandle_;
       onBuilt();
@@ -468,8 +468,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(apache.rocketmq.v2.ChangeInvisibleDurationResponse other) {
       if (other == apache.rocketmq.v2.ChangeInvisibleDurationResponse.getDefaultInstance()) return this;
-      if (other.hasCommon()) {
-        mergeCommon(other.getCommon());
+      if (other.hasStatus()) {
+        mergeStatus(other.getStatus());
       }
       if (!other.getReceiptHandle().isEmpty()) {
         receiptHandle_ = other.receiptHandle_;
@@ -504,123 +504,123 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private apache.rocketmq.v2.ResponseCommon common_;
+    private apache.rocketmq.v2.Status status_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.ResponseCommon, apache.rocketmq.v2.ResponseCommon.Builder, apache.rocketmq.v2.ResponseCommonOrBuilder> commonBuilder_;
+        apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder> statusBuilder_;
     /**
-     * <code>.apache.rocketmq.v2.ResponseCommon common = 1;</code>
-     * @return Whether the common field is set.
+     * <code>.apache.rocketmq.v2.Status status = 1;</code>
+     * @return Whether the status field is set.
      */
-    public boolean hasCommon() {
-      return commonBuilder_ != null || common_ != null;
+    public boolean hasStatus() {
+      return statusBuilder_ != null || status_ != null;
     }
     /**
-     * <code>.apache.rocketmq.v2.ResponseCommon common = 1;</code>
-     * @return The common.
+     * <code>.apache.rocketmq.v2.Status status = 1;</code>
+     * @return The status.
      */
-    public apache.rocketmq.v2.ResponseCommon getCommon() {
-      if (commonBuilder_ == null) {
-        return common_ == null ? apache.rocketmq.v2.ResponseCommon.getDefaultInstance() : common_;
+    public apache.rocketmq.v2.Status getStatus() {
+      if (statusBuilder_ == null) {
+        return status_ == null ? apache.rocketmq.v2.Status.getDefaultInstance() : status_;
       } else {
-        return commonBuilder_.getMessage();
+        return statusBuilder_.getMessage();
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.ResponseCommon common = 1;</code>
+     * <code>.apache.rocketmq.v2.Status status = 1;</code>
      */
-    public Builder setCommon(apache.rocketmq.v2.ResponseCommon value) {
-      if (commonBuilder_ == null) {
+    public Builder setStatus(apache.rocketmq.v2.Status value) {
+      if (statusBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        common_ = value;
+        status_ = value;
         onChanged();
       } else {
-        commonBuilder_.setMessage(value);
+        statusBuilder_.setMessage(value);
       }
 
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.ResponseCommon common = 1;</code>
+     * <code>.apache.rocketmq.v2.Status status = 1;</code>
      */
-    public Builder setCommon(
-        apache.rocketmq.v2.ResponseCommon.Builder builderForValue) {
-      if (commonBuilder_ == null) {
-        common_ = builderForValue.build();
+    public Builder setStatus(
+        apache.rocketmq.v2.Status.Builder builderForValue) {
+      if (statusBuilder_ == null) {
+        status_ = builderForValue.build();
         onChanged();
       } else {
-        commonBuilder_.setMessage(builderForValue.build());
+        statusBuilder_.setMessage(builderForValue.build());
       }
 
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.ResponseCommon common = 1;</code>
+     * <code>.apache.rocketmq.v2.Status status = 1;</code>
      */
-    public Builder mergeCommon(apache.rocketmq.v2.ResponseCommon value) {
-      if (commonBuilder_ == null) {
-        if (common_ != null) {
-          common_ =
-            apache.rocketmq.v2.ResponseCommon.newBuilder(common_).mergeFrom(value).buildPartial();
+    public Builder mergeStatus(apache.rocketmq.v2.Status value) {
+      if (statusBuilder_ == null) {
+        if (status_ != null) {
+          status_ =
+            apache.rocketmq.v2.Status.newBuilder(status_).mergeFrom(value).buildPartial();
         } else {
-          common_ = value;
+          status_ = value;
         }
         onChanged();
       } else {
-        commonBuilder_.mergeFrom(value);
+        statusBuilder_.mergeFrom(value);
       }
 
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.ResponseCommon common = 1;</code>
+     * <code>.apache.rocketmq.v2.Status status = 1;</code>
      */
-    public Builder clearCommon() {
-      if (commonBuilder_ == null) {
-        common_ = null;
+    public Builder clearStatus() {
+      if (statusBuilder_ == null) {
+        status_ = null;
         onChanged();
       } else {
-        common_ = null;
-        commonBuilder_ = null;
+        status_ = null;
+        statusBuilder_ = null;
       }
 
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.ResponseCommon common = 1;</code>
+     * <code>.apache.rocketmq.v2.Status status = 1;</code>
      */
-    public apache.rocketmq.v2.ResponseCommon.Builder getCommonBuilder() {
+    public apache.rocketmq.v2.Status.Builder getStatusBuilder() {
       
       onChanged();
-      return getCommonFieldBuilder().getBuilder();
+      return getStatusFieldBuilder().getBuilder();
     }
     /**
-     * <code>.apache.rocketmq.v2.ResponseCommon common = 1;</code>
+     * <code>.apache.rocketmq.v2.Status status = 1;</code>
      */
-    public apache.rocketmq.v2.ResponseCommonOrBuilder getCommonOrBuilder() {
-      if (commonBuilder_ != null) {
-        return commonBuilder_.getMessageOrBuilder();
+    public apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder() {
+      if (statusBuilder_ != null) {
+        return statusBuilder_.getMessageOrBuilder();
       } else {
-        return common_ == null ?
-            apache.rocketmq.v2.ResponseCommon.getDefaultInstance() : common_;
+        return status_ == null ?
+            apache.rocketmq.v2.Status.getDefaultInstance() : status_;
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.ResponseCommon common = 1;</code>
+     * <code>.apache.rocketmq.v2.Status status = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.ResponseCommon, apache.rocketmq.v2.ResponseCommon.Builder, apache.rocketmq.v2.ResponseCommonOrBuilder> 
-        getCommonFieldBuilder() {
-      if (commonBuilder_ == null) {
-        commonBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            apache.rocketmq.v2.ResponseCommon, apache.rocketmq.v2.ResponseCommon.Builder, apache.rocketmq.v2.ResponseCommonOrBuilder>(
-                getCommon(),
+        apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder> 
+        getStatusFieldBuilder() {
+      if (statusBuilder_ == null) {
+        statusBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder>(
+                getStatus(),
                 getParentForChildren(),
                 isClean());
-        common_ = null;
+        status_ = null;
       }
-      return commonBuilder_;
+      return statusBuilder_;
     }
 
     private java.lang.Object receiptHandle_ = "";

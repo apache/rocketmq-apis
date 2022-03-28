@@ -18,7 +18,7 @@ public enum ResponseCode
   OK(0),
   /**
    * <pre>
-   * Aceess point in not specified in request.
+   * Format of access point is illegal.
    * </pre>
    *
    * <code>ILLEGAL_ACCESS_POINT = 1;</code>
@@ -130,15 +130,15 @@ public enum ResponseCode
   CONSUMER_GROUP_DOES_NOT_EXIST(14),
   /**
    * <pre>
-   * Current operation is not supported by responder.
+   * Not allowed to verify message.
    * </pre>
    *
-   * <code>OPERATION_NOT_SUPPORTED = 15;</code>
+   * <code>VERIFY_MESSAGE_NOT_ALLOWED = 15;</code>
    */
-  OPERATION_NOT_SUPPORTED(15),
+  VERIFY_MESSAGE_NOT_ALLOWED(15),
   /**
    * <pre>
-   * Failure to consume message.
+   * Failed to consume message.
    * </pre>
    *
    * <code>FAILED_TO_CONSUME_MESSAGE = 16;</code>
@@ -157,25 +157,25 @@ public enum ResponseCode
    * Flow control.
    * </pre>
    *
-   * <code>FLOW_CONTROL = 18;</code>
+   * <code>REQUEST_FLOW_CONTROL = 18;</code>
    */
-  FLOW_CONTROL(18),
+  REQUEST_FLOW_CONTROL(18),
   /**
    * <pre>
-   * Request is expired.
+   * Ack request is expired.
    * </pre>
    *
-   * <code>REQUEST_EXPIRED = 19;</code>
+   * <code>ACKNOWLEDGEMENT_EXPIRED = 19;</code>
    */
-  REQUEST_EXPIRED(19),
+  ACKNOWLEDGEMENT_EXPIRED(19),
   /**
    * <pre>
-   * Message type is not matched.
+   * Message property is not match the message type.
    * </pre>
    *
-   * <code>MESSAGE_TYPE_NOT_MATCHED = 20;</code>
+   * <code>MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE = 20;</code>
    */
-  MESSAGE_TYPE_NOT_MATCHED(20),
+  MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE(20),
   UNRECOGNIZED(-1),
   ;
 
@@ -189,7 +189,7 @@ public enum ResponseCode
   public static final int OK_VALUE = 0;
   /**
    * <pre>
-   * Aceess point in not specified in request.
+   * Format of access point is illegal.
    * </pre>
    *
    * <code>ILLEGAL_ACCESS_POINT = 1;</code>
@@ -301,15 +301,15 @@ public enum ResponseCode
   public static final int CONSUMER_GROUP_DOES_NOT_EXIST_VALUE = 14;
   /**
    * <pre>
-   * Current operation is not supported by responder.
+   * Not allowed to verify message.
    * </pre>
    *
-   * <code>OPERATION_NOT_SUPPORTED = 15;</code>
+   * <code>VERIFY_MESSAGE_NOT_ALLOWED = 15;</code>
    */
-  public static final int OPERATION_NOT_SUPPORTED_VALUE = 15;
+  public static final int VERIFY_MESSAGE_NOT_ALLOWED_VALUE = 15;
   /**
    * <pre>
-   * Failure to consume message.
+   * Failed to consume message.
    * </pre>
    *
    * <code>FAILED_TO_CONSUME_MESSAGE = 16;</code>
@@ -328,25 +328,25 @@ public enum ResponseCode
    * Flow control.
    * </pre>
    *
-   * <code>FLOW_CONTROL = 18;</code>
+   * <code>REQUEST_FLOW_CONTROL = 18;</code>
    */
-  public static final int FLOW_CONTROL_VALUE = 18;
+  public static final int REQUEST_FLOW_CONTROL_VALUE = 18;
   /**
    * <pre>
-   * Request is expired.
+   * Ack request is expired.
    * </pre>
    *
-   * <code>REQUEST_EXPIRED = 19;</code>
+   * <code>ACKNOWLEDGEMENT_EXPIRED = 19;</code>
    */
-  public static final int REQUEST_EXPIRED_VALUE = 19;
+  public static final int ACKNOWLEDGEMENT_EXPIRED_VALUE = 19;
   /**
    * <pre>
-   * Message type is not matched.
+   * Message property is not match the message type.
    * </pre>
    *
-   * <code>MESSAGE_TYPE_NOT_MATCHED = 20;</code>
+   * <code>MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE = 20;</code>
    */
-  public static final int MESSAGE_TYPE_NOT_MATCHED_VALUE = 20;
+  public static final int MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE_VALUE = 20;
 
 
   public final int getNumber() {
@@ -388,12 +388,12 @@ public enum ResponseCode
       case 12: return REQUEST_AUTHENTICATION_FAILURE;
       case 13: return TOPIC_DOES_NOT_EXIST;
       case 14: return CONSUMER_GROUP_DOES_NOT_EXIST;
-      case 15: return OPERATION_NOT_SUPPORTED;
+      case 15: return VERIFY_MESSAGE_NOT_ALLOWED;
       case 16: return FAILED_TO_CONSUME_MESSAGE;
       case 17: return MESSAGE_CORRUPTED;
-      case 18: return FLOW_CONTROL;
-      case 19: return REQUEST_EXPIRED;
-      case 20: return MESSAGE_TYPE_NOT_MATCHED;
+      case 18: return REQUEST_FLOW_CONTROL;
+      case 19: return ACKNOWLEDGEMENT_EXPIRED;
+      case 20: return MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE;
       default: return null;
     }
   }

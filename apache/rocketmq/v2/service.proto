@@ -34,8 +34,8 @@ option java_outer_classname = "MQService";
 enum ResponseCode {
   // Success.
   OK = 0;
-  // Aceess point in not specified in request.
-  ACCESS_POINT_NOT_SPECIFIED = 1;
+  // Format of access point is illegal.
+  ILLEGAL_ACCESS_POINT = 1;
   // Format of topic is illegal.
   ILLEGAL_TOPIC = 2;
   // Format of consumer group is illegal.
@@ -51,7 +51,7 @@ enum ResponseCode {
   // Format of message property key is illegal.
   ILLEGAL_MESSAGE_PROPERTY_KEY = 8;
   // Message properties total size exceeds the threshold.
-  MESSAGE_PROPERTY_TOO_LARGE = 9;
+  MESSAGE_PROPERTIES_TOO_LARGE = 9;
   // Message body size exceeds the threshold.
   MESSAGE_BODY_TOO_LARGE = 10;
   // User does have the permission to operate.
@@ -62,23 +62,23 @@ enum ResponseCode {
   TOPIC_DOES_NOT_EXIST = 13;
   // Consumer group resource does not exist.
   CONSUMER_GROUP_DOES_NOT_EXIST = 14;
-  // Current operation is not supported by responder.
-  OPERATION_NOT_SUPPORTED = 15;
-  // Failure to consume message.
+  // Not allowed to verify message.
+  VERIFY_MESSAGE_NOT_ALLOWED = 15;
+  // Failed to consume message.
   FAILED_TO_CONSUME_MESSAGE = 16;
   // Message is corrupted.
   MESSAGE_CORRUPTED = 17;
   // Flow control.
-  FLOW_CONTROL = 18;
-  // Request is expired.
-  REQUEST_EXPIRED = 19;
-  // Message type is not matched.
-  MESSAGE_TYPE_NOT_MATCHED = 20;
+  REQUEST_FLOW_CONTROL = 18;
+  // Ack request is expired.
+  ACKNOWLEDGEMENT_EXPIRED = 19;
+  // Message property is not match the message type.
+  MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE = 20;
 }
 
-message ResponseCommon {
+message Status {
   ResponseCode code = 1;
-  String message = 2;
+  string message = 2;
 }
 
 // Topics are destination of messages to publish to or subscribe from. Similar
@@ -105,7 +105,7 @@ message QueryRouteRequest {
 }
 
 message QueryRouteResponse {
-  ResponseCommon common = 1;
+  Status status = 1;
 
   repeated MessageQueue message_queues = 2;
 }
@@ -116,7 +116,7 @@ message SendMessageRequest {
 }
 
 message SendMessageResponse {
-  ResponseCommon common = 1;
+  Status status = 1;
   repeated SendReceipt receipts = 2;
 }
 
@@ -130,7 +130,7 @@ message QueryAssignmentRequest {
 }
 
 message QueryAssignmentResponse {
-  ResponseCommon common = 1;
+  Status status = 1;
   repeated Assignment assignments = 2;
 }
 
@@ -147,7 +147,7 @@ message ReceiveMessageRequest {
 }
 
 message ReceiveMessageResponse {
-  ResponseCommon common = 1;
+  Status status = 1;
   repeated Message messages = 2;
   google.protobuf.Timestamp delivery_timestamp = 3;
   google.protobuf.Duration invisible_duration = 4;
@@ -161,7 +161,7 @@ message AckMessageRequest {
   string message_id = 5;
 }
 
-message AckMessageResponse { ResponseCommon common = 1; }
+message AckMessageResponse { Status status = 1; }
 
 message ForwardMessageToDeadLetterQueueRequest {
   Resource group = 1;
@@ -173,16 +173,14 @@ message ForwardMessageToDeadLetterQueueRequest {
   int32 max_delivery_attempts = 7;
 }
 
-message ForwardMessageToDeadLetterQueueResponse { ResponseCommon common = 1; }
+message ForwardMessageToDeadLetterQueueResponse { Status status = 1; }
 
 message HeartbeatRequest {
   string client_id = 1;
   Resource group = 2;
 }
 
-message HeartbeatResponse {
-  ResponseCommon common = 1;
-}
+message HeartbeatResponse { Status status = 1; }
 
 message EndTransactionRequest {
   Resource group = 1;
@@ -193,7 +191,7 @@ message EndTransactionRequest {
   string trace_context = 6;
 }
 
-message EndTransactionResponse { ResponseCommon common = 1; }
+message EndTransactionResponse { Status status = 1; }
 
 message QueryOffsetRequest {
   MessageQueue message_queue = 1;
@@ -202,7 +200,7 @@ message QueryOffsetRequest {
 }
 
 message QueryOffsetResponse {
-  ResponseCommon common = 1;
+  Status status = 1;
   int64 offset = 2;
 }
 
@@ -217,7 +215,7 @@ message PullMessageRequest {
 }
 
 message PullMessageResponse {
-  ResponseCommon common = 1;
+  Status status = 1;
   int64 min_offset = 2;
   int64 next_offset = 3;
   int64 max_offset = 4;
@@ -238,7 +236,7 @@ message VerifyMessageCommand {
 
 message VerifyMessageResult {
   int64 command_id = 1;
-  ResponseCommon common = 2;
+  Status status = 2;
 }
 
 message RecoverOrphanedTransactionCommand {
@@ -279,7 +277,7 @@ message NotifyClientTerminationRequest {
   string client_id = 2;
 }
 
-message NotifyClientTerminationResponse { ResponseCommon common = 1; }
+message NotifyClientTerminationResponse { Status status = 1; }
 
 message ChangeInvisibleDurationRequest {
   Resource group = 1;
@@ -293,7 +291,7 @@ message ChangeInvisibleDurationRequest {
 }
 
 message ChangeInvisibleDurationResponse {
-  ResponseCommon common = 1;
+  Status status = 1;
 
   // Server may generate a new receipt handle for the message.
   string receipt_handle = 2;

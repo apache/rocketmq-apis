@@ -1,0 +1,387 @@
+// Licensed to the Apache Software Foundation (ASF) under one or more
+// contributor license agreements.  See the NOTICE file distributed with
+// this work for additional information regarding copyright ownership.
+// The ASF licenses this file to You under the Apache License, Version 2.0
+// (the "License"); you may not use this file except in compliance with
+// the License.  You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+package apache.rocketmq.v2;
+
+option csharp_namespace = "Apache.Rocketmq.V2";
+option java_multiple_files = true;
+option java_package = "apache.rocketmq.v2";
+option java_generate_equals_and_hash = true;
+option java_string_check_utf8 = true;
+option java_outer_classname = "MQDomain";
+
+enum TransactionResolution {
+  TRANSACTION_RESOLUTION_UNSPECIFIED = 0;
+  COMMIT = 1;
+  ROLLBACK = 2;
+}
+
+enum TransactionSource {
+  SOURCE_UNSPECIFIED = 0;
+  SOURCE_CLIENT = 1;
+  SOURCE_SERVER_CHECK = 2;
+}
+
+enum Permission {
+  PERMISSION_UNSPECIFIED = 0;
+  NONE = 1;
+  READ = 2;
+  WRITE = 3;
+  READ_WRITE = 4;
+}
+
+enum FilterType {
+  FILTER_TYPE_UNSPECIFIED = 0;
+  TAG = 1;
+  SQL = 2;
+}
+
+message FilterExpression {
+  FilterType type = 1;
+  string expression = 2;
+}
+
+// Dead lettering is done on a best effort basis. The same message might be
+// dead lettered multiple times.
+//
+// If validation on any of the fields fails at subscription creation/update,
+// the create/update subscription request will fail.
+message DeadLetterPolicy {
+  // The maximum number of delivery attempts for any message.
+  //
+  // This field will be honored on a best effort basis.
+  //
+  // If this parameter is 0, a default value of 16 is used.
+  int32 max_delivery_attempts = 1;
+}
+
+message RetryPolicy {
+  int32 max_attempts = 1;
+  float initial_backoff = 2;
+  float max_backoff = 3;
+  float backoff_multiplier = 4;
+}
+
+message Resource {
+  string resource_namespace = 1;
+
+  // Resource name identifier, which remains unique within the abstract resource
+  // namespace.
+  string name = 2;
+}
+
+enum ConsumeMessageType {
+  CONSUME_MESSAGE_TYPE_UNSPECIFIED = 0;
+  ACTIVE = 1;
+  PASSIVE = 2;
+}
+
+message Trace {
+  bool on = 1;
+  Endpoints service_access_point = 2;
+}
+
+enum AuthenticationMethod {
+  AUTHENTICATION_METHOD_UNSPECIFIED = 0;
+  SASL = 1;
+  MUTUAL_TLS = 2;
+  HTTP_BASIC_AUTH = 3;
+}
+
+message Authentication {
+  AuthenticationMethod method = 1;
+  string identity = 2;
+}
+
+// Transport
+message Timeout {
+  google.protobuf.Duration connect = 1;
+
+  google.protobuf.Duration request = 2;
+
+  // Long polling duration
+  google.protobuf.Duration polling = 3;
+}
+
+message Publish {
+  // Publisher normally registers topics in interest, such that
+  // pre-conditions may be examined and validated.
+  repeated Resource topics = 1;
+
+  // If a transactional message stay unresolved for more than
+  // `transaction_orphan_threshold`, it would be regarded as an
+  // orphan. Servers that manages orphan messages would pick up
+  // a capable publisher to resolve
+  google.protobuf.Duration transaction_orphan_threshold = 2;
+
+  // If publishing message experiences RPC failure, `retry_policy` describes
+  // backoff policy before retries are made.
+  RetryPolicy retry_policy = 3;
+
+  // If message body size exceeds `compress_threshold`, it would be desirable to
+  // compress it to relieve network overhead.
+  int32 compress_threshold = 4;
+
+  // Max message size in bytes permitted by server.
+  int32 max_message_bytes = 5;
+}
+
+message CacheLimits {
+  int32 count = 1;
+  int64 bytes = 2;
+}
+
+message Subscription {
+  Resource group = 1;
+
+  repeated SubscriptionEntry subscriptions = 2;
+
+  DeadLetterPolicy dead_letter_policy = 3;
+
+  ConsumeMessageType consume_type = 4;
+
+  bool fifo = 5;
+
+  // For RPC
+  RetryPolicy retry_policy = 6;
+
+  // For PushConsumer
+  RetryPolicy consume_backoff_policy = 7;
+
+  int32 max_receive_batch_size = 8;
+
+  // After messages are received from servers, consumers normally split them
+  // into multiple mini-batches. Each mini-batch is assigned to a dedicated
+  // task, which will be submitted to thread-pool to run concurrently.
+  int32 messages_per_task = 9;
+
+  CacheLimits cache_limits = 10;
+
+  int32 consume_thread_count = 11;
+
+  // Up to server
+  google.protobuf.Duration max_invisible_duration = 12;
+}
+
+message SubscriptionEntry {
+  Resource topic = 1;
+  FilterExpression expression = 2;
+}
+
+enum AddressScheme {
+  ADDRESS_SCHEME_UNSPECIFIED = 0;
+  IPv4 = 1;
+  IPv6 = 2;
+  DOMAIN_NAME = 3;
+}
+
+message Address {
+  string host = 1;
+  int32 port = 2;
+}
+
+message Endpoints {
+  AddressScheme scheme = 1;
+  repeated Address addresses = 2;
+}
+
+message Broker {
+  // Name of the broker
+  string name = 1;
+
+  // Broker index. Canonically, index = 0 implies that the broker is playing
+  // leader role while brokers with index > 0 play follower role.
+  int32 id = 2;
+
+  // Address of the broker, complying with the following scheme
+  // 1. dns:[//authority/]host[:port]
+  // 2. ipv4:address[:port][,address[:port],...] – IPv4 addresses
+  // 3. ipv6:address[:port][,address[:port],...] – IPv6 addresses
+  Endpoints endpoints = 3;
+}
+
+message MessageQueue {
+  Resource topic = 1;
+  int32 id = 2;
+  Permission permission = 3;
+  Broker broker = 4;
+  repeated MessageType accept_message_types = 5;
+}
+
+enum MessageType {
+  MESSAGE_TYPE_UNSPECIFIED = 0;
+
+  NORMAL = 1;
+
+  // Sequenced message
+  FIFO = 2;
+
+  // Messages that are delivered after the specified duration.
+  DELAY = 3;
+
+  // Messages that are transactional. Only committed messages are delivered to
+  // subscribers.
+  TRANSACTION = 4;
+}
+
+enum DigestType {
+  DIGEST_TYPE_UNSPECIFIED = 0;
+
+  // CRC algorithm achieves goal of detecting random data error with lowest
+  // computation overhead.
+  CRC32 = 1;
+
+  // MD5 algorithm achieves good balance between collision rate and computation
+  // overhead.
+  MD5 = 2;
+
+  // SHA-family has substantially fewer collision with fair amount of
+  // computation.
+  SHA1 = 3;
+}
+
+// When publishing messages to or subscribing messages from brokers, clients
+// shall include or validate digests of message body to ensure data integrity.
+//
+// For message publishment, when an invalid digest were detected, brokers need
+// respond client with BAD_REQUEST.
+//
+// For messags subscription, when an invalid digest were detected, consumers
+// need to handle this case according to message type:
+// 1) Standard messages should be negatively acknowledged instantly, causing
+// immediate re-delivery; 2) FIFO messages require special RPC, to re-fetch
+// previously acquired messages batch;
+//
+// Message consumption model also affects how invalid digest are handled. When
+// messages are consumed in broadcasting way,
+// TODO: define semantics of invalid-digest-when-broadcasting.
+message Digest {
+  DigestType type = 1;
+  string checksum = 2;
+}
+
+enum Encoding {
+  ENCODING_UNSPECIFIED = 0;
+
+  IDENTITY = 1;
+
+  GZIP = 2;
+}
+
+message SystemProperties {
+  // Tag
+  string tag = 1;
+
+  // Message keys
+  repeated string keys = 2;
+
+  // Message identifier, client-side generated, remains unique.
+  // if message_id is empty, the send message request will be aborted with
+  // status `INVALID_ARGUMENT`
+  string message_id = 3;
+
+  // Message body digest
+  Digest body_digest = 4;
+
+  // Message body encoding. Candidate options are identity, gzip, snappy etc.
+  Encoding body_encoding = 5;
+
+  // Message type, normal, FIFO or transactional.
+  MessageType message_type = 6;
+
+  // Message born time-point.
+  google.protobuf.Timestamp born_timestamp = 7;
+
+  // Message born host. Valid options are IPv4, IPv6 or client host domain name.
+  string born_host = 8;
+
+  // Time-point at which the message is stored in the broker.
+  google.protobuf.Timestamp store_timestamp = 9;
+
+  // The broker that stores this message. It may be broker name, IP or arbitrary
+  // identifier that uniquely identify the server.
+  string store_host = 10;
+
+  // Time-point at which broker delivers to clients.
+  google.protobuf.Timestamp delivery_timestamp = 11;
+
+  // If a message is acquired by way of POP, this field holds the receipt.
+  // Clients use the receipt to acknowledge or negatively acknowledge the
+  // message.
+  string receipt_handle = 12;
+
+  // Message queue identifier in which a message is physically stored.
+  int32 queue_id = 13;
+
+  // Message-queue offset at which a message is stored.
+  int64 queue_offset = 14;
+
+  // Period of time servers would remain invisible once a message is acquired.
+  google.protobuf.Duration invisible_duration = 15;
+
+  // Business code may failed to process messages for the moment. Hence, clients
+  // may request servers to deliver them again using certain back-off strategy,
+  // the attempt is 1 not 0 if message is delivered first time.
+  int32 delivery_attempt = 16;
+
+  string message_group = 17;
+
+  // Trace context.
+  string trace_context = 18;
+
+  // Delay time of first recover orphaned transaction request from server.
+  google.protobuf.Duration orphaned_transaction_recovery_duration = 19;
+}
+
+message Message {
+
+  Resource topic = 1;
+
+  // User defined key-value pairs.
+  // If user_properties contain the reserved keys by RocketMQ,
+  // the send message request will be aborted with status `INVALID_ARGUMENT`.
+  // See below links for the reserved keys
+  // https://github.com/apache/rocketmq/blob/master/common/src/main/java/org/apache/rocketmq/common/message/MessageConst.java#L58
+  map<string, string> user_properties = 2;
+
+  SystemProperties system_properties = 3;
+
+  bytes body = 4;
+}
+
+message Assignment { MessageQueue message_queue = 1; }
+
+enum QueryOffsetPolicy {
+  QUERY_OFFSET_POLICY_UNSPECIFIED = 0;
+
+  // Use this option if client wishes to playback all existing messages.
+  BEGINNING = 1;
+
+  // Use this option if client wishes to skip all existing messages.
+  END = 2;
+
+  // Use this option if time-based seek is targeted.
+  TIME_POINT = 3;
+}
+
+message SendReceipt {
+  string message_id = 1;
+  string transaction_id = 2;
+}

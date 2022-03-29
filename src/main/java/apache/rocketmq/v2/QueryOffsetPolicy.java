@@ -127,7 +127,7 @@ public enum QueryOffsetPolicy
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return apache.rocketmq.v2.MQDomain.getDescriptor().getEnumTypes().get(10);
+    return apache.rocketmq.v2.MQDomain.getDescriptor().getEnumTypes().get(9);
   }
 
   private static final QueryOffsetPolicy[] VALUES = values();

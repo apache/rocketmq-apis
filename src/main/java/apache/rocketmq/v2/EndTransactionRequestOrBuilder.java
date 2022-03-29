@@ -8,19 +8,19 @@ public interface EndTransactionRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.apache.rocketmq.v2.Resource group = 1;</code>
-   * @return Whether the group field is set.
+   * <code>.apache.rocketmq.v2.Resource topic = 1;</code>
+   * @return Whether the topic field is set.
    */
-  boolean hasGroup();
+  boolean hasTopic();
   /**
-   * <code>.apache.rocketmq.v2.Resource group = 1;</code>
-   * @return The group.
+   * <code>.apache.rocketmq.v2.Resource topic = 1;</code>
+   * @return The topic.
    */
-  apache.rocketmq.v2.Resource getGroup();
+  apache.rocketmq.v2.Resource getTopic();
   /**
-   * <code>.apache.rocketmq.v2.Resource group = 1;</code>
+   * <code>.apache.rocketmq.v2.Resource topic = 1;</code>
    */
-  apache.rocketmq.v2.ResourceOrBuilder getGroupOrBuilder();
+  apache.rocketmq.v2.ResourceOrBuilder getTopicOrBuilder();
 
   /**
    * <code>string message_id = 2;</code>

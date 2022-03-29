@@ -89,8 +89,8 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 40: {
-            handleCase_ = 5;
             handle_ = input.readInt64();
+            handleCase_ = 5;
             break;
           }
           case 50: {
@@ -265,6 +265,13 @@ private static final long serialVersionUID = 0L;
   public static final int RECEIPT_HANDLE_FIELD_NUMBER = 4;
   /**
    * <code>string receipt_handle = 4;</code>
+   * @return Whether the receiptHandle field is set.
+   */
+  public boolean hasReceiptHandle() {
+    return handleCase_ == 4;
+  }
+  /**
+   * <code>string receipt_handle = 4;</code>
    * @return The receiptHandle.
    */
   public java.lang.String getReceiptHandle() {
@@ -308,6 +315,14 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int OFFSET_FIELD_NUMBER = 5;
+  /**
+   * <code>int64 offset = 5;</code>
+   * @return Whether the offset field is set.
+   */
+  @java.lang.Override
+  public boolean hasOffset() {
+    return handleCase_ == 5;
+  }
   /**
    * <code>int64 offset = 5;</code>
    * @return The offset.
@@ -378,7 +393,7 @@ private static final long serialVersionUID = 0L;
     if (topic_ != null) {
       output.writeMessage(2, getTopic());
     }
-    if (!getClientIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, clientId_);
     }
     if (handleCase_ == 4) {
@@ -388,7 +403,7 @@ private static final long serialVersionUID = 0L;
       output.writeInt64(
           5, (long)((java.lang.Long) handle_));
     }
-    if (!getMessageIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(messageId_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 6, messageId_);
     }
     unknownFields.writeTo(output);
@@ -408,7 +423,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, getTopic());
     }
-    if (!getClientIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, clientId_);
     }
     if (handleCase_ == 4) {
@@ -419,7 +434,7 @@ private static final long serialVersionUID = 0L;
         .computeInt64Size(
             5, (long)((java.lang.Long) handle_));
     }
-    if (!getMessageIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(messageId_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, messageId_);
     }
     size += unknownFields.getSerializedSize();
@@ -1133,6 +1148,14 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <code>string receipt_handle = 4;</code>
+     * @return Whether the receiptHandle field is set.
+     */
+    @java.lang.Override
+    public boolean hasReceiptHandle() {
+      return handleCase_ == 4;
+    }
+    /**
+     * <code>string receipt_handle = 4;</code>
      * @return The receiptHandle.
      */
     @java.lang.Override
@@ -1220,6 +1243,13 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    /**
+     * <code>int64 offset = 5;</code>
+     * @return Whether the offset field is set.
+     */
+    public boolean hasOffset() {
+      return handleCase_ == 5;
+    }
     /**
      * <code>int64 offset = 5;</code>
      * @return The offset.

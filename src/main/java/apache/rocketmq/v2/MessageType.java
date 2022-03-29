@@ -138,7 +138,7 @@ public enum MessageType
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return apache.rocketmq.v2.MQDomain.getDescriptor().getEnumTypes().get(7);
+    return apache.rocketmq.v2.MQDomain.getDescriptor().getEnumTypes().get(5);
   }
 
   private static final MessageType[] VALUES = values();

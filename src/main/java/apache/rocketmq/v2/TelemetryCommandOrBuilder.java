@@ -8,26 +8,125 @@ public interface TelemetryCommandOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.apache.rocketmq.v2.Settings settings = 1;</code>
-   * @return Whether the settings field is set.
+   * <pre>
+   * These messages are from client.
+   * Report local client setting to server.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.ClientSettings client_settings = 1;</code>
+   * @return Whether the clientSettings field is set.
    */
-  boolean hasSettings();
+  boolean hasClientSettings();
   /**
-   * <code>.apache.rocketmq.v2.Settings settings = 1;</code>
-   * @return The settings.
+   * <pre>
+   * These messages are from client.
+   * Report local client setting to server.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.ClientSettings client_settings = 1;</code>
+   * @return The clientSettings.
    */
-  apache.rocketmq.v2.Settings getSettings();
+  apache.rocketmq.v2.ClientSettings getClientSettings();
   /**
-   * <code>.apache.rocketmq.v2.Settings settings = 1;</code>
+   * <pre>
+   * These messages are from client.
+   * Report local client setting to server.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.ClientSettings client_settings = 1;</code>
    */
-  apache.rocketmq.v2.SettingsOrBuilder getSettingsOrBuilder();
+  apache.rocketmq.v2.ClientSettingsOrBuilder getClientSettingsOrBuilder();
+
+  /**
+   * <pre>
+   * Report thread stack trace to server.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 2;</code>
+   * @return Whether the threadStackTrace field is set.
+   */
+  boolean hasThreadStackTrace();
+  /**
+   * <pre>
+   * Report thread stack trace to server.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 2;</code>
+   * @return The threadStackTrace.
+   */
+  apache.rocketmq.v2.ThreadStackTrace getThreadStackTrace();
+  /**
+   * <pre>
+   * Report thread stack trace to server.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 2;</code>
+   */
+  apache.rocketmq.v2.ThreadStackTraceOrBuilder getThreadStackTraceOrBuilder();
+
+  /**
+   * <pre>
+   * Repost message verify result to server.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 3;</code>
+   * @return Whether the verifyMessageResult field is set.
+   */
+  boolean hasVerifyMessageResult();
+  /**
+   * <pre>
+   * Repost message verify result to server.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 3;</code>
+   * @return The verifyMessageResult.
+   */
+  apache.rocketmq.v2.VerifyMessageResult getVerifyMessageResult();
+  /**
+   * <pre>
+   * Repost message verify result to server.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 3;</code>
+   */
+  apache.rocketmq.v2.VerifyMessageResultOrBuilder getVerifyMessageResultOrBuilder();
+
+  /**
+   * <pre>
+   * There messages are from server.
+   * Overwrite client settings.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.ClientOverwrittenSettings client_overwritten_settings = 4;</code>
+   * @return Whether the clientOverwrittenSettings field is set.
+   */
+  boolean hasClientOverwrittenSettings();
+  /**
+   * <pre>
+   * There messages are from server.
+   * Overwrite client settings.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.ClientOverwrittenSettings client_overwritten_settings = 4;</code>
+   * @return The clientOverwrittenSettings.
+   */
+  apache.rocketmq.v2.ClientOverwrittenSettings getClientOverwrittenSettings();
+  /**
+   * <pre>
+   * There messages are from server.
+   * Overwrite client settings.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.ClientOverwrittenSettings client_overwritten_settings = 4;</code>
+   */
+  apache.rocketmq.v2.ClientOverwrittenSettingsOrBuilder getClientOverwrittenSettingsOrBuilder();
 
   /**
    * <pre>
    * Request client to recover the orphaned transaction message.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 2;</code>
+   * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 5;</code>
    * @return Whether the recoverOrphanedTransactionCommand field is set.
    */
   boolean hasRecoverOrphanedTransactionCommand();
@@ -36,7 +135,7 @@ public interface TelemetryCommandOrBuilder extends
    * Request client to recover the orphaned transaction message.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 2;</code>
+   * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 5;</code>
    * @return The recoverOrphanedTransactionCommand.
    */
   apache.rocketmq.v2.RecoverOrphanedTransactionCommand getRecoverOrphanedTransactionCommand();
@@ -45,7 +144,7 @@ public interface TelemetryCommandOrBuilder extends
    * Request client to recover the orphaned transaction message.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 2;</code>
+   * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 5;</code>
    */
   apache.rocketmq.v2.RecoverOrphanedTransactionCommandOrBuilder getRecoverOrphanedTransactionCommandOrBuilder();
 
@@ -54,7 +153,7 @@ public interface TelemetryCommandOrBuilder extends
    * Request client to print thread stack trace.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 3;</code>
+   * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 6;</code>
    * @return Whether the printThreadStackTraceCommand field is set.
    */
   boolean hasPrintThreadStackTraceCommand();
@@ -63,7 +162,7 @@ public interface TelemetryCommandOrBuilder extends
    * Request client to print thread stack trace.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 3;</code>
+   * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 6;</code>
    * @return The printThreadStackTraceCommand.
    */
   apache.rocketmq.v2.PrintThreadStackTraceCommand getPrintThreadStackTraceCommand();
@@ -72,31 +171,16 @@ public interface TelemetryCommandOrBuilder extends
    * Request client to print thread stack trace.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 3;</code>
+   * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 6;</code>
    */
   apache.rocketmq.v2.PrintThreadStackTraceCommandOrBuilder getPrintThreadStackTraceCommandOrBuilder();
-
-  /**
-   * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 4;</code>
-   * @return Whether the threadStackTrace field is set.
-   */
-  boolean hasThreadStackTrace();
-  /**
-   * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 4;</code>
-   * @return The threadStackTrace.
-   */
-  apache.rocketmq.v2.ThreadStackTrace getThreadStackTrace();
-  /**
-   * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 4;</code>
-   */
-  apache.rocketmq.v2.ThreadStackTraceOrBuilder getThreadStackTraceOrBuilder();
 
   /**
    * <pre>
    * Request client to verify the consumption of the appointed message.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 5;</code>
+   * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 7;</code>
    * @return Whether the verifyMessageCommand field is set.
    */
   boolean hasVerifyMessageCommand();
@@ -105,7 +189,7 @@ public interface TelemetryCommandOrBuilder extends
    * Request client to verify the consumption of the appointed message.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 5;</code>
+   * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 7;</code>
    * @return The verifyMessageCommand.
    */
   apache.rocketmq.v2.VerifyMessageCommand getVerifyMessageCommand();
@@ -114,24 +198,9 @@ public interface TelemetryCommandOrBuilder extends
    * Request client to verify the consumption of the appointed message.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 5;</code>
+   * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 7;</code>
    */
   apache.rocketmq.v2.VerifyMessageCommandOrBuilder getVerifyMessageCommandOrBuilder();
-
-  /**
-   * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 6;</code>
-   * @return Whether the verifyMessageResult field is set.
-   */
-  boolean hasVerifyMessageResult();
-  /**
-   * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 6;</code>
-   * @return The verifyMessageResult.
-   */
-  apache.rocketmq.v2.VerifyMessageResult getVerifyMessageResult();
-  /**
-   * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 6;</code>
-   */
-  apache.rocketmq.v2.VerifyMessageResultOrBuilder getVerifyMessageResultOrBuilder();
 
   public apache.rocketmq.v2.TelemetryCommand.CommandCase getCommandCase();
 }

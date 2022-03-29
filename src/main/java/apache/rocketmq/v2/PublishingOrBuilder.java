@@ -3,8 +3,8 @@
 
 package apache.rocketmq.v2;
 
-public interface PublishOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:apache.rocketmq.v2.Publish)
+public interface PublishingOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:apache.rocketmq.v2.Publishing)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -58,47 +58,11 @@ public interface PublishOrBuilder extends
 
   /**
    * <pre>
-   * If a transactional message stay unresolved for more than
-   * `transaction_orphan_threshold`, it would be regarded as an
-   * orphan. Servers that manages orphan messages would pick up
-   * a capable publisher to resolve
-   * </pre>
-   *
-   * <code>.google.protobuf.Duration transaction_orphan_threshold = 2;</code>
-   * @return Whether the transactionOrphanThreshold field is set.
-   */
-  boolean hasTransactionOrphanThreshold();
-  /**
-   * <pre>
-   * If a transactional message stay unresolved for more than
-   * `transaction_orphan_threshold`, it would be regarded as an
-   * orphan. Servers that manages orphan messages would pick up
-   * a capable publisher to resolve
-   * </pre>
-   *
-   * <code>.google.protobuf.Duration transaction_orphan_threshold = 2;</code>
-   * @return The transactionOrphanThreshold.
-   */
-  com.google.protobuf.Duration getTransactionOrphanThreshold();
-  /**
-   * <pre>
-   * If a transactional message stay unresolved for more than
-   * `transaction_orphan_threshold`, it would be regarded as an
-   * orphan. Servers that manages orphan messages would pick up
-   * a capable publisher to resolve
-   * </pre>
-   *
-   * <code>.google.protobuf.Duration transaction_orphan_threshold = 2;</code>
-   */
-  com.google.protobuf.DurationOrBuilder getTransactionOrphanThresholdOrBuilder();
-
-  /**
-   * <pre>
    * If publishing message experiences RPC failure, `retry_policy` describes
    * backoff policy before retries are made.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 3;</code>
+   * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 2;</code>
    * @return Whether the retryPolicy field is set.
    */
   boolean hasRetryPolicy();
@@ -108,7 +72,7 @@ public interface PublishOrBuilder extends
    * backoff policy before retries are made.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 3;</code>
+   * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 2;</code>
    * @return The retryPolicy.
    */
   apache.rocketmq.v2.RetryPolicy getRetryPolicy();
@@ -118,7 +82,7 @@ public interface PublishOrBuilder extends
    * backoff policy before retries are made.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 3;</code>
+   * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 2;</code>
    */
   apache.rocketmq.v2.RetryPolicyOrBuilder getRetryPolicyOrBuilder();
 
@@ -128,7 +92,7 @@ public interface PublishOrBuilder extends
    * compress it to relieve network overhead.
    * </pre>
    *
-   * <code>int32 compress_threshold = 4;</code>
+   * <code>int32 compress_threshold = 3;</code>
    * @return The compressThreshold.
    */
   int getCompressThreshold();
@@ -138,7 +102,7 @@ public interface PublishOrBuilder extends
    * Max message size in bytes permitted by server.
    * </pre>
    *
-   * <code>int32 max_message_bytes = 5;</code>
+   * <code>int32 max_message_bytes = 4;</code>
    * @return The maxMessageBytes.
    */
   int getMaxMessageBytes();

@@ -4,25 +4,25 @@
 package apache.rocketmq.v2;
 
 /**
- * Protobuf type {@code apache.rocketmq.v2.Trace}
+ * Protobuf type {@code apache.rocketmq.v2.Tracing}
  */
-public final class Trace extends
+public final class Tracing extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:apache.rocketmq.v2.Trace)
-    TraceOrBuilder {
+    // @@protoc_insertion_point(message_implements:apache.rocketmq.v2.Tracing)
+    TracingOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use Trace.newBuilder() to construct.
-  private Trace(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use Tracing.newBuilder() to construct.
+  private Tracing(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private Trace() {
+  private Tracing() {
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new Trace();
+    return new Tracing();
   }
 
   @java.lang.Override
@@ -30,7 +30,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private Trace(
+  private Tracing(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -38,6 +38,7 @@ private static final long serialVersionUID = 0L;
     if (extensionRegistry == null) {
       throw new java.lang.NullPointerException();
     }
+    int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
         com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
@@ -55,7 +56,7 @@ private static final long serialVersionUID = 0L;
           }
           case 18: {
             apache.rocketmq.v2.Endpoints.Builder subBuilder = null;
-            if (serviceAccessPoint_ != null) {
+            if (((bitField0_ & 0x00000001) != 0)) {
               subBuilder = serviceAccessPoint_.toBuilder();
             }
             serviceAccessPoint_ = input.readMessage(apache.rocketmq.v2.Endpoints.parser(), extensionRegistry);
@@ -63,7 +64,7 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom(serviceAccessPoint_);
               serviceAccessPoint_ = subBuilder.buildPartial();
             }
-
+            bitField0_ |= 0x00000001;
             break;
           }
           default: {
@@ -87,17 +88,18 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return apache.rocketmq.v2.MQDomain.internal_static_apache_rocketmq_v2_Trace_descriptor;
+    return apache.rocketmq.v2.MQDomain.internal_static_apache_rocketmq_v2_Tracing_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return apache.rocketmq.v2.MQDomain.internal_static_apache_rocketmq_v2_Trace_fieldAccessorTable
+    return apache.rocketmq.v2.MQDomain.internal_static_apache_rocketmq_v2_Tracing_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            apache.rocketmq.v2.Trace.class, apache.rocketmq.v2.Trace.Builder.class);
+            apache.rocketmq.v2.Tracing.class, apache.rocketmq.v2.Tracing.Builder.class);
   }
 
+  private int bitField0_;
   public static final int ON_FIELD_NUMBER = 1;
   private boolean on_;
   /**
@@ -112,15 +114,23 @@ private static final long serialVersionUID = 0L;
   public static final int SERVICE_ACCESS_POINT_FIELD_NUMBER = 2;
   private apache.rocketmq.v2.Endpoints serviceAccessPoint_;
   /**
-   * <code>.apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
+   * <pre>
+   * Tracing access point for client, which is essential if tracing is on.
+   * </pre>
+   *
+   * <code>optional .apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
    * @return Whether the serviceAccessPoint field is set.
    */
   @java.lang.Override
   public boolean hasServiceAccessPoint() {
-    return serviceAccessPoint_ != null;
+    return ((bitField0_ & 0x00000001) != 0);
   }
   /**
-   * <code>.apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
+   * <pre>
+   * Tracing access point for client, which is essential if tracing is on.
+   * </pre>
+   *
+   * <code>optional .apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
    * @return The serviceAccessPoint.
    */
   @java.lang.Override
@@ -128,11 +138,15 @@ private static final long serialVersionUID = 0L;
     return serviceAccessPoint_ == null ? apache.rocketmq.v2.Endpoints.getDefaultInstance() : serviceAccessPoint_;
   }
   /**
-   * <code>.apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
+   * <pre>
+   * Tracing access point for client, which is essential if tracing is on.
+   * </pre>
+   *
+   * <code>optional .apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
    */
   @java.lang.Override
   public apache.rocketmq.v2.EndpointsOrBuilder getServiceAccessPointOrBuilder() {
-    return getServiceAccessPoint();
+    return serviceAccessPoint_ == null ? apache.rocketmq.v2.Endpoints.getDefaultInstance() : serviceAccessPoint_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -152,7 +166,7 @@ private static final long serialVersionUID = 0L;
     if (on_ != false) {
       output.writeBool(1, on_);
     }
-    if (serviceAccessPoint_ != null) {
+    if (((bitField0_ & 0x00000001) != 0)) {
       output.writeMessage(2, getServiceAccessPoint());
     }
     unknownFields.writeTo(output);
@@ -168,7 +182,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(1, on_);
     }
-    if (serviceAccessPoint_ != null) {
+    if (((bitField0_ & 0x00000001) != 0)) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, getServiceAccessPoint());
     }
@@ -182,10 +196,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof apache.rocketmq.v2.Trace)) {
+    if (!(obj instanceof apache.rocketmq.v2.Tracing)) {
       return super.equals(obj);
     }
-    apache.rocketmq.v2.Trace other = (apache.rocketmq.v2.Trace) obj;
+    apache.rocketmq.v2.Tracing other = (apache.rocketmq.v2.Tracing) obj;
 
     if (getOn()
         != other.getOn()) return false;
@@ -217,69 +231,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static apache.rocketmq.v2.Trace parseFrom(
+  public static apache.rocketmq.v2.Tracing parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static apache.rocketmq.v2.Trace parseFrom(
+  public static apache.rocketmq.v2.Tracing parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static apache.rocketmq.v2.Trace parseFrom(
+  public static apache.rocketmq.v2.Tracing parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static apache.rocketmq.v2.Trace parseFrom(
+  public static apache.rocketmq.v2.Tracing parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static apache.rocketmq.v2.Trace parseFrom(byte[] data)
+  public static apache.rocketmq.v2.Tracing parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static apache.rocketmq.v2.Trace parseFrom(
+  public static apache.rocketmq.v2.Tracing parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static apache.rocketmq.v2.Trace parseFrom(java.io.InputStream input)
+  public static apache.rocketmq.v2.Tracing parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static apache.rocketmq.v2.Trace parseFrom(
+  public static apache.rocketmq.v2.Tracing parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static apache.rocketmq.v2.Trace parseDelimitedFrom(java.io.InputStream input)
+  public static apache.rocketmq.v2.Tracing parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static apache.rocketmq.v2.Trace parseDelimitedFrom(
+  public static apache.rocketmq.v2.Tracing parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static apache.rocketmq.v2.Trace parseFrom(
+  public static apache.rocketmq.v2.Tracing parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static apache.rocketmq.v2.Trace parseFrom(
+  public static apache.rocketmq.v2.Tracing parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -292,7 +306,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(apache.rocketmq.v2.Trace prototype) {
+  public static Builder newBuilder(apache.rocketmq.v2.Tracing prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -308,26 +322,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code apache.rocketmq.v2.Trace}
+   * Protobuf type {@code apache.rocketmq.v2.Tracing}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:apache.rocketmq.v2.Trace)
-      apache.rocketmq.v2.TraceOrBuilder {
+      // @@protoc_insertion_point(builder_implements:apache.rocketmq.v2.Tracing)
+      apache.rocketmq.v2.TracingOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return apache.rocketmq.v2.MQDomain.internal_static_apache_rocketmq_v2_Trace_descriptor;
+      return apache.rocketmq.v2.MQDomain.internal_static_apache_rocketmq_v2_Tracing_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return apache.rocketmq.v2.MQDomain.internal_static_apache_rocketmq_v2_Trace_fieldAccessorTable
+      return apache.rocketmq.v2.MQDomain.internal_static_apache_rocketmq_v2_Tracing_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              apache.rocketmq.v2.Trace.class, apache.rocketmq.v2.Trace.Builder.class);
+              apache.rocketmq.v2.Tracing.class, apache.rocketmq.v2.Tracing.Builder.class);
     }
 
-    // Construct using apache.rocketmq.v2.Trace.newBuilder()
+    // Construct using apache.rocketmq.v2.Tracing.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -340,6 +354,7 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
+        getServiceAccessPointFieldBuilder();
       }
     }
     @java.lang.Override
@@ -350,26 +365,26 @@ private static final long serialVersionUID = 0L;
       if (serviceAccessPointBuilder_ == null) {
         serviceAccessPoint_ = null;
       } else {
-        serviceAccessPoint_ = null;
-        serviceAccessPointBuilder_ = null;
+        serviceAccessPointBuilder_.clear();
       }
+      bitField0_ = (bitField0_ & ~0x00000001);
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return apache.rocketmq.v2.MQDomain.internal_static_apache_rocketmq_v2_Trace_descriptor;
+      return apache.rocketmq.v2.MQDomain.internal_static_apache_rocketmq_v2_Tracing_descriptor;
     }
 
     @java.lang.Override
-    public apache.rocketmq.v2.Trace getDefaultInstanceForType() {
-      return apache.rocketmq.v2.Trace.getDefaultInstance();
+    public apache.rocketmq.v2.Tracing getDefaultInstanceForType() {
+      return apache.rocketmq.v2.Tracing.getDefaultInstance();
     }
 
     @java.lang.Override
-    public apache.rocketmq.v2.Trace build() {
-      apache.rocketmq.v2.Trace result = buildPartial();
+    public apache.rocketmq.v2.Tracing build() {
+      apache.rocketmq.v2.Tracing result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -377,14 +392,20 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public apache.rocketmq.v2.Trace buildPartial() {
-      apache.rocketmq.v2.Trace result = new apache.rocketmq.v2.Trace(this);
+    public apache.rocketmq.v2.Tracing buildPartial() {
+      apache.rocketmq.v2.Tracing result = new apache.rocketmq.v2.Tracing(this);
+      int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       result.on_ = on_;
-      if (serviceAccessPointBuilder_ == null) {
-        result.serviceAccessPoint_ = serviceAccessPoint_;
-      } else {
-        result.serviceAccessPoint_ = serviceAccessPointBuilder_.build();
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        if (serviceAccessPointBuilder_ == null) {
+          result.serviceAccessPoint_ = serviceAccessPoint_;
+        } else {
+          result.serviceAccessPoint_ = serviceAccessPointBuilder_.build();
+        }
+        to_bitField0_ |= 0x00000001;
       }
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -423,16 +444,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof apache.rocketmq.v2.Trace) {
-        return mergeFrom((apache.rocketmq.v2.Trace)other);
+      if (other instanceof apache.rocketmq.v2.Tracing) {
+        return mergeFrom((apache.rocketmq.v2.Tracing)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(apache.rocketmq.v2.Trace other) {
-      if (other == apache.rocketmq.v2.Trace.getDefaultInstance()) return this;
+    public Builder mergeFrom(apache.rocketmq.v2.Tracing other) {
+      if (other == apache.rocketmq.v2.Tracing.getDefaultInstance()) return this;
       if (other.getOn() != false) {
         setOn(other.getOn());
       }
@@ -454,11 +475,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      apache.rocketmq.v2.Trace parsedMessage = null;
+      apache.rocketmq.v2.Tracing parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (apache.rocketmq.v2.Trace) e.getUnfinishedMessage();
+        parsedMessage = (apache.rocketmq.v2.Tracing) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -467,6 +488,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+    private int bitField0_;
 
     private boolean on_ ;
     /**
@@ -503,14 +525,22 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Endpoints, apache.rocketmq.v2.Endpoints.Builder, apache.rocketmq.v2.EndpointsOrBuilder> serviceAccessPointBuilder_;
     /**
-     * <code>.apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
+     * <pre>
+     * Tracing access point for client, which is essential if tracing is on.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
      * @return Whether the serviceAccessPoint field is set.
      */
     public boolean hasServiceAccessPoint() {
-      return serviceAccessPointBuilder_ != null || serviceAccessPoint_ != null;
+      return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
+     * <pre>
+     * Tracing access point for client, which is essential if tracing is on.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
      * @return The serviceAccessPoint.
      */
     public apache.rocketmq.v2.Endpoints getServiceAccessPoint() {
@@ -521,7 +551,11 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
+     * <pre>
+     * Tracing access point for client, which is essential if tracing is on.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
      */
     public Builder setServiceAccessPoint(apache.rocketmq.v2.Endpoints value) {
       if (serviceAccessPointBuilder_ == null) {
@@ -533,11 +567,15 @@ private static final long serialVersionUID = 0L;
       } else {
         serviceAccessPointBuilder_.setMessage(value);
       }
-
+      bitField0_ |= 0x00000001;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
+     * <pre>
+     * Tracing access point for client, which is essential if tracing is on.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
      */
     public Builder setServiceAccessPoint(
         apache.rocketmq.v2.Endpoints.Builder builderForValue) {
@@ -547,15 +585,21 @@ private static final long serialVersionUID = 0L;
       } else {
         serviceAccessPointBuilder_.setMessage(builderForValue.build());
       }
-
+      bitField0_ |= 0x00000001;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
+     * <pre>
+     * Tracing access point for client, which is essential if tracing is on.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
      */
     public Builder mergeServiceAccessPoint(apache.rocketmq.v2.Endpoints value) {
       if (serviceAccessPointBuilder_ == null) {
-        if (serviceAccessPoint_ != null) {
+        if (((bitField0_ & 0x00000001) != 0) &&
+            serviceAccessPoint_ != null &&
+            serviceAccessPoint_ != apache.rocketmq.v2.Endpoints.getDefaultInstance()) {
           serviceAccessPoint_ =
             apache.rocketmq.v2.Endpoints.newBuilder(serviceAccessPoint_).mergeFrom(value).buildPartial();
         } else {
@@ -565,33 +609,44 @@ private static final long serialVersionUID = 0L;
       } else {
         serviceAccessPointBuilder_.mergeFrom(value);
       }
-
+      bitField0_ |= 0x00000001;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
+     * <pre>
+     * Tracing access point for client, which is essential if tracing is on.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
      */
     public Builder clearServiceAccessPoint() {
       if (serviceAccessPointBuilder_ == null) {
         serviceAccessPoint_ = null;
         onChanged();
       } else {
-        serviceAccessPoint_ = null;
-        serviceAccessPointBuilder_ = null;
+        serviceAccessPointBuilder_.clear();
       }
-
+      bitField0_ = (bitField0_ & ~0x00000001);
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
+     * <pre>
+     * Tracing access point for client, which is essential if tracing is on.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
      */
     public apache.rocketmq.v2.Endpoints.Builder getServiceAccessPointBuilder() {
-      
+      bitField0_ |= 0x00000001;
       onChanged();
       return getServiceAccessPointFieldBuilder().getBuilder();
     }
     /**
-     * <code>.apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
+     * <pre>
+     * Tracing access point for client, which is essential if tracing is on.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
      */
     public apache.rocketmq.v2.EndpointsOrBuilder getServiceAccessPointOrBuilder() {
       if (serviceAccessPointBuilder_ != null) {
@@ -602,7 +657,11 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
+     * <pre>
+     * Tracing access point for client, which is essential if tracing is on.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.Endpoints service_access_point = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Endpoints, apache.rocketmq.v2.Endpoints.Builder, apache.rocketmq.v2.EndpointsOrBuilder> 
@@ -630,41 +689,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:apache.rocketmq.v2.Trace)
+    // @@protoc_insertion_point(builder_scope:apache.rocketmq.v2.Tracing)
   }
 
-  // @@protoc_insertion_point(class_scope:apache.rocketmq.v2.Trace)
-  private static final apache.rocketmq.v2.Trace DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:apache.rocketmq.v2.Tracing)
+  private static final apache.rocketmq.v2.Tracing DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new apache.rocketmq.v2.Trace();
+    DEFAULT_INSTANCE = new apache.rocketmq.v2.Tracing();
   }
 
-  public static apache.rocketmq.v2.Trace getDefaultInstance() {
+  public static apache.rocketmq.v2.Tracing getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<Trace>
-      PARSER = new com.google.protobuf.AbstractParser<Trace>() {
+  private static final com.google.protobuf.Parser<Tracing>
+      PARSER = new com.google.protobuf.AbstractParser<Tracing>() {
     @java.lang.Override
-    public Trace parsePartialFrom(
+    public Tracing parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Trace(input, extensionRegistry);
+      return new Tracing(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<Trace> parser() {
+  public static com.google.protobuf.Parser<Tracing> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<Trace> getParserForType() {
+  public com.google.protobuf.Parser<Tracing> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public apache.rocketmq.v2.Trace getDefaultInstanceForType() {
+  public apache.rocketmq.v2.Tracing getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

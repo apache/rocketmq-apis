@@ -16,7 +16,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private AckMessageRequest() {
-    clientId_ = "";
     receiptHandle_ = "";
     messageId_ = "";
   }
@@ -80,16 +79,10 @@ private static final long serialVersionUID = 0L;
           case 26: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            clientId_ = s;
-            break;
-          }
-          case 34: {
-            java.lang.String s = input.readStringRequireUtf8();
-
             receiptHandle_ = s;
             break;
           }
-          case 42: {
+          case 34: {
             java.lang.String s = input.readStringRequireUtf8();
 
             messageId_ = s;
@@ -179,48 +172,10 @@ private static final long serialVersionUID = 0L;
     return getTopic();
   }
 
-  public static final int CLIENT_ID_FIELD_NUMBER = 3;
-  private volatile java.lang.Object clientId_;
-  /**
-   * <code>string client_id = 3;</code>
-   * @return The clientId.
-   */
-  @java.lang.Override
-  public java.lang.String getClientId() {
-    java.lang.Object ref = clientId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      clientId_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string client_id = 3;</code>
-   * @return The bytes for clientId.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getClientIdBytes() {
-    java.lang.Object ref = clientId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      clientId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int RECEIPT_HANDLE_FIELD_NUMBER = 4;
+  public static final int RECEIPT_HANDLE_FIELD_NUMBER = 3;
   private volatile java.lang.Object receiptHandle_;
   /**
-   * <code>string receipt_handle = 4;</code>
+   * <code>string receipt_handle = 3;</code>
    * @return The receiptHandle.
    */
   @java.lang.Override
@@ -237,7 +192,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string receipt_handle = 4;</code>
+   * <code>string receipt_handle = 3;</code>
    * @return The bytes for receiptHandle.
    */
   @java.lang.Override
@@ -255,10 +210,10 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int MESSAGE_ID_FIELD_NUMBER = 5;
+  public static final int MESSAGE_ID_FIELD_NUMBER = 4;
   private volatile java.lang.Object messageId_;
   /**
-   * <code>string message_id = 5;</code>
+   * <code>string message_id = 4;</code>
    * @return The messageId.
    */
   @java.lang.Override
@@ -275,7 +230,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string message_id = 5;</code>
+   * <code>string message_id = 4;</code>
    * @return The bytes for messageId.
    */
   @java.lang.Override
@@ -313,14 +268,11 @@ private static final long serialVersionUID = 0L;
     if (topic_ != null) {
       output.writeMessage(2, getTopic());
     }
-    if (!getClientIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, clientId_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(receiptHandle_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, receiptHandle_);
     }
-    if (!getReceiptHandleBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, receiptHandle_);
-    }
-    if (!getMessageIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 5, messageId_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(messageId_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, messageId_);
     }
     unknownFields.writeTo(output);
   }
@@ -339,14 +291,11 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, getTopic());
     }
-    if (!getClientIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, clientId_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(receiptHandle_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, receiptHandle_);
     }
-    if (!getReceiptHandleBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, receiptHandle_);
-    }
-    if (!getMessageIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, messageId_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(messageId_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, messageId_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -373,8 +322,6 @@ private static final long serialVersionUID = 0L;
       if (!getTopic()
           .equals(other.getTopic())) return false;
     }
-    if (!getClientId()
-        .equals(other.getClientId())) return false;
     if (!getReceiptHandle()
         .equals(other.getReceiptHandle())) return false;
     if (!getMessageId()
@@ -398,8 +345,6 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + TOPIC_FIELD_NUMBER;
       hash = (53 * hash) + getTopic().hashCode();
     }
-    hash = (37 * hash) + CLIENT_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getClientId().hashCode();
     hash = (37 * hash) + RECEIPT_HANDLE_FIELD_NUMBER;
     hash = (53 * hash) + getReceiptHandle().hashCode();
     hash = (37 * hash) + MESSAGE_ID_FIELD_NUMBER;
@@ -549,8 +494,6 @@ private static final long serialVersionUID = 0L;
         topic_ = null;
         topicBuilder_ = null;
       }
-      clientId_ = "";
-
       receiptHandle_ = "";
 
       messageId_ = "";
@@ -591,7 +534,6 @@ private static final long serialVersionUID = 0L;
       } else {
         result.topic_ = topicBuilder_.build();
       }
-      result.clientId_ = clientId_;
       result.receiptHandle_ = receiptHandle_;
       result.messageId_ = messageId_;
       onBuilt();
@@ -647,10 +589,6 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasTopic()) {
         mergeTopic(other.getTopic());
-      }
-      if (!other.getClientId().isEmpty()) {
-        clientId_ = other.clientId_;
-        onChanged();
       }
       if (!other.getReceiptHandle().isEmpty()) {
         receiptHandle_ = other.receiptHandle_;
@@ -927,85 +865,9 @@ private static final long serialVersionUID = 0L;
       return topicBuilder_;
     }
 
-    private java.lang.Object clientId_ = "";
-    /**
-     * <code>string client_id = 3;</code>
-     * @return The clientId.
-     */
-    public java.lang.String getClientId() {
-      java.lang.Object ref = clientId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        clientId_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string client_id = 3;</code>
-     * @return The bytes for clientId.
-     */
-    public com.google.protobuf.ByteString
-        getClientIdBytes() {
-      java.lang.Object ref = clientId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        clientId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string client_id = 3;</code>
-     * @param value The clientId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setClientId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      clientId_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string client_id = 3;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearClientId() {
-      
-      clientId_ = getDefaultInstance().getClientId();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string client_id = 3;</code>
-     * @param value The bytes for clientId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setClientIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      clientId_ = value;
-      onChanged();
-      return this;
-    }
-
     private java.lang.Object receiptHandle_ = "";
     /**
-     * <code>string receipt_handle = 4;</code>
+     * <code>string receipt_handle = 3;</code>
      * @return The receiptHandle.
      */
     public java.lang.String getReceiptHandle() {
@@ -1021,7 +883,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string receipt_handle = 4;</code>
+     * <code>string receipt_handle = 3;</code>
      * @return The bytes for receiptHandle.
      */
     public com.google.protobuf.ByteString
@@ -1038,7 +900,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string receipt_handle = 4;</code>
+     * <code>string receipt_handle = 3;</code>
      * @param value The receiptHandle to set.
      * @return This builder for chaining.
      */
@@ -1053,7 +915,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string receipt_handle = 4;</code>
+     * <code>string receipt_handle = 3;</code>
      * @return This builder for chaining.
      */
     public Builder clearReceiptHandle() {
@@ -1063,7 +925,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string receipt_handle = 4;</code>
+     * <code>string receipt_handle = 3;</code>
      * @param value The bytes for receiptHandle to set.
      * @return This builder for chaining.
      */
@@ -1081,7 +943,7 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object messageId_ = "";
     /**
-     * <code>string message_id = 5;</code>
+     * <code>string message_id = 4;</code>
      * @return The messageId.
      */
     public java.lang.String getMessageId() {
@@ -1097,7 +959,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string message_id = 5;</code>
+     * <code>string message_id = 4;</code>
      * @return The bytes for messageId.
      */
     public com.google.protobuf.ByteString
@@ -1114,7 +976,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string message_id = 5;</code>
+     * <code>string message_id = 4;</code>
      * @param value The messageId to set.
      * @return This builder for chaining.
      */
@@ -1129,7 +991,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string message_id = 5;</code>
+     * <code>string message_id = 4;</code>
      * @return This builder for chaining.
      */
     public Builder clearMessageId() {
@@ -1139,7 +1001,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string message_id = 5;</code>
+     * <code>string message_id = 4;</code>
      * @param value The bytes for messageId to set.
      * @return This builder for chaining.
      */

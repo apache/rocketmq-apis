@@ -7,9 +7,9 @@ package apache.rocketmq.v2;
  * <pre>
  * When publishing messages to or subscribing messages from brokers, clients
  * shall include or validate digests of message body to ensure data integrity.
- * For message publishment, when an invalid digest were detected, brokers need
+ * For message publishing, when an invalid digest were detected, brokers need
  * respond client with BAD_REQUEST.
- * For messags subscription, when an invalid digest were detected, consumers
+ * For messages subscription, when an invalid digest were detected, consumers
  * need to handle this case according to message type:
  * 1) Standard messages should be negatively acknowledged instantly, causing
  * immediate re-delivery; 2) FIFO messages require special RPC, to re-fetch
@@ -183,7 +183,7 @@ private static final long serialVersionUID = 0L;
     if (type_ != apache.rocketmq.v2.DigestType.DIGEST_TYPE_UNSPECIFIED.getNumber()) {
       output.writeEnum(1, type_);
     }
-    if (!getChecksumBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(checksum_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, checksum_);
     }
     unknownFields.writeTo(output);
@@ -199,7 +199,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(1, type_);
     }
-    if (!getChecksumBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(checksum_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, checksum_);
     }
     size += unknownFields.getSerializedSize();
@@ -334,9 +334,9 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * When publishing messages to or subscribing messages from brokers, clients
    * shall include or validate digests of message body to ensure data integrity.
-   * For message publishment, when an invalid digest were detected, brokers need
+   * For message publishing, when an invalid digest were detected, brokers need
    * respond client with BAD_REQUEST.
-   * For messags subscription, when an invalid digest were detected, consumers
+   * For messages subscription, when an invalid digest were detected, consumers
    * need to handle this case according to message type:
    * 1) Standard messages should be negatively acknowledged instantly, causing
    * immediate re-delivery; 2) FIFO messages require special RPC, to re-fetch

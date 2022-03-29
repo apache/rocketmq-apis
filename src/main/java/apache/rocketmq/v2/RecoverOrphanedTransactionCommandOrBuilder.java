@@ -8,33 +8,27 @@ public interface RecoverOrphanedTransactionCommandOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int64 command_id = 1;</code>
-   * @return The commandId.
-   */
-  long getCommandId();
-
-  /**
-   * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+   * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 1;</code>
    * @return Whether the orphanedTransactionalMessage field is set.
    */
   boolean hasOrphanedTransactionalMessage();
   /**
-   * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+   * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 1;</code>
    * @return The orphanedTransactionalMessage.
    */
   apache.rocketmq.v2.Message getOrphanedTransactionalMessage();
   /**
-   * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+   * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 1;</code>
    */
   apache.rocketmq.v2.MessageOrBuilder getOrphanedTransactionalMessageOrBuilder();
 
   /**
-   * <code>string transaction_id = 3;</code>
+   * <code>string transaction_id = 2;</code>
    * @return The transactionId.
    */
   java.lang.String getTransactionId();
   /**
-   * <code>string transaction_id = 3;</code>
+   * <code>string transaction_id = 2;</code>
    * @return The bytes for transactionId.
    */
   com.google.protobuf.ByteString

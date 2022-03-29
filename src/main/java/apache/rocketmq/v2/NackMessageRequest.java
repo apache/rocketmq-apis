@@ -4,26 +4,27 @@
 package apache.rocketmq.v2;
 
 /**
- * Protobuf type {@code apache.rocketmq.v2.ChangeInvisibleDurationRequest}
+ * Protobuf type {@code apache.rocketmq.v2.NackMessageRequest}
  */
-public final class ChangeInvisibleDurationRequest extends
+public final class NackMessageRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:apache.rocketmq.v2.ChangeInvisibleDurationRequest)
-    ChangeInvisibleDurationRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:apache.rocketmq.v2.NackMessageRequest)
+    NackMessageRequestOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use ChangeInvisibleDurationRequest.newBuilder() to construct.
-  private ChangeInvisibleDurationRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use NackMessageRequest.newBuilder() to construct.
+  private NackMessageRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private ChangeInvisibleDurationRequest() {
+  private NackMessageRequest() {
     receiptHandle_ = "";
+    messageId_ = "";
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new ChangeInvisibleDurationRequest();
+    return new NackMessageRequest();
   }
 
   @java.lang.Override
@@ -31,7 +32,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private ChangeInvisibleDurationRequest(
+  private NackMessageRequest(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -82,16 +83,14 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 34: {
-            com.google.protobuf.Duration.Builder subBuilder = null;
-            if (invisibleDuration_ != null) {
-              subBuilder = invisibleDuration_.toBuilder();
-            }
-            invisibleDuration_ = input.readMessage(com.google.protobuf.Duration.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(invisibleDuration_);
-              invisibleDuration_ = subBuilder.buildPartial();
-            }
+            java.lang.String s = input.readStringRequireUtf8();
 
+            messageId_ = s;
+            break;
+          }
+          case 40: {
+
+            deliveryAttempt_ = input.readInt32();
             break;
           }
           default: {
@@ -115,15 +114,15 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ChangeInvisibleDurationRequest_descriptor;
+    return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_NackMessageRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ChangeInvisibleDurationRequest_fieldAccessorTable
+    return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_NackMessageRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            apache.rocketmq.v2.ChangeInvisibleDurationRequest.class, apache.rocketmq.v2.ChangeInvisibleDurationRequest.Builder.class);
+            apache.rocketmq.v2.NackMessageRequest.class, apache.rocketmq.v2.NackMessageRequest.Builder.class);
   }
 
   public static final int GROUP_FIELD_NUMBER = 1;
@@ -181,10 +180,6 @@ private static final long serialVersionUID = 0L;
   public static final int RECEIPT_HANDLE_FIELD_NUMBER = 3;
   private volatile java.lang.Object receiptHandle_;
   /**
-   * <pre>
-   * Unique receipt handle to identify message to change
-   * </pre>
-   *
    * <code>string receipt_handle = 3;</code>
    * @return The receiptHandle.
    */
@@ -202,10 +197,6 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <pre>
-   * Unique receipt handle to identify message to change
-   * </pre>
-   *
    * <code>string receipt_handle = 3;</code>
    * @return The bytes for receiptHandle.
    */
@@ -224,42 +215,53 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int INVISIBLE_DURATION_FIELD_NUMBER = 4;
-  private com.google.protobuf.Duration invisibleDuration_;
+  public static final int MESSAGE_ID_FIELD_NUMBER = 4;
+  private volatile java.lang.Object messageId_;
   /**
-   * <pre>
-   * New invisible duration
-   * </pre>
-   *
-   * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-   * @return Whether the invisibleDuration field is set.
+   * <code>string message_id = 4;</code>
+   * @return The messageId.
    */
   @java.lang.Override
-  public boolean hasInvisibleDuration() {
-    return invisibleDuration_ != null;
+  public java.lang.String getMessageId() {
+    java.lang.Object ref = messageId_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      messageId_ = s;
+      return s;
+    }
   }
   /**
-   * <pre>
-   * New invisible duration
-   * </pre>
-   *
-   * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-   * @return The invisibleDuration.
+   * <code>string message_id = 4;</code>
+   * @return The bytes for messageId.
    */
   @java.lang.Override
-  public com.google.protobuf.Duration getInvisibleDuration() {
-    return invisibleDuration_ == null ? com.google.protobuf.Duration.getDefaultInstance() : invisibleDuration_;
+  public com.google.protobuf.ByteString
+      getMessageIdBytes() {
+    java.lang.Object ref = messageId_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      messageId_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
+
+  public static final int DELIVERY_ATTEMPT_FIELD_NUMBER = 5;
+  private int deliveryAttempt_;
   /**
-   * <pre>
-   * New invisible duration
-   * </pre>
-   *
-   * <code>.google.protobuf.Duration invisible_duration = 4;</code>
+   * <code>int32 delivery_attempt = 5;</code>
+   * @return The deliveryAttempt.
    */
   @java.lang.Override
-  public com.google.protobuf.DurationOrBuilder getInvisibleDurationOrBuilder() {
-    return getInvisibleDuration();
+  public int getDeliveryAttempt() {
+    return deliveryAttempt_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -285,8 +287,11 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(receiptHandle_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, receiptHandle_);
     }
-    if (invisibleDuration_ != null) {
-      output.writeMessage(4, getInvisibleDuration());
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(messageId_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, messageId_);
+    }
+    if (deliveryAttempt_ != 0) {
+      output.writeInt32(5, deliveryAttempt_);
     }
     unknownFields.writeTo(output);
   }
@@ -308,9 +313,12 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(receiptHandle_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, receiptHandle_);
     }
-    if (invisibleDuration_ != null) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(messageId_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, messageId_);
+    }
+    if (deliveryAttempt_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(4, getInvisibleDuration());
+        .computeInt32Size(5, deliveryAttempt_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -322,10 +330,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof apache.rocketmq.v2.ChangeInvisibleDurationRequest)) {
+    if (!(obj instanceof apache.rocketmq.v2.NackMessageRequest)) {
       return super.equals(obj);
     }
-    apache.rocketmq.v2.ChangeInvisibleDurationRequest other = (apache.rocketmq.v2.ChangeInvisibleDurationRequest) obj;
+    apache.rocketmq.v2.NackMessageRequest other = (apache.rocketmq.v2.NackMessageRequest) obj;
 
     if (hasGroup() != other.hasGroup()) return false;
     if (hasGroup()) {
@@ -339,11 +347,10 @@ private static final long serialVersionUID = 0L;
     }
     if (!getReceiptHandle()
         .equals(other.getReceiptHandle())) return false;
-    if (hasInvisibleDuration() != other.hasInvisibleDuration()) return false;
-    if (hasInvisibleDuration()) {
-      if (!getInvisibleDuration()
-          .equals(other.getInvisibleDuration())) return false;
-    }
+    if (!getMessageId()
+        .equals(other.getMessageId())) return false;
+    if (getDeliveryAttempt()
+        != other.getDeliveryAttempt()) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -365,78 +372,78 @@ private static final long serialVersionUID = 0L;
     }
     hash = (37 * hash) + RECEIPT_HANDLE_FIELD_NUMBER;
     hash = (53 * hash) + getReceiptHandle().hashCode();
-    if (hasInvisibleDuration()) {
-      hash = (37 * hash) + INVISIBLE_DURATION_FIELD_NUMBER;
-      hash = (53 * hash) + getInvisibleDuration().hashCode();
-    }
+    hash = (37 * hash) + MESSAGE_ID_FIELD_NUMBER;
+    hash = (53 * hash) + getMessageId().hashCode();
+    hash = (37 * hash) + DELIVERY_ATTEMPT_FIELD_NUMBER;
+    hash = (53 * hash) + getDeliveryAttempt();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static apache.rocketmq.v2.ChangeInvisibleDurationRequest parseFrom(
+  public static apache.rocketmq.v2.NackMessageRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static apache.rocketmq.v2.ChangeInvisibleDurationRequest parseFrom(
+  public static apache.rocketmq.v2.NackMessageRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static apache.rocketmq.v2.ChangeInvisibleDurationRequest parseFrom(
+  public static apache.rocketmq.v2.NackMessageRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static apache.rocketmq.v2.ChangeInvisibleDurationRequest parseFrom(
+  public static apache.rocketmq.v2.NackMessageRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static apache.rocketmq.v2.ChangeInvisibleDurationRequest parseFrom(byte[] data)
+  public static apache.rocketmq.v2.NackMessageRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static apache.rocketmq.v2.ChangeInvisibleDurationRequest parseFrom(
+  public static apache.rocketmq.v2.NackMessageRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static apache.rocketmq.v2.ChangeInvisibleDurationRequest parseFrom(java.io.InputStream input)
+  public static apache.rocketmq.v2.NackMessageRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static apache.rocketmq.v2.ChangeInvisibleDurationRequest parseFrom(
+  public static apache.rocketmq.v2.NackMessageRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static apache.rocketmq.v2.ChangeInvisibleDurationRequest parseDelimitedFrom(java.io.InputStream input)
+  public static apache.rocketmq.v2.NackMessageRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static apache.rocketmq.v2.ChangeInvisibleDurationRequest parseDelimitedFrom(
+  public static apache.rocketmq.v2.NackMessageRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static apache.rocketmq.v2.ChangeInvisibleDurationRequest parseFrom(
+  public static apache.rocketmq.v2.NackMessageRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static apache.rocketmq.v2.ChangeInvisibleDurationRequest parseFrom(
+  public static apache.rocketmq.v2.NackMessageRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -449,7 +456,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(apache.rocketmq.v2.ChangeInvisibleDurationRequest prototype) {
+  public static Builder newBuilder(apache.rocketmq.v2.NackMessageRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -465,26 +472,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code apache.rocketmq.v2.ChangeInvisibleDurationRequest}
+   * Protobuf type {@code apache.rocketmq.v2.NackMessageRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:apache.rocketmq.v2.ChangeInvisibleDurationRequest)
-      apache.rocketmq.v2.ChangeInvisibleDurationRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:apache.rocketmq.v2.NackMessageRequest)
+      apache.rocketmq.v2.NackMessageRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ChangeInvisibleDurationRequest_descriptor;
+      return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_NackMessageRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ChangeInvisibleDurationRequest_fieldAccessorTable
+      return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_NackMessageRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              apache.rocketmq.v2.ChangeInvisibleDurationRequest.class, apache.rocketmq.v2.ChangeInvisibleDurationRequest.Builder.class);
+              apache.rocketmq.v2.NackMessageRequest.class, apache.rocketmq.v2.NackMessageRequest.Builder.class);
     }
 
-    // Construct using apache.rocketmq.v2.ChangeInvisibleDurationRequest.newBuilder()
+    // Construct using apache.rocketmq.v2.NackMessageRequest.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -516,29 +523,27 @@ private static final long serialVersionUID = 0L;
       }
       receiptHandle_ = "";
 
-      if (invisibleDurationBuilder_ == null) {
-        invisibleDuration_ = null;
-      } else {
-        invisibleDuration_ = null;
-        invisibleDurationBuilder_ = null;
-      }
+      messageId_ = "";
+
+      deliveryAttempt_ = 0;
+
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ChangeInvisibleDurationRequest_descriptor;
+      return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_NackMessageRequest_descriptor;
     }
 
     @java.lang.Override
-    public apache.rocketmq.v2.ChangeInvisibleDurationRequest getDefaultInstanceForType() {
-      return apache.rocketmq.v2.ChangeInvisibleDurationRequest.getDefaultInstance();
+    public apache.rocketmq.v2.NackMessageRequest getDefaultInstanceForType() {
+      return apache.rocketmq.v2.NackMessageRequest.getDefaultInstance();
     }
 
     @java.lang.Override
-    public apache.rocketmq.v2.ChangeInvisibleDurationRequest build() {
-      apache.rocketmq.v2.ChangeInvisibleDurationRequest result = buildPartial();
+    public apache.rocketmq.v2.NackMessageRequest build() {
+      apache.rocketmq.v2.NackMessageRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -546,8 +551,8 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public apache.rocketmq.v2.ChangeInvisibleDurationRequest buildPartial() {
-      apache.rocketmq.v2.ChangeInvisibleDurationRequest result = new apache.rocketmq.v2.ChangeInvisibleDurationRequest(this);
+    public apache.rocketmq.v2.NackMessageRequest buildPartial() {
+      apache.rocketmq.v2.NackMessageRequest result = new apache.rocketmq.v2.NackMessageRequest(this);
       if (groupBuilder_ == null) {
         result.group_ = group_;
       } else {
@@ -559,11 +564,8 @@ private static final long serialVersionUID = 0L;
         result.topic_ = topicBuilder_.build();
       }
       result.receiptHandle_ = receiptHandle_;
-      if (invisibleDurationBuilder_ == null) {
-        result.invisibleDuration_ = invisibleDuration_;
-      } else {
-        result.invisibleDuration_ = invisibleDurationBuilder_.build();
-      }
+      result.messageId_ = messageId_;
+      result.deliveryAttempt_ = deliveryAttempt_;
       onBuilt();
       return result;
     }
@@ -602,16 +604,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof apache.rocketmq.v2.ChangeInvisibleDurationRequest) {
-        return mergeFrom((apache.rocketmq.v2.ChangeInvisibleDurationRequest)other);
+      if (other instanceof apache.rocketmq.v2.NackMessageRequest) {
+        return mergeFrom((apache.rocketmq.v2.NackMessageRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(apache.rocketmq.v2.ChangeInvisibleDurationRequest other) {
-      if (other == apache.rocketmq.v2.ChangeInvisibleDurationRequest.getDefaultInstance()) return this;
+    public Builder mergeFrom(apache.rocketmq.v2.NackMessageRequest other) {
+      if (other == apache.rocketmq.v2.NackMessageRequest.getDefaultInstance()) return this;
       if (other.hasGroup()) {
         mergeGroup(other.getGroup());
       }
@@ -622,8 +624,12 @@ private static final long serialVersionUID = 0L;
         receiptHandle_ = other.receiptHandle_;
         onChanged();
       }
-      if (other.hasInvisibleDuration()) {
-        mergeInvisibleDuration(other.getInvisibleDuration());
+      if (!other.getMessageId().isEmpty()) {
+        messageId_ = other.messageId_;
+        onChanged();
+      }
+      if (other.getDeliveryAttempt() != 0) {
+        setDeliveryAttempt(other.getDeliveryAttempt());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -640,11 +646,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      apache.rocketmq.v2.ChangeInvisibleDurationRequest parsedMessage = null;
+      apache.rocketmq.v2.NackMessageRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (apache.rocketmq.v2.ChangeInvisibleDurationRequest) e.getUnfinishedMessage();
+        parsedMessage = (apache.rocketmq.v2.NackMessageRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -894,10 +900,6 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object receiptHandle_ = "";
     /**
-     * <pre>
-     * Unique receipt handle to identify message to change
-     * </pre>
-     *
      * <code>string receipt_handle = 3;</code>
      * @return The receiptHandle.
      */
@@ -914,10 +916,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * Unique receipt handle to identify message to change
-     * </pre>
-     *
      * <code>string receipt_handle = 3;</code>
      * @return The bytes for receiptHandle.
      */
@@ -935,10 +933,6 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <pre>
-     * Unique receipt handle to identify message to change
-     * </pre>
-     *
      * <code>string receipt_handle = 3;</code>
      * @param value The receiptHandle to set.
      * @return This builder for chaining.
@@ -954,10 +948,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Unique receipt handle to identify message to change
-     * </pre>
-     *
      * <code>string receipt_handle = 3;</code>
      * @return This builder for chaining.
      */
@@ -968,10 +958,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     * Unique receipt handle to identify message to change
-     * </pre>
-     *
      * <code>string receipt_handle = 3;</code>
      * @param value The bytes for receiptHandle to set.
      * @return This builder for chaining.
@@ -988,159 +974,111 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private com.google.protobuf.Duration invisibleDuration_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> invisibleDurationBuilder_;
+    private java.lang.Object messageId_ = "";
     /**
-     * <pre>
-     * New invisible duration
-     * </pre>
-     *
-     * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-     * @return Whether the invisibleDuration field is set.
+     * <code>string message_id = 4;</code>
+     * @return The messageId.
      */
-    public boolean hasInvisibleDuration() {
-      return invisibleDurationBuilder_ != null || invisibleDuration_ != null;
-    }
-    /**
-     * <pre>
-     * New invisible duration
-     * </pre>
-     *
-     * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-     * @return The invisibleDuration.
-     */
-    public com.google.protobuf.Duration getInvisibleDuration() {
-      if (invisibleDurationBuilder_ == null) {
-        return invisibleDuration_ == null ? com.google.protobuf.Duration.getDefaultInstance() : invisibleDuration_;
+    public java.lang.String getMessageId() {
+      java.lang.Object ref = messageId_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        messageId_ = s;
+        return s;
       } else {
-        return invisibleDurationBuilder_.getMessage();
+        return (java.lang.String) ref;
       }
     }
     /**
-     * <pre>
-     * New invisible duration
-     * </pre>
-     *
-     * <code>.google.protobuf.Duration invisible_duration = 4;</code>
+     * <code>string message_id = 4;</code>
+     * @return The bytes for messageId.
      */
-    public Builder setInvisibleDuration(com.google.protobuf.Duration value) {
-      if (invisibleDurationBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        invisibleDuration_ = value;
-        onChanged();
+    public com.google.protobuf.ByteString
+        getMessageIdBytes() {
+      java.lang.Object ref = messageId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        messageId_ = b;
+        return b;
       } else {
-        invisibleDurationBuilder_.setMessage(value);
+        return (com.google.protobuf.ByteString) ref;
       }
-
-      return this;
     }
     /**
-     * <pre>
-     * New invisible duration
-     * </pre>
-     *
-     * <code>.google.protobuf.Duration invisible_duration = 4;</code>
+     * <code>string message_id = 4;</code>
+     * @param value The messageId to set.
+     * @return This builder for chaining.
      */
-    public Builder setInvisibleDuration(
-        com.google.protobuf.Duration.Builder builderForValue) {
-      if (invisibleDurationBuilder_ == null) {
-        invisibleDuration_ = builderForValue.build();
-        onChanged();
-      } else {
-        invisibleDurationBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * New invisible duration
-     * </pre>
-     *
-     * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-     */
-    public Builder mergeInvisibleDuration(com.google.protobuf.Duration value) {
-      if (invisibleDurationBuilder_ == null) {
-        if (invisibleDuration_ != null) {
-          invisibleDuration_ =
-            com.google.protobuf.Duration.newBuilder(invisibleDuration_).mergeFrom(value).buildPartial();
-        } else {
-          invisibleDuration_ = value;
-        }
-        onChanged();
-      } else {
-        invisibleDurationBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * New invisible duration
-     * </pre>
-     *
-     * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-     */
-    public Builder clearInvisibleDuration() {
-      if (invisibleDurationBuilder_ == null) {
-        invisibleDuration_ = null;
-        onChanged();
-      } else {
-        invisibleDuration_ = null;
-        invisibleDurationBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * New invisible duration
-     * </pre>
-     *
-     * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-     */
-    public com.google.protobuf.Duration.Builder getInvisibleDurationBuilder() {
-      
+    public Builder setMessageId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      messageId_ = value;
       onChanged();
-      return getInvisibleDurationFieldBuilder().getBuilder();
+      return this;
     }
     /**
-     * <pre>
-     * New invisible duration
-     * </pre>
-     *
-     * <code>.google.protobuf.Duration invisible_duration = 4;</code>
+     * <code>string message_id = 4;</code>
+     * @return This builder for chaining.
      */
-    public com.google.protobuf.DurationOrBuilder getInvisibleDurationOrBuilder() {
-      if (invisibleDurationBuilder_ != null) {
-        return invisibleDurationBuilder_.getMessageOrBuilder();
-      } else {
-        return invisibleDuration_ == null ?
-            com.google.protobuf.Duration.getDefaultInstance() : invisibleDuration_;
-      }
+    public Builder clearMessageId() {
+      
+      messageId_ = getDefaultInstance().getMessageId();
+      onChanged();
+      return this;
     }
     /**
-     * <pre>
-     * New invisible duration
-     * </pre>
-     *
-     * <code>.google.protobuf.Duration invisible_duration = 4;</code>
+     * <code>string message_id = 4;</code>
+     * @param value The bytes for messageId to set.
+     * @return This builder for chaining.
      */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
-        getInvisibleDurationFieldBuilder() {
-      if (invisibleDurationBuilder_ == null) {
-        invisibleDurationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder>(
-                getInvisibleDuration(),
-                getParentForChildren(),
-                isClean());
-        invisibleDuration_ = null;
-      }
-      return invisibleDurationBuilder_;
+    public Builder setMessageIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      messageId_ = value;
+      onChanged();
+      return this;
+    }
+
+    private int deliveryAttempt_ ;
+    /**
+     * <code>int32 delivery_attempt = 5;</code>
+     * @return The deliveryAttempt.
+     */
+    @java.lang.Override
+    public int getDeliveryAttempt() {
+      return deliveryAttempt_;
+    }
+    /**
+     * <code>int32 delivery_attempt = 5;</code>
+     * @param value The deliveryAttempt to set.
+     * @return This builder for chaining.
+     */
+    public Builder setDeliveryAttempt(int value) {
+      
+      deliveryAttempt_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 delivery_attempt = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearDeliveryAttempt() {
+      
+      deliveryAttempt_ = 0;
+      onChanged();
+      return this;
     }
     @java.lang.Override
     public final Builder setUnknownFields(
@@ -1155,41 +1093,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:apache.rocketmq.v2.ChangeInvisibleDurationRequest)
+    // @@protoc_insertion_point(builder_scope:apache.rocketmq.v2.NackMessageRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:apache.rocketmq.v2.ChangeInvisibleDurationRequest)
-  private static final apache.rocketmq.v2.ChangeInvisibleDurationRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:apache.rocketmq.v2.NackMessageRequest)
+  private static final apache.rocketmq.v2.NackMessageRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new apache.rocketmq.v2.ChangeInvisibleDurationRequest();
+    DEFAULT_INSTANCE = new apache.rocketmq.v2.NackMessageRequest();
   }
 
-  public static apache.rocketmq.v2.ChangeInvisibleDurationRequest getDefaultInstance() {
+  public static apache.rocketmq.v2.NackMessageRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<ChangeInvisibleDurationRequest>
-      PARSER = new com.google.protobuf.AbstractParser<ChangeInvisibleDurationRequest>() {
+  private static final com.google.protobuf.Parser<NackMessageRequest>
+      PARSER = new com.google.protobuf.AbstractParser<NackMessageRequest>() {
     @java.lang.Override
-    public ChangeInvisibleDurationRequest parsePartialFrom(
+    public NackMessageRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new ChangeInvisibleDurationRequest(input, extensionRegistry);
+      return new NackMessageRequest(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<ChangeInvisibleDurationRequest> parser() {
+  public static com.google.protobuf.Parser<NackMessageRequest> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<ChangeInvisibleDurationRequest> getParserForType() {
+  public com.google.protobuf.Parser<NackMessageRequest> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public apache.rocketmq.v2.ChangeInvisibleDurationRequest getDefaultInstanceForType() {
+  public apache.rocketmq.v2.NackMessageRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

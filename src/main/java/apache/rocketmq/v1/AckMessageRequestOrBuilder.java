@@ -51,6 +51,11 @@ public interface AckMessageRequestOrBuilder extends
 
   /**
    * <code>string receipt_handle = 4;</code>
+   * @return Whether the receiptHandle field is set.
+   */
+  boolean hasReceiptHandle();
+  /**
+   * <code>string receipt_handle = 4;</code>
    * @return The receiptHandle.
    */
   java.lang.String getReceiptHandle();
@@ -61,6 +66,11 @@ public interface AckMessageRequestOrBuilder extends
   com.google.protobuf.ByteString
       getReceiptHandleBytes();
 
+  /**
+   * <code>int64 offset = 5;</code>
+   * @return Whether the offset field is set.
+   */
+  boolean hasOffset();
   /**
    * <code>int64 offset = 5;</code>
    * @return The offset.

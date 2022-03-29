@@ -30,4 +30,10 @@ public interface SendReceiptOrBuilder extends
    */
   com.google.protobuf.ByteString
       getTransactionIdBytes();
+
+  /**
+   * <code>int64 offset = 3;</code>
+   * @return The offset.
+   */
+  long getOffset();
 }

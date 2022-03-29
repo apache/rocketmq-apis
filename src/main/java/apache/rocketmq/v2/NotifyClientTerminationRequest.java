@@ -16,7 +16,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private NotifyClientTerminationRequest() {
-    clientId_ = "";
   }
 
   @java.lang.Override
@@ -39,6 +38,7 @@ private static final long serialVersionUID = 0L;
     if (extensionRegistry == null) {
       throw new java.lang.NullPointerException();
     }
+    int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
         com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
@@ -51,7 +51,7 @@ private static final long serialVersionUID = 0L;
             break;
           case 10: {
             apache.rocketmq.v2.Resource.Builder subBuilder = null;
-            if (group_ != null) {
+            if (((bitField0_ & 0x00000001) != 0)) {
               subBuilder = group_.toBuilder();
             }
             group_ = input.readMessage(apache.rocketmq.v2.Resource.parser(), extensionRegistry);
@@ -59,13 +59,7 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom(group_);
               group_ = subBuilder.buildPartial();
             }
-
-            break;
-          }
-          case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            clientId_ = s;
+            bitField0_ |= 0x00000001;
             break;
           }
           default: {
@@ -100,18 +94,27 @@ private static final long serialVersionUID = 0L;
             apache.rocketmq.v2.NotifyClientTerminationRequest.class, apache.rocketmq.v2.NotifyClientTerminationRequest.Builder.class);
   }
 
+  private int bitField0_;
   public static final int GROUP_FIELD_NUMBER = 1;
   private apache.rocketmq.v2.Resource group_;
   /**
-   * <code>.apache.rocketmq.v2.Resource group = 1;</code>
+   * <pre>
+   * Consumer group, which is absent for producer.
+   * </pre>
+   *
+   * <code>optional .apache.rocketmq.v2.Resource group = 1;</code>
    * @return Whether the group field is set.
    */
   @java.lang.Override
   public boolean hasGroup() {
-    return group_ != null;
+    return ((bitField0_ & 0x00000001) != 0);
   }
   /**
-   * <code>.apache.rocketmq.v2.Resource group = 1;</code>
+   * <pre>
+   * Consumer group, which is absent for producer.
+   * </pre>
+   *
+   * <code>optional .apache.rocketmq.v2.Resource group = 1;</code>
    * @return The group.
    */
   @java.lang.Override
@@ -119,49 +122,15 @@ private static final long serialVersionUID = 0L;
     return group_ == null ? apache.rocketmq.v2.Resource.getDefaultInstance() : group_;
   }
   /**
-   * <code>.apache.rocketmq.v2.Resource group = 1;</code>
+   * <pre>
+   * Consumer group, which is absent for producer.
+   * </pre>
+   *
+   * <code>optional .apache.rocketmq.v2.Resource group = 1;</code>
    */
   @java.lang.Override
   public apache.rocketmq.v2.ResourceOrBuilder getGroupOrBuilder() {
-    return getGroup();
-  }
-
-  public static final int CLIENT_ID_FIELD_NUMBER = 2;
-  private volatile java.lang.Object clientId_;
-  /**
-   * <code>string client_id = 2;</code>
-   * @return The clientId.
-   */
-  @java.lang.Override
-  public java.lang.String getClientId() {
-    java.lang.Object ref = clientId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      clientId_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string client_id = 2;</code>
-   * @return The bytes for clientId.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getClientIdBytes() {
-    java.lang.Object ref = clientId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      clientId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+    return group_ == null ? apache.rocketmq.v2.Resource.getDefaultInstance() : group_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -178,11 +147,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (group_ != null) {
+    if (((bitField0_ & 0x00000001) != 0)) {
       output.writeMessage(1, getGroup());
-    }
-    if (!getClientIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, clientId_);
     }
     unknownFields.writeTo(output);
   }
@@ -193,12 +159,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (group_ != null) {
+    if (((bitField0_ & 0x00000001) != 0)) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, getGroup());
-    }
-    if (!getClientIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, clientId_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -220,8 +183,6 @@ private static final long serialVersionUID = 0L;
       if (!getGroup()
           .equals(other.getGroup())) return false;
     }
-    if (!getClientId()
-        .equals(other.getClientId())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -237,8 +198,6 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + GROUP_FIELD_NUMBER;
       hash = (53 * hash) + getGroup().hashCode();
     }
-    hash = (37 * hash) + CLIENT_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getClientId().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -367,6 +326,7 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
+        getGroupFieldBuilder();
       }
     }
     @java.lang.Override
@@ -375,11 +335,9 @@ private static final long serialVersionUID = 0L;
       if (groupBuilder_ == null) {
         group_ = null;
       } else {
-        group_ = null;
-        groupBuilder_ = null;
+        groupBuilder_.clear();
       }
-      clientId_ = "";
-
+      bitField0_ = (bitField0_ & ~0x00000001);
       return this;
     }
 
@@ -406,12 +364,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public apache.rocketmq.v2.NotifyClientTerminationRequest buildPartial() {
       apache.rocketmq.v2.NotifyClientTerminationRequest result = new apache.rocketmq.v2.NotifyClientTerminationRequest(this);
-      if (groupBuilder_ == null) {
-        result.group_ = group_;
-      } else {
-        result.group_ = groupBuilder_.build();
+      int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        if (groupBuilder_ == null) {
+          result.group_ = group_;
+        } else {
+          result.group_ = groupBuilder_.build();
+        }
+        to_bitField0_ |= 0x00000001;
       }
-      result.clientId_ = clientId_;
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -463,10 +426,6 @@ private static final long serialVersionUID = 0L;
       if (other.hasGroup()) {
         mergeGroup(other.getGroup());
       }
-      if (!other.getClientId().isEmpty()) {
-        clientId_ = other.clientId_;
-        onChanged();
-      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
@@ -495,19 +454,28 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+    private int bitField0_;
 
     private apache.rocketmq.v2.Resource group_;
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Resource, apache.rocketmq.v2.Resource.Builder, apache.rocketmq.v2.ResourceOrBuilder> groupBuilder_;
     /**
-     * <code>.apache.rocketmq.v2.Resource group = 1;</code>
+     * <pre>
+     * Consumer group, which is absent for producer.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.Resource group = 1;</code>
      * @return Whether the group field is set.
      */
     public boolean hasGroup() {
-      return groupBuilder_ != null || group_ != null;
+      return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.apache.rocketmq.v2.Resource group = 1;</code>
+     * <pre>
+     * Consumer group, which is absent for producer.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.Resource group = 1;</code>
      * @return The group.
      */
     public apache.rocketmq.v2.Resource getGroup() {
@@ -518,7 +486,11 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Resource group = 1;</code>
+     * <pre>
+     * Consumer group, which is absent for producer.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.Resource group = 1;</code>
      */
     public Builder setGroup(apache.rocketmq.v2.Resource value) {
       if (groupBuilder_ == null) {
@@ -530,11 +502,15 @@ private static final long serialVersionUID = 0L;
       } else {
         groupBuilder_.setMessage(value);
       }
-
+      bitField0_ |= 0x00000001;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Resource group = 1;</code>
+     * <pre>
+     * Consumer group, which is absent for producer.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.Resource group = 1;</code>
      */
     public Builder setGroup(
         apache.rocketmq.v2.Resource.Builder builderForValue) {
@@ -544,15 +520,21 @@ private static final long serialVersionUID = 0L;
       } else {
         groupBuilder_.setMessage(builderForValue.build());
       }
-
+      bitField0_ |= 0x00000001;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Resource group = 1;</code>
+     * <pre>
+     * Consumer group, which is absent for producer.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.Resource group = 1;</code>
      */
     public Builder mergeGroup(apache.rocketmq.v2.Resource value) {
       if (groupBuilder_ == null) {
-        if (group_ != null) {
+        if (((bitField0_ & 0x00000001) != 0) &&
+            group_ != null &&
+            group_ != apache.rocketmq.v2.Resource.getDefaultInstance()) {
           group_ =
             apache.rocketmq.v2.Resource.newBuilder(group_).mergeFrom(value).buildPartial();
         } else {
@@ -562,33 +544,44 @@ private static final long serialVersionUID = 0L;
       } else {
         groupBuilder_.mergeFrom(value);
       }
-
+      bitField0_ |= 0x00000001;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Resource group = 1;</code>
+     * <pre>
+     * Consumer group, which is absent for producer.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.Resource group = 1;</code>
      */
     public Builder clearGroup() {
       if (groupBuilder_ == null) {
         group_ = null;
         onChanged();
       } else {
-        group_ = null;
-        groupBuilder_ = null;
+        groupBuilder_.clear();
       }
-
+      bitField0_ = (bitField0_ & ~0x00000001);
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Resource group = 1;</code>
+     * <pre>
+     * Consumer group, which is absent for producer.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.Resource group = 1;</code>
      */
     public apache.rocketmq.v2.Resource.Builder getGroupBuilder() {
-      
+      bitField0_ |= 0x00000001;
       onChanged();
       return getGroupFieldBuilder().getBuilder();
     }
     /**
-     * <code>.apache.rocketmq.v2.Resource group = 1;</code>
+     * <pre>
+     * Consumer group, which is absent for producer.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.Resource group = 1;</code>
      */
     public apache.rocketmq.v2.ResourceOrBuilder getGroupOrBuilder() {
       if (groupBuilder_ != null) {
@@ -599,7 +592,11 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Resource group = 1;</code>
+     * <pre>
+     * Consumer group, which is absent for producer.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.Resource group = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Resource, apache.rocketmq.v2.Resource.Builder, apache.rocketmq.v2.ResourceOrBuilder> 
@@ -613,82 +610,6 @@ private static final long serialVersionUID = 0L;
         group_ = null;
       }
       return groupBuilder_;
-    }
-
-    private java.lang.Object clientId_ = "";
-    /**
-     * <code>string client_id = 2;</code>
-     * @return The clientId.
-     */
-    public java.lang.String getClientId() {
-      java.lang.Object ref = clientId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        clientId_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string client_id = 2;</code>
-     * @return The bytes for clientId.
-     */
-    public com.google.protobuf.ByteString
-        getClientIdBytes() {
-      java.lang.Object ref = clientId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        clientId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string client_id = 2;</code>
-     * @param value The clientId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setClientId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      clientId_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string client_id = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearClientId() {
-      
-      clientId_ = getDefaultInstance().getClientId();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string client_id = 2;</code>
-     * @param value The bytes for clientId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setClientIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      clientId_ = value;
-      onChanged();
-      return this;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

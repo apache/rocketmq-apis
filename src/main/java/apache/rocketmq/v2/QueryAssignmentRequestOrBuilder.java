@@ -36,43 +36,4 @@ public interface QueryAssignmentRequestOrBuilder extends
    * <code>.apache.rocketmq.v2.Resource group = 2;</code>
    */
   apache.rocketmq.v2.ResourceOrBuilder getGroupOrBuilder();
-
-  /**
-   * <code>string client_id = 3;</code>
-   * @return The clientId.
-   */
-  java.lang.String getClientId();
-  /**
-   * <code>string client_id = 3;</code>
-   * @return The bytes for clientId.
-   */
-  com.google.protobuf.ByteString
-      getClientIdBytes();
-
-  /**
-   * <pre>
-   * Service access point
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.Endpoints endpoints = 4;</code>
-   * @return Whether the endpoints field is set.
-   */
-  boolean hasEndpoints();
-  /**
-   * <pre>
-   * Service access point
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.Endpoints endpoints = 4;</code>
-   * @return The endpoints.
-   */
-  apache.rocketmq.v2.Endpoints getEndpoints();
-  /**
-   * <pre>
-   * Service access point
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.Endpoints endpoints = 4;</code>
-   */
-  apache.rocketmq.v2.EndpointsOrBuilder getEndpointsOrBuilder();
 }

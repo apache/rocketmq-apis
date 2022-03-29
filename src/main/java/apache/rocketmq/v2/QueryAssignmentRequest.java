@@ -16,7 +16,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private QueryAssignmentRequest() {
-    clientId_ = "";
   }
 
   @java.lang.Override
@@ -71,25 +70,6 @@ private static final long serialVersionUID = 0L;
             if (subBuilder != null) {
               subBuilder.mergeFrom(group_);
               group_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 26: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            clientId_ = s;
-            break;
-          }
-          case 34: {
-            apache.rocketmq.v2.Endpoints.Builder subBuilder = null;
-            if (endpoints_ != null) {
-              subBuilder = endpoints_.toBuilder();
-            }
-            endpoints_ = input.readMessage(apache.rocketmq.v2.Endpoints.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(endpoints_);
-              endpoints_ = subBuilder.buildPartial();
             }
 
             break;
@@ -178,82 +158,6 @@ private static final long serialVersionUID = 0L;
     return getGroup();
   }
 
-  public static final int CLIENT_ID_FIELD_NUMBER = 3;
-  private volatile java.lang.Object clientId_;
-  /**
-   * <code>string client_id = 3;</code>
-   * @return The clientId.
-   */
-  @java.lang.Override
-  public java.lang.String getClientId() {
-    java.lang.Object ref = clientId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      clientId_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string client_id = 3;</code>
-   * @return The bytes for clientId.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getClientIdBytes() {
-    java.lang.Object ref = clientId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      clientId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int ENDPOINTS_FIELD_NUMBER = 4;
-  private apache.rocketmq.v2.Endpoints endpoints_;
-  /**
-   * <pre>
-   * Service access point
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.Endpoints endpoints = 4;</code>
-   * @return Whether the endpoints field is set.
-   */
-  @java.lang.Override
-  public boolean hasEndpoints() {
-    return endpoints_ != null;
-  }
-  /**
-   * <pre>
-   * Service access point
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.Endpoints endpoints = 4;</code>
-   * @return The endpoints.
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.Endpoints getEndpoints() {
-    return endpoints_ == null ? apache.rocketmq.v2.Endpoints.getDefaultInstance() : endpoints_;
-  }
-  /**
-   * <pre>
-   * Service access point
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.Endpoints endpoints = 4;</code>
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.EndpointsOrBuilder getEndpointsOrBuilder() {
-    return getEndpoints();
-  }
-
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -274,12 +178,6 @@ private static final long serialVersionUID = 0L;
     if (group_ != null) {
       output.writeMessage(2, getGroup());
     }
-    if (!getClientIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, clientId_);
-    }
-    if (endpoints_ != null) {
-      output.writeMessage(4, getEndpoints());
-    }
     unknownFields.writeTo(output);
   }
 
@@ -296,13 +194,6 @@ private static final long serialVersionUID = 0L;
     if (group_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, getGroup());
-    }
-    if (!getClientIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, clientId_);
-    }
-    if (endpoints_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(4, getEndpoints());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -329,13 +220,6 @@ private static final long serialVersionUID = 0L;
       if (!getGroup()
           .equals(other.getGroup())) return false;
     }
-    if (!getClientId()
-        .equals(other.getClientId())) return false;
-    if (hasEndpoints() != other.hasEndpoints()) return false;
-    if (hasEndpoints()) {
-      if (!getEndpoints()
-          .equals(other.getEndpoints())) return false;
-    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -354,12 +238,6 @@ private static final long serialVersionUID = 0L;
     if (hasGroup()) {
       hash = (37 * hash) + GROUP_FIELD_NUMBER;
       hash = (53 * hash) + getGroup().hashCode();
-    }
-    hash = (37 * hash) + CLIENT_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getClientId().hashCode();
-    if (hasEndpoints()) {
-      hash = (37 * hash) + ENDPOINTS_FIELD_NUMBER;
-      hash = (53 * hash) + getEndpoints().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -506,14 +384,6 @@ private static final long serialVersionUID = 0L;
         group_ = null;
         groupBuilder_ = null;
       }
-      clientId_ = "";
-
-      if (endpointsBuilder_ == null) {
-        endpoints_ = null;
-      } else {
-        endpoints_ = null;
-        endpointsBuilder_ = null;
-      }
       return this;
     }
 
@@ -549,12 +419,6 @@ private static final long serialVersionUID = 0L;
         result.group_ = group_;
       } else {
         result.group_ = groupBuilder_.build();
-      }
-      result.clientId_ = clientId_;
-      if (endpointsBuilder_ == null) {
-        result.endpoints_ = endpoints_;
-      } else {
-        result.endpoints_ = endpointsBuilder_.build();
       }
       onBuilt();
       return result;
@@ -609,13 +473,6 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasGroup()) {
         mergeGroup(other.getGroup());
-      }
-      if (!other.getClientId().isEmpty()) {
-        clientId_ = other.clientId_;
-        onChanged();
-      }
-      if (other.hasEndpoints()) {
-        mergeEndpoints(other.getEndpoints());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -882,237 +739,6 @@ private static final long serialVersionUID = 0L;
         group_ = null;
       }
       return groupBuilder_;
-    }
-
-    private java.lang.Object clientId_ = "";
-    /**
-     * <code>string client_id = 3;</code>
-     * @return The clientId.
-     */
-    public java.lang.String getClientId() {
-      java.lang.Object ref = clientId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        clientId_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string client_id = 3;</code>
-     * @return The bytes for clientId.
-     */
-    public com.google.protobuf.ByteString
-        getClientIdBytes() {
-      java.lang.Object ref = clientId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        clientId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string client_id = 3;</code>
-     * @param value The clientId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setClientId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      clientId_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string client_id = 3;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearClientId() {
-      
-      clientId_ = getDefaultInstance().getClientId();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string client_id = 3;</code>
-     * @param value The bytes for clientId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setClientIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      clientId_ = value;
-      onChanged();
-      return this;
-    }
-
-    private apache.rocketmq.v2.Endpoints endpoints_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.Endpoints, apache.rocketmq.v2.Endpoints.Builder, apache.rocketmq.v2.EndpointsOrBuilder> endpointsBuilder_;
-    /**
-     * <pre>
-     * Service access point
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.Endpoints endpoints = 4;</code>
-     * @return Whether the endpoints field is set.
-     */
-    public boolean hasEndpoints() {
-      return endpointsBuilder_ != null || endpoints_ != null;
-    }
-    /**
-     * <pre>
-     * Service access point
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.Endpoints endpoints = 4;</code>
-     * @return The endpoints.
-     */
-    public apache.rocketmq.v2.Endpoints getEndpoints() {
-      if (endpointsBuilder_ == null) {
-        return endpoints_ == null ? apache.rocketmq.v2.Endpoints.getDefaultInstance() : endpoints_;
-      } else {
-        return endpointsBuilder_.getMessage();
-      }
-    }
-    /**
-     * <pre>
-     * Service access point
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.Endpoints endpoints = 4;</code>
-     */
-    public Builder setEndpoints(apache.rocketmq.v2.Endpoints value) {
-      if (endpointsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        endpoints_ = value;
-        onChanged();
-      } else {
-        endpointsBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * Service access point
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.Endpoints endpoints = 4;</code>
-     */
-    public Builder setEndpoints(
-        apache.rocketmq.v2.Endpoints.Builder builderForValue) {
-      if (endpointsBuilder_ == null) {
-        endpoints_ = builderForValue.build();
-        onChanged();
-      } else {
-        endpointsBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * Service access point
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.Endpoints endpoints = 4;</code>
-     */
-    public Builder mergeEndpoints(apache.rocketmq.v2.Endpoints value) {
-      if (endpointsBuilder_ == null) {
-        if (endpoints_ != null) {
-          endpoints_ =
-            apache.rocketmq.v2.Endpoints.newBuilder(endpoints_).mergeFrom(value).buildPartial();
-        } else {
-          endpoints_ = value;
-        }
-        onChanged();
-      } else {
-        endpointsBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * Service access point
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.Endpoints endpoints = 4;</code>
-     */
-    public Builder clearEndpoints() {
-      if (endpointsBuilder_ == null) {
-        endpoints_ = null;
-        onChanged();
-      } else {
-        endpoints_ = null;
-        endpointsBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * Service access point
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.Endpoints endpoints = 4;</code>
-     */
-    public apache.rocketmq.v2.Endpoints.Builder getEndpointsBuilder() {
-      
-      onChanged();
-      return getEndpointsFieldBuilder().getBuilder();
-    }
-    /**
-     * <pre>
-     * Service access point
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.Endpoints endpoints = 4;</code>
-     */
-    public apache.rocketmq.v2.EndpointsOrBuilder getEndpointsOrBuilder() {
-      if (endpointsBuilder_ != null) {
-        return endpointsBuilder_.getMessageOrBuilder();
-      } else {
-        return endpoints_ == null ?
-            apache.rocketmq.v2.Endpoints.getDefaultInstance() : endpoints_;
-      }
-    }
-    /**
-     * <pre>
-     * Service access point
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.Endpoints endpoints = 4;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.Endpoints, apache.rocketmq.v2.Endpoints.Builder, apache.rocketmq.v2.EndpointsOrBuilder> 
-        getEndpointsFieldBuilder() {
-      if (endpointsBuilder_ == null) {
-        endpointsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            apache.rocketmq.v2.Endpoints, apache.rocketmq.v2.Endpoints.Builder, apache.rocketmq.v2.EndpointsOrBuilder>(
-                getEndpoints(),
-                getParentForChildren(),
-                isClean());
-        endpoints_ = null;
-      }
-      return endpointsBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

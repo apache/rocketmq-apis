@@ -286,6 +286,15 @@ public interface SystemAttributeOrBuilder extends
    * </pre>
    *
    * <code>int32 delay_level = 12;</code>
+   * @return Whether the delayLevel field is set.
+   */
+  boolean hasDelayLevel();
+  /**
+   * <pre>
+   * Level-based delay strategy.
+   * </pre>
+   *
+   * <code>int32 delay_level = 12;</code>
    * @return The delayLevel.
    */
   int getDelayLevel();

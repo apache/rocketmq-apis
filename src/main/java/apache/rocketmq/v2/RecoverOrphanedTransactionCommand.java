@@ -49,12 +49,7 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 8: {
-
-            commandId_ = input.readInt64();
-            break;
-          }
-          case 18: {
+          case 10: {
             apache.rocketmq.v2.Message.Builder subBuilder = null;
             if (orphanedTransactionalMessage_ != null) {
               subBuilder = orphanedTransactionalMessage_.toBuilder();
@@ -67,7 +62,7 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
-          case 26: {
+          case 18: {
             java.lang.String s = input.readStringRequireUtf8();
 
             transactionId_ = s;
@@ -105,21 +100,10 @@ private static final long serialVersionUID = 0L;
             apache.rocketmq.v2.RecoverOrphanedTransactionCommand.class, apache.rocketmq.v2.RecoverOrphanedTransactionCommand.Builder.class);
   }
 
-  public static final int COMMAND_ID_FIELD_NUMBER = 1;
-  private long commandId_;
-  /**
-   * <code>int64 command_id = 1;</code>
-   * @return The commandId.
-   */
-  @java.lang.Override
-  public long getCommandId() {
-    return commandId_;
-  }
-
-  public static final int ORPHANED_TRANSACTIONAL_MESSAGE_FIELD_NUMBER = 2;
+  public static final int ORPHANED_TRANSACTIONAL_MESSAGE_FIELD_NUMBER = 1;
   private apache.rocketmq.v2.Message orphanedTransactionalMessage_;
   /**
-   * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+   * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 1;</code>
    * @return Whether the orphanedTransactionalMessage field is set.
    */
   @java.lang.Override
@@ -127,7 +111,7 @@ private static final long serialVersionUID = 0L;
     return orphanedTransactionalMessage_ != null;
   }
   /**
-   * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+   * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 1;</code>
    * @return The orphanedTransactionalMessage.
    */
   @java.lang.Override
@@ -135,17 +119,17 @@ private static final long serialVersionUID = 0L;
     return orphanedTransactionalMessage_ == null ? apache.rocketmq.v2.Message.getDefaultInstance() : orphanedTransactionalMessage_;
   }
   /**
-   * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+   * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 1;</code>
    */
   @java.lang.Override
   public apache.rocketmq.v2.MessageOrBuilder getOrphanedTransactionalMessageOrBuilder() {
     return getOrphanedTransactionalMessage();
   }
 
-  public static final int TRANSACTION_ID_FIELD_NUMBER = 3;
+  public static final int TRANSACTION_ID_FIELD_NUMBER = 2;
   private volatile java.lang.Object transactionId_;
   /**
-   * <code>string transaction_id = 3;</code>
+   * <code>string transaction_id = 2;</code>
    * @return The transactionId.
    */
   @java.lang.Override
@@ -162,7 +146,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string transaction_id = 3;</code>
+   * <code>string transaction_id = 2;</code>
    * @return The bytes for transactionId.
    */
   @java.lang.Override
@@ -194,14 +178,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (commandId_ != 0L) {
-      output.writeInt64(1, commandId_);
-    }
     if (orphanedTransactionalMessage_ != null) {
-      output.writeMessage(2, getOrphanedTransactionalMessage());
+      output.writeMessage(1, getOrphanedTransactionalMessage());
     }
-    if (!getTransactionIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, transactionId_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transactionId_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, transactionId_);
     }
     unknownFields.writeTo(output);
   }
@@ -212,16 +193,12 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (commandId_ != 0L) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt64Size(1, commandId_);
-    }
     if (orphanedTransactionalMessage_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, getOrphanedTransactionalMessage());
+        .computeMessageSize(1, getOrphanedTransactionalMessage());
     }
-    if (!getTransactionIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, transactionId_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transactionId_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, transactionId_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -238,8 +215,6 @@ private static final long serialVersionUID = 0L;
     }
     apache.rocketmq.v2.RecoverOrphanedTransactionCommand other = (apache.rocketmq.v2.RecoverOrphanedTransactionCommand) obj;
 
-    if (getCommandId()
-        != other.getCommandId()) return false;
     if (hasOrphanedTransactionalMessage() != other.hasOrphanedTransactionalMessage()) return false;
     if (hasOrphanedTransactionalMessage()) {
       if (!getOrphanedTransactionalMessage()
@@ -258,9 +233,6 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + COMMAND_ID_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        getCommandId());
     if (hasOrphanedTransactionalMessage()) {
       hash = (37 * hash) + ORPHANED_TRANSACTIONAL_MESSAGE_FIELD_NUMBER;
       hash = (53 * hash) + getOrphanedTransactionalMessage().hashCode();
@@ -400,8 +372,6 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      commandId_ = 0L;
-
       if (orphanedTransactionalMessageBuilder_ == null) {
         orphanedTransactionalMessage_ = null;
       } else {
@@ -436,7 +406,6 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public apache.rocketmq.v2.RecoverOrphanedTransactionCommand buildPartial() {
       apache.rocketmq.v2.RecoverOrphanedTransactionCommand result = new apache.rocketmq.v2.RecoverOrphanedTransactionCommand(this);
-      result.commandId_ = commandId_;
       if (orphanedTransactionalMessageBuilder_ == null) {
         result.orphanedTransactionalMessage_ = orphanedTransactionalMessage_;
       } else {
@@ -491,9 +460,6 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(apache.rocketmq.v2.RecoverOrphanedTransactionCommand other) {
       if (other == apache.rocketmq.v2.RecoverOrphanedTransactionCommand.getDefaultInstance()) return this;
-      if (other.getCommandId() != 0L) {
-        setCommandId(other.getCommandId());
-      }
       if (other.hasOrphanedTransactionalMessage()) {
         mergeOrphanedTransactionalMessage(other.getOrphanedTransactionalMessage());
       }
@@ -530,49 +496,18 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private long commandId_ ;
-    /**
-     * <code>int64 command_id = 1;</code>
-     * @return The commandId.
-     */
-    @java.lang.Override
-    public long getCommandId() {
-      return commandId_;
-    }
-    /**
-     * <code>int64 command_id = 1;</code>
-     * @param value The commandId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setCommandId(long value) {
-      
-      commandId_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>int64 command_id = 1;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearCommandId() {
-      
-      commandId_ = 0L;
-      onChanged();
-      return this;
-    }
-
     private apache.rocketmq.v2.Message orphanedTransactionalMessage_;
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Message, apache.rocketmq.v2.Message.Builder, apache.rocketmq.v2.MessageOrBuilder> orphanedTransactionalMessageBuilder_;
     /**
-     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 1;</code>
      * @return Whether the orphanedTransactionalMessage field is set.
      */
     public boolean hasOrphanedTransactionalMessage() {
       return orphanedTransactionalMessageBuilder_ != null || orphanedTransactionalMessage_ != null;
     }
     /**
-     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 1;</code>
      * @return The orphanedTransactionalMessage.
      */
     public apache.rocketmq.v2.Message getOrphanedTransactionalMessage() {
@@ -583,7 +518,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 1;</code>
      */
     public Builder setOrphanedTransactionalMessage(apache.rocketmq.v2.Message value) {
       if (orphanedTransactionalMessageBuilder_ == null) {
@@ -599,7 +534,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 1;</code>
      */
     public Builder setOrphanedTransactionalMessage(
         apache.rocketmq.v2.Message.Builder builderForValue) {
@@ -613,7 +548,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 1;</code>
      */
     public Builder mergeOrphanedTransactionalMessage(apache.rocketmq.v2.Message value) {
       if (orphanedTransactionalMessageBuilder_ == null) {
@@ -631,7 +566,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 1;</code>
      */
     public Builder clearOrphanedTransactionalMessage() {
       if (orphanedTransactionalMessageBuilder_ == null) {
@@ -645,7 +580,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 1;</code>
      */
     public apache.rocketmq.v2.Message.Builder getOrphanedTransactionalMessageBuilder() {
       
@@ -653,7 +588,7 @@ private static final long serialVersionUID = 0L;
       return getOrphanedTransactionalMessageFieldBuilder().getBuilder();
     }
     /**
-     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 1;</code>
      */
     public apache.rocketmq.v2.MessageOrBuilder getOrphanedTransactionalMessageOrBuilder() {
       if (orphanedTransactionalMessageBuilder_ != null) {
@@ -664,7 +599,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Message, apache.rocketmq.v2.Message.Builder, apache.rocketmq.v2.MessageOrBuilder> 
@@ -682,7 +617,7 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object transactionId_ = "";
     /**
-     * <code>string transaction_id = 3;</code>
+     * <code>string transaction_id = 2;</code>
      * @return The transactionId.
      */
     public java.lang.String getTransactionId() {
@@ -698,7 +633,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string transaction_id = 3;</code>
+     * <code>string transaction_id = 2;</code>
      * @return The bytes for transactionId.
      */
     public com.google.protobuf.ByteString
@@ -715,7 +650,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string transaction_id = 3;</code>
+     * <code>string transaction_id = 2;</code>
      * @param value The transactionId to set.
      * @return This builder for chaining.
      */
@@ -730,7 +665,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string transaction_id = 3;</code>
+     * <code>string transaction_id = 2;</code>
      * @return This builder for chaining.
      */
     public Builder clearTransactionId() {
@@ -740,7 +675,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string transaction_id = 3;</code>
+     * <code>string transaction_id = 2;</code>
      * @param value The bytes for transactionId to set.
      * @return This builder for chaining.
      */

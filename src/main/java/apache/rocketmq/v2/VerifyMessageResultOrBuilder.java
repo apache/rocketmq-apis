@@ -8,10 +8,16 @@ public interface VerifyMessageResultOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int64 command_id = 1;</code>
-   * @return The commandId.
+   * <code>string nonce = 1;</code>
+   * @return The nonce.
    */
-  long getCommandId();
+  java.lang.String getNonce();
+  /**
+   * <code>string nonce = 1;</code>
+   * @return The bytes for nonce.
+   */
+  com.google.protobuf.ByteString
+      getNonceBytes();
 
   /**
    * <code>.apache.rocketmq.v2.Status status = 2;</code>

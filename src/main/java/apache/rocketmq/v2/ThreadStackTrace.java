@@ -16,6 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private ThreadStackTrace() {
+    nonce_ = "";
     threadStackTrace_ = "";
   }
 
@@ -39,6 +40,7 @@ private static final long serialVersionUID = 0L;
     if (extensionRegistry == null) {
       throw new java.lang.NullPointerException();
     }
+    int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
         com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
@@ -49,14 +51,28 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 8: {
+          case 10: {
+            java.lang.String s = input.readStringRequireUtf8();
 
-            commandId_ = input.readInt64();
+            nonce_ = s;
             break;
           }
           case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
+            apache.rocketmq.v2.Status.Builder subBuilder = null;
+            if (status_ != null) {
+              subBuilder = status_.toBuilder();
+            }
+            status_ = input.readMessage(apache.rocketmq.v2.Status.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(status_);
+              status_ = subBuilder.buildPartial();
+            }
 
+            break;
+          }
+          case 26: {
+            java.lang.String s = input.readStringRequireUtf8();
+            bitField0_ |= 0x00000001;
             threadStackTrace_ = s;
             break;
           }
@@ -92,21 +108,83 @@ private static final long serialVersionUID = 0L;
             apache.rocketmq.v2.ThreadStackTrace.class, apache.rocketmq.v2.ThreadStackTrace.Builder.class);
   }
 
-  public static final int COMMAND_ID_FIELD_NUMBER = 1;
-  private long commandId_;
+  private int bitField0_;
+  public static final int NONCE_FIELD_NUMBER = 1;
+  private volatile java.lang.Object nonce_;
   /**
-   * <code>int64 command_id = 1;</code>
-   * @return The commandId.
+   * <code>string nonce = 1;</code>
+   * @return The nonce.
    */
   @java.lang.Override
-  public long getCommandId() {
-    return commandId_;
+  public java.lang.String getNonce() {
+    java.lang.Object ref = nonce_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      nonce_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string nonce = 1;</code>
+   * @return The bytes for nonce.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getNonceBytes() {
+    java.lang.Object ref = nonce_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      nonce_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
-  public static final int THREAD_STACK_TRACE_FIELD_NUMBER = 2;
+  public static final int STATUS_FIELD_NUMBER = 2;
+  private apache.rocketmq.v2.Status status_;
+  /**
+   * <code>.apache.rocketmq.v2.Status status = 2;</code>
+   * @return Whether the status field is set.
+   */
+  @java.lang.Override
+  public boolean hasStatus() {
+    return status_ != null;
+  }
+  /**
+   * <code>.apache.rocketmq.v2.Status status = 2;</code>
+   * @return The status.
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.Status getStatus() {
+    return status_ == null ? apache.rocketmq.v2.Status.getDefaultInstance() : status_;
+  }
+  /**
+   * <code>.apache.rocketmq.v2.Status status = 2;</code>
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder() {
+    return getStatus();
+  }
+
+  public static final int THREAD_STACK_TRACE_FIELD_NUMBER = 3;
   private volatile java.lang.Object threadStackTrace_;
   /**
-   * <code>string thread_stack_trace = 2;</code>
+   * <code>optional string thread_stack_trace = 3;</code>
+   * @return Whether the threadStackTrace field is set.
+   */
+  @java.lang.Override
+  public boolean hasThreadStackTrace() {
+    return ((bitField0_ & 0x00000001) != 0);
+  }
+  /**
+   * <code>optional string thread_stack_trace = 3;</code>
    * @return The threadStackTrace.
    */
   @java.lang.Override
@@ -123,7 +201,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string thread_stack_trace = 2;</code>
+   * <code>optional string thread_stack_trace = 3;</code>
    * @return The bytes for threadStackTrace.
    */
   @java.lang.Override
@@ -155,11 +233,14 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (commandId_ != 0L) {
-      output.writeInt64(1, commandId_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nonce_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, nonce_);
     }
-    if (!getThreadStackTraceBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, threadStackTrace_);
+    if (status_ != null) {
+      output.writeMessage(2, getStatus());
+    }
+    if (((bitField0_ & 0x00000001) != 0)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, threadStackTrace_);
     }
     unknownFields.writeTo(output);
   }
@@ -170,12 +251,15 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (commandId_ != 0L) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt64Size(1, commandId_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nonce_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, nonce_);
     }
-    if (!getThreadStackTraceBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, threadStackTrace_);
+    if (status_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(2, getStatus());
+    }
+    if (((bitField0_ & 0x00000001) != 0)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, threadStackTrace_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -192,10 +276,18 @@ private static final long serialVersionUID = 0L;
     }
     apache.rocketmq.v2.ThreadStackTrace other = (apache.rocketmq.v2.ThreadStackTrace) obj;
 
-    if (getCommandId()
-        != other.getCommandId()) return false;
-    if (!getThreadStackTrace()
-        .equals(other.getThreadStackTrace())) return false;
+    if (!getNonce()
+        .equals(other.getNonce())) return false;
+    if (hasStatus() != other.hasStatus()) return false;
+    if (hasStatus()) {
+      if (!getStatus()
+          .equals(other.getStatus())) return false;
+    }
+    if (hasThreadStackTrace() != other.hasThreadStackTrace()) return false;
+    if (hasThreadStackTrace()) {
+      if (!getThreadStackTrace()
+          .equals(other.getThreadStackTrace())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -207,11 +299,16 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + COMMAND_ID_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        getCommandId());
-    hash = (37 * hash) + THREAD_STACK_TRACE_FIELD_NUMBER;
-    hash = (53 * hash) + getThreadStackTrace().hashCode();
+    hash = (37 * hash) + NONCE_FIELD_NUMBER;
+    hash = (53 * hash) + getNonce().hashCode();
+    if (hasStatus()) {
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + getStatus().hashCode();
+    }
+    if (hasThreadStackTrace()) {
+      hash = (37 * hash) + THREAD_STACK_TRACE_FIELD_NUMBER;
+      hash = (53 * hash) + getThreadStackTrace().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -345,10 +442,16 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      commandId_ = 0L;
+      nonce_ = "";
 
+      if (statusBuilder_ == null) {
+        status_ = null;
+      } else {
+        status_ = null;
+        statusBuilder_ = null;
+      }
       threadStackTrace_ = "";
-
+      bitField0_ = (bitField0_ & ~0x00000001);
       return this;
     }
 
@@ -375,8 +478,19 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public apache.rocketmq.v2.ThreadStackTrace buildPartial() {
       apache.rocketmq.v2.ThreadStackTrace result = new apache.rocketmq.v2.ThreadStackTrace(this);
-      result.commandId_ = commandId_;
+      int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
+      result.nonce_ = nonce_;
+      if (statusBuilder_ == null) {
+        result.status_ = status_;
+      } else {
+        result.status_ = statusBuilder_.build();
+      }
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        to_bitField0_ |= 0x00000001;
+      }
       result.threadStackTrace_ = threadStackTrace_;
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -425,10 +539,15 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(apache.rocketmq.v2.ThreadStackTrace other) {
       if (other == apache.rocketmq.v2.ThreadStackTrace.getDefaultInstance()) return this;
-      if (other.getCommandId() != 0L) {
-        setCommandId(other.getCommandId());
+      if (!other.getNonce().isEmpty()) {
+        nonce_ = other.nonce_;
+        onChanged();
       }
-      if (!other.getThreadStackTrace().isEmpty()) {
+      if (other.hasStatus()) {
+        mergeStatus(other.getStatus());
+      }
+      if (other.hasThreadStackTrace()) {
+        bitField0_ |= 0x00000001;
         threadStackTrace_ = other.threadStackTrace_;
         onChanged();
       }
@@ -460,41 +579,213 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+    private int bitField0_;
 
-    private long commandId_ ;
+    private java.lang.Object nonce_ = "";
     /**
-     * <code>int64 command_id = 1;</code>
-     * @return The commandId.
+     * <code>string nonce = 1;</code>
+     * @return The nonce.
      */
-    @java.lang.Override
-    public long getCommandId() {
-      return commandId_;
+    public java.lang.String getNonce() {
+      java.lang.Object ref = nonce_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        nonce_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
     }
     /**
-     * <code>int64 command_id = 1;</code>
-     * @param value The commandId to set.
+     * <code>string nonce = 1;</code>
+     * @return The bytes for nonce.
+     */
+    public com.google.protobuf.ByteString
+        getNonceBytes() {
+      java.lang.Object ref = nonce_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        nonce_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string nonce = 1;</code>
+     * @param value The nonce to set.
      * @return This builder for chaining.
      */
-    public Builder setCommandId(long value) {
-      
-      commandId_ = value;
+    public Builder setNonce(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      nonce_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int64 command_id = 1;</code>
+     * <code>string nonce = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearCommandId() {
+    public Builder clearNonce() {
       
-      commandId_ = 0L;
+      nonce_ = getDefaultInstance().getNonce();
       onChanged();
       return this;
+    }
+    /**
+     * <code>string nonce = 1;</code>
+     * @param value The bytes for nonce to set.
+     * @return This builder for chaining.
+     */
+    public Builder setNonceBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      nonce_ = value;
+      onChanged();
+      return this;
+    }
+
+    private apache.rocketmq.v2.Status status_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder> statusBuilder_;
+    /**
+     * <code>.apache.rocketmq.v2.Status status = 2;</code>
+     * @return Whether the status field is set.
+     */
+    public boolean hasStatus() {
+      return statusBuilder_ != null || status_ != null;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Status status = 2;</code>
+     * @return The status.
+     */
+    public apache.rocketmq.v2.Status getStatus() {
+      if (statusBuilder_ == null) {
+        return status_ == null ? apache.rocketmq.v2.Status.getDefaultInstance() : status_;
+      } else {
+        return statusBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Status status = 2;</code>
+     */
+    public Builder setStatus(apache.rocketmq.v2.Status value) {
+      if (statusBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        status_ = value;
+        onChanged();
+      } else {
+        statusBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Status status = 2;</code>
+     */
+    public Builder setStatus(
+        apache.rocketmq.v2.Status.Builder builderForValue) {
+      if (statusBuilder_ == null) {
+        status_ = builderForValue.build();
+        onChanged();
+      } else {
+        statusBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Status status = 2;</code>
+     */
+    public Builder mergeStatus(apache.rocketmq.v2.Status value) {
+      if (statusBuilder_ == null) {
+        if (status_ != null) {
+          status_ =
+            apache.rocketmq.v2.Status.newBuilder(status_).mergeFrom(value).buildPartial();
+        } else {
+          status_ = value;
+        }
+        onChanged();
+      } else {
+        statusBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Status status = 2;</code>
+     */
+    public Builder clearStatus() {
+      if (statusBuilder_ == null) {
+        status_ = null;
+        onChanged();
+      } else {
+        status_ = null;
+        statusBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Status status = 2;</code>
+     */
+    public apache.rocketmq.v2.Status.Builder getStatusBuilder() {
+      
+      onChanged();
+      return getStatusFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Status status = 2;</code>
+     */
+    public apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder() {
+      if (statusBuilder_ != null) {
+        return statusBuilder_.getMessageOrBuilder();
+      } else {
+        return status_ == null ?
+            apache.rocketmq.v2.Status.getDefaultInstance() : status_;
+      }
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Status status = 2;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder> 
+        getStatusFieldBuilder() {
+      if (statusBuilder_ == null) {
+        statusBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder>(
+                getStatus(),
+                getParentForChildren(),
+                isClean());
+        status_ = null;
+      }
+      return statusBuilder_;
     }
 
     private java.lang.Object threadStackTrace_ = "";
     /**
-     * <code>string thread_stack_trace = 2;</code>
+     * <code>optional string thread_stack_trace = 3;</code>
+     * @return Whether the threadStackTrace field is set.
+     */
+    public boolean hasThreadStackTrace() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <code>optional string thread_stack_trace = 3;</code>
      * @return The threadStackTrace.
      */
     public java.lang.String getThreadStackTrace() {
@@ -510,7 +801,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string thread_stack_trace = 2;</code>
+     * <code>optional string thread_stack_trace = 3;</code>
      * @return The bytes for threadStackTrace.
      */
     public com.google.protobuf.ByteString
@@ -527,7 +818,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string thread_stack_trace = 2;</code>
+     * <code>optional string thread_stack_trace = 3;</code>
      * @param value The threadStackTrace to set.
      * @return This builder for chaining.
      */
@@ -536,23 +827,23 @@ private static final long serialVersionUID = 0L;
       if (value == null) {
     throw new NullPointerException();
   }
-  
+  bitField0_ |= 0x00000001;
       threadStackTrace_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string thread_stack_trace = 2;</code>
+     * <code>optional string thread_stack_trace = 3;</code>
      * @return This builder for chaining.
      */
     public Builder clearThreadStackTrace() {
-      
+      bitField0_ = (bitField0_ & ~0x00000001);
       threadStackTrace_ = getDefaultInstance().getThreadStackTrace();
       onChanged();
       return this;
     }
     /**
-     * <code>string thread_stack_trace = 2;</code>
+     * <code>optional string thread_stack_trace = 3;</code>
      * @param value The bytes for threadStackTrace to set.
      * @return This builder for chaining.
      */
@@ -562,7 +853,7 @@ private static final long serialVersionUID = 0L;
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-      
+      bitField0_ |= 0x00000001;
       threadStackTrace_ = value;
       onChanged();
       return this;

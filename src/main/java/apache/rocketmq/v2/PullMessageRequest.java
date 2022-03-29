@@ -16,7 +16,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private PullMessageRequest() {
-    clientId_ = "";
   }
 
   @java.lang.Override
@@ -109,12 +108,6 @@ private static final long serialVersionUID = 0L;
               filterExpression_ = subBuilder.buildPartial();
             }
 
-            break;
-          }
-          case 58: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            clientId_ = s;
             break;
           }
           default: {
@@ -275,44 +268,6 @@ private static final long serialVersionUID = 0L;
     return getFilterExpression();
   }
 
-  public static final int CLIENT_ID_FIELD_NUMBER = 7;
-  private volatile java.lang.Object clientId_;
-  /**
-   * <code>string client_id = 7;</code>
-   * @return The clientId.
-   */
-  @java.lang.Override
-  public java.lang.String getClientId() {
-    java.lang.Object ref = clientId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      clientId_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string client_id = 7;</code>
-   * @return The bytes for clientId.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getClientIdBytes() {
-    java.lang.Object ref = clientId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      clientId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -344,9 +299,6 @@ private static final long serialVersionUID = 0L;
     }
     if (filterExpression_ != null) {
       output.writeMessage(6, getFilterExpression());
-    }
-    if (!getClientIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 7, clientId_);
     }
     unknownFields.writeTo(output);
   }
@@ -380,9 +332,6 @@ private static final long serialVersionUID = 0L;
     if (filterExpression_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(6, getFilterExpression());
-    }
-    if (!getClientIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, clientId_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -423,8 +372,6 @@ private static final long serialVersionUID = 0L;
       if (!getFilterExpression()
           .equals(other.getFilterExpression())) return false;
     }
-    if (!getClientId()
-        .equals(other.getClientId())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -457,8 +404,6 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + FILTER_EXPRESSION_FIELD_NUMBER;
       hash = (53 * hash) + getFilterExpression().hashCode();
     }
-    hash = (37 * hash) + CLIENT_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getClientId().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -620,8 +565,6 @@ private static final long serialVersionUID = 0L;
         filterExpression_ = null;
         filterExpressionBuilder_ = null;
       }
-      clientId_ = "";
-
       return this;
     }
 
@@ -670,7 +613,6 @@ private static final long serialVersionUID = 0L;
       } else {
         result.filterExpression_ = filterExpressionBuilder_.build();
       }
-      result.clientId_ = clientId_;
       onBuilt();
       return result;
     }
@@ -736,10 +678,6 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasFilterExpression()) {
         mergeFilterExpression(other.getFilterExpression());
-      }
-      if (!other.getClientId().isEmpty()) {
-        clientId_ = other.clientId_;
-        onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1306,82 +1244,6 @@ private static final long serialVersionUID = 0L;
         filterExpression_ = null;
       }
       return filterExpressionBuilder_;
-    }
-
-    private java.lang.Object clientId_ = "";
-    /**
-     * <code>string client_id = 7;</code>
-     * @return The clientId.
-     */
-    public java.lang.String getClientId() {
-      java.lang.Object ref = clientId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        clientId_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string client_id = 7;</code>
-     * @return The bytes for clientId.
-     */
-    public com.google.protobuf.ByteString
-        getClientIdBytes() {
-      java.lang.Object ref = clientId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        clientId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string client_id = 7;</code>
-     * @param value The clientId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setClientId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      clientId_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string client_id = 7;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearClientId() {
-      
-      clientId_ = getDefaultInstance().getClientId();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string client_id = 7;</code>
-     * @param value The bytes for clientId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setClientIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      clientId_ = value;
-      onChanged();
-      return this;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

@@ -8,71 +8,47 @@ public interface SettingsOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string client_id = 1;</code>
-   * @return The clientId.
+   * <code>optional .apache.rocketmq.v2.Publishing publishing = 1;</code>
+   * @return Whether the publishing field is set.
    */
-  java.lang.String getClientId();
+  boolean hasPublishing();
   /**
-   * <code>string client_id = 1;</code>
-   * @return The bytes for clientId.
+   * <code>optional .apache.rocketmq.v2.Publishing publishing = 1;</code>
+   * @return The publishing.
    */
-  com.google.protobuf.ByteString
-      getClientIdBytes();
+  apache.rocketmq.v2.Publishing getPublishing();
+  /**
+   * <code>optional .apache.rocketmq.v2.Publishing publishing = 1;</code>
+   */
+  apache.rocketmq.v2.PublishingOrBuilder getPublishingOrBuilder();
 
   /**
-   * <code>string access_point = 2;</code>
-   * @return The accessPoint.
-   */
-  java.lang.String getAccessPoint();
-  /**
-   * <code>string access_point = 2;</code>
-   * @return The bytes for accessPoint.
-   */
-  com.google.protobuf.ByteString
-      getAccessPointBytes();
-
-  /**
-   * <code>.apache.rocketmq.v2.Publish publish = 3;</code>
-   * @return Whether the publish field is set.
-   */
-  boolean hasPublish();
-  /**
-   * <code>.apache.rocketmq.v2.Publish publish = 3;</code>
-   * @return The publish.
-   */
-  apache.rocketmq.v2.Publish getPublish();
-  /**
-   * <code>.apache.rocketmq.v2.Publish publish = 3;</code>
-   */
-  apache.rocketmq.v2.PublishOrBuilder getPublishOrBuilder();
-
-  /**
-   * <code>.apache.rocketmq.v2.Subscription subscription = 4;</code>
+   * <code>optional .apache.rocketmq.v2.Subscription subscription = 2;</code>
    * @return Whether the subscription field is set.
    */
   boolean hasSubscription();
   /**
-   * <code>.apache.rocketmq.v2.Subscription subscription = 4;</code>
+   * <code>optional .apache.rocketmq.v2.Subscription subscription = 2;</code>
    * @return The subscription.
    */
   apache.rocketmq.v2.Subscription getSubscription();
   /**
-   * <code>.apache.rocketmq.v2.Subscription subscription = 4;</code>
+   * <code>optional .apache.rocketmq.v2.Subscription subscription = 2;</code>
    */
   apache.rocketmq.v2.SubscriptionOrBuilder getSubscriptionOrBuilder();
 
   /**
-   * <code>.apache.rocketmq.v2.Authentication authentication = 5;</code>
-   * @return Whether the authentication field is set.
+   * <code>.apache.rocketmq.v2.Tracing tracing = 3;</code>
+   * @return Whether the tracing field is set.
    */
-  boolean hasAuthentication();
+  boolean hasTracing();
   /**
-   * <code>.apache.rocketmq.v2.Authentication authentication = 5;</code>
-   * @return The authentication.
+   * <code>.apache.rocketmq.v2.Tracing tracing = 3;</code>
+   * @return The tracing.
    */
-  apache.rocketmq.v2.Authentication getAuthentication();
+  apache.rocketmq.v2.Tracing getTracing();
   /**
-   * <code>.apache.rocketmq.v2.Authentication authentication = 5;</code>
+   * <code>.apache.rocketmq.v2.Tracing tracing = 3;</code>
    */
-  apache.rocketmq.v2.AuthenticationOrBuilder getAuthenticationOrBuilder();
+  apache.rocketmq.v2.TracingOrBuilder getTracingOrBuilder();
 }

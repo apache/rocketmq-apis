@@ -181,7 +181,7 @@ private static final long serialVersionUID = 0L;
     if (orphanedTransactionalMessage_ != null) {
       output.writeMessage(1, getOrphanedTransactionalMessage());
     }
-    if (!getTransactionIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transactionId_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, transactionId_);
     }
     unknownFields.writeTo(output);
@@ -197,7 +197,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, getOrphanedTransactionalMessage());
     }
-    if (!getTransactionIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transactionId_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, transactionId_);
     }
     size += unknownFields.getSerializedSize();

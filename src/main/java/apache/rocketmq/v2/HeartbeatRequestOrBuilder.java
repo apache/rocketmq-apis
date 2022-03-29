@@ -8,29 +8,17 @@ public interface HeartbeatRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string client_id = 1;</code>
-   * @return The clientId.
-   */
-  java.lang.String getClientId();
-  /**
-   * <code>string client_id = 1;</code>
-   * @return The bytes for clientId.
-   */
-  com.google.protobuf.ByteString
-      getClientIdBytes();
-
-  /**
-   * <code>.apache.rocketmq.v2.Resource group = 2;</code>
+   * <code>optional .apache.rocketmq.v2.Resource group = 1;</code>
    * @return Whether the group field is set.
    */
   boolean hasGroup();
   /**
-   * <code>.apache.rocketmq.v2.Resource group = 2;</code>
+   * <code>optional .apache.rocketmq.v2.Resource group = 1;</code>
    * @return The group.
    */
   apache.rocketmq.v2.Resource getGroup();
   /**
-   * <code>.apache.rocketmq.v2.Resource group = 2;</code>
+   * <code>optional .apache.rocketmq.v2.Resource group = 1;</code>
    */
   apache.rocketmq.v2.ResourceOrBuilder getGroupOrBuilder();
 }

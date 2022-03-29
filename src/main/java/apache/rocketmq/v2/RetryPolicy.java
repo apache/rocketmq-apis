@@ -161,13 +161,13 @@ private static final long serialVersionUID = 0L;
     if (maxAttempts_ != 0) {
       output.writeInt32(1, maxAttempts_);
     }
-    if (initialBackoff_ != 0F) {
+    if (java.lang.Float.floatToRawIntBits(initialBackoff_) != 0) {
       output.writeFloat(2, initialBackoff_);
     }
-    if (maxBackoff_ != 0F) {
+    if (java.lang.Float.floatToRawIntBits(maxBackoff_) != 0) {
       output.writeFloat(3, maxBackoff_);
     }
-    if (backoffMultiplier_ != 0F) {
+    if (java.lang.Float.floatToRawIntBits(backoffMultiplier_) != 0) {
       output.writeFloat(4, backoffMultiplier_);
     }
     unknownFields.writeTo(output);
@@ -183,15 +183,15 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(1, maxAttempts_);
     }
-    if (initialBackoff_ != 0F) {
+    if (java.lang.Float.floatToRawIntBits(initialBackoff_) != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeFloatSize(2, initialBackoff_);
     }
-    if (maxBackoff_ != 0F) {
+    if (java.lang.Float.floatToRawIntBits(maxBackoff_) != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeFloatSize(3, maxBackoff_);
     }
-    if (backoffMultiplier_ != 0F) {
+    if (java.lang.Float.floatToRawIntBits(backoffMultiplier_) != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeFloatSize(4, backoffMultiplier_);
     }

@@ -133,7 +133,7 @@ public enum DigestType
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return apache.rocketmq.v2.MQDomain.getDescriptor().getEnumTypes().get(8);
+    return apache.rocketmq.v2.MQDomain.getDescriptor().getEnumTypes().get(6);
   }
 
   private static final DigestType[] VALUES = values();

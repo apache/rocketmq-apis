@@ -62,75 +62,10 @@ public interface SubscriptionOrBuilder extends
   apache.rocketmq.v2.DeadLetterPolicyOrBuilder getDeadLetterPolicyOrBuilder();
 
   /**
-   * <code>.apache.rocketmq.v2.ConsumeMessageType consume_type = 4;</code>
-   * @return The enum numeric value on the wire for consumeType.
-   */
-  int getConsumeTypeValue();
-  /**
-   * <code>.apache.rocketmq.v2.ConsumeMessageType consume_type = 4;</code>
-   * @return The consumeType.
-   */
-  apache.rocketmq.v2.ConsumeMessageType getConsumeType();
-
-  /**
    * <code>bool fifo = 5;</code>
    * @return The fifo.
    */
   boolean getFifo();
-
-  /**
-   * <pre>
-   * For RPC
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 6;</code>
-   * @return Whether the retryPolicy field is set.
-   */
-  boolean hasRetryPolicy();
-  /**
-   * <pre>
-   * For RPC
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 6;</code>
-   * @return The retryPolicy.
-   */
-  apache.rocketmq.v2.RetryPolicy getRetryPolicy();
-  /**
-   * <pre>
-   * For RPC
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 6;</code>
-   */
-  apache.rocketmq.v2.RetryPolicyOrBuilder getRetryPolicyOrBuilder();
-
-  /**
-   * <pre>
-   * For PushConsumer
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.RetryPolicy consume_backoff_policy = 7;</code>
-   * @return Whether the consumeBackoffPolicy field is set.
-   */
-  boolean hasConsumeBackoffPolicy();
-  /**
-   * <pre>
-   * For PushConsumer
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.RetryPolicy consume_backoff_policy = 7;</code>
-   * @return The consumeBackoffPolicy.
-   */
-  apache.rocketmq.v2.RetryPolicy getConsumeBackoffPolicy();
-  /**
-   * <pre>
-   * For PushConsumer
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.RetryPolicy consume_backoff_policy = 7;</code>
-   */
-  apache.rocketmq.v2.RetryPolicyOrBuilder getConsumeBackoffPolicyOrBuilder();
 
   /**
    * <code>int32 max_receive_batch_size = 8;</code>

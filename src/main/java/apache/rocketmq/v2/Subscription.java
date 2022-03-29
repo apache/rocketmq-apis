@@ -17,7 +17,6 @@ private static final long serialVersionUID = 0L;
   }
   private Subscription() {
     subscriptions_ = java.util.Collections.emptyList();
-    consumeType_ = 0;
   }
 
   @java.lang.Override
@@ -86,41 +85,9 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
-          case 32: {
-            int rawValue = input.readEnum();
-
-            consumeType_ = rawValue;
-            break;
-          }
           case 40: {
 
             fifo_ = input.readBool();
-            break;
-          }
-          case 50: {
-            apache.rocketmq.v2.RetryPolicy.Builder subBuilder = null;
-            if (retryPolicy_ != null) {
-              subBuilder = retryPolicy_.toBuilder();
-            }
-            retryPolicy_ = input.readMessage(apache.rocketmq.v2.RetryPolicy.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(retryPolicy_);
-              retryPolicy_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 58: {
-            apache.rocketmq.v2.RetryPolicy.Builder subBuilder = null;
-            if (consumeBackoffPolicy_ != null) {
-              subBuilder = consumeBackoffPolicy_.toBuilder();
-            }
-            consumeBackoffPolicy_ = input.readMessage(apache.rocketmq.v2.RetryPolicy.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(consumeBackoffPolicy_);
-              consumeBackoffPolicy_ = subBuilder.buildPartial();
-            }
-
             break;
           }
           case 64: {
@@ -291,25 +258,6 @@ private static final long serialVersionUID = 0L;
     return getDeadLetterPolicy();
   }
 
-  public static final int CONSUME_TYPE_FIELD_NUMBER = 4;
-  private int consumeType_;
-  /**
-   * <code>.apache.rocketmq.v2.ConsumeMessageType consume_type = 4;</code>
-   * @return The enum numeric value on the wire for consumeType.
-   */
-  @java.lang.Override public int getConsumeTypeValue() {
-    return consumeType_;
-  }
-  /**
-   * <code>.apache.rocketmq.v2.ConsumeMessageType consume_type = 4;</code>
-   * @return The consumeType.
-   */
-  @java.lang.Override public apache.rocketmq.v2.ConsumeMessageType getConsumeType() {
-    @SuppressWarnings("deprecation")
-    apache.rocketmq.v2.ConsumeMessageType result = apache.rocketmq.v2.ConsumeMessageType.valueOf(consumeType_);
-    return result == null ? apache.rocketmq.v2.ConsumeMessageType.UNRECOGNIZED : result;
-  }
-
   public static final int FIFO_FIELD_NUMBER = 5;
   private boolean fifo_;
   /**
@@ -319,82 +267,6 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public boolean getFifo() {
     return fifo_;
-  }
-
-  public static final int RETRY_POLICY_FIELD_NUMBER = 6;
-  private apache.rocketmq.v2.RetryPolicy retryPolicy_;
-  /**
-   * <pre>
-   * For RPC
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 6;</code>
-   * @return Whether the retryPolicy field is set.
-   */
-  @java.lang.Override
-  public boolean hasRetryPolicy() {
-    return retryPolicy_ != null;
-  }
-  /**
-   * <pre>
-   * For RPC
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 6;</code>
-   * @return The retryPolicy.
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.RetryPolicy getRetryPolicy() {
-    return retryPolicy_ == null ? apache.rocketmq.v2.RetryPolicy.getDefaultInstance() : retryPolicy_;
-  }
-  /**
-   * <pre>
-   * For RPC
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 6;</code>
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.RetryPolicyOrBuilder getRetryPolicyOrBuilder() {
-    return getRetryPolicy();
-  }
-
-  public static final int CONSUME_BACKOFF_POLICY_FIELD_NUMBER = 7;
-  private apache.rocketmq.v2.RetryPolicy consumeBackoffPolicy_;
-  /**
-   * <pre>
-   * For PushConsumer
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.RetryPolicy consume_backoff_policy = 7;</code>
-   * @return Whether the consumeBackoffPolicy field is set.
-   */
-  @java.lang.Override
-  public boolean hasConsumeBackoffPolicy() {
-    return consumeBackoffPolicy_ != null;
-  }
-  /**
-   * <pre>
-   * For PushConsumer
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.RetryPolicy consume_backoff_policy = 7;</code>
-   * @return The consumeBackoffPolicy.
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.RetryPolicy getConsumeBackoffPolicy() {
-    return consumeBackoffPolicy_ == null ? apache.rocketmq.v2.RetryPolicy.getDefaultInstance() : consumeBackoffPolicy_;
-  }
-  /**
-   * <pre>
-   * For PushConsumer
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.RetryPolicy consume_backoff_policy = 7;</code>
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.RetryPolicyOrBuilder getConsumeBackoffPolicyOrBuilder() {
-    return getConsumeBackoffPolicy();
   }
 
   public static final int MAX_RECEIVE_BATCH_SIZE_FIELD_NUMBER = 8;
@@ -523,17 +395,8 @@ private static final long serialVersionUID = 0L;
     if (deadLetterPolicy_ != null) {
       output.writeMessage(3, getDeadLetterPolicy());
     }
-    if (consumeType_ != apache.rocketmq.v2.ConsumeMessageType.CONSUME_MESSAGE_TYPE_UNSPECIFIED.getNumber()) {
-      output.writeEnum(4, consumeType_);
-    }
     if (fifo_ != false) {
       output.writeBool(5, fifo_);
-    }
-    if (retryPolicy_ != null) {
-      output.writeMessage(6, getRetryPolicy());
-    }
-    if (consumeBackoffPolicy_ != null) {
-      output.writeMessage(7, getConsumeBackoffPolicy());
     }
     if (maxReceiveBatchSize_ != 0) {
       output.writeInt32(8, maxReceiveBatchSize_);
@@ -571,21 +434,9 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(3, getDeadLetterPolicy());
     }
-    if (consumeType_ != apache.rocketmq.v2.ConsumeMessageType.CONSUME_MESSAGE_TYPE_UNSPECIFIED.getNumber()) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(4, consumeType_);
-    }
     if (fifo_ != false) {
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(5, fifo_);
-    }
-    if (retryPolicy_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(6, getRetryPolicy());
-    }
-    if (consumeBackoffPolicy_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(7, getConsumeBackoffPolicy());
     }
     if (maxReceiveBatchSize_ != 0) {
       size += com.google.protobuf.CodedOutputStream
@@ -634,19 +485,8 @@ private static final long serialVersionUID = 0L;
       if (!getDeadLetterPolicy()
           .equals(other.getDeadLetterPolicy())) return false;
     }
-    if (consumeType_ != other.consumeType_) return false;
     if (getFifo()
         != other.getFifo()) return false;
-    if (hasRetryPolicy() != other.hasRetryPolicy()) return false;
-    if (hasRetryPolicy()) {
-      if (!getRetryPolicy()
-          .equals(other.getRetryPolicy())) return false;
-    }
-    if (hasConsumeBackoffPolicy() != other.hasConsumeBackoffPolicy()) return false;
-    if (hasConsumeBackoffPolicy()) {
-      if (!getConsumeBackoffPolicy()
-          .equals(other.getConsumeBackoffPolicy())) return false;
-    }
     if (getMaxReceiveBatchSize()
         != other.getMaxReceiveBatchSize()) return false;
     if (getMessagesPerTask()
@@ -686,19 +526,9 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + DEAD_LETTER_POLICY_FIELD_NUMBER;
       hash = (53 * hash) + getDeadLetterPolicy().hashCode();
     }
-    hash = (37 * hash) + CONSUME_TYPE_FIELD_NUMBER;
-    hash = (53 * hash) + consumeType_;
     hash = (37 * hash) + FIFO_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getFifo());
-    if (hasRetryPolicy()) {
-      hash = (37 * hash) + RETRY_POLICY_FIELD_NUMBER;
-      hash = (53 * hash) + getRetryPolicy().hashCode();
-    }
-    if (hasConsumeBackoffPolicy()) {
-      hash = (37 * hash) + CONSUME_BACKOFF_POLICY_FIELD_NUMBER;
-      hash = (53 * hash) + getConsumeBackoffPolicy().hashCode();
-    }
     hash = (37 * hash) + MAX_RECEIVE_BATCH_SIZE_FIELD_NUMBER;
     hash = (53 * hash) + getMaxReceiveBatchSize();
     hash = (37 * hash) + MESSAGES_PER_TASK_FIELD_NUMBER;
@@ -865,22 +695,8 @@ private static final long serialVersionUID = 0L;
         deadLetterPolicy_ = null;
         deadLetterPolicyBuilder_ = null;
       }
-      consumeType_ = 0;
-
       fifo_ = false;
 
-      if (retryPolicyBuilder_ == null) {
-        retryPolicy_ = null;
-      } else {
-        retryPolicy_ = null;
-        retryPolicyBuilder_ = null;
-      }
-      if (consumeBackoffPolicyBuilder_ == null) {
-        consumeBackoffPolicy_ = null;
-      } else {
-        consumeBackoffPolicy_ = null;
-        consumeBackoffPolicyBuilder_ = null;
-      }
       maxReceiveBatchSize_ = 0;
 
       messagesPerTask_ = 0;
@@ -945,18 +761,7 @@ private static final long serialVersionUID = 0L;
       } else {
         result.deadLetterPolicy_ = deadLetterPolicyBuilder_.build();
       }
-      result.consumeType_ = consumeType_;
       result.fifo_ = fifo_;
-      if (retryPolicyBuilder_ == null) {
-        result.retryPolicy_ = retryPolicy_;
-      } else {
-        result.retryPolicy_ = retryPolicyBuilder_.build();
-      }
-      if (consumeBackoffPolicyBuilder_ == null) {
-        result.consumeBackoffPolicy_ = consumeBackoffPolicy_;
-      } else {
-        result.consumeBackoffPolicy_ = consumeBackoffPolicyBuilder_.build();
-      }
       result.maxReceiveBatchSize_ = maxReceiveBatchSize_;
       result.messagesPerTask_ = messagesPerTask_;
       if (cacheLimitsBuilder_ == null) {
@@ -1050,17 +855,8 @@ private static final long serialVersionUID = 0L;
       if (other.hasDeadLetterPolicy()) {
         mergeDeadLetterPolicy(other.getDeadLetterPolicy());
       }
-      if (other.consumeType_ != 0) {
-        setConsumeTypeValue(other.getConsumeTypeValue());
-      }
       if (other.getFifo() != false) {
         setFifo(other.getFifo());
-      }
-      if (other.hasRetryPolicy()) {
-        mergeRetryPolicy(other.getRetryPolicy());
-      }
-      if (other.hasConsumeBackoffPolicy()) {
-        mergeConsumeBackoffPolicy(other.getConsumeBackoffPolicy());
       }
       if (other.getMaxReceiveBatchSize() != 0) {
         setMaxReceiveBatchSize(other.getMaxReceiveBatchSize());
@@ -1585,60 +1381,6 @@ private static final long serialVersionUID = 0L;
       return deadLetterPolicyBuilder_;
     }
 
-    private int consumeType_ = 0;
-    /**
-     * <code>.apache.rocketmq.v2.ConsumeMessageType consume_type = 4;</code>
-     * @return The enum numeric value on the wire for consumeType.
-     */
-    @java.lang.Override public int getConsumeTypeValue() {
-      return consumeType_;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.ConsumeMessageType consume_type = 4;</code>
-     * @param value The enum numeric value on the wire for consumeType to set.
-     * @return This builder for chaining.
-     */
-    public Builder setConsumeTypeValue(int value) {
-      
-      consumeType_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.ConsumeMessageType consume_type = 4;</code>
-     * @return The consumeType.
-     */
-    @java.lang.Override
-    public apache.rocketmq.v2.ConsumeMessageType getConsumeType() {
-      @SuppressWarnings("deprecation")
-      apache.rocketmq.v2.ConsumeMessageType result = apache.rocketmq.v2.ConsumeMessageType.valueOf(consumeType_);
-      return result == null ? apache.rocketmq.v2.ConsumeMessageType.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.ConsumeMessageType consume_type = 4;</code>
-     * @param value The consumeType to set.
-     * @return This builder for chaining.
-     */
-    public Builder setConsumeType(apache.rocketmq.v2.ConsumeMessageType value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      consumeType_ = value.getNumber();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.ConsumeMessageType consume_type = 4;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearConsumeType() {
-      
-      consumeType_ = 0;
-      onChanged();
-      return this;
-    }
-
     private boolean fifo_ ;
     /**
      * <code>bool fifo = 5;</code>
@@ -1668,316 +1410,6 @@ private static final long serialVersionUID = 0L;
       fifo_ = false;
       onChanged();
       return this;
-    }
-
-    private apache.rocketmq.v2.RetryPolicy retryPolicy_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.RetryPolicy, apache.rocketmq.v2.RetryPolicy.Builder, apache.rocketmq.v2.RetryPolicyOrBuilder> retryPolicyBuilder_;
-    /**
-     * <pre>
-     * For RPC
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 6;</code>
-     * @return Whether the retryPolicy field is set.
-     */
-    public boolean hasRetryPolicy() {
-      return retryPolicyBuilder_ != null || retryPolicy_ != null;
-    }
-    /**
-     * <pre>
-     * For RPC
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 6;</code>
-     * @return The retryPolicy.
-     */
-    public apache.rocketmq.v2.RetryPolicy getRetryPolicy() {
-      if (retryPolicyBuilder_ == null) {
-        return retryPolicy_ == null ? apache.rocketmq.v2.RetryPolicy.getDefaultInstance() : retryPolicy_;
-      } else {
-        return retryPolicyBuilder_.getMessage();
-      }
-    }
-    /**
-     * <pre>
-     * For RPC
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 6;</code>
-     */
-    public Builder setRetryPolicy(apache.rocketmq.v2.RetryPolicy value) {
-      if (retryPolicyBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        retryPolicy_ = value;
-        onChanged();
-      } else {
-        retryPolicyBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * For RPC
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 6;</code>
-     */
-    public Builder setRetryPolicy(
-        apache.rocketmq.v2.RetryPolicy.Builder builderForValue) {
-      if (retryPolicyBuilder_ == null) {
-        retryPolicy_ = builderForValue.build();
-        onChanged();
-      } else {
-        retryPolicyBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * For RPC
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 6;</code>
-     */
-    public Builder mergeRetryPolicy(apache.rocketmq.v2.RetryPolicy value) {
-      if (retryPolicyBuilder_ == null) {
-        if (retryPolicy_ != null) {
-          retryPolicy_ =
-            apache.rocketmq.v2.RetryPolicy.newBuilder(retryPolicy_).mergeFrom(value).buildPartial();
-        } else {
-          retryPolicy_ = value;
-        }
-        onChanged();
-      } else {
-        retryPolicyBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * For RPC
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 6;</code>
-     */
-    public Builder clearRetryPolicy() {
-      if (retryPolicyBuilder_ == null) {
-        retryPolicy_ = null;
-        onChanged();
-      } else {
-        retryPolicy_ = null;
-        retryPolicyBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * For RPC
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 6;</code>
-     */
-    public apache.rocketmq.v2.RetryPolicy.Builder getRetryPolicyBuilder() {
-      
-      onChanged();
-      return getRetryPolicyFieldBuilder().getBuilder();
-    }
-    /**
-     * <pre>
-     * For RPC
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 6;</code>
-     */
-    public apache.rocketmq.v2.RetryPolicyOrBuilder getRetryPolicyOrBuilder() {
-      if (retryPolicyBuilder_ != null) {
-        return retryPolicyBuilder_.getMessageOrBuilder();
-      } else {
-        return retryPolicy_ == null ?
-            apache.rocketmq.v2.RetryPolicy.getDefaultInstance() : retryPolicy_;
-      }
-    }
-    /**
-     * <pre>
-     * For RPC
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 6;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.RetryPolicy, apache.rocketmq.v2.RetryPolicy.Builder, apache.rocketmq.v2.RetryPolicyOrBuilder> 
-        getRetryPolicyFieldBuilder() {
-      if (retryPolicyBuilder_ == null) {
-        retryPolicyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            apache.rocketmq.v2.RetryPolicy, apache.rocketmq.v2.RetryPolicy.Builder, apache.rocketmq.v2.RetryPolicyOrBuilder>(
-                getRetryPolicy(),
-                getParentForChildren(),
-                isClean());
-        retryPolicy_ = null;
-      }
-      return retryPolicyBuilder_;
-    }
-
-    private apache.rocketmq.v2.RetryPolicy consumeBackoffPolicy_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.RetryPolicy, apache.rocketmq.v2.RetryPolicy.Builder, apache.rocketmq.v2.RetryPolicyOrBuilder> consumeBackoffPolicyBuilder_;
-    /**
-     * <pre>
-     * For PushConsumer
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy consume_backoff_policy = 7;</code>
-     * @return Whether the consumeBackoffPolicy field is set.
-     */
-    public boolean hasConsumeBackoffPolicy() {
-      return consumeBackoffPolicyBuilder_ != null || consumeBackoffPolicy_ != null;
-    }
-    /**
-     * <pre>
-     * For PushConsumer
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy consume_backoff_policy = 7;</code>
-     * @return The consumeBackoffPolicy.
-     */
-    public apache.rocketmq.v2.RetryPolicy getConsumeBackoffPolicy() {
-      if (consumeBackoffPolicyBuilder_ == null) {
-        return consumeBackoffPolicy_ == null ? apache.rocketmq.v2.RetryPolicy.getDefaultInstance() : consumeBackoffPolicy_;
-      } else {
-        return consumeBackoffPolicyBuilder_.getMessage();
-      }
-    }
-    /**
-     * <pre>
-     * For PushConsumer
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy consume_backoff_policy = 7;</code>
-     */
-    public Builder setConsumeBackoffPolicy(apache.rocketmq.v2.RetryPolicy value) {
-      if (consumeBackoffPolicyBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        consumeBackoffPolicy_ = value;
-        onChanged();
-      } else {
-        consumeBackoffPolicyBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * For PushConsumer
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy consume_backoff_policy = 7;</code>
-     */
-    public Builder setConsumeBackoffPolicy(
-        apache.rocketmq.v2.RetryPolicy.Builder builderForValue) {
-      if (consumeBackoffPolicyBuilder_ == null) {
-        consumeBackoffPolicy_ = builderForValue.build();
-        onChanged();
-      } else {
-        consumeBackoffPolicyBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * For PushConsumer
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy consume_backoff_policy = 7;</code>
-     */
-    public Builder mergeConsumeBackoffPolicy(apache.rocketmq.v2.RetryPolicy value) {
-      if (consumeBackoffPolicyBuilder_ == null) {
-        if (consumeBackoffPolicy_ != null) {
-          consumeBackoffPolicy_ =
-            apache.rocketmq.v2.RetryPolicy.newBuilder(consumeBackoffPolicy_).mergeFrom(value).buildPartial();
-        } else {
-          consumeBackoffPolicy_ = value;
-        }
-        onChanged();
-      } else {
-        consumeBackoffPolicyBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * For PushConsumer
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy consume_backoff_policy = 7;</code>
-     */
-    public Builder clearConsumeBackoffPolicy() {
-      if (consumeBackoffPolicyBuilder_ == null) {
-        consumeBackoffPolicy_ = null;
-        onChanged();
-      } else {
-        consumeBackoffPolicy_ = null;
-        consumeBackoffPolicyBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * For PushConsumer
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy consume_backoff_policy = 7;</code>
-     */
-    public apache.rocketmq.v2.RetryPolicy.Builder getConsumeBackoffPolicyBuilder() {
-      
-      onChanged();
-      return getConsumeBackoffPolicyFieldBuilder().getBuilder();
-    }
-    /**
-     * <pre>
-     * For PushConsumer
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy consume_backoff_policy = 7;</code>
-     */
-    public apache.rocketmq.v2.RetryPolicyOrBuilder getConsumeBackoffPolicyOrBuilder() {
-      if (consumeBackoffPolicyBuilder_ != null) {
-        return consumeBackoffPolicyBuilder_.getMessageOrBuilder();
-      } else {
-        return consumeBackoffPolicy_ == null ?
-            apache.rocketmq.v2.RetryPolicy.getDefaultInstance() : consumeBackoffPolicy_;
-      }
-    }
-    /**
-     * <pre>
-     * For PushConsumer
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy consume_backoff_policy = 7;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.RetryPolicy, apache.rocketmq.v2.RetryPolicy.Builder, apache.rocketmq.v2.RetryPolicyOrBuilder> 
-        getConsumeBackoffPolicyFieldBuilder() {
-      if (consumeBackoffPolicyBuilder_ == null) {
-        consumeBackoffPolicyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            apache.rocketmq.v2.RetryPolicy, apache.rocketmq.v2.RetryPolicy.Builder, apache.rocketmq.v2.RetryPolicyOrBuilder>(
-                getConsumeBackoffPolicy(),
-                getParentForChildren(),
-                isClean());
-        consumeBackoffPolicy_ = null;
-      }
-      return consumeBackoffPolicyBuilder_;
     }
 
     private int maxReceiveBatchSize_ ;

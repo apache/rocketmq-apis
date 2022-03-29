@@ -3,8 +3,8 @@
 
 package apache.rocketmq.v2;
 
-public interface AckMessageRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:apache.rocketmq.v2.AckMessageRequest)
+public interface NackMessageRequestOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:apache.rocketmq.v2.NackMessageRequest)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -60,4 +60,10 @@ public interface AckMessageRequestOrBuilder extends
    */
   com.google.protobuf.ByteString
       getMessageIdBytes();
+
+  /**
+   * <code>int32 delivery_attempt = 5;</code>
+   * @return The deliveryAttempt.
+   */
+  int getDeliveryAttempt();
 }

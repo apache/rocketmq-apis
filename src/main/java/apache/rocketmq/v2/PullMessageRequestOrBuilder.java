@@ -78,16 +78,4 @@ public interface PullMessageRequestOrBuilder extends
    * <code>.apache.rocketmq.v2.FilterExpression filter_expression = 6;</code>
    */
   apache.rocketmq.v2.FilterExpressionOrBuilder getFilterExpressionOrBuilder();
-
-  /**
-   * <code>string client_id = 7;</code>
-   * @return The clientId.
-   */
-  java.lang.String getClientId();
-  /**
-   * <code>string client_id = 7;</code>
-   * @return The bytes for clientId.
-   */
-  com.google.protobuf.ByteString
-      getClientIdBytes();
 }

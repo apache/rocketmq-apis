@@ -35,25 +35,15 @@ public final class MQDomain {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_apache_rocketmq_v2_Resource_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_apache_rocketmq_v2_Trace_descriptor;
+    internal_static_apache_rocketmq_v2_Tracing_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_apache_rocketmq_v2_Trace_fieldAccessorTable;
+      internal_static_apache_rocketmq_v2_Tracing_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_apache_rocketmq_v2_Authentication_descriptor;
+    internal_static_apache_rocketmq_v2_Publishing_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_apache_rocketmq_v2_Authentication_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_apache_rocketmq_v2_Timeout_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_apache_rocketmq_v2_Timeout_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_apache_rocketmq_v2_Publish_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_apache_rocketmq_v2_Publish_fieldAccessorTable;
+      internal_static_apache_rocketmq_v2_Publishing_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_apache_rocketmq_v2_CacheLimits_descriptor;
   static final 
@@ -119,6 +109,11 @@ public final class MQDomain {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_apache_rocketmq_v2_SendReceipt_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_apache_rocketmq_v2_Status_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_apache_rocketmq_v2_Status_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -138,106 +133,125 @@ public final class MQDomain {
       "x_attempts\030\001 \001(\005\022\027\n\017initial_backoff\030\002 \001(" +
       "\002\022\023\n\013max_backoff\030\003 \001(\002\022\032\n\022backoff_multip" +
       "lier\030\004 \001(\002\"4\n\010Resource\022\032\n\022resource_names" +
-      "pace\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\"P\n\005Trace\022\n\n\002on\030" +
-      "\001 \001(\010\022;\n\024service_access_point\030\002 \001(\0132\035.ap" +
-      "ache.rocketmq.v2.Endpoints\"\\\n\016Authentica" +
-      "tion\0228\n\006method\030\001 \001(\0162(.apache.rocketmq.v" +
-      "2.AuthenticationMethod\022\020\n\010identity\030\002 \001(\t" +
-      "\"\215\001\n\007Timeout\022*\n\007connect\030\001 \001(\0132\031.google.p" +
-      "rotobuf.Duration\022*\n\007request\030\002 \001(\0132\031.goog" +
-      "le.protobuf.Duration\022*\n\007polling\030\003 \001(\0132\031." +
-      "google.protobuf.Duration\"\346\001\n\007Publish\022,\n\006" +
-      "topics\030\001 \003(\0132\034.apache.rocketmq.v2.Resour" +
-      "ce\022?\n\034transaction_orphan_threshold\030\002 \001(\013" +
-      "2\031.google.protobuf.Duration\0225\n\014retry_pol" +
-      "icy\030\003 \001(\0132\037.apache.rocketmq.v2.RetryPoli" +
-      "cy\022\032\n\022compress_threshold\030\004 \001(\005\022\031\n\021max_me" +
-      "ssage_bytes\030\005 \001(\005\"+\n\013CacheLimits\022\r\n\005coun" +
-      "t\030\001 \001(\005\022\r\n\005bytes\030\002 \001(\003\"\312\004\n\014Subscription\022" +
-      "+\n\005group\030\001 \001(\0132\034.apache.rocketmq.v2.Reso" +
-      "urce\022<\n\rsubscriptions\030\002 \003(\0132%.apache.roc" +
-      "ketmq.v2.SubscriptionEntry\022@\n\022dead_lette" +
-      "r_policy\030\003 \001(\0132$.apache.rocketmq.v2.Dead" +
-      "LetterPolicy\022<\n\014consume_type\030\004 \001(\0162&.apa" +
-      "che.rocketmq.v2.ConsumeMessageType\022\014\n\004fi" +
-      "fo\030\005 \001(\010\0225\n\014retry_policy\030\006 \001(\0132\037.apache." +
-      "rocketmq.v2.RetryPolicy\022?\n\026consume_backo" +
-      "ff_policy\030\007 \001(\0132\037.apache.rocketmq.v2.Ret" +
-      "ryPolicy\022\036\n\026max_receive_batch_size\030\010 \001(\005" +
-      "\022\031\n\021messages_per_task\030\t \001(\005\0225\n\014cache_lim" +
-      "its\030\n \001(\0132\037.apache.rocketmq.v2.CacheLimi" +
-      "ts\022\034\n\024consume_thread_count\030\013 \001(\005\0229\n\026max_" +
-      "invisible_duration\030\014 \001(\0132\031.google.protob" +
-      "uf.Duration\"z\n\021SubscriptionEntry\022+\n\005topi" +
-      "c\030\001 \001(\0132\034.apache.rocketmq.v2.Resource\0228\n" +
-      "\nexpression\030\002 \001(\0132$.apache.rocketmq.v2.F" +
-      "ilterExpression\"%\n\007Address\022\014\n\004host\030\001 \001(\t" +
-      "\022\014\n\004port\030\002 \001(\005\"n\n\tEndpoints\0221\n\006scheme\030\001 " +
-      "\001(\0162!.apache.rocketmq.v2.AddressScheme\022." +
-      "\n\taddresses\030\002 \003(\0132\033.apache.rocketmq.v2.A" +
-      "ddress\"T\n\006Broker\022\014\n\004name\030\001 \001(\t\022\n\n\002id\030\002 \001" +
-      "(\005\0220\n\tendpoints\030\003 \001(\0132\035.apache.rocketmq." +
-      "v2.Endpoints\"\346\001\n\014MessageQueue\022+\n\005topic\030\001" +
-      " \001(\0132\034.apache.rocketmq.v2.Resource\022\n\n\002id" +
-      "\030\002 \001(\005\0222\n\npermission\030\003 \001(\0162\036.apache.rock" +
-      "etmq.v2.Permission\022*\n\006broker\030\004 \001(\0132\032.apa" +
-      "che.rocketmq.v2.Broker\022=\n\024accept_message" +
-      "_types\030\005 \003(\0162\037.apache.rocketmq.v2.Messag" +
-      "eType\"H\n\006Digest\022,\n\004type\030\001 \001(\0162\036.apache.r" +
-      "ocketmq.v2.DigestType\022\020\n\010checksum\030\002 \001(\t\"" +
-      "\260\005\n\020SystemProperties\022\013\n\003tag\030\001 \001(\t\022\014\n\004key" +
-      "s\030\002 \003(\t\022\022\n\nmessage_id\030\003 \001(\t\022/\n\013body_dige" +
-      "st\030\004 \001(\0132\032.apache.rocketmq.v2.Digest\0223\n\r" +
-      "body_encoding\030\005 \001(\0162\034.apache.rocketmq.v2" +
-      ".Encoding\0225\n\014message_type\030\006 \001(\0162\037.apache" +
-      ".rocketmq.v2.MessageType\0222\n\016born_timesta" +
-      "mp\030\007 \001(\0132\032.google.protobuf.Timestamp\022\021\n\t" +
-      "born_host\030\010 \001(\t\0223\n\017store_timestamp\030\t \001(\013" +
-      "2\032.google.protobuf.Timestamp\022\022\n\nstore_ho" +
-      "st\030\n \001(\t\0226\n\022delivery_timestamp\030\013 \001(\0132\032.g" +
-      "oogle.protobuf.Timestamp\022\026\n\016receipt_hand" +
-      "le\030\014 \001(\t\022\020\n\010queue_id\030\r \001(\005\022\024\n\014queue_offs" +
-      "et\030\016 \001(\003\0225\n\022invisible_duration\030\017 \001(\0132\031.g" +
-      "oogle.protobuf.Duration\022\030\n\020delivery_atte" +
-      "mpt\030\020 \001(\005\022\025\n\rmessage_group\030\021 \001(\t\022\025\n\rtrac" +
-      "e_context\030\022 \001(\t\022I\n&orphaned_transaction_" +
-      "recovery_duration\030\023 \001(\0132\031.google.protobu" +
-      "f.Duration\"\206\002\n\007Message\022+\n\005topic\030\001 \001(\0132\034." +
-      "apache.rocketmq.v2.Resource\022H\n\017user_prop" +
-      "erties\030\002 \003(\0132/.apache.rocketmq.v2.Messag" +
-      "e.UserPropertiesEntry\022?\n\021system_properti" +
-      "es\030\003 \001(\0132$.apache.rocketmq.v2.SystemProp" +
-      "erties\022\014\n\004body\030\004 \001(\014\0325\n\023UserPropertiesEn" +
-      "try\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"E\n\nA" +
-      "ssignment\0227\n\rmessage_queue\030\001 \001(\0132 .apach" +
-      "e.rocketmq.v2.MessageQueue\"9\n\013SendReceip" +
-      "t\022\022\n\nmessage_id\030\001 \001(\t\022\026\n\016transaction_id\030" +
-      "\002 \001(\t*Y\n\025TransactionResolution\022&\n\"TRANSA" +
-      "CTION_RESOLUTION_UNSPECIFIED\020\000\022\n\n\006COMMIT" +
-      "\020\001\022\014\n\010ROLLBACK\020\002*W\n\021TransactionSource\022\026\n" +
-      "\022SOURCE_UNSPECIFIED\020\000\022\021\n\rSOURCE_CLIENT\020\001" +
-      "\022\027\n\023SOURCE_SERVER_CHECK\020\002*W\n\nPermission\022" +
-      "\032\n\026PERMISSION_UNSPECIFIED\020\000\022\010\n\004NONE\020\001\022\010\n" +
-      "\004READ\020\002\022\t\n\005WRITE\020\003\022\016\n\nREAD_WRITE\020\004*;\n\nFi" +
-      "lterType\022\033\n\027FILTER_TYPE_UNSPECIFIED\020\000\022\007\n" +
-      "\003TAG\020\001\022\007\n\003SQL\020\002*S\n\022ConsumeMessageType\022$\n" +
-      " CONSUME_MESSAGE_TYPE_UNSPECIFIED\020\000\022\n\n\006A" +
-      "CTIVE\020\001\022\013\n\007PASSIVE\020\002*l\n\024AuthenticationMe" +
-      "thod\022%\n!AUTHENTICATION_METHOD_UNSPECIFIE" +
-      "D\020\000\022\010\n\004SASL\020\001\022\016\n\nMUTUAL_TLS\020\002\022\023\n\017HTTP_BA" +
-      "SIC_AUTH\020\003*T\n\rAddressScheme\022\036\n\032ADDRESS_S" +
-      "CHEME_UNSPECIFIED\020\000\022\010\n\004IPv4\020\001\022\010\n\004IPv6\020\002\022" +
-      "\017\n\013DOMAIN_NAME\020\003*]\n\013MessageType\022\034\n\030MESSA" +
-      "GE_TYPE_UNSPECIFIED\020\000\022\n\n\006NORMAL\020\001\022\010\n\004FIF" +
-      "O\020\002\022\t\n\005DELAY\020\003\022\017\n\013TRANSACTION\020\004*G\n\nDiges" +
-      "tType\022\033\n\027DIGEST_TYPE_UNSPECIFIED\020\000\022\t\n\005CR" +
-      "C32\020\001\022\007\n\003MD5\020\002\022\010\n\004SHA1\020\003*<\n\010Encoding\022\030\n\024" +
-      "ENCODING_UNSPECIFIED\020\000\022\014\n\010IDENTITY\020\001\022\010\n\004" +
-      "GZIP\020\002*`\n\021QueryOffsetPolicy\022#\n\037QUERY_OFF" +
-      "SET_POLICY_UNSPECIFIED\020\000\022\r\n\tBEGINNING\020\001\022" +
-      "\007\n\003END\020\002\022\016\n\nTIME_POINT\020\003B;\n\022apache.rocke" +
-      "tmq.v2B\010MQDomainP\001\240\001\001\330\001\001\252\002\022Apache.Rocket" +
-      "mq.V2b\006proto3"
+      "pace\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\"p\n\007Tracing\022\n\n\002o" +
+      "n\030\001 \001(\010\022@\n\024service_access_point\030\002 \001(\0132\035." +
+      "apache.rocketmq.v2.EndpointsH\000\210\001\001B\027\n\025_se" +
+      "rvice_access_point\"\250\001\n\nPublishing\022,\n\006top" +
+      "ics\030\001 \003(\0132\034.apache.rocketmq.v2.Resource\022" +
+      "5\n\014retry_policy\030\002 \001(\0132\037.apache.rocketmq." +
+      "v2.RetryPolicy\022\032\n\022compress_threshold\030\003 \001" +
+      "(\005\022\031\n\021max_message_bytes\030\004 \001(\005\"+\n\013CacheLi" +
+      "mits\022\r\n\005count\030\001 \001(\005\022\r\n\005bytes\030\002 \001(\003\"\224\003\n\014S" +
+      "ubscription\022+\n\005group\030\001 \001(\0132\034.apache.rock" +
+      "etmq.v2.Resource\022<\n\rsubscriptions\030\002 \003(\0132" +
+      "%.apache.rocketmq.v2.SubscriptionEntry\022@" +
+      "\n\022dead_letter_policy\030\003 \001(\0132$.apache.rock" +
+      "etmq.v2.DeadLetterPolicy\022\014\n\004fifo\030\005 \001(\010\022\036" +
+      "\n\026max_receive_batch_size\030\010 \001(\005\022\031\n\021messag" +
+      "es_per_task\030\t \001(\005\0225\n\014cache_limits\030\n \001(\0132" +
+      "\037.apache.rocketmq.v2.CacheLimits\022\034\n\024cons" +
+      "ume_thread_count\030\013 \001(\005\0229\n\026max_invisible_" +
+      "duration\030\014 \001(\0132\031.google.protobuf.Duratio" +
+      "n\"z\n\021SubscriptionEntry\022+\n\005topic\030\001 \001(\0132\034." +
+      "apache.rocketmq.v2.Resource\0228\n\nexpressio" +
+      "n\030\002 \001(\0132$.apache.rocketmq.v2.FilterExpre" +
+      "ssion\"%\n\007Address\022\014\n\004host\030\001 \001(\t\022\014\n\004port\030\002" +
+      " \001(\005\"n\n\tEndpoints\0221\n\006scheme\030\001 \001(\0162!.apac" +
+      "he.rocketmq.v2.AddressScheme\022.\n\taddresse" +
+      "s\030\002 \003(\0132\033.apache.rocketmq.v2.Address\"T\n\006" +
+      "Broker\022\014\n\004name\030\001 \001(\t\022\n\n\002id\030\002 \001(\005\0220\n\tendp" +
+      "oints\030\003 \001(\0132\035.apache.rocketmq.v2.Endpoin" +
+      "ts\"\346\001\n\014MessageQueue\022+\n\005topic\030\001 \001(\0132\034.apa" +
+      "che.rocketmq.v2.Resource\022\n\n\002id\030\002 \001(\005\0222\n\n" +
+      "permission\030\003 \001(\0162\036.apache.rocketmq.v2.Pe" +
+      "rmission\022*\n\006broker\030\004 \001(\0132\032.apache.rocket" +
+      "mq.v2.Broker\022=\n\024accept_message_types\030\005 \003" +
+      "(\0162\037.apache.rocketmq.v2.MessageType\"H\n\006D" +
+      "igest\022,\n\004type\030\001 \001(\0162\036.apache.rocketmq.v2" +
+      ".DigestType\022\020\n\010checksum\030\002 \001(\t\"\264\007\n\020System" +
+      "Properties\022\020\n\003tag\030\001 \001(\tH\000\210\001\001\022\014\n\004keys\030\002 \003" +
+      "(\t\022\022\n\nmessage_id\030\003 \001(\t\022/\n\013body_digest\030\004 " +
+      "\001(\0132\032.apache.rocketmq.v2.Digest\0223\n\rbody_" +
+      "encoding\030\005 \001(\0162\034.apache.rocketmq.v2.Enco" +
+      "ding\0225\n\014message_type\030\006 \001(\0162\037.apache.rock" +
+      "etmq.v2.MessageType\0222\n\016born_timestamp\030\007 " +
+      "\001(\0132\032.google.protobuf.Timestamp\022\021\n\tborn_" +
+      "host\030\010 \001(\t\0228\n\017store_timestamp\030\t \001(\0132\032.go" +
+      "ogle.protobuf.TimestampH\001\210\001\001\022\022\n\nstore_ho" +
+      "st\030\n \001(\t\022;\n\022delivery_timestamp\030\013 \001(\0132\032.g" +
+      "oogle.protobuf.TimestampH\002\210\001\001\022\033\n\016receipt" +
+      "_handle\030\014 \001(\tH\003\210\001\001\022\020\n\010queue_id\030\r \001(\005\022\031\n\014" +
+      "queue_offset\030\016 \001(\003H\004\210\001\001\022:\n\022invisible_dur" +
+      "ation\030\017 \001(\0132\031.google.protobuf.DurationH\005" +
+      "\210\001\001\022\035\n\020delivery_attempt\030\020 \001(\005H\006\210\001\001\022\032\n\rme" +
+      "ssage_group\030\021 \001(\tH\007\210\001\001\022\032\n\rtrace_context\030" +
+      "\022 \001(\tH\010\210\001\001\022N\n&orphaned_transaction_recov" +
+      "ery_duration\030\023 \001(\0132\031.google.protobuf.Dur" +
+      "ationH\t\210\001\001B\006\n\004_tagB\022\n\020_store_timestampB\025" +
+      "\n\023_delivery_timestampB\021\n\017_receipt_handle" +
+      "B\017\n\r_queue_offsetB\025\n\023_invisible_duration" +
+      "B\023\n\021_delivery_attemptB\020\n\016_message_groupB" +
+      "\020\n\016_trace_contextB)\n\'_orphaned_transacti" +
+      "on_recovery_duration\"\206\002\n\007Message\022+\n\005topi" +
+      "c\030\001 \001(\0132\034.apache.rocketmq.v2.Resource\022H\n" +
+      "\017user_properties\030\002 \003(\0132/.apache.rocketmq" +
+      ".v2.Message.UserPropertiesEntry\022?\n\021syste" +
+      "m_properties\030\003 \001(\0132$.apache.rocketmq.v2." +
+      "SystemProperties\022\014\n\004body\030\004 \001(\014\0325\n\023UserPr" +
+      "opertiesEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(" +
+      "\t:\0028\001\"E\n\nAssignment\0227\n\rmessage_queue\030\001 \001" +
+      "(\0132 .apache.rocketmq.v2.MessageQueue\"I\n\013" +
+      "SendReceipt\022\022\n\nmessage_id\030\001 \001(\t\022\026\n\016trans" +
+      "action_id\030\002 \001(\t\022\016\n\006offset\030\003 \001(\003\"A\n\006Statu" +
+      "s\022&\n\004code\030\001 \001(\0162\030.apache.rocketmq.v2.Cod" +
+      "e\022\017\n\007message\030\002 \001(\t*Y\n\025TransactionResolut" +
+      "ion\022&\n\"TRANSACTION_RESOLUTION_UNSPECIFIE" +
+      "D\020\000\022\n\n\006COMMIT\020\001\022\014\n\010ROLLBACK\020\002*W\n\021Transac" +
+      "tionSource\022\026\n\022SOURCE_UNSPECIFIED\020\000\022\021\n\rSO" +
+      "URCE_CLIENT\020\001\022\027\n\023SOURCE_SERVER_CHECK\020\002*W" +
+      "\n\nPermission\022\032\n\026PERMISSION_UNSPECIFIED\020\000" +
+      "\022\010\n\004NONE\020\001\022\010\n\004READ\020\002\022\t\n\005WRITE\020\003\022\016\n\nREAD_" +
+      "WRITE\020\004*;\n\nFilterType\022\033\n\027FILTER_TYPE_UNS" +
+      "PECIFIED\020\000\022\007\n\003TAG\020\001\022\007\n\003SQL\020\002*T\n\rAddressS" +
+      "cheme\022\036\n\032ADDRESS_SCHEME_UNSPECIFIED\020\000\022\010\n" +
+      "\004IPv4\020\001\022\010\n\004IPv6\020\002\022\017\n\013DOMAIN_NAME\020\003*]\n\013Me" +
+      "ssageType\022\034\n\030MESSAGE_TYPE_UNSPECIFIED\020\000\022" +
+      "\n\n\006NORMAL\020\001\022\010\n\004FIFO\020\002\022\t\n\005DELAY\020\003\022\017\n\013TRAN" +
+      "SACTION\020\004*G\n\nDigestType\022\033\n\027DIGEST_TYPE_U" +
+      "NSPECIFIED\020\000\022\t\n\005CRC32\020\001\022\007\n\003MD5\020\002\022\010\n\004SHA1" +
+      "\020\003*r\n\nClientType\022\033\n\027CLIENT_TYPE_UNSPECIF" +
+      "IED\020\000\022\014\n\010PRODUCER\020\001\022\021\n\rPUSH_CONSUMER\020\002\022\021" +
+      "\n\rPULL_CONSUMER\020\003\022\023\n\017SIMPLE_CONSUMER\020\004*<" +
+      "\n\010Encoding\022\030\n\024ENCODING_UNSPECIFIED\020\000\022\014\n\010" +
+      "IDENTITY\020\001\022\010\n\004GZIP\020\002*`\n\021QueryOffsetPolic" +
+      "y\022#\n\037QUERY_OFFSET_POLICY_UNSPECIFIED\020\000\022\r" +
+      "\n\tBEGINNING\020\001\022\007\n\003END\020\002\022\016\n\nTIME_POINT\020\003*\272" +
+      "\007\n\004Code\022\006\n\002OK\020\000\022\030\n\024ILLEGAL_ACCESS_POINT\020" +
+      "\001\022\021\n\rILLEGAL_TOPIC\020\002\022\032\n\026ILLEGAL_CONSUMER" +
+      "_GROUP\020\003\022\027\n\023ILLEGAL_MESSAGE_TAG\020\004\022\027\n\023ILL" +
+      "EGAL_MESSAGE_KEY\020\005\022\032\n\026MESSAGE_KEYS_TOO_L" +
+      "ARGE\020\006\022\031\n\025ILLEGAL_MESSAGE_GROUP\020\007\022 \n\034ILL" +
+      "EGAL_MESSAGE_PROPERTY_KEY\020\010\022 \n\034MESSAGE_P" +
+      "ROPERTIES_TOO_LARGE\020\t\022\032\n\026MESSAGE_BODY_TO" +
+      "O_LARGE\020\n\022\016\n\tFORBIDDEN\020\223\003\022\021\n\014UNAUTHORIZE" +
+      "D\020\221\003\022\023\n\017TOPIC_NOT_FOUND\020\r\022\034\n\030CONSUMER_GR" +
+      "OUP_NOT_FOUND\020\016\022\034\n\030VERIFY_MESSAGE_FORBID" +
+      "DEN\020\017\022\035\n\031FAILED_TO_CONSUME_MESSAGE\020\020\022\025\n\021" +
+      "MESSAGE_CORRUPTED\020\021\022\025\n\021TOO_MANY_REQUESTS" +
+      "\020\022\022\032\n\026RECEIPT_HANDLE_EXPIRED\020\023\0220\n,MESSAG" +
+      "E_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE\020\024" +
+      "\022\026\n\022ILLEGAL_MESSAGE_ID\020\025\022\032\n\026INVALID_TRAN" +
+      "SACTION_ID\020\026\022\035\n\031ILLEGAL_FILTER_EXPRESSIO" +
+      "N\020\027\022\032\n\026INVALID_RECEIPT_HANDLE\020\030\022\036\n\032MASTE" +
+      "R_PERSISTENCE_TIMEOUT\020\031\022\035\n\031SLAVE_PERSIST" +
+      "ENCE_TIMEOUT\020\032\022\024\n\020HA_NOT_AVAILABLE\020\033\022\027\n\023" +
+      "VERSION_UNSUPPORTED\020\034\022\025\n\021MESSAGE_NOT_FOU" +
+      "ND\020\035\022\032\n\026ILLEGAL_MESSAGE_OFFSET\020\036\022\023\n\017ILLE" +
+      "GAL_MESSAGE\020\037\022\034\n\030UNRECOGNIZED_CLIENT_TYP" +
+      "E\020 \022\032\n\025INTERNAL_SERVER_ERROR\020\364\003\022\024\n\017NOT_I" +
+      "MPLEMENTED\020\365\003\022\024\n\017GATEWAY_TIMEOUT\020\370\003B;\n\022a" +
+      "pache.rocketmq.v2B\010MQDomainP\001\240\001\001\330\001\001\252\002\022Ap" +
+      "ache.Rocketmq.V2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -269,86 +283,74 @@ public final class MQDomain {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_Resource_descriptor,
         new java.lang.String[] { "ResourceNamespace", "Name", });
-    internal_static_apache_rocketmq_v2_Trace_descriptor =
+    internal_static_apache_rocketmq_v2_Tracing_descriptor =
       getDescriptor().getMessageTypes().get(4);
-    internal_static_apache_rocketmq_v2_Trace_fieldAccessorTable = new
+    internal_static_apache_rocketmq_v2_Tracing_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_apache_rocketmq_v2_Trace_descriptor,
-        new java.lang.String[] { "On", "ServiceAccessPoint", });
-    internal_static_apache_rocketmq_v2_Authentication_descriptor =
+        internal_static_apache_rocketmq_v2_Tracing_descriptor,
+        new java.lang.String[] { "On", "ServiceAccessPoint", "ServiceAccessPoint", });
+    internal_static_apache_rocketmq_v2_Publishing_descriptor =
       getDescriptor().getMessageTypes().get(5);
-    internal_static_apache_rocketmq_v2_Authentication_fieldAccessorTable = new
+    internal_static_apache_rocketmq_v2_Publishing_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_apache_rocketmq_v2_Authentication_descriptor,
-        new java.lang.String[] { "Method", "Identity", });
-    internal_static_apache_rocketmq_v2_Timeout_descriptor =
-      getDescriptor().getMessageTypes().get(6);
-    internal_static_apache_rocketmq_v2_Timeout_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_apache_rocketmq_v2_Timeout_descriptor,
-        new java.lang.String[] { "Connect", "Request", "Polling", });
-    internal_static_apache_rocketmq_v2_Publish_descriptor =
-      getDescriptor().getMessageTypes().get(7);
-    internal_static_apache_rocketmq_v2_Publish_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_apache_rocketmq_v2_Publish_descriptor,
-        new java.lang.String[] { "Topics", "TransactionOrphanThreshold", "RetryPolicy", "CompressThreshold", "MaxMessageBytes", });
+        internal_static_apache_rocketmq_v2_Publishing_descriptor,
+        new java.lang.String[] { "Topics", "RetryPolicy", "CompressThreshold", "MaxMessageBytes", });
     internal_static_apache_rocketmq_v2_CacheLimits_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_apache_rocketmq_v2_CacheLimits_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_CacheLimits_descriptor,
         new java.lang.String[] { "Count", "Bytes", });
     internal_static_apache_rocketmq_v2_Subscription_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_apache_rocketmq_v2_Subscription_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_Subscription_descriptor,
-        new java.lang.String[] { "Group", "Subscriptions", "DeadLetterPolicy", "ConsumeType", "Fifo", "RetryPolicy", "ConsumeBackoffPolicy", "MaxReceiveBatchSize", "MessagesPerTask", "CacheLimits", "ConsumeThreadCount", "MaxInvisibleDuration", });
+        new java.lang.String[] { "Group", "Subscriptions", "DeadLetterPolicy", "Fifo", "MaxReceiveBatchSize", "MessagesPerTask", "CacheLimits", "ConsumeThreadCount", "MaxInvisibleDuration", });
     internal_static_apache_rocketmq_v2_SubscriptionEntry_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_apache_rocketmq_v2_SubscriptionEntry_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_SubscriptionEntry_descriptor,
         new java.lang.String[] { "Topic", "Expression", });
     internal_static_apache_rocketmq_v2_Address_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_apache_rocketmq_v2_Address_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_Address_descriptor,
         new java.lang.String[] { "Host", "Port", });
     internal_static_apache_rocketmq_v2_Endpoints_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_apache_rocketmq_v2_Endpoints_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_Endpoints_descriptor,
         new java.lang.String[] { "Scheme", "Addresses", });
     internal_static_apache_rocketmq_v2_Broker_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_apache_rocketmq_v2_Broker_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_Broker_descriptor,
         new java.lang.String[] { "Name", "Id", "Endpoints", });
     internal_static_apache_rocketmq_v2_MessageQueue_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_apache_rocketmq_v2_MessageQueue_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_MessageQueue_descriptor,
         new java.lang.String[] { "Topic", "Id", "Permission", "Broker", "AcceptMessageTypes", });
     internal_static_apache_rocketmq_v2_Digest_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_apache_rocketmq_v2_Digest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_Digest_descriptor,
         new java.lang.String[] { "Type", "Checksum", });
     internal_static_apache_rocketmq_v2_SystemProperties_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_apache_rocketmq_v2_SystemProperties_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_SystemProperties_descriptor,
-        new java.lang.String[] { "Tag", "Keys", "MessageId", "BodyDigest", "BodyEncoding", "MessageType", "BornTimestamp", "BornHost", "StoreTimestamp", "StoreHost", "DeliveryTimestamp", "ReceiptHandle", "QueueId", "QueueOffset", "InvisibleDuration", "DeliveryAttempt", "MessageGroup", "TraceContext", "OrphanedTransactionRecoveryDuration", });
+        new java.lang.String[] { "Tag", "Keys", "MessageId", "BodyDigest", "BodyEncoding", "MessageType", "BornTimestamp", "BornHost", "StoreTimestamp", "StoreHost", "DeliveryTimestamp", "ReceiptHandle", "QueueId", "QueueOffset", "InvisibleDuration", "DeliveryAttempt", "MessageGroup", "TraceContext", "OrphanedTransactionRecoveryDuration", "Tag", "StoreTimestamp", "DeliveryTimestamp", "ReceiptHandle", "QueueOffset", "InvisibleDuration", "DeliveryAttempt", "MessageGroup", "TraceContext", "OrphanedTransactionRecoveryDuration", });
     internal_static_apache_rocketmq_v2_Message_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_apache_rocketmq_v2_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_Message_descriptor,
@@ -360,17 +362,23 @@ public final class MQDomain {
         internal_static_apache_rocketmq_v2_Message_UserPropertiesEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_apache_rocketmq_v2_Assignment_descriptor =
-      getDescriptor().getMessageTypes().get(18);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_apache_rocketmq_v2_Assignment_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_Assignment_descriptor,
         new java.lang.String[] { "MessageQueue", });
     internal_static_apache_rocketmq_v2_SendReceipt_descriptor =
-      getDescriptor().getMessageTypes().get(19);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_apache_rocketmq_v2_SendReceipt_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_SendReceipt_descriptor,
-        new java.lang.String[] { "MessageId", "TransactionId", });
+        new java.lang.String[] { "MessageId", "TransactionId", "Offset", });
+    internal_static_apache_rocketmq_v2_Status_descriptor =
+      getDescriptor().getMessageTypes().get(18);
+    internal_static_apache_rocketmq_v2_Status_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_apache_rocketmq_v2_Status_descriptor,
+        new java.lang.String[] { "Code", "Message", });
     com.google.protobuf.TimestampProto.getDescriptor();
     com.google.protobuf.DurationProto.getDescriptor();
   }

@@ -16,8 +16,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private Settings() {
-    clientId_ = "";
-    accessPoint_ = "";
   }
 
   @java.lang.Override
@@ -40,6 +38,7 @@ private static final long serialVersionUID = 0L;
     if (extensionRegistry == null) {
       throw new java.lang.NullPointerException();
     }
+    int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
         com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
@@ -51,33 +50,21 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            clientId_ = s;
+            apache.rocketmq.v2.Publishing.Builder subBuilder = null;
+            if (((bitField0_ & 0x00000001) != 0)) {
+              subBuilder = publishing_.toBuilder();
+            }
+            publishing_ = input.readMessage(apache.rocketmq.v2.Publishing.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(publishing_);
+              publishing_ = subBuilder.buildPartial();
+            }
+            bitField0_ |= 0x00000001;
             break;
           }
           case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            accessPoint_ = s;
-            break;
-          }
-          case 26: {
-            apache.rocketmq.v2.Publish.Builder subBuilder = null;
-            if (publish_ != null) {
-              subBuilder = publish_.toBuilder();
-            }
-            publish_ = input.readMessage(apache.rocketmq.v2.Publish.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(publish_);
-              publish_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 34: {
             apache.rocketmq.v2.Subscription.Builder subBuilder = null;
-            if (subscription_ != null) {
+            if (((bitField0_ & 0x00000002) != 0)) {
               subBuilder = subscription_.toBuilder();
             }
             subscription_ = input.readMessage(apache.rocketmq.v2.Subscription.parser(), extensionRegistry);
@@ -85,18 +72,18 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom(subscription_);
               subscription_ = subBuilder.buildPartial();
             }
-
+            bitField0_ |= 0x00000002;
             break;
           }
-          case 42: {
-            apache.rocketmq.v2.Authentication.Builder subBuilder = null;
-            if (authentication_ != null) {
-              subBuilder = authentication_.toBuilder();
+          case 26: {
+            apache.rocketmq.v2.Tracing.Builder subBuilder = null;
+            if (tracing_ != null) {
+              subBuilder = tracing_.toBuilder();
             }
-            authentication_ = input.readMessage(apache.rocketmq.v2.Authentication.parser(), extensionRegistry);
+            tracing_ = input.readMessage(apache.rocketmq.v2.Tracing.parser(), extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom(authentication_);
-              authentication_ = subBuilder.buildPartial();
+              subBuilder.mergeFrom(tracing_);
+              tracing_ = subBuilder.buildPartial();
             }
 
             break;
@@ -133,120 +120,45 @@ private static final long serialVersionUID = 0L;
             apache.rocketmq.v2.Settings.class, apache.rocketmq.v2.Settings.Builder.class);
   }
 
-  public static final int CLIENT_ID_FIELD_NUMBER = 1;
-  private volatile java.lang.Object clientId_;
+  private int bitField0_;
+  public static final int PUBLISHING_FIELD_NUMBER = 1;
+  private apache.rocketmq.v2.Publishing publishing_;
   /**
-   * <code>string client_id = 1;</code>
-   * @return The clientId.
+   * <code>optional .apache.rocketmq.v2.Publishing publishing = 1;</code>
+   * @return Whether the publishing field is set.
    */
   @java.lang.Override
-  public java.lang.String getClientId() {
-    java.lang.Object ref = clientId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      clientId_ = s;
-      return s;
-    }
+  public boolean hasPublishing() {
+    return ((bitField0_ & 0x00000001) != 0);
   }
   /**
-   * <code>string client_id = 1;</code>
-   * @return The bytes for clientId.
+   * <code>optional .apache.rocketmq.v2.Publishing publishing = 1;</code>
+   * @return The publishing.
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getClientIdBytes() {
-    java.lang.Object ref = clientId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      clientId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public apache.rocketmq.v2.Publishing getPublishing() {
+    return publishing_ == null ? apache.rocketmq.v2.Publishing.getDefaultInstance() : publishing_;
+  }
+  /**
+   * <code>optional .apache.rocketmq.v2.Publishing publishing = 1;</code>
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.PublishingOrBuilder getPublishingOrBuilder() {
+    return publishing_ == null ? apache.rocketmq.v2.Publishing.getDefaultInstance() : publishing_;
   }
 
-  public static final int ACCESS_POINT_FIELD_NUMBER = 2;
-  private volatile java.lang.Object accessPoint_;
-  /**
-   * <code>string access_point = 2;</code>
-   * @return The accessPoint.
-   */
-  @java.lang.Override
-  public java.lang.String getAccessPoint() {
-    java.lang.Object ref = accessPoint_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      accessPoint_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string access_point = 2;</code>
-   * @return The bytes for accessPoint.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getAccessPointBytes() {
-    java.lang.Object ref = accessPoint_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      accessPoint_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int PUBLISH_FIELD_NUMBER = 3;
-  private apache.rocketmq.v2.Publish publish_;
-  /**
-   * <code>.apache.rocketmq.v2.Publish publish = 3;</code>
-   * @return Whether the publish field is set.
-   */
-  @java.lang.Override
-  public boolean hasPublish() {
-    return publish_ != null;
-  }
-  /**
-   * <code>.apache.rocketmq.v2.Publish publish = 3;</code>
-   * @return The publish.
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.Publish getPublish() {
-    return publish_ == null ? apache.rocketmq.v2.Publish.getDefaultInstance() : publish_;
-  }
-  /**
-   * <code>.apache.rocketmq.v2.Publish publish = 3;</code>
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.PublishOrBuilder getPublishOrBuilder() {
-    return getPublish();
-  }
-
-  public static final int SUBSCRIPTION_FIELD_NUMBER = 4;
+  public static final int SUBSCRIPTION_FIELD_NUMBER = 2;
   private apache.rocketmq.v2.Subscription subscription_;
   /**
-   * <code>.apache.rocketmq.v2.Subscription subscription = 4;</code>
+   * <code>optional .apache.rocketmq.v2.Subscription subscription = 2;</code>
    * @return Whether the subscription field is set.
    */
   @java.lang.Override
   public boolean hasSubscription() {
-    return subscription_ != null;
+    return ((bitField0_ & 0x00000002) != 0);
   }
   /**
-   * <code>.apache.rocketmq.v2.Subscription subscription = 4;</code>
+   * <code>optional .apache.rocketmq.v2.Subscription subscription = 2;</code>
    * @return The subscription.
    */
   @java.lang.Override
@@ -254,37 +166,37 @@ private static final long serialVersionUID = 0L;
     return subscription_ == null ? apache.rocketmq.v2.Subscription.getDefaultInstance() : subscription_;
   }
   /**
-   * <code>.apache.rocketmq.v2.Subscription subscription = 4;</code>
+   * <code>optional .apache.rocketmq.v2.Subscription subscription = 2;</code>
    */
   @java.lang.Override
   public apache.rocketmq.v2.SubscriptionOrBuilder getSubscriptionOrBuilder() {
-    return getSubscription();
+    return subscription_ == null ? apache.rocketmq.v2.Subscription.getDefaultInstance() : subscription_;
   }
 
-  public static final int AUTHENTICATION_FIELD_NUMBER = 5;
-  private apache.rocketmq.v2.Authentication authentication_;
+  public static final int TRACING_FIELD_NUMBER = 3;
+  private apache.rocketmq.v2.Tracing tracing_;
   /**
-   * <code>.apache.rocketmq.v2.Authentication authentication = 5;</code>
-   * @return Whether the authentication field is set.
+   * <code>.apache.rocketmq.v2.Tracing tracing = 3;</code>
+   * @return Whether the tracing field is set.
    */
   @java.lang.Override
-  public boolean hasAuthentication() {
-    return authentication_ != null;
+  public boolean hasTracing() {
+    return tracing_ != null;
   }
   /**
-   * <code>.apache.rocketmq.v2.Authentication authentication = 5;</code>
-   * @return The authentication.
+   * <code>.apache.rocketmq.v2.Tracing tracing = 3;</code>
+   * @return The tracing.
    */
   @java.lang.Override
-  public apache.rocketmq.v2.Authentication getAuthentication() {
-    return authentication_ == null ? apache.rocketmq.v2.Authentication.getDefaultInstance() : authentication_;
+  public apache.rocketmq.v2.Tracing getTracing() {
+    return tracing_ == null ? apache.rocketmq.v2.Tracing.getDefaultInstance() : tracing_;
   }
   /**
-   * <code>.apache.rocketmq.v2.Authentication authentication = 5;</code>
+   * <code>.apache.rocketmq.v2.Tracing tracing = 3;</code>
    */
   @java.lang.Override
-  public apache.rocketmq.v2.AuthenticationOrBuilder getAuthenticationOrBuilder() {
-    return getAuthentication();
+  public apache.rocketmq.v2.TracingOrBuilder getTracingOrBuilder() {
+    return getTracing();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -301,20 +213,14 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getClientIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, clientId_);
+    if (((bitField0_ & 0x00000001) != 0)) {
+      output.writeMessage(1, getPublishing());
     }
-    if (!getAccessPointBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, accessPoint_);
+    if (((bitField0_ & 0x00000002) != 0)) {
+      output.writeMessage(2, getSubscription());
     }
-    if (publish_ != null) {
-      output.writeMessage(3, getPublish());
-    }
-    if (subscription_ != null) {
-      output.writeMessage(4, getSubscription());
-    }
-    if (authentication_ != null) {
-      output.writeMessage(5, getAuthentication());
+    if (tracing_ != null) {
+      output.writeMessage(3, getTracing());
     }
     unknownFields.writeTo(output);
   }
@@ -325,23 +231,17 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getClientIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, clientId_);
-    }
-    if (!getAccessPointBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, accessPoint_);
-    }
-    if (publish_ != null) {
+    if (((bitField0_ & 0x00000001) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, getPublish());
+        .computeMessageSize(1, getPublishing());
     }
-    if (subscription_ != null) {
+    if (((bitField0_ & 0x00000002) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(4, getSubscription());
+        .computeMessageSize(2, getSubscription());
     }
-    if (authentication_ != null) {
+    if (tracing_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(5, getAuthentication());
+        .computeMessageSize(3, getTracing());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -358,24 +258,20 @@ private static final long serialVersionUID = 0L;
     }
     apache.rocketmq.v2.Settings other = (apache.rocketmq.v2.Settings) obj;
 
-    if (!getClientId()
-        .equals(other.getClientId())) return false;
-    if (!getAccessPoint()
-        .equals(other.getAccessPoint())) return false;
-    if (hasPublish() != other.hasPublish()) return false;
-    if (hasPublish()) {
-      if (!getPublish()
-          .equals(other.getPublish())) return false;
+    if (hasPublishing() != other.hasPublishing()) return false;
+    if (hasPublishing()) {
+      if (!getPublishing()
+          .equals(other.getPublishing())) return false;
     }
     if (hasSubscription() != other.hasSubscription()) return false;
     if (hasSubscription()) {
       if (!getSubscription()
           .equals(other.getSubscription())) return false;
     }
-    if (hasAuthentication() != other.hasAuthentication()) return false;
-    if (hasAuthentication()) {
-      if (!getAuthentication()
-          .equals(other.getAuthentication())) return false;
+    if (hasTracing() != other.hasTracing()) return false;
+    if (hasTracing()) {
+      if (!getTracing()
+          .equals(other.getTracing())) return false;
     }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
@@ -388,21 +284,17 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + CLIENT_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getClientId().hashCode();
-    hash = (37 * hash) + ACCESS_POINT_FIELD_NUMBER;
-    hash = (53 * hash) + getAccessPoint().hashCode();
-    if (hasPublish()) {
-      hash = (37 * hash) + PUBLISH_FIELD_NUMBER;
-      hash = (53 * hash) + getPublish().hashCode();
+    if (hasPublishing()) {
+      hash = (37 * hash) + PUBLISHING_FIELD_NUMBER;
+      hash = (53 * hash) + getPublishing().hashCode();
     }
     if (hasSubscription()) {
       hash = (37 * hash) + SUBSCRIPTION_FIELD_NUMBER;
       hash = (53 * hash) + getSubscription().hashCode();
     }
-    if (hasAuthentication()) {
-      hash = (37 * hash) + AUTHENTICATION_FIELD_NUMBER;
-      hash = (53 * hash) + getAuthentication().hashCode();
+    if (hasTracing()) {
+      hash = (37 * hash) + TRACING_FIELD_NUMBER;
+      hash = (53 * hash) + getTracing().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -532,32 +424,30 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
+        getPublishingFieldBuilder();
+        getSubscriptionFieldBuilder();
       }
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      clientId_ = "";
-
-      accessPoint_ = "";
-
-      if (publishBuilder_ == null) {
-        publish_ = null;
+      if (publishingBuilder_ == null) {
+        publishing_ = null;
       } else {
-        publish_ = null;
-        publishBuilder_ = null;
+        publishingBuilder_.clear();
       }
+      bitField0_ = (bitField0_ & ~0x00000001);
       if (subscriptionBuilder_ == null) {
         subscription_ = null;
       } else {
-        subscription_ = null;
-        subscriptionBuilder_ = null;
+        subscriptionBuilder_.clear();
       }
-      if (authenticationBuilder_ == null) {
-        authentication_ = null;
+      bitField0_ = (bitField0_ & ~0x00000002);
+      if (tracingBuilder_ == null) {
+        tracing_ = null;
       } else {
-        authentication_ = null;
-        authenticationBuilder_ = null;
+        tracing_ = null;
+        tracingBuilder_ = null;
       }
       return this;
     }
@@ -585,23 +475,30 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public apache.rocketmq.v2.Settings buildPartial() {
       apache.rocketmq.v2.Settings result = new apache.rocketmq.v2.Settings(this);
-      result.clientId_ = clientId_;
-      result.accessPoint_ = accessPoint_;
-      if (publishBuilder_ == null) {
-        result.publish_ = publish_;
-      } else {
-        result.publish_ = publishBuilder_.build();
+      int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        if (publishingBuilder_ == null) {
+          result.publishing_ = publishing_;
+        } else {
+          result.publishing_ = publishingBuilder_.build();
+        }
+        to_bitField0_ |= 0x00000001;
       }
-      if (subscriptionBuilder_ == null) {
-        result.subscription_ = subscription_;
-      } else {
-        result.subscription_ = subscriptionBuilder_.build();
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        if (subscriptionBuilder_ == null) {
+          result.subscription_ = subscription_;
+        } else {
+          result.subscription_ = subscriptionBuilder_.build();
+        }
+        to_bitField0_ |= 0x00000002;
       }
-      if (authenticationBuilder_ == null) {
-        result.authentication_ = authentication_;
+      if (tracingBuilder_ == null) {
+        result.tracing_ = tracing_;
       } else {
-        result.authentication_ = authenticationBuilder_.build();
+        result.tracing_ = tracingBuilder_.build();
       }
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -650,22 +547,14 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(apache.rocketmq.v2.Settings other) {
       if (other == apache.rocketmq.v2.Settings.getDefaultInstance()) return this;
-      if (!other.getClientId().isEmpty()) {
-        clientId_ = other.clientId_;
-        onChanged();
-      }
-      if (!other.getAccessPoint().isEmpty()) {
-        accessPoint_ = other.accessPoint_;
-        onChanged();
-      }
-      if (other.hasPublish()) {
-        mergePublish(other.getPublish());
+      if (other.hasPublishing()) {
+        mergePublishing(other.getPublishing());
       }
       if (other.hasSubscription()) {
         mergeSubscription(other.getSubscription());
       }
-      if (other.hasAuthentication()) {
-        mergeAuthentication(other.getAuthentication());
+      if (other.hasTracing()) {
+        mergeTracing(other.getTracing());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -695,290 +584,140 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+    private int bitField0_;
 
-    private java.lang.Object clientId_ = "";
-    /**
-     * <code>string client_id = 1;</code>
-     * @return The clientId.
-     */
-    public java.lang.String getClientId() {
-      java.lang.Object ref = clientId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        clientId_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string client_id = 1;</code>
-     * @return The bytes for clientId.
-     */
-    public com.google.protobuf.ByteString
-        getClientIdBytes() {
-      java.lang.Object ref = clientId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        clientId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string client_id = 1;</code>
-     * @param value The clientId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setClientId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      clientId_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string client_id = 1;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearClientId() {
-      
-      clientId_ = getDefaultInstance().getClientId();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string client_id = 1;</code>
-     * @param value The bytes for clientId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setClientIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      clientId_ = value;
-      onChanged();
-      return this;
-    }
-
-    private java.lang.Object accessPoint_ = "";
-    /**
-     * <code>string access_point = 2;</code>
-     * @return The accessPoint.
-     */
-    public java.lang.String getAccessPoint() {
-      java.lang.Object ref = accessPoint_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        accessPoint_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string access_point = 2;</code>
-     * @return The bytes for accessPoint.
-     */
-    public com.google.protobuf.ByteString
-        getAccessPointBytes() {
-      java.lang.Object ref = accessPoint_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        accessPoint_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string access_point = 2;</code>
-     * @param value The accessPoint to set.
-     * @return This builder for chaining.
-     */
-    public Builder setAccessPoint(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      accessPoint_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string access_point = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearAccessPoint() {
-      
-      accessPoint_ = getDefaultInstance().getAccessPoint();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string access_point = 2;</code>
-     * @param value The bytes for accessPoint to set.
-     * @return This builder for chaining.
-     */
-    public Builder setAccessPointBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      accessPoint_ = value;
-      onChanged();
-      return this;
-    }
-
-    private apache.rocketmq.v2.Publish publish_;
+    private apache.rocketmq.v2.Publishing publishing_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.Publish, apache.rocketmq.v2.Publish.Builder, apache.rocketmq.v2.PublishOrBuilder> publishBuilder_;
+        apache.rocketmq.v2.Publishing, apache.rocketmq.v2.Publishing.Builder, apache.rocketmq.v2.PublishingOrBuilder> publishingBuilder_;
     /**
-     * <code>.apache.rocketmq.v2.Publish publish = 3;</code>
-     * @return Whether the publish field is set.
+     * <code>optional .apache.rocketmq.v2.Publishing publishing = 1;</code>
+     * @return Whether the publishing field is set.
      */
-    public boolean hasPublish() {
-      return publishBuilder_ != null || publish_ != null;
+    public boolean hasPublishing() {
+      return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.apache.rocketmq.v2.Publish publish = 3;</code>
-     * @return The publish.
+     * <code>optional .apache.rocketmq.v2.Publishing publishing = 1;</code>
+     * @return The publishing.
      */
-    public apache.rocketmq.v2.Publish getPublish() {
-      if (publishBuilder_ == null) {
-        return publish_ == null ? apache.rocketmq.v2.Publish.getDefaultInstance() : publish_;
+    public apache.rocketmq.v2.Publishing getPublishing() {
+      if (publishingBuilder_ == null) {
+        return publishing_ == null ? apache.rocketmq.v2.Publishing.getDefaultInstance() : publishing_;
       } else {
-        return publishBuilder_.getMessage();
+        return publishingBuilder_.getMessage();
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Publish publish = 3;</code>
+     * <code>optional .apache.rocketmq.v2.Publishing publishing = 1;</code>
      */
-    public Builder setPublish(apache.rocketmq.v2.Publish value) {
-      if (publishBuilder_ == null) {
+    public Builder setPublishing(apache.rocketmq.v2.Publishing value) {
+      if (publishingBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        publish_ = value;
+        publishing_ = value;
         onChanged();
       } else {
-        publishBuilder_.setMessage(value);
+        publishingBuilder_.setMessage(value);
       }
-
+      bitField0_ |= 0x00000001;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Publish publish = 3;</code>
+     * <code>optional .apache.rocketmq.v2.Publishing publishing = 1;</code>
      */
-    public Builder setPublish(
-        apache.rocketmq.v2.Publish.Builder builderForValue) {
-      if (publishBuilder_ == null) {
-        publish_ = builderForValue.build();
+    public Builder setPublishing(
+        apache.rocketmq.v2.Publishing.Builder builderForValue) {
+      if (publishingBuilder_ == null) {
+        publishing_ = builderForValue.build();
         onChanged();
       } else {
-        publishBuilder_.setMessage(builderForValue.build());
+        publishingBuilder_.setMessage(builderForValue.build());
       }
-
+      bitField0_ |= 0x00000001;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Publish publish = 3;</code>
+     * <code>optional .apache.rocketmq.v2.Publishing publishing = 1;</code>
      */
-    public Builder mergePublish(apache.rocketmq.v2.Publish value) {
-      if (publishBuilder_ == null) {
-        if (publish_ != null) {
-          publish_ =
-            apache.rocketmq.v2.Publish.newBuilder(publish_).mergeFrom(value).buildPartial();
+    public Builder mergePublishing(apache.rocketmq.v2.Publishing value) {
+      if (publishingBuilder_ == null) {
+        if (((bitField0_ & 0x00000001) != 0) &&
+            publishing_ != null &&
+            publishing_ != apache.rocketmq.v2.Publishing.getDefaultInstance()) {
+          publishing_ =
+            apache.rocketmq.v2.Publishing.newBuilder(publishing_).mergeFrom(value).buildPartial();
         } else {
-          publish_ = value;
+          publishing_ = value;
         }
         onChanged();
       } else {
-        publishBuilder_.mergeFrom(value);
+        publishingBuilder_.mergeFrom(value);
       }
-
+      bitField0_ |= 0x00000001;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Publish publish = 3;</code>
+     * <code>optional .apache.rocketmq.v2.Publishing publishing = 1;</code>
      */
-    public Builder clearPublish() {
-      if (publishBuilder_ == null) {
-        publish_ = null;
+    public Builder clearPublishing() {
+      if (publishingBuilder_ == null) {
+        publishing_ = null;
         onChanged();
       } else {
-        publish_ = null;
-        publishBuilder_ = null;
+        publishingBuilder_.clear();
       }
-
+      bitField0_ = (bitField0_ & ~0x00000001);
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Publish publish = 3;</code>
+     * <code>optional .apache.rocketmq.v2.Publishing publishing = 1;</code>
      */
-    public apache.rocketmq.v2.Publish.Builder getPublishBuilder() {
-      
+    public apache.rocketmq.v2.Publishing.Builder getPublishingBuilder() {
+      bitField0_ |= 0x00000001;
       onChanged();
-      return getPublishFieldBuilder().getBuilder();
+      return getPublishingFieldBuilder().getBuilder();
     }
     /**
-     * <code>.apache.rocketmq.v2.Publish publish = 3;</code>
+     * <code>optional .apache.rocketmq.v2.Publishing publishing = 1;</code>
      */
-    public apache.rocketmq.v2.PublishOrBuilder getPublishOrBuilder() {
-      if (publishBuilder_ != null) {
-        return publishBuilder_.getMessageOrBuilder();
+    public apache.rocketmq.v2.PublishingOrBuilder getPublishingOrBuilder() {
+      if (publishingBuilder_ != null) {
+        return publishingBuilder_.getMessageOrBuilder();
       } else {
-        return publish_ == null ?
-            apache.rocketmq.v2.Publish.getDefaultInstance() : publish_;
+        return publishing_ == null ?
+            apache.rocketmq.v2.Publishing.getDefaultInstance() : publishing_;
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Publish publish = 3;</code>
+     * <code>optional .apache.rocketmq.v2.Publishing publishing = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.Publish, apache.rocketmq.v2.Publish.Builder, apache.rocketmq.v2.PublishOrBuilder> 
-        getPublishFieldBuilder() {
-      if (publishBuilder_ == null) {
-        publishBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            apache.rocketmq.v2.Publish, apache.rocketmq.v2.Publish.Builder, apache.rocketmq.v2.PublishOrBuilder>(
-                getPublish(),
+        apache.rocketmq.v2.Publishing, apache.rocketmq.v2.Publishing.Builder, apache.rocketmq.v2.PublishingOrBuilder> 
+        getPublishingFieldBuilder() {
+      if (publishingBuilder_ == null) {
+        publishingBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            apache.rocketmq.v2.Publishing, apache.rocketmq.v2.Publishing.Builder, apache.rocketmq.v2.PublishingOrBuilder>(
+                getPublishing(),
                 getParentForChildren(),
                 isClean());
-        publish_ = null;
+        publishing_ = null;
       }
-      return publishBuilder_;
+      return publishingBuilder_;
     }
 
     private apache.rocketmq.v2.Subscription subscription_;
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Subscription, apache.rocketmq.v2.Subscription.Builder, apache.rocketmq.v2.SubscriptionOrBuilder> subscriptionBuilder_;
     /**
-     * <code>.apache.rocketmq.v2.Subscription subscription = 4;</code>
+     * <code>optional .apache.rocketmq.v2.Subscription subscription = 2;</code>
      * @return Whether the subscription field is set.
      */
     public boolean hasSubscription() {
-      return subscriptionBuilder_ != null || subscription_ != null;
+      return ((bitField0_ & 0x00000002) != 0);
     }
     /**
-     * <code>.apache.rocketmq.v2.Subscription subscription = 4;</code>
+     * <code>optional .apache.rocketmq.v2.Subscription subscription = 2;</code>
      * @return The subscription.
      */
     public apache.rocketmq.v2.Subscription getSubscription() {
@@ -989,7 +728,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Subscription subscription = 4;</code>
+     * <code>optional .apache.rocketmq.v2.Subscription subscription = 2;</code>
      */
     public Builder setSubscription(apache.rocketmq.v2.Subscription value) {
       if (subscriptionBuilder_ == null) {
@@ -1001,11 +740,11 @@ private static final long serialVersionUID = 0L;
       } else {
         subscriptionBuilder_.setMessage(value);
       }
-
+      bitField0_ |= 0x00000002;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Subscription subscription = 4;</code>
+     * <code>optional .apache.rocketmq.v2.Subscription subscription = 2;</code>
      */
     public Builder setSubscription(
         apache.rocketmq.v2.Subscription.Builder builderForValue) {
@@ -1015,15 +754,17 @@ private static final long serialVersionUID = 0L;
       } else {
         subscriptionBuilder_.setMessage(builderForValue.build());
       }
-
+      bitField0_ |= 0x00000002;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Subscription subscription = 4;</code>
+     * <code>optional .apache.rocketmq.v2.Subscription subscription = 2;</code>
      */
     public Builder mergeSubscription(apache.rocketmq.v2.Subscription value) {
       if (subscriptionBuilder_ == null) {
-        if (subscription_ != null) {
+        if (((bitField0_ & 0x00000002) != 0) &&
+            subscription_ != null &&
+            subscription_ != apache.rocketmq.v2.Subscription.getDefaultInstance()) {
           subscription_ =
             apache.rocketmq.v2.Subscription.newBuilder(subscription_).mergeFrom(value).buildPartial();
         } else {
@@ -1033,33 +774,32 @@ private static final long serialVersionUID = 0L;
       } else {
         subscriptionBuilder_.mergeFrom(value);
       }
-
+      bitField0_ |= 0x00000002;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Subscription subscription = 4;</code>
+     * <code>optional .apache.rocketmq.v2.Subscription subscription = 2;</code>
      */
     public Builder clearSubscription() {
       if (subscriptionBuilder_ == null) {
         subscription_ = null;
         onChanged();
       } else {
-        subscription_ = null;
-        subscriptionBuilder_ = null;
+        subscriptionBuilder_.clear();
       }
-
+      bitField0_ = (bitField0_ & ~0x00000002);
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Subscription subscription = 4;</code>
+     * <code>optional .apache.rocketmq.v2.Subscription subscription = 2;</code>
      */
     public apache.rocketmq.v2.Subscription.Builder getSubscriptionBuilder() {
-      
+      bitField0_ |= 0x00000002;
       onChanged();
       return getSubscriptionFieldBuilder().getBuilder();
     }
     /**
-     * <code>.apache.rocketmq.v2.Subscription subscription = 4;</code>
+     * <code>optional .apache.rocketmq.v2.Subscription subscription = 2;</code>
      */
     public apache.rocketmq.v2.SubscriptionOrBuilder getSubscriptionOrBuilder() {
       if (subscriptionBuilder_ != null) {
@@ -1070,7 +810,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Subscription subscription = 4;</code>
+     * <code>optional .apache.rocketmq.v2.Subscription subscription = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Subscription, apache.rocketmq.v2.Subscription.Builder, apache.rocketmq.v2.SubscriptionOrBuilder> 
@@ -1086,123 +826,123 @@ private static final long serialVersionUID = 0L;
       return subscriptionBuilder_;
     }
 
-    private apache.rocketmq.v2.Authentication authentication_;
+    private apache.rocketmq.v2.Tracing tracing_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.Authentication, apache.rocketmq.v2.Authentication.Builder, apache.rocketmq.v2.AuthenticationOrBuilder> authenticationBuilder_;
+        apache.rocketmq.v2.Tracing, apache.rocketmq.v2.Tracing.Builder, apache.rocketmq.v2.TracingOrBuilder> tracingBuilder_;
     /**
-     * <code>.apache.rocketmq.v2.Authentication authentication = 5;</code>
-     * @return Whether the authentication field is set.
+     * <code>.apache.rocketmq.v2.Tracing tracing = 3;</code>
+     * @return Whether the tracing field is set.
      */
-    public boolean hasAuthentication() {
-      return authenticationBuilder_ != null || authentication_ != null;
+    public boolean hasTracing() {
+      return tracingBuilder_ != null || tracing_ != null;
     }
     /**
-     * <code>.apache.rocketmq.v2.Authentication authentication = 5;</code>
-     * @return The authentication.
+     * <code>.apache.rocketmq.v2.Tracing tracing = 3;</code>
+     * @return The tracing.
      */
-    public apache.rocketmq.v2.Authentication getAuthentication() {
-      if (authenticationBuilder_ == null) {
-        return authentication_ == null ? apache.rocketmq.v2.Authentication.getDefaultInstance() : authentication_;
+    public apache.rocketmq.v2.Tracing getTracing() {
+      if (tracingBuilder_ == null) {
+        return tracing_ == null ? apache.rocketmq.v2.Tracing.getDefaultInstance() : tracing_;
       } else {
-        return authenticationBuilder_.getMessage();
+        return tracingBuilder_.getMessage();
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Authentication authentication = 5;</code>
+     * <code>.apache.rocketmq.v2.Tracing tracing = 3;</code>
      */
-    public Builder setAuthentication(apache.rocketmq.v2.Authentication value) {
-      if (authenticationBuilder_ == null) {
+    public Builder setTracing(apache.rocketmq.v2.Tracing value) {
+      if (tracingBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        authentication_ = value;
+        tracing_ = value;
         onChanged();
       } else {
-        authenticationBuilder_.setMessage(value);
+        tracingBuilder_.setMessage(value);
       }
 
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Authentication authentication = 5;</code>
+     * <code>.apache.rocketmq.v2.Tracing tracing = 3;</code>
      */
-    public Builder setAuthentication(
-        apache.rocketmq.v2.Authentication.Builder builderForValue) {
-      if (authenticationBuilder_ == null) {
-        authentication_ = builderForValue.build();
+    public Builder setTracing(
+        apache.rocketmq.v2.Tracing.Builder builderForValue) {
+      if (tracingBuilder_ == null) {
+        tracing_ = builderForValue.build();
         onChanged();
       } else {
-        authenticationBuilder_.setMessage(builderForValue.build());
+        tracingBuilder_.setMessage(builderForValue.build());
       }
 
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Authentication authentication = 5;</code>
+     * <code>.apache.rocketmq.v2.Tracing tracing = 3;</code>
      */
-    public Builder mergeAuthentication(apache.rocketmq.v2.Authentication value) {
-      if (authenticationBuilder_ == null) {
-        if (authentication_ != null) {
-          authentication_ =
-            apache.rocketmq.v2.Authentication.newBuilder(authentication_).mergeFrom(value).buildPartial();
+    public Builder mergeTracing(apache.rocketmq.v2.Tracing value) {
+      if (tracingBuilder_ == null) {
+        if (tracing_ != null) {
+          tracing_ =
+            apache.rocketmq.v2.Tracing.newBuilder(tracing_).mergeFrom(value).buildPartial();
         } else {
-          authentication_ = value;
+          tracing_ = value;
         }
         onChanged();
       } else {
-        authenticationBuilder_.mergeFrom(value);
+        tracingBuilder_.mergeFrom(value);
       }
 
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Authentication authentication = 5;</code>
+     * <code>.apache.rocketmq.v2.Tracing tracing = 3;</code>
      */
-    public Builder clearAuthentication() {
-      if (authenticationBuilder_ == null) {
-        authentication_ = null;
+    public Builder clearTracing() {
+      if (tracingBuilder_ == null) {
+        tracing_ = null;
         onChanged();
       } else {
-        authentication_ = null;
-        authenticationBuilder_ = null;
+        tracing_ = null;
+        tracingBuilder_ = null;
       }
 
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Authentication authentication = 5;</code>
+     * <code>.apache.rocketmq.v2.Tracing tracing = 3;</code>
      */
-    public apache.rocketmq.v2.Authentication.Builder getAuthenticationBuilder() {
+    public apache.rocketmq.v2.Tracing.Builder getTracingBuilder() {
       
       onChanged();
-      return getAuthenticationFieldBuilder().getBuilder();
+      return getTracingFieldBuilder().getBuilder();
     }
     /**
-     * <code>.apache.rocketmq.v2.Authentication authentication = 5;</code>
+     * <code>.apache.rocketmq.v2.Tracing tracing = 3;</code>
      */
-    public apache.rocketmq.v2.AuthenticationOrBuilder getAuthenticationOrBuilder() {
-      if (authenticationBuilder_ != null) {
-        return authenticationBuilder_.getMessageOrBuilder();
+    public apache.rocketmq.v2.TracingOrBuilder getTracingOrBuilder() {
+      if (tracingBuilder_ != null) {
+        return tracingBuilder_.getMessageOrBuilder();
       } else {
-        return authentication_ == null ?
-            apache.rocketmq.v2.Authentication.getDefaultInstance() : authentication_;
+        return tracing_ == null ?
+            apache.rocketmq.v2.Tracing.getDefaultInstance() : tracing_;
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Authentication authentication = 5;</code>
+     * <code>.apache.rocketmq.v2.Tracing tracing = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.Authentication, apache.rocketmq.v2.Authentication.Builder, apache.rocketmq.v2.AuthenticationOrBuilder> 
-        getAuthenticationFieldBuilder() {
-      if (authenticationBuilder_ == null) {
-        authenticationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            apache.rocketmq.v2.Authentication, apache.rocketmq.v2.Authentication.Builder, apache.rocketmq.v2.AuthenticationOrBuilder>(
-                getAuthentication(),
+        apache.rocketmq.v2.Tracing, apache.rocketmq.v2.Tracing.Builder, apache.rocketmq.v2.TracingOrBuilder> 
+        getTracingFieldBuilder() {
+      if (tracingBuilder_ == null) {
+        tracingBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            apache.rocketmq.v2.Tracing, apache.rocketmq.v2.Tracing.Builder, apache.rocketmq.v2.TracingOrBuilder>(
+                getTracing(),
                 getParentForChildren(),
                 isClean());
-        authentication_ = null;
+        tracing_ = null;
       }
-      return authenticationBuilder_;
+      return tracingBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

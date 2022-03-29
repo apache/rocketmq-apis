@@ -94,7 +94,7 @@ public enum Encoding
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return apache.rocketmq.v2.MQDomain.getDescriptor().getEnumTypes().get(9);
+    return apache.rocketmq.v2.MQDomain.getDescriptor().getEnumTypes().get(8);
   }
 
   private static final Encoding[] VALUES = values();

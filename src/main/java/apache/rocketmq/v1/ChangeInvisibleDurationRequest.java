@@ -282,7 +282,7 @@ private static final long serialVersionUID = 0L;
     if (topic_ != null) {
       output.writeMessage(2, getTopic());
     }
-    if (!getReceiptHandleBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(receiptHandle_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, receiptHandle_);
     }
     if (invisibleDuration_ != null) {
@@ -305,7 +305,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, getTopic());
     }
-    if (!getReceiptHandleBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(receiptHandle_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, receiptHandle_);
     }
     if (invisibleDuration_ != null) {

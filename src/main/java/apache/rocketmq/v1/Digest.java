@@ -183,7 +183,7 @@ private static final long serialVersionUID = 0L;
     if (type_ != apache.rocketmq.v1.DigestType.CRC32.getNumber()) {
       output.writeEnum(1, type_);
     }
-    if (!getChecksumBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(checksum_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, checksum_);
     }
     unknownFields.writeTo(output);
@@ -199,7 +199,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(1, type_);
     }
-    if (!getChecksumBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(checksum_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, checksum_);
     }
     size += unknownFields.getSerializedSize();

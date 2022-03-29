@@ -4,37 +4,53 @@
 package apache.rocketmq.v2;
 
 /**
- * Protobuf enum {@code apache.rocketmq.v2.ConsumeMessageType}
+ * Protobuf enum {@code apache.rocketmq.v2.ClientType}
  */
-public enum ConsumeMessageType
+public enum ClientType
     implements com.google.protobuf.ProtocolMessageEnum {
   /**
-   * <code>CONSUME_MESSAGE_TYPE_UNSPECIFIED = 0;</code>
+   * <code>CLIENT_TYPE_UNSPECIFIED = 0;</code>
    */
-  CONSUME_MESSAGE_TYPE_UNSPECIFIED(0),
+  CLIENT_TYPE_UNSPECIFIED(0),
   /**
-   * <code>ACTIVE = 1;</code>
+   * <code>PRODUCER = 1;</code>
    */
-  ACTIVE(1),
+  PRODUCER(1),
   /**
-   * <code>PASSIVE = 2;</code>
+   * <code>PUSH_CONSUMER = 2;</code>
    */
-  PASSIVE(2),
+  PUSH_CONSUMER(2),
+  /**
+   * <code>PULL_CONSUMER = 3;</code>
+   */
+  PULL_CONSUMER(3),
+  /**
+   * <code>SIMPLE_CONSUMER = 4;</code>
+   */
+  SIMPLE_CONSUMER(4),
   UNRECOGNIZED(-1),
   ;
 
   /**
-   * <code>CONSUME_MESSAGE_TYPE_UNSPECIFIED = 0;</code>
+   * <code>CLIENT_TYPE_UNSPECIFIED = 0;</code>
    */
-  public static final int CONSUME_MESSAGE_TYPE_UNSPECIFIED_VALUE = 0;
+  public static final int CLIENT_TYPE_UNSPECIFIED_VALUE = 0;
   /**
-   * <code>ACTIVE = 1;</code>
+   * <code>PRODUCER = 1;</code>
    */
-  public static final int ACTIVE_VALUE = 1;
+  public static final int PRODUCER_VALUE = 1;
   /**
-   * <code>PASSIVE = 2;</code>
+   * <code>PUSH_CONSUMER = 2;</code>
    */
-  public static final int PASSIVE_VALUE = 2;
+  public static final int PUSH_CONSUMER_VALUE = 2;
+  /**
+   * <code>PULL_CONSUMER = 3;</code>
+   */
+  public static final int PULL_CONSUMER_VALUE = 3;
+  /**
+   * <code>SIMPLE_CONSUMER = 4;</code>
+   */
+  public static final int SIMPLE_CONSUMER_VALUE = 4;
 
 
   public final int getNumber() {
@@ -51,7 +67,7 @@ public enum ConsumeMessageType
    * @deprecated Use {@link #forNumber(int)} instead.
    */
   @java.lang.Deprecated
-  public static ConsumeMessageType valueOf(int value) {
+  public static ClientType valueOf(int value) {
     return forNumber(value);
   }
 
@@ -59,24 +75,26 @@ public enum ConsumeMessageType
    * @param value The numeric wire value of the corresponding enum entry.
    * @return The enum associated with the given numeric wire value.
    */
-  public static ConsumeMessageType forNumber(int value) {
+  public static ClientType forNumber(int value) {
     switch (value) {
-      case 0: return CONSUME_MESSAGE_TYPE_UNSPECIFIED;
-      case 1: return ACTIVE;
-      case 2: return PASSIVE;
+      case 0: return CLIENT_TYPE_UNSPECIFIED;
+      case 1: return PRODUCER;
+      case 2: return PUSH_CONSUMER;
+      case 3: return PULL_CONSUMER;
+      case 4: return SIMPLE_CONSUMER;
       default: return null;
     }
   }
 
-  public static com.google.protobuf.Internal.EnumLiteMap<ConsumeMessageType>
+  public static com.google.protobuf.Internal.EnumLiteMap<ClientType>
       internalGetValueMap() {
     return internalValueMap;
   }
   private static final com.google.protobuf.Internal.EnumLiteMap<
-      ConsumeMessageType> internalValueMap =
-        new com.google.protobuf.Internal.EnumLiteMap<ConsumeMessageType>() {
-          public ConsumeMessageType findValueByNumber(int number) {
-            return ConsumeMessageType.forNumber(number);
+      ClientType> internalValueMap =
+        new com.google.protobuf.Internal.EnumLiteMap<ClientType>() {
+          public ClientType findValueByNumber(int number) {
+            return ClientType.forNumber(number);
           }
         };
 
@@ -94,12 +112,12 @@ public enum ConsumeMessageType
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return apache.rocketmq.v2.MQDomain.getDescriptor().getEnumTypes().get(4);
+    return apache.rocketmq.v2.MQDomain.getDescriptor().getEnumTypes().get(7);
   }
 
-  private static final ConsumeMessageType[] VALUES = values();
+  private static final ClientType[] VALUES = values();
 
-  public static ConsumeMessageType valueOf(
+  public static ClientType valueOf(
       com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
     if (desc.getType() != getDescriptor()) {
       throw new java.lang.IllegalArgumentException(
@@ -113,10 +131,10 @@ public enum ConsumeMessageType
 
   private final int value;
 
-  private ConsumeMessageType(int value) {
+  private ClientType(int value) {
     this.value = value;
   }
 
-  // @@protoc_insertion_point(enum_scope:apache.rocketmq.v2.ConsumeMessageType)
+  // @@protoc_insertion_point(enum_scope:apache.rocketmq.v2.ClientType)
 }
 

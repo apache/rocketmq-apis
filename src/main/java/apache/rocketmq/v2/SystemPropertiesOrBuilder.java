@@ -9,19 +9,28 @@ public interface SystemPropertiesOrBuilder extends
 
   /**
    * <pre>
-   * Tag
+   * Tag, which is optional.
    * </pre>
    *
-   * <code>string tag = 1;</code>
+   * <code>optional string tag = 1;</code>
+   * @return Whether the tag field is set.
+   */
+  boolean hasTag();
+  /**
+   * <pre>
+   * Tag, which is optional.
+   * </pre>
+   *
+   * <code>optional string tag = 1;</code>
    * @return The tag.
    */
   java.lang.String getTag();
   /**
    * <pre>
-   * Tag
+   * Tag, which is optional.
    * </pre>
    *
-   * <code>string tag = 1;</code>
+   * <code>optional string tag = 1;</code>
    * @return The bytes for tag.
    */
   com.google.protobuf.ByteString
@@ -206,28 +215,31 @@ public interface SystemPropertiesOrBuilder extends
 
   /**
    * <pre>
-   * Time-point at which the message is stored in the broker.
+   * Time-point at which the message is stored in the broker, which is absent
+   * for message publishing.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp store_timestamp = 9;</code>
+   * <code>optional .google.protobuf.Timestamp store_timestamp = 9;</code>
    * @return Whether the storeTimestamp field is set.
    */
   boolean hasStoreTimestamp();
   /**
    * <pre>
-   * Time-point at which the message is stored in the broker.
+   * Time-point at which the message is stored in the broker, which is absent
+   * for message publishing.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp store_timestamp = 9;</code>
+   * <code>optional .google.protobuf.Timestamp store_timestamp = 9;</code>
    * @return The storeTimestamp.
    */
   com.google.protobuf.Timestamp getStoreTimestamp();
   /**
    * <pre>
-   * Time-point at which the message is stored in the broker.
+   * Time-point at which the message is stored in the broker, which is absent
+   * for message publishing.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp store_timestamp = 9;</code>
+   * <code>optional .google.protobuf.Timestamp store_timestamp = 9;</code>
    */
   com.google.protobuf.TimestampOrBuilder getStoreTimestampOrBuilder();
 
@@ -255,50 +267,64 @@ public interface SystemPropertiesOrBuilder extends
 
   /**
    * <pre>
-   * Time-point at which broker delivers to clients.
+   * Time-point at which broker delivers to clients, which is optional.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp delivery_timestamp = 11;</code>
+   * <code>optional .google.protobuf.Timestamp delivery_timestamp = 11;</code>
    * @return Whether the deliveryTimestamp field is set.
    */
   boolean hasDeliveryTimestamp();
   /**
    * <pre>
-   * Time-point at which broker delivers to clients.
+   * Time-point at which broker delivers to clients, which is optional.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp delivery_timestamp = 11;</code>
+   * <code>optional .google.protobuf.Timestamp delivery_timestamp = 11;</code>
    * @return The deliveryTimestamp.
    */
   com.google.protobuf.Timestamp getDeliveryTimestamp();
   /**
    * <pre>
-   * Time-point at which broker delivers to clients.
+   * Time-point at which broker delivers to clients, which is optional.
    * </pre>
    *
-   * <code>.google.protobuf.Timestamp delivery_timestamp = 11;</code>
+   * <code>optional .google.protobuf.Timestamp delivery_timestamp = 11;</code>
    */
   com.google.protobuf.TimestampOrBuilder getDeliveryTimestampOrBuilder();
 
   /**
    * <pre>
-   * If a message is acquired by way of POP, this field holds the receipt.
+   * If a message is acquired by way of POP, this field holds the receipt,
+   * which is absent for message publishing.
    * Clients use the receipt to acknowledge or negatively acknowledge the
    * message.
    * </pre>
    *
-   * <code>string receipt_handle = 12;</code>
+   * <code>optional string receipt_handle = 12;</code>
+   * @return Whether the receiptHandle field is set.
+   */
+  boolean hasReceiptHandle();
+  /**
+   * <pre>
+   * If a message is acquired by way of POP, this field holds the receipt,
+   * which is absent for message publishing.
+   * Clients use the receipt to acknowledge or negatively acknowledge the
+   * message.
+   * </pre>
+   *
+   * <code>optional string receipt_handle = 12;</code>
    * @return The receiptHandle.
    */
   java.lang.String getReceiptHandle();
   /**
    * <pre>
-   * If a message is acquired by way of POP, this field holds the receipt.
+   * If a message is acquired by way of POP, this field holds the receipt,
+   * which is absent for message publishing.
    * Clients use the receipt to acknowledge or negatively acknowledge the
    * message.
    * </pre>
    *
-   * <code>string receipt_handle = 12;</code>
+   * <code>optional string receipt_handle = 12;</code>
    * @return The bytes for receiptHandle.
    */
   com.google.protobuf.ByteString
@@ -316,10 +342,21 @@ public interface SystemPropertiesOrBuilder extends
 
   /**
    * <pre>
-   * Message-queue offset at which a message is stored.
+   * Message-queue offset at which a message is stored, which is absent for
+   * message publishing.
    * </pre>
    *
-   * <code>int64 queue_offset = 14;</code>
+   * <code>optional int64 queue_offset = 14;</code>
+   * @return Whether the queueOffset field is set.
+   */
+  boolean hasQueueOffset();
+  /**
+   * <pre>
+   * Message-queue offset at which a message is stored, which is absent for
+   * message publishing.
+   * </pre>
+   *
+   * <code>optional int64 queue_offset = 14;</code>
    * @return The queueOffset.
    */
   long getQueueOffset();
@@ -329,7 +366,7 @@ public interface SystemPropertiesOrBuilder extends
    * Period of time servers would remain invisible once a message is acquired.
    * </pre>
    *
-   * <code>.google.protobuf.Duration invisible_duration = 15;</code>
+   * <code>optional .google.protobuf.Duration invisible_duration = 15;</code>
    * @return Whether the invisibleDuration field is set.
    */
   boolean hasInvisibleDuration();
@@ -338,7 +375,7 @@ public interface SystemPropertiesOrBuilder extends
    * Period of time servers would remain invisible once a message is acquired.
    * </pre>
    *
-   * <code>.google.protobuf.Duration invisible_duration = 15;</code>
+   * <code>optional .google.protobuf.Duration invisible_duration = 15;</code>
    * @return The invisibleDuration.
    */
   com.google.protobuf.Duration getInvisibleDuration();
@@ -347,7 +384,7 @@ public interface SystemPropertiesOrBuilder extends
    * Period of time servers would remain invisible once a message is acquired.
    * </pre>
    *
-   * <code>.google.protobuf.Duration invisible_duration = 15;</code>
+   * <code>optional .google.protobuf.Duration invisible_duration = 15;</code>
    */
   com.google.protobuf.DurationOrBuilder getInvisibleDurationOrBuilder();
 
@@ -355,21 +392,51 @@ public interface SystemPropertiesOrBuilder extends
    * <pre>
    * Business code may failed to process messages for the moment. Hence, clients
    * may request servers to deliver them again using certain back-off strategy,
-   * the attempt is 1 not 0 if message is delivered first time.
+   * the attempt is 1 not 0 if message is delivered first time, and it is absent
+   * for message publishing.
    * </pre>
    *
-   * <code>int32 delivery_attempt = 16;</code>
+   * <code>optional int32 delivery_attempt = 16;</code>
+   * @return Whether the deliveryAttempt field is set.
+   */
+  boolean hasDeliveryAttempt();
+  /**
+   * <pre>
+   * Business code may failed to process messages for the moment. Hence, clients
+   * may request servers to deliver them again using certain back-off strategy,
+   * the attempt is 1 not 0 if message is delivered first time, and it is absent
+   * for message publishing.
+   * </pre>
+   *
+   * <code>optional int32 delivery_attempt = 16;</code>
    * @return The deliveryAttempt.
    */
   int getDeliveryAttempt();
 
   /**
-   * <code>string message_group = 17;</code>
+   * <pre>
+   * Define the group name of message in the same topic, which is optional.
+   * </pre>
+   *
+   * <code>optional string message_group = 17;</code>
+   * @return Whether the messageGroup field is set.
+   */
+  boolean hasMessageGroup();
+  /**
+   * <pre>
+   * Define the group name of message in the same topic, which is optional.
+   * </pre>
+   *
+   * <code>optional string message_group = 17;</code>
    * @return The messageGroup.
    */
   java.lang.String getMessageGroup();
   /**
-   * <code>string message_group = 17;</code>
+   * <pre>
+   * Define the group name of message in the same topic, which is optional.
+   * </pre>
+   *
+   * <code>optional string message_group = 17;</code>
    * @return The bytes for messageGroup.
    */
   com.google.protobuf.ByteString
@@ -377,19 +444,28 @@ public interface SystemPropertiesOrBuilder extends
 
   /**
    * <pre>
-   * Trace context.
+   * Trace context for each message, which is optional.
    * </pre>
    *
-   * <code>string trace_context = 18;</code>
+   * <code>optional string trace_context = 18;</code>
+   * @return Whether the traceContext field is set.
+   */
+  boolean hasTraceContext();
+  /**
+   * <pre>
+   * Trace context for each message, which is optional.
+   * </pre>
+   *
+   * <code>optional string trace_context = 18;</code>
    * @return The traceContext.
    */
   java.lang.String getTraceContext();
   /**
    * <pre>
-   * Trace context.
+   * Trace context for each message, which is optional.
    * </pre>
    *
-   * <code>string trace_context = 18;</code>
+   * <code>optional string trace_context = 18;</code>
    * @return The bytes for traceContext.
    */
   com.google.protobuf.ByteString
@@ -397,28 +473,37 @@ public interface SystemPropertiesOrBuilder extends
 
   /**
    * <pre>
-   * Delay time of first recover orphaned transaction request from server.
+   * If a transactional message stay unresolved for more than
+   * `transaction_orphan_threshold`, it would be regarded as an
+   * orphan. Servers that manages orphan messages would pick up
+   * a capable publisher to resolve
    * </pre>
    *
-   * <code>.google.protobuf.Duration orphaned_transaction_recovery_duration = 19;</code>
+   * <code>optional .google.protobuf.Duration orphaned_transaction_recovery_duration = 19;</code>
    * @return Whether the orphanedTransactionRecoveryDuration field is set.
    */
   boolean hasOrphanedTransactionRecoveryDuration();
   /**
    * <pre>
-   * Delay time of first recover orphaned transaction request from server.
+   * If a transactional message stay unresolved for more than
+   * `transaction_orphan_threshold`, it would be regarded as an
+   * orphan. Servers that manages orphan messages would pick up
+   * a capable publisher to resolve
    * </pre>
    *
-   * <code>.google.protobuf.Duration orphaned_transaction_recovery_duration = 19;</code>
+   * <code>optional .google.protobuf.Duration orphaned_transaction_recovery_duration = 19;</code>
    * @return The orphanedTransactionRecoveryDuration.
    */
   com.google.protobuf.Duration getOrphanedTransactionRecoveryDuration();
   /**
    * <pre>
-   * Delay time of first recover orphaned transaction request from server.
+   * If a transactional message stay unresolved for more than
+   * `transaction_orphan_threshold`, it would be regarded as an
+   * orphan. Servers that manages orphan messages would pick up
+   * a capable publisher to resolve
    * </pre>
    *
-   * <code>.google.protobuf.Duration orphaned_transaction_recovery_duration = 19;</code>
+   * <code>optional .google.protobuf.Duration orphaned_transaction_recovery_duration = 19;</code>
    */
   com.google.protobuf.DurationOrBuilder getOrphanedTransactionRecoveryDurationOrBuilder();
 }

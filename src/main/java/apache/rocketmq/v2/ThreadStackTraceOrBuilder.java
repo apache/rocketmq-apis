@@ -8,18 +8,44 @@ public interface ThreadStackTraceOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int64 command_id = 1;</code>
-   * @return The commandId.
+   * <code>string nonce = 1;</code>
+   * @return The nonce.
    */
-  long getCommandId();
+  java.lang.String getNonce();
+  /**
+   * <code>string nonce = 1;</code>
+   * @return The bytes for nonce.
+   */
+  com.google.protobuf.ByteString
+      getNonceBytes();
 
   /**
-   * <code>string thread_stack_trace = 2;</code>
+   * <code>.apache.rocketmq.v2.Status status = 2;</code>
+   * @return Whether the status field is set.
+   */
+  boolean hasStatus();
+  /**
+   * <code>.apache.rocketmq.v2.Status status = 2;</code>
+   * @return The status.
+   */
+  apache.rocketmq.v2.Status getStatus();
+  /**
+   * <code>.apache.rocketmq.v2.Status status = 2;</code>
+   */
+  apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder();
+
+  /**
+   * <code>optional string thread_stack_trace = 3;</code>
+   * @return Whether the threadStackTrace field is set.
+   */
+  boolean hasThreadStackTrace();
+  /**
+   * <code>optional string thread_stack_trace = 3;</code>
    * @return The threadStackTrace.
    */
   java.lang.String getThreadStackTrace();
   /**
-   * <code>string thread_stack_trace = 2;</code>
+   * <code>optional string thread_stack_trace = 3;</code>
    * @return The bytes for threadStackTrace.
    */
   com.google.protobuf.ByteString

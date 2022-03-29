@@ -158,8 +158,8 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 96: {
-            timedDeliveryCase_ = 12;
             timedDelivery_ = input.readInt32();
+            timedDeliveryCase_ = 12;
             break;
           }
           case 106: {
@@ -769,6 +769,18 @@ private static final long serialVersionUID = 0L;
    * </pre>
    *
    * <code>int32 delay_level = 12;</code>
+   * @return Whether the delayLevel field is set.
+   */
+  @java.lang.Override
+  public boolean hasDelayLevel() {
+    return timedDeliveryCase_ == 12;
+  }
+  /**
+   * <pre>
+   * Level-based delay strategy.
+   * </pre>
+   *
+   * <code>int32 delay_level = 12;</code>
    * @return The delayLevel.
    */
   @java.lang.Override
@@ -1088,13 +1100,13 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getTagBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(tag_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tag_);
     }
     for (int i = 0; i < keys_.size(); i++) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, keys_.getRaw(i));
     }
-    if (!getMessageIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(messageId_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, messageId_);
     }
     if (bodyDigest_ != null) {
@@ -1109,13 +1121,13 @@ private static final long serialVersionUID = 0L;
     if (bornTimestamp_ != null) {
       output.writeMessage(7, getBornTimestamp());
     }
-    if (!getBornHostBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bornHost_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 8, bornHost_);
     }
     if (storeTimestamp_ != null) {
       output.writeMessage(9, getStoreTimestamp());
     }
-    if (!getStoreHostBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(storeHost_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 10, storeHost_);
     }
     if (timedDeliveryCase_ == 11) {
@@ -1125,7 +1137,7 @@ private static final long serialVersionUID = 0L;
       output.writeInt32(
           12, (int)((java.lang.Integer) timedDelivery_));
     }
-    if (!getReceiptHandleBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(receiptHandle_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 13, receiptHandle_);
     }
     if (partitionId_ != 0) {
@@ -1143,10 +1155,10 @@ private static final long serialVersionUID = 0L;
     if (producerGroup_ != null) {
       output.writeMessage(18, getProducerGroup());
     }
-    if (!getMessageGroupBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(messageGroup_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 19, messageGroup_);
     }
-    if (!getTraceContextBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(traceContext_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 20, traceContext_);
     }
     if (orphanedTransactionRecoveryPeriod_ != null) {
@@ -1161,7 +1173,7 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getTagBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(tag_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tag_);
     }
     {
@@ -1172,7 +1184,7 @@ private static final long serialVersionUID = 0L;
       size += dataSize;
       size += 1 * getKeysList().size();
     }
-    if (!getMessageIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(messageId_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, messageId_);
     }
     if (bodyDigest_ != null) {
@@ -1191,14 +1203,14 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(7, getBornTimestamp());
     }
-    if (!getBornHostBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bornHost_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, bornHost_);
     }
     if (storeTimestamp_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(9, getStoreTimestamp());
     }
-    if (!getStoreHostBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(storeHost_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, storeHost_);
     }
     if (timedDeliveryCase_ == 11) {
@@ -1210,7 +1222,7 @@ private static final long serialVersionUID = 0L;
         .computeInt32Size(
             12, (int)((java.lang.Integer) timedDelivery_));
     }
-    if (!getReceiptHandleBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(receiptHandle_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(13, receiptHandle_);
     }
     if (partitionId_ != 0) {
@@ -1233,10 +1245,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(18, getProducerGroup());
     }
-    if (!getMessageGroupBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(messageGroup_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(19, messageGroup_);
     }
-    if (!getTraceContextBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(traceContext_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(20, traceContext_);
     }
     if (orphanedTransactionRecoveryPeriod_ != null) {
@@ -3195,6 +3207,17 @@ private static final long serialVersionUID = 0L;
       return deliveryTimestampBuilder_;
     }
 
+    /**
+     * <pre>
+     * Level-based delay strategy.
+     * </pre>
+     *
+     * <code>int32 delay_level = 12;</code>
+     * @return Whether the delayLevel field is set.
+     */
+    public boolean hasDelayLevel() {
+      return timedDeliveryCase_ == 12;
+    }
     /**
      * <pre>
      * Level-based delay strategy.

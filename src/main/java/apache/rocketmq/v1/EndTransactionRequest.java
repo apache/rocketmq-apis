@@ -539,10 +539,10 @@ private static final long serialVersionUID = 0L;
     if (group_ != null) {
       output.writeMessage(1, getGroup());
     }
-    if (!getMessageIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(messageId_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, messageId_);
     }
-    if (!getTransactionIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transactionId_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, transactionId_);
     }
     if (resolution_ != apache.rocketmq.v1.EndTransactionRequest.TransactionResolution.COMMIT.getNumber()) {
@@ -551,7 +551,7 @@ private static final long serialVersionUID = 0L;
     if (source_ != apache.rocketmq.v1.EndTransactionRequest.Source.CLIENT.getNumber()) {
       output.writeEnum(5, source_);
     }
-    if (!getTraceContextBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(traceContext_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 6, traceContext_);
     }
     unknownFields.writeTo(output);
@@ -567,10 +567,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, getGroup());
     }
-    if (!getMessageIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(messageId_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, messageId_);
     }
-    if (!getTransactionIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transactionId_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, transactionId_);
     }
     if (resolution_ != apache.rocketmq.v1.EndTransactionRequest.TransactionResolution.COMMIT.getNumber()) {
@@ -581,7 +581,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(5, source_);
     }
-    if (!getTraceContextBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(traceContext_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, traceContext_);
     }
     size += unknownFields.getSerializedSize();

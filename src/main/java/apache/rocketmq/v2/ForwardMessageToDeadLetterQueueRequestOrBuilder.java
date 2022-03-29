@@ -38,49 +38,37 @@ public interface ForwardMessageToDeadLetterQueueRequestOrBuilder extends
   apache.rocketmq.v2.ResourceOrBuilder getTopicOrBuilder();
 
   /**
-   * <code>string client_id = 3;</code>
-   * @return The clientId.
-   */
-  java.lang.String getClientId();
-  /**
-   * <code>string client_id = 3;</code>
-   * @return The bytes for clientId.
-   */
-  com.google.protobuf.ByteString
-      getClientIdBytes();
-
-  /**
-   * <code>string receipt_handle = 4;</code>
+   * <code>string receipt_handle = 3;</code>
    * @return The receiptHandle.
    */
   java.lang.String getReceiptHandle();
   /**
-   * <code>string receipt_handle = 4;</code>
+   * <code>string receipt_handle = 3;</code>
    * @return The bytes for receiptHandle.
    */
   com.google.protobuf.ByteString
       getReceiptHandleBytes();
 
   /**
-   * <code>string message_id = 5;</code>
+   * <code>string message_id = 4;</code>
    * @return The messageId.
    */
   java.lang.String getMessageId();
   /**
-   * <code>string message_id = 5;</code>
+   * <code>string message_id = 4;</code>
    * @return The bytes for messageId.
    */
   com.google.protobuf.ByteString
       getMessageIdBytes();
 
   /**
-   * <code>int32 delivery_attempt = 6;</code>
+   * <code>int32 delivery_attempt = 5;</code>
    * @return The deliveryAttempt.
    */
   int getDeliveryAttempt();
 
   /**
-   * <code>int32 max_delivery_attempts = 7;</code>
+   * <code>int32 max_delivery_attempts = 6;</code>
    * @return The maxDeliveryAttempts.
    */
   int getMaxDeliveryAttempts();

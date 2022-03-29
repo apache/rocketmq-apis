@@ -276,7 +276,7 @@ private static final long serialVersionUID = 0L;
     if (groupCase_ == 2) {
       output.writeMessage(2, (apache.rocketmq.v1.Resource) group_);
     }
-    if (!getClientIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, clientId_);
     }
     unknownFields.writeTo(output);
@@ -296,7 +296,7 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, (apache.rocketmq.v1.Resource) group_);
     }
-    if (!getClientIdBytes().isEmpty()) {
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clientId_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, clientId_);
     }
     size += unknownFields.getSerializedSize();

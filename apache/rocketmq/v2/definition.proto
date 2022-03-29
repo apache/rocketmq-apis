@@ -460,7 +460,7 @@ enum Code {
 
   // Code means that the server or client does not support the functionality
   // required to fulfill the request.
-  NOT_IMPELEMENTED = 501;
+  NOT_IMPLEMENTED = 501;
 
   // Code indicates that the server, while acting as a gateway or proxy,
   // did not get a response in time from the upstream server that

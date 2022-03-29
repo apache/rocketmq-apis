@@ -410,11 +410,15 @@ enum Code {
   // Message body size exceeds the threshold.
   MESSAGE_BODY_TOO_LARGE = 10;
 
-  // User does not have the permission to operate. Forbidden.
-  ACCESS_DENIED = 11;
+  // User does not have the permission to operate.
+  // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+  FORBIDDEN = 403;
 
-  // Identity could not be recognized.
-  AUTHENTICATION_REQUIRED = 12;
+  // Code indicates that the client request has not been completed
+  // because it lacks valid authentication credentials for the
+  // requested resource.
+  // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+  UNAUTHORIZED = 401;
 
   // Topic resource does not exist.
   TOPIC_NOT_FOUND = 13;

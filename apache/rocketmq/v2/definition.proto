@@ -457,6 +457,12 @@ enum Code {
   //
   // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
   INTERNAL_SERVER_ERROR = 500;
+
+  // Code indicates that the server, while acting as a gateway or proxy,
+  // did not get a response in time from the upstream server that
+  // it needed in order to complete the request.
+  // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
+  GATEWAY_TIMEOUT = 504;
 }
 
 message Status {

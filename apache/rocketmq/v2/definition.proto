@@ -385,3 +385,66 @@ message SendReceipt {
   string message_id = 1;
   string transaction_id = 2;
 }
+
+enum Code {
+  // Success.
+  OK = 0;
+  // Format of access point is illegal.
+  ILLEGAL_ACCESS_POINT = 1;
+  // Format of topic is illegal.
+  ILLEGAL_TOPIC = 2;
+  // Format of consumer group is illegal.
+  ILLEGAL_CONSUMER_GROUP = 3;
+  // Format of message tag is illegal.
+  ILLEGAL_MESSAGE_TAG = 4;
+  // Format of message key is illegal.
+  ILLEGAL_MESSAGE_KEY = 5;
+  // Size of message keys exceeds the threshold.
+  MESSAGE_KEYS_TOO_LARGE = 6;
+  // Format of message group is illegal.
+  ILLEGAL_MESSAGE_GROUP = 7;
+  // Format of message property key is illegal.
+  ILLEGAL_MESSAGE_PROPERTY_KEY = 8;
+  // Message properties total size exceeds the threshold.
+  MESSAGE_PROPERTIES_TOO_LARGE = 9;
+  // Message body size exceeds the threshold.
+  MESSAGE_BODY_TOO_LARGE = 10;
+
+  // User does not have the permission to operate. Forbidden.
+  ACCESS_DENIED = 11;
+
+  // Identity could not be recognized.
+  AUTHENTICATION_REQUIRED = 12;
+
+  // Topic resource does not exist.
+  TOPIC_NOT_FOUND = 13;
+
+  // Consumer group resource does not exist.
+  CONSUMER_GROUP_NOT_FOUND = 14;
+
+  // Not allowed to verify message. Chances are that you are verifying
+  // a FIFO message, as is violating FIFO semantics.
+  VERIFY_MESSAGE_FORBIDDEN = 15;
+
+  // Failed to consume message.
+  FAILED_TO_CONSUME_MESSAGE = 16;
+
+  // Message is corrupted.
+  MESSAGE_CORRUPTED = 17;
+
+  // Too many requests are made in short period of duration.
+  // Requests are throttled.
+  TOO_MANY_REQUESTS = 18;
+
+  // Expired receip-handle is used when trying to acknowledge or change
+  // invisible duration of a message
+  RECEIPT_HANDLE_EXPIRED = 19;
+
+  // Message property is not match the message type.
+  MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE = 20;
+}
+
+message Status {
+  Code code = 1;
+  string message = 2;
+}

@@ -17,8 +17,6 @@ syntax = "proto3";
 
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
-import "google/rpc/error_details.proto";
-import "google/rpc/status.proto";
 
 import "apache/rocketmq/v2/definition.proto";
 
@@ -73,10 +71,6 @@ message SendMessageResponse {
 message QueryAssignmentRequest {
   Resource topic = 1;
   Resource group = 2;
-  string client_id = 3;
-
-  // Service access point
-  Endpoints endpoints = 4;
 }
 
 message QueryAssignmentResponse {
@@ -86,14 +80,13 @@ message QueryAssignmentResponse {
 
 message ReceiveMessageRequest {
   Resource group = 1;
-  string client_id = 2;
-  MessageQueue message_queue = 3;
-  FilterExpression filter_expression = 4;
-  google.protobuf.Timestamp initialization_timestamp = 5;
-  int32 batch_size = 6;
-  google.protobuf.Duration invisible_duration = 7;
-  google.protobuf.Duration await_duration = 8;
-  bool fifo = 9;
+  MessageQueue message_queue = 2;
+  FilterExpression filter_expression = 3;
+  google.protobuf.Timestamp initialization_timestamp = 4;
+  int32 batch_size = 5;
+  google.protobuf.Duration invisible_duration = 6;
+  google.protobuf.Duration await_duration = 7;
+  bool fifo = 8;
 }
 
 message ReceiveMessageResponse {
@@ -106,34 +99,39 @@ message ReceiveMessageResponse {
 message AckMessageRequest {
   Resource group = 1;
   Resource topic = 2;
-  string client_id = 3;
-  string receipt_handle = 4;
-  string message_id = 5;
+  string receipt_handle = 3;
+  string message_id = 4;
 }
 
 message AckMessageResponse { Status status = 1; }
 
+message NackMessageRequest {
+  Resource group = 1;
+  Resource topic = 2;
+  string receipt_handle = 3;
+  string message_id = 4;
+  int32 delivery_attempt = 5;
+}
+
+message NackMessageResponse { Status status = 1; }
+
 message ForwardMessageToDeadLetterQueueRequest {
   Resource group = 1;
   Resource topic = 2;
-  string client_id = 3;
-  string receipt_handle = 4;
-  string message_id = 5;
-  int32 delivery_attempt = 6;
-  int32 max_delivery_attempts = 7;
+  string receipt_handle = 3;
+  string message_id = 4;
+  int32 delivery_attempt = 5;
+  int32 max_delivery_attempts = 6;
 }
 
 message ForwardMessageToDeadLetterQueueResponse { Status status = 1; }
 
-message HeartbeatRequest {
-  string client_id = 1;
-  Resource group = 2;
-}
+message HeartbeatRequest { optional Resource group = 1; }
 
 message HeartbeatResponse { Status status = 1; }
 
 message EndTransactionRequest {
-  Resource group = 1;
+  Resource topic = 1;
   string message_id = 2;
   string transaction_id = 3;
   TransactionResolution resolution = 4;
@@ -161,7 +159,6 @@ message PullMessageRequest {
   int32 batch_size = 4;
   google.protobuf.Duration await_time = 5;
   FilterExpression filter_expression = 6;
-  string client_id = 7;
 }
 
 message PullMessageResponse {
@@ -172,59 +169,80 @@ message PullMessageResponse {
   repeated Message messages = 5;
 }
 
-message PrintThreadStackTraceCommand { int64 command_id = 1; }
+message PrintThreadStackTraceCommand { string nonce = 1; }
 
 message ThreadStackTrace {
-  int64 command_id = 1;
-  string thread_stack_trace = 2;
+  string nonce = 1;
+  Status status = 2;
+  optional string thread_stack_trace = 3;
 }
 
 message VerifyMessageCommand {
-  int64 command_id = 1;
+  string nonce = 1;
   Message message = 2;
 }
 
 message VerifyMessageResult {
-  int64 command_id = 1;
+  string nonce = 1;
   Status status = 2;
 }
 
 message RecoverOrphanedTransactionCommand {
-  int64 command_id = 1;
-  Message orphaned_transactional_message = 2;
-  string transaction_id = 3;
+  Message orphaned_transactional_message = 1;
+  string transaction_id = 2;
 }
 
 message Settings {
-  string client_id = 1;
-  string access_point = 2;
-  Publish publish = 3;
-  Subscription subscription = 4;
-  Authentication authentication = 5;
+  optional Publishing publishing = 1;
+  optional Subscription subscription = 2;
+  Tracing tracing = 3;
+}
+
+enum Direction {
+  DIRECTION_UNSPECIFIED = 0;
+  REQUEST = 1;
+  RESPONSE = 2;
+}
+
+message ClientSettings {
+  string nonce = 1;
+  Direction direction = 2;
+  ClientType client_type = 3;
+  Endpoints access_point = 4;
+  Settings settings = 5;
+}
+
+message ClientOverwrittenSettings {
+  string nonce = 1;
+  Direction direction = 2;
+  Settings settings = 3;
 }
 
 message TelemetryCommand {
   oneof command {
-    Settings settings = 1;
+    // These messages are from client.
+    // Report local client setting to server.
+    ClientSettings client_settings = 1;
+    // Report thread stack trace to server.
+    ThreadStackTrace thread_stack_trace = 2;
+    // Repost message verify result to server.
+    VerifyMessageResult verify_message_result = 3;
 
+    // There messages are from server.
+    // Overwrite client settings.
+    ClientOverwrittenSettings client_overwritten_settings = 4;
     // Request client to recover the orphaned transaction message.
-    RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 2;
-
+    RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 5;
     // Request client to print thread stack trace.
-    PrintThreadStackTraceCommand print_thread_stack_trace_command = 3;
-
-    ThreadStackTrace thread_stack_trace = 4;
-
+    PrintThreadStackTraceCommand print_thread_stack_trace_command = 6;
     // Request client to verify the consumption of the appointed message.
-    VerifyMessageCommand verify_message_command = 5;
-
-    VerifyMessageResult verify_message_result = 6;
+    VerifyMessageCommand verify_message_command = 7;
   }
 }
 
 message NotifyClientTerminationRequest {
-  Resource group = 1;
-  string client_id = 2;
+  // Consumer group, which is absent for producer.
+  optional Resource group = 1;
 }
 
 message NotifyClientTerminationResponse { Status status = 1; }
@@ -265,7 +283,7 @@ service MessagingService {
   // entries based on endpoints provided.
   //
   // If the requested topic doesn't exist, returns `NOT_FOUND`.
-  // If the specific endpoints is emtpy, returns `INVALID_ARGUMENT`.
+  // If the specific endpoints is empty, returns `INVALID_ARGUMENT`.
   rpc QueryRoute(QueryRouteRequest) returns (QueryRouteResponse) {}
 
   // Producer or consumer sends HeartbeatRequest to servers periodically to
@@ -322,6 +340,14 @@ service MessagingService {
   // `INVALID_ARGUMENT`.
   rpc AckMessage(AckMessageRequest) returns (AckMessageResponse) {}
 
+  // Signals that the message has not been successfully processed. The message
+  // server should resend the message follow the retry policy defined at
+  // server-side.
+  //
+  // If the corresponding topic or consumer group doesn't exist, returns
+  // `NOT_FOUND`.
+  rpc NackMessage(NackMessageRequest) returns (NackMessageResponse) {}
+
   // Forwards one message to dead letter queue if the DeadLetterPolicy is
   // triggered by this message at client-side, return `OK` if success.
   rpc ForwardMessageToDeadLetterQueue(ForwardMessageToDeadLetterQueueRequest)
@@ -352,7 +378,7 @@ service MessagingService {
   // RPCs with brokers, reporting its settings as the initiative command.
   //
   // When servers have need of inspecting client status, they would issue
-  // telemetry commands to clients. After executing recieved instructions,
+  // telemetry commands to clients. After executing received instructions,
   // clients shall report command execution results through client-side streams.
   rpc Telemetry(stream TelemetryCommand) returns (stream TelemetryCommand) {}
 

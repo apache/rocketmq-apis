@@ -435,6 +435,24 @@ enum Code {
   // Receipt handle of message is invalid.
   INVALID_RECEIPT_HANDLE = 24;
 
+  // Message persistence timeout.
+  MASTER_PERSISTENCE_TIMEOUT = 25;
+
+  // Slave persistence timeout.
+  SLAVE_PERSISTENCE_TIMEOUT = 26;
+
+  // The HA-machanism is not working now.
+  HA_NOT_AVAILABLE = 27;
+
+  // Operation is not allowd in current version.
+  VERSION_UNSUPPORTED = 28;
+
+  // Message not found from server.
+  MESSAGE_NOT_FOUND = 29;
+
+  // Message offset is illegal.
+  ILLEGAL_MESSAGE_OFFSET = 30;
+
   // Code indicates that the server encountered an unexpected condition
   // that prevented it from fulfilling the request.
   // This error response is a generic "catch-all" response.

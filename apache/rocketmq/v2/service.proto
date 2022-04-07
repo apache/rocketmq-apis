@@ -48,8 +48,6 @@ option java_outer_classname = "MQService";
 // results based on these particular requirements.
 message QueryRouteRequest {
   Resource topic = 1;
-
-  Endpoints endpoints = 2;
 }
 
 message QueryRouteResponse {

@@ -441,10 +441,10 @@ enum Code {
   // Slave persistence timeout.
   SLAVE_PERSISTENCE_TIMEOUT = 26;
 
-  // The HA-machanism is not working now.
+  // The HA-mechanism is not working now.
   HA_NOT_AVAILABLE = 27;
 
-  // Operation is not allowd in current version.
+  // Operation is not allowed in current version.
   VERSION_UNSUPPORTED = 28;
 
   // Message not found from server.
@@ -452,6 +452,13 @@ enum Code {
 
   // Message offset is illegal.
   ILLEGAL_MESSAGE_OFFSET = 30;
+
+  // Illegal message is for the sake of backward compatibility. In most case,
+  // more definitive code is better, e.g. `ILLEGAL_MESSAGE_TAG`.
+  ILLEGAL_MESSAGE = 31;
+
+  // Client type could not be recognized.
+  UNRECOGNIZED_CLIENT_TYPE = 32;
 
   // Code indicates that the server encountered an unexpected condition
   // that prevented it from fulfilling the request.

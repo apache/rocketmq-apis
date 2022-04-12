@@ -53,59 +53,35 @@ public interface ReceiveMessageRequestOrBuilder extends
   apache.rocketmq.v2.FilterExpressionOrBuilder getFilterExpressionOrBuilder();
 
   /**
-   * <code>.google.protobuf.Timestamp initialization_timestamp = 4;</code>
-   * @return Whether the initializationTimestamp field is set.
-   */
-  boolean hasInitializationTimestamp();
-  /**
-   * <code>.google.protobuf.Timestamp initialization_timestamp = 4;</code>
-   * @return The initializationTimestamp.
-   */
-  com.google.protobuf.Timestamp getInitializationTimestamp();
-  /**
-   * <code>.google.protobuf.Timestamp initialization_timestamp = 4;</code>
-   */
-  com.google.protobuf.TimestampOrBuilder getInitializationTimestampOrBuilder();
-
-  /**
-   * <code>int32 batch_size = 5;</code>
+   * <code>int32 batch_size = 4;</code>
    * @return The batchSize.
    */
   int getBatchSize();
 
   /**
-   * <code>.google.protobuf.Duration invisible_duration = 6;</code>
+   * <pre>
+   * Required if client type is simple consumer.
+   * </pre>
+   *
+   * <code>optional .google.protobuf.Duration invisible_duration = 5;</code>
    * @return Whether the invisibleDuration field is set.
    */
   boolean hasInvisibleDuration();
   /**
-   * <code>.google.protobuf.Duration invisible_duration = 6;</code>
+   * <pre>
+   * Required if client type is simple consumer.
+   * </pre>
+   *
+   * <code>optional .google.protobuf.Duration invisible_duration = 5;</code>
    * @return The invisibleDuration.
    */
   com.google.protobuf.Duration getInvisibleDuration();
   /**
-   * <code>.google.protobuf.Duration invisible_duration = 6;</code>
+   * <pre>
+   * Required if client type is simple consumer.
+   * </pre>
+   *
+   * <code>optional .google.protobuf.Duration invisible_duration = 5;</code>
    */
   com.google.protobuf.DurationOrBuilder getInvisibleDurationOrBuilder();
-
-  /**
-   * <code>.google.protobuf.Duration await_duration = 7;</code>
-   * @return Whether the awaitDuration field is set.
-   */
-  boolean hasAwaitDuration();
-  /**
-   * <code>.google.protobuf.Duration await_duration = 7;</code>
-   * @return The awaitDuration.
-   */
-  com.google.protobuf.Duration getAwaitDuration();
-  /**
-   * <code>.google.protobuf.Duration await_duration = 7;</code>
-   */
-  com.google.protobuf.DurationOrBuilder getAwaitDurationOrBuilder();
-
-  /**
-   * <code>bool fifo = 8;</code>
-   * @return The fifo.
-   */
-  boolean getFifo();
 }

@@ -38,6 +38,7 @@ private static final long serialVersionUID = 0L;
     if (extensionRegistry == null) {
       throw new java.lang.NullPointerException();
     }
+    int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
         com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
@@ -87,27 +88,14 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
-          case 34: {
-            com.google.protobuf.Timestamp.Builder subBuilder = null;
-            if (initializationTimestamp_ != null) {
-              subBuilder = initializationTimestamp_.toBuilder();
-            }
-            initializationTimestamp_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(initializationTimestamp_);
-              initializationTimestamp_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 40: {
+          case 32: {
 
             batchSize_ = input.readInt32();
             break;
           }
-          case 50: {
+          case 42: {
             com.google.protobuf.Duration.Builder subBuilder = null;
-            if (invisibleDuration_ != null) {
+            if (((bitField0_ & 0x00000001) != 0)) {
               subBuilder = invisibleDuration_.toBuilder();
             }
             invisibleDuration_ = input.readMessage(com.google.protobuf.Duration.parser(), extensionRegistry);
@@ -115,25 +103,7 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom(invisibleDuration_);
               invisibleDuration_ = subBuilder.buildPartial();
             }
-
-            break;
-          }
-          case 58: {
-            com.google.protobuf.Duration.Builder subBuilder = null;
-            if (awaitDuration_ != null) {
-              subBuilder = awaitDuration_.toBuilder();
-            }
-            awaitDuration_ = input.readMessage(com.google.protobuf.Duration.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(awaitDuration_);
-              awaitDuration_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 64: {
-
-            fifo_ = input.readBool();
+            bitField0_ |= 0x00000001;
             break;
           }
           default: {
@@ -168,6 +138,7 @@ private static final long serialVersionUID = 0L;
             apache.rocketmq.v2.ReceiveMessageRequest.class, apache.rocketmq.v2.ReceiveMessageRequest.Builder.class);
   }
 
+  private int bitField0_;
   public static final int GROUP_FIELD_NUMBER = 1;
   private apache.rocketmq.v2.Resource group_;
   /**
@@ -246,36 +217,10 @@ private static final long serialVersionUID = 0L;
     return getFilterExpression();
   }
 
-  public static final int INITIALIZATION_TIMESTAMP_FIELD_NUMBER = 4;
-  private com.google.protobuf.Timestamp initializationTimestamp_;
-  /**
-   * <code>.google.protobuf.Timestamp initialization_timestamp = 4;</code>
-   * @return Whether the initializationTimestamp field is set.
-   */
-  @java.lang.Override
-  public boolean hasInitializationTimestamp() {
-    return initializationTimestamp_ != null;
-  }
-  /**
-   * <code>.google.protobuf.Timestamp initialization_timestamp = 4;</code>
-   * @return The initializationTimestamp.
-   */
-  @java.lang.Override
-  public com.google.protobuf.Timestamp getInitializationTimestamp() {
-    return initializationTimestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : initializationTimestamp_;
-  }
-  /**
-   * <code>.google.protobuf.Timestamp initialization_timestamp = 4;</code>
-   */
-  @java.lang.Override
-  public com.google.protobuf.TimestampOrBuilder getInitializationTimestampOrBuilder() {
-    return getInitializationTimestamp();
-  }
-
-  public static final int BATCH_SIZE_FIELD_NUMBER = 5;
+  public static final int BATCH_SIZE_FIELD_NUMBER = 4;
   private int batchSize_;
   /**
-   * <code>int32 batch_size = 5;</code>
+   * <code>int32 batch_size = 4;</code>
    * @return The batchSize.
    */
   @java.lang.Override
@@ -283,18 +228,26 @@ private static final long serialVersionUID = 0L;
     return batchSize_;
   }
 
-  public static final int INVISIBLE_DURATION_FIELD_NUMBER = 6;
+  public static final int INVISIBLE_DURATION_FIELD_NUMBER = 5;
   private com.google.protobuf.Duration invisibleDuration_;
   /**
-   * <code>.google.protobuf.Duration invisible_duration = 6;</code>
+   * <pre>
+   * Required if client type is simple consumer.
+   * </pre>
+   *
+   * <code>optional .google.protobuf.Duration invisible_duration = 5;</code>
    * @return Whether the invisibleDuration field is set.
    */
   @java.lang.Override
   public boolean hasInvisibleDuration() {
-    return invisibleDuration_ != null;
+    return ((bitField0_ & 0x00000001) != 0);
   }
   /**
-   * <code>.google.protobuf.Duration invisible_duration = 6;</code>
+   * <pre>
+   * Required if client type is simple consumer.
+   * </pre>
+   *
+   * <code>optional .google.protobuf.Duration invisible_duration = 5;</code>
    * @return The invisibleDuration.
    */
   @java.lang.Override
@@ -302,48 +255,15 @@ private static final long serialVersionUID = 0L;
     return invisibleDuration_ == null ? com.google.protobuf.Duration.getDefaultInstance() : invisibleDuration_;
   }
   /**
-   * <code>.google.protobuf.Duration invisible_duration = 6;</code>
+   * <pre>
+   * Required if client type is simple consumer.
+   * </pre>
+   *
+   * <code>optional .google.protobuf.Duration invisible_duration = 5;</code>
    */
   @java.lang.Override
   public com.google.protobuf.DurationOrBuilder getInvisibleDurationOrBuilder() {
-    return getInvisibleDuration();
-  }
-
-  public static final int AWAIT_DURATION_FIELD_NUMBER = 7;
-  private com.google.protobuf.Duration awaitDuration_;
-  /**
-   * <code>.google.protobuf.Duration await_duration = 7;</code>
-   * @return Whether the awaitDuration field is set.
-   */
-  @java.lang.Override
-  public boolean hasAwaitDuration() {
-    return awaitDuration_ != null;
-  }
-  /**
-   * <code>.google.protobuf.Duration await_duration = 7;</code>
-   * @return The awaitDuration.
-   */
-  @java.lang.Override
-  public com.google.protobuf.Duration getAwaitDuration() {
-    return awaitDuration_ == null ? com.google.protobuf.Duration.getDefaultInstance() : awaitDuration_;
-  }
-  /**
-   * <code>.google.protobuf.Duration await_duration = 7;</code>
-   */
-  @java.lang.Override
-  public com.google.protobuf.DurationOrBuilder getAwaitDurationOrBuilder() {
-    return getAwaitDuration();
-  }
-
-  public static final int FIFO_FIELD_NUMBER = 8;
-  private boolean fifo_;
-  /**
-   * <code>bool fifo = 8;</code>
-   * @return The fifo.
-   */
-  @java.lang.Override
-  public boolean getFifo() {
-    return fifo_;
+    return invisibleDuration_ == null ? com.google.protobuf.Duration.getDefaultInstance() : invisibleDuration_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -369,20 +289,11 @@ private static final long serialVersionUID = 0L;
     if (filterExpression_ != null) {
       output.writeMessage(3, getFilterExpression());
     }
-    if (initializationTimestamp_ != null) {
-      output.writeMessage(4, getInitializationTimestamp());
-    }
     if (batchSize_ != 0) {
-      output.writeInt32(5, batchSize_);
+      output.writeInt32(4, batchSize_);
     }
-    if (invisibleDuration_ != null) {
-      output.writeMessage(6, getInvisibleDuration());
-    }
-    if (awaitDuration_ != null) {
-      output.writeMessage(7, getAwaitDuration());
-    }
-    if (fifo_ != false) {
-      output.writeBool(8, fifo_);
+    if (((bitField0_ & 0x00000001) != 0)) {
+      output.writeMessage(5, getInvisibleDuration());
     }
     unknownFields.writeTo(output);
   }
@@ -405,25 +316,13 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(3, getFilterExpression());
     }
-    if (initializationTimestamp_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(4, getInitializationTimestamp());
-    }
     if (batchSize_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(5, batchSize_);
+        .computeInt32Size(4, batchSize_);
     }
-    if (invisibleDuration_ != null) {
+    if (((bitField0_ & 0x00000001) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(6, getInvisibleDuration());
-    }
-    if (awaitDuration_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(7, getAwaitDuration());
-    }
-    if (fifo_ != false) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(8, fifo_);
+        .computeMessageSize(5, getInvisibleDuration());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -455,11 +354,6 @@ private static final long serialVersionUID = 0L;
       if (!getFilterExpression()
           .equals(other.getFilterExpression())) return false;
     }
-    if (hasInitializationTimestamp() != other.hasInitializationTimestamp()) return false;
-    if (hasInitializationTimestamp()) {
-      if (!getInitializationTimestamp()
-          .equals(other.getInitializationTimestamp())) return false;
-    }
     if (getBatchSize()
         != other.getBatchSize()) return false;
     if (hasInvisibleDuration() != other.hasInvisibleDuration()) return false;
@@ -467,13 +361,6 @@ private static final long serialVersionUID = 0L;
       if (!getInvisibleDuration()
           .equals(other.getInvisibleDuration())) return false;
     }
-    if (hasAwaitDuration() != other.hasAwaitDuration()) return false;
-    if (hasAwaitDuration()) {
-      if (!getAwaitDuration()
-          .equals(other.getAwaitDuration())) return false;
-    }
-    if (getFifo()
-        != other.getFifo()) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -497,23 +384,12 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + FILTER_EXPRESSION_FIELD_NUMBER;
       hash = (53 * hash) + getFilterExpression().hashCode();
     }
-    if (hasInitializationTimestamp()) {
-      hash = (37 * hash) + INITIALIZATION_TIMESTAMP_FIELD_NUMBER;
-      hash = (53 * hash) + getInitializationTimestamp().hashCode();
-    }
     hash = (37 * hash) + BATCH_SIZE_FIELD_NUMBER;
     hash = (53 * hash) + getBatchSize();
     if (hasInvisibleDuration()) {
       hash = (37 * hash) + INVISIBLE_DURATION_FIELD_NUMBER;
       hash = (53 * hash) + getInvisibleDuration().hashCode();
     }
-    if (hasAwaitDuration()) {
-      hash = (37 * hash) + AWAIT_DURATION_FIELD_NUMBER;
-      hash = (53 * hash) + getAwaitDuration().hashCode();
-    }
-    hash = (37 * hash) + FIFO_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getFifo());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -642,6 +518,7 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
+        getInvisibleDurationFieldBuilder();
       }
     }
     @java.lang.Override
@@ -665,28 +542,14 @@ private static final long serialVersionUID = 0L;
         filterExpression_ = null;
         filterExpressionBuilder_ = null;
       }
-      if (initializationTimestampBuilder_ == null) {
-        initializationTimestamp_ = null;
-      } else {
-        initializationTimestamp_ = null;
-        initializationTimestampBuilder_ = null;
-      }
       batchSize_ = 0;
 
       if (invisibleDurationBuilder_ == null) {
         invisibleDuration_ = null;
       } else {
-        invisibleDuration_ = null;
-        invisibleDurationBuilder_ = null;
+        invisibleDurationBuilder_.clear();
       }
-      if (awaitDurationBuilder_ == null) {
-        awaitDuration_ = null;
-      } else {
-        awaitDuration_ = null;
-        awaitDurationBuilder_ = null;
-      }
-      fifo_ = false;
-
+      bitField0_ = (bitField0_ & ~0x00000001);
       return this;
     }
 
@@ -713,6 +576,8 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public apache.rocketmq.v2.ReceiveMessageRequest buildPartial() {
       apache.rocketmq.v2.ReceiveMessageRequest result = new apache.rocketmq.v2.ReceiveMessageRequest(this);
+      int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
       if (groupBuilder_ == null) {
         result.group_ = group_;
       } else {
@@ -728,23 +593,16 @@ private static final long serialVersionUID = 0L;
       } else {
         result.filterExpression_ = filterExpressionBuilder_.build();
       }
-      if (initializationTimestampBuilder_ == null) {
-        result.initializationTimestamp_ = initializationTimestamp_;
-      } else {
-        result.initializationTimestamp_ = initializationTimestampBuilder_.build();
-      }
       result.batchSize_ = batchSize_;
-      if (invisibleDurationBuilder_ == null) {
-        result.invisibleDuration_ = invisibleDuration_;
-      } else {
-        result.invisibleDuration_ = invisibleDurationBuilder_.build();
+      if (((from_bitField0_ & 0x00000001) != 0)) {
+        if (invisibleDurationBuilder_ == null) {
+          result.invisibleDuration_ = invisibleDuration_;
+        } else {
+          result.invisibleDuration_ = invisibleDurationBuilder_.build();
+        }
+        to_bitField0_ |= 0x00000001;
       }
-      if (awaitDurationBuilder_ == null) {
-        result.awaitDuration_ = awaitDuration_;
-      } else {
-        result.awaitDuration_ = awaitDurationBuilder_.build();
-      }
-      result.fifo_ = fifo_;
+      result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
     }
@@ -802,20 +660,11 @@ private static final long serialVersionUID = 0L;
       if (other.hasFilterExpression()) {
         mergeFilterExpression(other.getFilterExpression());
       }
-      if (other.hasInitializationTimestamp()) {
-        mergeInitializationTimestamp(other.getInitializationTimestamp());
-      }
       if (other.getBatchSize() != 0) {
         setBatchSize(other.getBatchSize());
       }
       if (other.hasInvisibleDuration()) {
         mergeInvisibleDuration(other.getInvisibleDuration());
-      }
-      if (other.hasAwaitDuration()) {
-        mergeAwaitDuration(other.getAwaitDuration());
-      }
-      if (other.getFifo() != false) {
-        setFifo(other.getFifo());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -845,6 +694,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+    private int bitField0_;
 
     private apache.rocketmq.v2.Resource group_;
     private com.google.protobuf.SingleFieldBuilderV3<
@@ -1203,128 +1053,9 @@ private static final long serialVersionUID = 0L;
       return filterExpressionBuilder_;
     }
 
-    private com.google.protobuf.Timestamp initializationTimestamp_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> initializationTimestampBuilder_;
-    /**
-     * <code>.google.protobuf.Timestamp initialization_timestamp = 4;</code>
-     * @return Whether the initializationTimestamp field is set.
-     */
-    public boolean hasInitializationTimestamp() {
-      return initializationTimestampBuilder_ != null || initializationTimestamp_ != null;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp initialization_timestamp = 4;</code>
-     * @return The initializationTimestamp.
-     */
-    public com.google.protobuf.Timestamp getInitializationTimestamp() {
-      if (initializationTimestampBuilder_ == null) {
-        return initializationTimestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : initializationTimestamp_;
-      } else {
-        return initializationTimestampBuilder_.getMessage();
-      }
-    }
-    /**
-     * <code>.google.protobuf.Timestamp initialization_timestamp = 4;</code>
-     */
-    public Builder setInitializationTimestamp(com.google.protobuf.Timestamp value) {
-      if (initializationTimestampBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        initializationTimestamp_ = value;
-        onChanged();
-      } else {
-        initializationTimestampBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp initialization_timestamp = 4;</code>
-     */
-    public Builder setInitializationTimestamp(
-        com.google.protobuf.Timestamp.Builder builderForValue) {
-      if (initializationTimestampBuilder_ == null) {
-        initializationTimestamp_ = builderForValue.build();
-        onChanged();
-      } else {
-        initializationTimestampBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp initialization_timestamp = 4;</code>
-     */
-    public Builder mergeInitializationTimestamp(com.google.protobuf.Timestamp value) {
-      if (initializationTimestampBuilder_ == null) {
-        if (initializationTimestamp_ != null) {
-          initializationTimestamp_ =
-            com.google.protobuf.Timestamp.newBuilder(initializationTimestamp_).mergeFrom(value).buildPartial();
-        } else {
-          initializationTimestamp_ = value;
-        }
-        onChanged();
-      } else {
-        initializationTimestampBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp initialization_timestamp = 4;</code>
-     */
-    public Builder clearInitializationTimestamp() {
-      if (initializationTimestampBuilder_ == null) {
-        initializationTimestamp_ = null;
-        onChanged();
-      } else {
-        initializationTimestamp_ = null;
-        initializationTimestampBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp initialization_timestamp = 4;</code>
-     */
-    public com.google.protobuf.Timestamp.Builder getInitializationTimestampBuilder() {
-      
-      onChanged();
-      return getInitializationTimestampFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.google.protobuf.Timestamp initialization_timestamp = 4;</code>
-     */
-    public com.google.protobuf.TimestampOrBuilder getInitializationTimestampOrBuilder() {
-      if (initializationTimestampBuilder_ != null) {
-        return initializationTimestampBuilder_.getMessageOrBuilder();
-      } else {
-        return initializationTimestamp_ == null ?
-            com.google.protobuf.Timestamp.getDefaultInstance() : initializationTimestamp_;
-      }
-    }
-    /**
-     * <code>.google.protobuf.Timestamp initialization_timestamp = 4;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
-        getInitializationTimestampFieldBuilder() {
-      if (initializationTimestampBuilder_ == null) {
-        initializationTimestampBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
-                getInitializationTimestamp(),
-                getParentForChildren(),
-                isClean());
-        initializationTimestamp_ = null;
-      }
-      return initializationTimestampBuilder_;
-    }
-
     private int batchSize_ ;
     /**
-     * <code>int32 batch_size = 5;</code>
+     * <code>int32 batch_size = 4;</code>
      * @return The batchSize.
      */
     @java.lang.Override
@@ -1332,7 +1063,7 @@ private static final long serialVersionUID = 0L;
       return batchSize_;
     }
     /**
-     * <code>int32 batch_size = 5;</code>
+     * <code>int32 batch_size = 4;</code>
      * @param value The batchSize to set.
      * @return This builder for chaining.
      */
@@ -1343,7 +1074,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>int32 batch_size = 5;</code>
+     * <code>int32 batch_size = 4;</code>
      * @return This builder for chaining.
      */
     public Builder clearBatchSize() {
@@ -1357,14 +1088,22 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> invisibleDurationBuilder_;
     /**
-     * <code>.google.protobuf.Duration invisible_duration = 6;</code>
+     * <pre>
+     * Required if client type is simple consumer.
+     * </pre>
+     *
+     * <code>optional .google.protobuf.Duration invisible_duration = 5;</code>
      * @return Whether the invisibleDuration field is set.
      */
     public boolean hasInvisibleDuration() {
-      return invisibleDurationBuilder_ != null || invisibleDuration_ != null;
+      return ((bitField0_ & 0x00000001) != 0);
     }
     /**
-     * <code>.google.protobuf.Duration invisible_duration = 6;</code>
+     * <pre>
+     * Required if client type is simple consumer.
+     * </pre>
+     *
+     * <code>optional .google.protobuf.Duration invisible_duration = 5;</code>
      * @return The invisibleDuration.
      */
     public com.google.protobuf.Duration getInvisibleDuration() {
@@ -1375,7 +1114,11 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.google.protobuf.Duration invisible_duration = 6;</code>
+     * <pre>
+     * Required if client type is simple consumer.
+     * </pre>
+     *
+     * <code>optional .google.protobuf.Duration invisible_duration = 5;</code>
      */
     public Builder setInvisibleDuration(com.google.protobuf.Duration value) {
       if (invisibleDurationBuilder_ == null) {
@@ -1387,11 +1130,15 @@ private static final long serialVersionUID = 0L;
       } else {
         invisibleDurationBuilder_.setMessage(value);
       }
-
+      bitField0_ |= 0x00000001;
       return this;
     }
     /**
-     * <code>.google.protobuf.Duration invisible_duration = 6;</code>
+     * <pre>
+     * Required if client type is simple consumer.
+     * </pre>
+     *
+     * <code>optional .google.protobuf.Duration invisible_duration = 5;</code>
      */
     public Builder setInvisibleDuration(
         com.google.protobuf.Duration.Builder builderForValue) {
@@ -1401,15 +1148,21 @@ private static final long serialVersionUID = 0L;
       } else {
         invisibleDurationBuilder_.setMessage(builderForValue.build());
       }
-
+      bitField0_ |= 0x00000001;
       return this;
     }
     /**
-     * <code>.google.protobuf.Duration invisible_duration = 6;</code>
+     * <pre>
+     * Required if client type is simple consumer.
+     * </pre>
+     *
+     * <code>optional .google.protobuf.Duration invisible_duration = 5;</code>
      */
     public Builder mergeInvisibleDuration(com.google.protobuf.Duration value) {
       if (invisibleDurationBuilder_ == null) {
-        if (invisibleDuration_ != null) {
+        if (((bitField0_ & 0x00000001) != 0) &&
+            invisibleDuration_ != null &&
+            invisibleDuration_ != com.google.protobuf.Duration.getDefaultInstance()) {
           invisibleDuration_ =
             com.google.protobuf.Duration.newBuilder(invisibleDuration_).mergeFrom(value).buildPartial();
         } else {
@@ -1419,33 +1172,44 @@ private static final long serialVersionUID = 0L;
       } else {
         invisibleDurationBuilder_.mergeFrom(value);
       }
-
+      bitField0_ |= 0x00000001;
       return this;
     }
     /**
-     * <code>.google.protobuf.Duration invisible_duration = 6;</code>
+     * <pre>
+     * Required if client type is simple consumer.
+     * </pre>
+     *
+     * <code>optional .google.protobuf.Duration invisible_duration = 5;</code>
      */
     public Builder clearInvisibleDuration() {
       if (invisibleDurationBuilder_ == null) {
         invisibleDuration_ = null;
         onChanged();
       } else {
-        invisibleDuration_ = null;
-        invisibleDurationBuilder_ = null;
+        invisibleDurationBuilder_.clear();
       }
-
+      bitField0_ = (bitField0_ & ~0x00000001);
       return this;
     }
     /**
-     * <code>.google.protobuf.Duration invisible_duration = 6;</code>
+     * <pre>
+     * Required if client type is simple consumer.
+     * </pre>
+     *
+     * <code>optional .google.protobuf.Duration invisible_duration = 5;</code>
      */
     public com.google.protobuf.Duration.Builder getInvisibleDurationBuilder() {
-      
+      bitField0_ |= 0x00000001;
       onChanged();
       return getInvisibleDurationFieldBuilder().getBuilder();
     }
     /**
-     * <code>.google.protobuf.Duration invisible_duration = 6;</code>
+     * <pre>
+     * Required if client type is simple consumer.
+     * </pre>
+     *
+     * <code>optional .google.protobuf.Duration invisible_duration = 5;</code>
      */
     public com.google.protobuf.DurationOrBuilder getInvisibleDurationOrBuilder() {
       if (invisibleDurationBuilder_ != null) {
@@ -1456,7 +1220,11 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.google.protobuf.Duration invisible_duration = 6;</code>
+     * <pre>
+     * Required if client type is simple consumer.
+     * </pre>
+     *
+     * <code>optional .google.protobuf.Duration invisible_duration = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
@@ -1470,156 +1238,6 @@ private static final long serialVersionUID = 0L;
         invisibleDuration_ = null;
       }
       return invisibleDurationBuilder_;
-    }
-
-    private com.google.protobuf.Duration awaitDuration_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> awaitDurationBuilder_;
-    /**
-     * <code>.google.protobuf.Duration await_duration = 7;</code>
-     * @return Whether the awaitDuration field is set.
-     */
-    public boolean hasAwaitDuration() {
-      return awaitDurationBuilder_ != null || awaitDuration_ != null;
-    }
-    /**
-     * <code>.google.protobuf.Duration await_duration = 7;</code>
-     * @return The awaitDuration.
-     */
-    public com.google.protobuf.Duration getAwaitDuration() {
-      if (awaitDurationBuilder_ == null) {
-        return awaitDuration_ == null ? com.google.protobuf.Duration.getDefaultInstance() : awaitDuration_;
-      } else {
-        return awaitDurationBuilder_.getMessage();
-      }
-    }
-    /**
-     * <code>.google.protobuf.Duration await_duration = 7;</code>
-     */
-    public Builder setAwaitDuration(com.google.protobuf.Duration value) {
-      if (awaitDurationBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        awaitDuration_ = value;
-        onChanged();
-      } else {
-        awaitDurationBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Duration await_duration = 7;</code>
-     */
-    public Builder setAwaitDuration(
-        com.google.protobuf.Duration.Builder builderForValue) {
-      if (awaitDurationBuilder_ == null) {
-        awaitDuration_ = builderForValue.build();
-        onChanged();
-      } else {
-        awaitDurationBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Duration await_duration = 7;</code>
-     */
-    public Builder mergeAwaitDuration(com.google.protobuf.Duration value) {
-      if (awaitDurationBuilder_ == null) {
-        if (awaitDuration_ != null) {
-          awaitDuration_ =
-            com.google.protobuf.Duration.newBuilder(awaitDuration_).mergeFrom(value).buildPartial();
-        } else {
-          awaitDuration_ = value;
-        }
-        onChanged();
-      } else {
-        awaitDurationBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Duration await_duration = 7;</code>
-     */
-    public Builder clearAwaitDuration() {
-      if (awaitDurationBuilder_ == null) {
-        awaitDuration_ = null;
-        onChanged();
-      } else {
-        awaitDuration_ = null;
-        awaitDurationBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Duration await_duration = 7;</code>
-     */
-    public com.google.protobuf.Duration.Builder getAwaitDurationBuilder() {
-      
-      onChanged();
-      return getAwaitDurationFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.google.protobuf.Duration await_duration = 7;</code>
-     */
-    public com.google.protobuf.DurationOrBuilder getAwaitDurationOrBuilder() {
-      if (awaitDurationBuilder_ != null) {
-        return awaitDurationBuilder_.getMessageOrBuilder();
-      } else {
-        return awaitDuration_ == null ?
-            com.google.protobuf.Duration.getDefaultInstance() : awaitDuration_;
-      }
-    }
-    /**
-     * <code>.google.protobuf.Duration await_duration = 7;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
-        getAwaitDurationFieldBuilder() {
-      if (awaitDurationBuilder_ == null) {
-        awaitDurationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder>(
-                getAwaitDuration(),
-                getParentForChildren(),
-                isClean());
-        awaitDuration_ = null;
-      }
-      return awaitDurationBuilder_;
-    }
-
-    private boolean fifo_ ;
-    /**
-     * <code>bool fifo = 8;</code>
-     * @return The fifo.
-     */
-    @java.lang.Override
-    public boolean getFifo() {
-      return fifo_;
-    }
-    /**
-     * <code>bool fifo = 8;</code>
-     * @param value The fifo to set.
-     * @return This builder for chaining.
-     */
-    public Builder setFifo(boolean value) {
-      
-      fifo_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool fifo = 8;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearFifo() {
-      
-      fifo_ = false;
-      onChanged();
-      return this;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

@@ -80,11 +80,9 @@ message ReceiveMessageRequest {
   Resource group = 1;
   MessageQueue message_queue = 2;
   FilterExpression filter_expression = 3;
-  google.protobuf.Timestamp initialization_timestamp = 4;
-  int32 batch_size = 5;
-  google.protobuf.Duration invisible_duration = 6;
-  google.protobuf.Duration await_duration = 7;
-  bool fifo = 8;
+  int32 batch_size = 4;
+  // Required if client type is simple consumer.
+  optional google.protobuf.Duration invisible_duration = 5;
 }
 
 message ReceiveMessageResponse {

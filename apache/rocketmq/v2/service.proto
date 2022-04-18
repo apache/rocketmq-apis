@@ -95,8 +95,7 @@ message ReceiveMessageResponse {
 message AckMessageRequest {
   Resource group = 1;
   Resource topic = 2;
-  string receipt_handle = 3;
-  string message_id = 4;
+  repeated string receipt_handles = 3;
 }
 
 message AckMessageResponse { Status status = 1; }

@@ -58,20 +58,6 @@ message FilterExpression {
   string expression = 2;
 }
 
-// Dead lettering is done on a best effort basis. The same message might be
-// dead lettered multiple times.
-//
-// If validation on any of the fields fails at subscription creation/update,
-// the create/update subscription request will fail.
-message DeadLetterPolicy {
-  // The maximum number of delivery attempts for any message.
-  //
-  // This field will be honored on a best effort basis.
-  //
-  // If this parameter is 0, a default value of 16 is used.
-  int32 max_delivery_attempts = 1;
-}
-
 message RetryPolicy {
   int32 max_attempts = 1;
   float initial_backoff = 2;
@@ -85,58 +71,6 @@ message Resource {
   // Resource name identifier, which remains unique within the abstract resource
   // namespace.
   string name = 2;
-}
-
-message Tracing {
-  bool on = 1;
-  // Tracing access point for client, which is essential if tracing is on.
-  optional Endpoints service_access_point = 2;
-}
-
-message Publishing {
-  // Publisher normally registers topics in interest, such that
-  // pre-conditions may be examined and validated.
-  repeated Resource topics = 1;
-
-  // If publishing message experiences RPC failure, `retry_policy` describes
-  // backoff policy before retries are made.
-  RetryPolicy retry_policy = 2;
-
-  // If message body size exceeds `compress_threshold`, it would be desirable to
-  // compress it to relieve network overhead.
-  int32 compress_threshold = 3;
-
-  // Max message size in bytes permitted by server.
-  int32 max_message_bytes = 4;
-}
-
-message CacheLimits {
-  int32 count = 1;
-  int64 bytes = 2;
-}
-
-message Subscription {
-  Resource group = 1;
-
-  repeated SubscriptionEntry subscriptions = 2;
-
-  DeadLetterPolicy dead_letter_policy = 3;
-
-  bool fifo = 5;
-
-  int32 max_receive_batch_size = 8;
-
-  // After messages are received from servers, consumers normally split them
-  // into multiple mini-batches. Each mini-batch is assigned to a dedicated
-  // task, which will be submitted to thread-pool to run concurrently.
-  int32 messages_per_task = 9;
-
-  CacheLimits cache_limits = 10;
-
-  int32 consume_thread_count = 11;
-
-  // Up to server
-  google.protobuf.Duration max_invisible_duration = 12;
 }
 
 message SubscriptionEntry {

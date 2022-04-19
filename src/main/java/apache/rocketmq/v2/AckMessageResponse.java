@@ -51,6 +51,19 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 10: {
+            apache.rocketmq.v2.Status.Builder subBuilder = null;
+            if (status_ != null) {
+              subBuilder = status_.toBuilder();
+            }
+            status_ = input.readMessage(apache.rocketmq.v2.Status.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(status_);
+              status_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
+          case 18: {
             if (!((mutable_bitField0_ & 0x00000001) != 0)) {
               entries_ = new java.util.ArrayList<apache.rocketmq.v2.AckMessageResultEntry>();
               mutable_bitField0_ |= 0x00000001;
@@ -94,17 +107,58 @@ private static final long serialVersionUID = 0L;
             apache.rocketmq.v2.AckMessageResponse.class, apache.rocketmq.v2.AckMessageResponse.Builder.class);
   }
 
-  public static final int ENTRIES_FIELD_NUMBER = 1;
+  public static final int STATUS_FIELD_NUMBER = 1;
+  private apache.rocketmq.v2.Status status_;
+  /**
+   * <pre>
+   * RPC tier status, which is used to represent RPC-level errors including
+   * authentication, authorization, throttling and other general failures.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.Status status = 1;</code>
+   * @return Whether the status field is set.
+   */
+  @java.lang.Override
+  public boolean hasStatus() {
+    return status_ != null;
+  }
+  /**
+   * <pre>
+   * RPC tier status, which is used to represent RPC-level errors including
+   * authentication, authorization, throttling and other general failures.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.Status status = 1;</code>
+   * @return The status.
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.Status getStatus() {
+    return status_ == null ? apache.rocketmq.v2.Status.getDefaultInstance() : status_;
+  }
+  /**
+   * <pre>
+   * RPC tier status, which is used to represent RPC-level errors including
+   * authentication, authorization, throttling and other general failures.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.Status status = 1;</code>
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder() {
+    return getStatus();
+  }
+
+  public static final int ENTRIES_FIELD_NUMBER = 2;
   private java.util.List<apache.rocketmq.v2.AckMessageResultEntry> entries_;
   /**
-   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
    */
   @java.lang.Override
   public java.util.List<apache.rocketmq.v2.AckMessageResultEntry> getEntriesList() {
     return entries_;
   }
   /**
-   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
    */
   @java.lang.Override
   public java.util.List<? extends apache.rocketmq.v2.AckMessageResultEntryOrBuilder> 
@@ -112,21 +166,21 @@ private static final long serialVersionUID = 0L;
     return entries_;
   }
   /**
-   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
    */
   @java.lang.Override
   public int getEntriesCount() {
     return entries_.size();
   }
   /**
-   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
    */
   @java.lang.Override
   public apache.rocketmq.v2.AckMessageResultEntry getEntries(int index) {
     return entries_.get(index);
   }
   /**
-   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
    */
   @java.lang.Override
   public apache.rocketmq.v2.AckMessageResultEntryOrBuilder getEntriesOrBuilder(
@@ -148,8 +202,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    if (status_ != null) {
+      output.writeMessage(1, getStatus());
+    }
     for (int i = 0; i < entries_.size(); i++) {
-      output.writeMessage(1, entries_.get(i));
+      output.writeMessage(2, entries_.get(i));
     }
     unknownFields.writeTo(output);
   }
@@ -160,9 +217,13 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
+    if (status_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(1, getStatus());
+    }
     for (int i = 0; i < entries_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, entries_.get(i));
+        .computeMessageSize(2, entries_.get(i));
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -179,6 +240,11 @@ private static final long serialVersionUID = 0L;
     }
     apache.rocketmq.v2.AckMessageResponse other = (apache.rocketmq.v2.AckMessageResponse) obj;
 
+    if (hasStatus() != other.hasStatus()) return false;
+    if (hasStatus()) {
+      if (!getStatus()
+          .equals(other.getStatus())) return false;
+    }
     if (!getEntriesList()
         .equals(other.getEntriesList())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
@@ -192,6 +258,10 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
+    if (hasStatus()) {
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + getStatus().hashCode();
+    }
     if (getEntriesCount() > 0) {
       hash = (37 * hash) + ENTRIES_FIELD_NUMBER;
       hash = (53 * hash) + getEntriesList().hashCode();
@@ -330,6 +400,12 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      if (statusBuilder_ == null) {
+        status_ = null;
+      } else {
+        status_ = null;
+        statusBuilder_ = null;
+      }
       if (entriesBuilder_ == null) {
         entries_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -363,6 +439,11 @@ private static final long serialVersionUID = 0L;
     public apache.rocketmq.v2.AckMessageResponse buildPartial() {
       apache.rocketmq.v2.AckMessageResponse result = new apache.rocketmq.v2.AckMessageResponse(this);
       int from_bitField0_ = bitField0_;
+      if (statusBuilder_ == null) {
+        result.status_ = status_;
+      } else {
+        result.status_ = statusBuilder_.build();
+      }
       if (entriesBuilder_ == null) {
         if (((bitField0_ & 0x00000001) != 0)) {
           entries_ = java.util.Collections.unmodifiableList(entries_);
@@ -420,6 +501,9 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(apache.rocketmq.v2.AckMessageResponse other) {
       if (other == apache.rocketmq.v2.AckMessageResponse.getDefaultInstance()) return this;
+      if (other.hasStatus()) {
+        mergeStatus(other.getStatus());
+      }
       if (entriesBuilder_ == null) {
         if (!other.entries_.isEmpty()) {
           if (entries_.isEmpty()) {
@@ -476,6 +560,170 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
+    private apache.rocketmq.v2.Status status_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder> statusBuilder_;
+    /**
+     * <pre>
+     * RPC tier status, which is used to represent RPC-level errors including
+     * authentication, authorization, throttling and other general failures.
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.Status status = 1;</code>
+     * @return Whether the status field is set.
+     */
+    public boolean hasStatus() {
+      return statusBuilder_ != null || status_ != null;
+    }
+    /**
+     * <pre>
+     * RPC tier status, which is used to represent RPC-level errors including
+     * authentication, authorization, throttling and other general failures.
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.Status status = 1;</code>
+     * @return The status.
+     */
+    public apache.rocketmq.v2.Status getStatus() {
+      if (statusBuilder_ == null) {
+        return status_ == null ? apache.rocketmq.v2.Status.getDefaultInstance() : status_;
+      } else {
+        return statusBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * RPC tier status, which is used to represent RPC-level errors including
+     * authentication, authorization, throttling and other general failures.
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.Status status = 1;</code>
+     */
+    public Builder setStatus(apache.rocketmq.v2.Status value) {
+      if (statusBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        status_ = value;
+        onChanged();
+      } else {
+        statusBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * RPC tier status, which is used to represent RPC-level errors including
+     * authentication, authorization, throttling and other general failures.
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.Status status = 1;</code>
+     */
+    public Builder setStatus(
+        apache.rocketmq.v2.Status.Builder builderForValue) {
+      if (statusBuilder_ == null) {
+        status_ = builderForValue.build();
+        onChanged();
+      } else {
+        statusBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * RPC tier status, which is used to represent RPC-level errors including
+     * authentication, authorization, throttling and other general failures.
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.Status status = 1;</code>
+     */
+    public Builder mergeStatus(apache.rocketmq.v2.Status value) {
+      if (statusBuilder_ == null) {
+        if (status_ != null) {
+          status_ =
+            apache.rocketmq.v2.Status.newBuilder(status_).mergeFrom(value).buildPartial();
+        } else {
+          status_ = value;
+        }
+        onChanged();
+      } else {
+        statusBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * RPC tier status, which is used to represent RPC-level errors including
+     * authentication, authorization, throttling and other general failures.
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.Status status = 1;</code>
+     */
+    public Builder clearStatus() {
+      if (statusBuilder_ == null) {
+        status_ = null;
+        onChanged();
+      } else {
+        status_ = null;
+        statusBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * RPC tier status, which is used to represent RPC-level errors including
+     * authentication, authorization, throttling and other general failures.
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.Status status = 1;</code>
+     */
+    public apache.rocketmq.v2.Status.Builder getStatusBuilder() {
+      
+      onChanged();
+      return getStatusFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * RPC tier status, which is used to represent RPC-level errors including
+     * authentication, authorization, throttling and other general failures.
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.Status status = 1;</code>
+     */
+    public apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder() {
+      if (statusBuilder_ != null) {
+        return statusBuilder_.getMessageOrBuilder();
+      } else {
+        return status_ == null ?
+            apache.rocketmq.v2.Status.getDefaultInstance() : status_;
+      }
+    }
+    /**
+     * <pre>
+     * RPC tier status, which is used to represent RPC-level errors including
+     * authentication, authorization, throttling and other general failures.
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.Status status = 1;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder> 
+        getStatusFieldBuilder() {
+      if (statusBuilder_ == null) {
+        statusBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder>(
+                getStatus(),
+                getParentForChildren(),
+                isClean());
+        status_ = null;
+      }
+      return statusBuilder_;
+    }
+
     private java.util.List<apache.rocketmq.v2.AckMessageResultEntry> entries_ =
       java.util.Collections.emptyList();
     private void ensureEntriesIsMutable() {
@@ -489,7 +737,7 @@ private static final long serialVersionUID = 0L;
         apache.rocketmq.v2.AckMessageResultEntry, apache.rocketmq.v2.AckMessageResultEntry.Builder, apache.rocketmq.v2.AckMessageResultEntryOrBuilder> entriesBuilder_;
 
     /**
-     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
      */
     public java.util.List<apache.rocketmq.v2.AckMessageResultEntry> getEntriesList() {
       if (entriesBuilder_ == null) {
@@ -499,7 +747,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
      */
     public int getEntriesCount() {
       if (entriesBuilder_ == null) {
@@ -509,7 +757,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
      */
     public apache.rocketmq.v2.AckMessageResultEntry getEntries(int index) {
       if (entriesBuilder_ == null) {
@@ -519,7 +767,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
      */
     public Builder setEntries(
         int index, apache.rocketmq.v2.AckMessageResultEntry value) {
@@ -536,7 +784,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
      */
     public Builder setEntries(
         int index, apache.rocketmq.v2.AckMessageResultEntry.Builder builderForValue) {
@@ -550,7 +798,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
      */
     public Builder addEntries(apache.rocketmq.v2.AckMessageResultEntry value) {
       if (entriesBuilder_ == null) {
@@ -566,7 +814,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
      */
     public Builder addEntries(
         int index, apache.rocketmq.v2.AckMessageResultEntry value) {
@@ -583,7 +831,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
      */
     public Builder addEntries(
         apache.rocketmq.v2.AckMessageResultEntry.Builder builderForValue) {
@@ -597,7 +845,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
      */
     public Builder addEntries(
         int index, apache.rocketmq.v2.AckMessageResultEntry.Builder builderForValue) {
@@ -611,7 +859,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
      */
     public Builder addAllEntries(
         java.lang.Iterable<? extends apache.rocketmq.v2.AckMessageResultEntry> values) {
@@ -626,7 +874,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
      */
     public Builder clearEntries() {
       if (entriesBuilder_ == null) {
@@ -639,7 +887,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
      */
     public Builder removeEntries(int index) {
       if (entriesBuilder_ == null) {
@@ -652,14 +900,14 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
      */
     public apache.rocketmq.v2.AckMessageResultEntry.Builder getEntriesBuilder(
         int index) {
       return getEntriesFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
      */
     public apache.rocketmq.v2.AckMessageResultEntryOrBuilder getEntriesOrBuilder(
         int index) {
@@ -669,7 +917,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
      */
     public java.util.List<? extends apache.rocketmq.v2.AckMessageResultEntryOrBuilder> 
          getEntriesOrBuilderList() {
@@ -680,14 +928,14 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
      */
     public apache.rocketmq.v2.AckMessageResultEntry.Builder addEntriesBuilder() {
       return getEntriesFieldBuilder().addBuilder(
           apache.rocketmq.v2.AckMessageResultEntry.getDefaultInstance());
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
      */
     public apache.rocketmq.v2.AckMessageResultEntry.Builder addEntriesBuilder(
         int index) {
@@ -695,7 +943,7 @@ private static final long serialVersionUID = 0L;
           index, apache.rocketmq.v2.AckMessageResultEntry.getDefaultInstance());
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
      */
     public java.util.List<apache.rocketmq.v2.AckMessageResultEntry.Builder> 
          getEntriesBuilderList() {

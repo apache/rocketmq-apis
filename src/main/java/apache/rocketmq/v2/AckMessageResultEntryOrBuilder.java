@@ -32,16 +32,34 @@ public interface AckMessageResultEntryOrBuilder extends
       getReceiptHandleBytes();
 
   /**
+   * <pre>
+   * Acknowledge result may be acquired through inspecting
+   * `status.code`; In case acknowledgement failed, `status.message`
+   * is the explanation of the failure.
+   * </pre>
+   *
    * <code>.apache.rocketmq.v2.Status status = 3;</code>
    * @return Whether the status field is set.
    */
   boolean hasStatus();
   /**
+   * <pre>
+   * Acknowledge result may be acquired through inspecting
+   * `status.code`; In case acknowledgement failed, `status.message`
+   * is the explanation of the failure.
+   * </pre>
+   *
    * <code>.apache.rocketmq.v2.Status status = 3;</code>
    * @return The status.
    */
   apache.rocketmq.v2.Status getStatus();
   /**
+   * <pre>
+   * Acknowledge result may be acquired through inspecting
+   * `status.code`; In case acknowledgement failed, `status.message`
+   * is the explanation of the failure.
+   * </pre>
+   *
    * <code>.apache.rocketmq.v2.Status status = 3;</code>
    */
   apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder();

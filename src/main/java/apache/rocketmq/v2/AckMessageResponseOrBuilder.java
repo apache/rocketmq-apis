@@ -8,25 +8,55 @@ public interface AckMessageResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+   * <pre>
+   * RPC tier status, which is used to represent RPC-level errors including
+   * authentication, authorization, throttling and other general failures.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.Status status = 1;</code>
+   * @return Whether the status field is set.
+   */
+  boolean hasStatus();
+  /**
+   * <pre>
+   * RPC tier status, which is used to represent RPC-level errors including
+   * authentication, authorization, throttling and other general failures.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.Status status = 1;</code>
+   * @return The status.
+   */
+  apache.rocketmq.v2.Status getStatus();
+  /**
+   * <pre>
+   * RPC tier status, which is used to represent RPC-level errors including
+   * authentication, authorization, throttling and other general failures.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.Status status = 1;</code>
+   */
+  apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder();
+
+  /**
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
    */
   java.util.List<apache.rocketmq.v2.AckMessageResultEntry> 
       getEntriesList();
   /**
-   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
    */
   apache.rocketmq.v2.AckMessageResultEntry getEntries(int index);
   /**
-   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
    */
   int getEntriesCount();
   /**
-   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
    */
   java.util.List<? extends apache.rocketmq.v2.AckMessageResultEntryOrBuilder> 
       getEntriesOrBuilderList();
   /**
-   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 2;</code>
    */
   apache.rocketmq.v2.AckMessageResultEntryOrBuilder getEntriesOrBuilder(
       int index);

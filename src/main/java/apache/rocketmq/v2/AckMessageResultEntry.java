@@ -186,6 +186,12 @@ private static final long serialVersionUID = 0L;
   public static final int STATUS_FIELD_NUMBER = 3;
   private apache.rocketmq.v2.Status status_;
   /**
+   * <pre>
+   * Acknowledge result may be acquired through inspecting
+   * `status.code`; In case acknowledgement failed, `status.message`
+   * is the explanation of the failure.
+   * </pre>
+   *
    * <code>.apache.rocketmq.v2.Status status = 3;</code>
    * @return Whether the status field is set.
    */
@@ -194,6 +200,12 @@ private static final long serialVersionUID = 0L;
     return status_ != null;
   }
   /**
+   * <pre>
+   * Acknowledge result may be acquired through inspecting
+   * `status.code`; In case acknowledgement failed, `status.message`
+   * is the explanation of the failure.
+   * </pre>
+   *
    * <code>.apache.rocketmq.v2.Status status = 3;</code>
    * @return The status.
    */
@@ -202,6 +214,12 @@ private static final long serialVersionUID = 0L;
     return status_ == null ? apache.rocketmq.v2.Status.getDefaultInstance() : status_;
   }
   /**
+   * <pre>
+   * Acknowledge result may be acquired through inspecting
+   * `status.code`; In case acknowledgement failed, `status.message`
+   * is the explanation of the failure.
+   * </pre>
+   *
    * <code>.apache.rocketmq.v2.Status status = 3;</code>
    */
   @java.lang.Override
@@ -714,6 +732,12 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder> statusBuilder_;
     /**
+     * <pre>
+     * Acknowledge result may be acquired through inspecting
+     * `status.code`; In case acknowledgement failed, `status.message`
+     * is the explanation of the failure.
+     * </pre>
+     *
      * <code>.apache.rocketmq.v2.Status status = 3;</code>
      * @return Whether the status field is set.
      */
@@ -721,6 +745,12 @@ private static final long serialVersionUID = 0L;
       return statusBuilder_ != null || status_ != null;
     }
     /**
+     * <pre>
+     * Acknowledge result may be acquired through inspecting
+     * `status.code`; In case acknowledgement failed, `status.message`
+     * is the explanation of the failure.
+     * </pre>
+     *
      * <code>.apache.rocketmq.v2.Status status = 3;</code>
      * @return The status.
      */
@@ -732,6 +762,12 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Acknowledge result may be acquired through inspecting
+     * `status.code`; In case acknowledgement failed, `status.message`
+     * is the explanation of the failure.
+     * </pre>
+     *
      * <code>.apache.rocketmq.v2.Status status = 3;</code>
      */
     public Builder setStatus(apache.rocketmq.v2.Status value) {
@@ -748,6 +784,12 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Acknowledge result may be acquired through inspecting
+     * `status.code`; In case acknowledgement failed, `status.message`
+     * is the explanation of the failure.
+     * </pre>
+     *
      * <code>.apache.rocketmq.v2.Status status = 3;</code>
      */
     public Builder setStatus(
@@ -762,6 +804,12 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Acknowledge result may be acquired through inspecting
+     * `status.code`; In case acknowledgement failed, `status.message`
+     * is the explanation of the failure.
+     * </pre>
+     *
      * <code>.apache.rocketmq.v2.Status status = 3;</code>
      */
     public Builder mergeStatus(apache.rocketmq.v2.Status value) {
@@ -780,6 +828,12 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Acknowledge result may be acquired through inspecting
+     * `status.code`; In case acknowledgement failed, `status.message`
+     * is the explanation of the failure.
+     * </pre>
+     *
      * <code>.apache.rocketmq.v2.Status status = 3;</code>
      */
     public Builder clearStatus() {
@@ -794,6 +848,12 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Acknowledge result may be acquired through inspecting
+     * `status.code`; In case acknowledgement failed, `status.message`
+     * is the explanation of the failure.
+     * </pre>
+     *
      * <code>.apache.rocketmq.v2.Status status = 3;</code>
      */
     public apache.rocketmq.v2.Status.Builder getStatusBuilder() {
@@ -802,6 +862,12 @@ private static final long serialVersionUID = 0L;
       return getStatusFieldBuilder().getBuilder();
     }
     /**
+     * <pre>
+     * Acknowledge result may be acquired through inspecting
+     * `status.code`; In case acknowledgement failed, `status.message`
+     * is the explanation of the failure.
+     * </pre>
+     *
      * <code>.apache.rocketmq.v2.Status status = 3;</code>
      */
     public apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder() {
@@ -813,6 +879,12 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Acknowledge result may be acquired through inspecting
+     * `status.code`; In case acknowledgement failed, `status.message`
+     * is the explanation of the failure.
+     * </pre>
+     *
      * <code>.apache.rocketmq.v2.Status status = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<

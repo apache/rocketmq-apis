@@ -92,13 +92,24 @@ message ReceiveMessageResponse {
   google.protobuf.Duration invisible_duration = 4;
 }
 
+message AckMessageEntry {
+  string message_id = 1;
+  string receipt_handle = 2;
+}
+
 message AckMessageRequest {
   Resource group = 1;
   Resource topic = 2;
-  repeated string receipt_handles = 3;
+  repeated AckMessageEntry entries = 3;
 }
 
-message AckMessageResponse { Status status = 1; }
+message AckMessageResultEntry {
+  string message_id = 1;
+  string receipt_handle = 2;
+  Status status = 3;
+}
+
+message AckMessageResponse { repeated AckMessageResultEntry entries = 1; }
 
 message NackMessageRequest {
   Resource group = 1;

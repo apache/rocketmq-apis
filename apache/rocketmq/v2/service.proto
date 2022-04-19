@@ -107,7 +107,7 @@ message AckMessageResultEntry {
 
   // Acknowledge result may be acquired through inspecting
   // `status.code`; In case acknowledgement failed, `status.message`
-  // is the explanation of for the failure.
+  // is the explanation of the failure.
   Status status = 3;
 }
 

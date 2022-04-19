@@ -104,10 +104,21 @@ message AckMessageRequest {
 message AckMessageResultEntry {
   string message_id = 1;
   string receipt_handle = 2;
+
+  // Acknowledge result may be acquired through inspecting
+  // `status.code`; In case acknowledgement failed, `status.message`
+  // is the explanation of for the failure.
   Status status = 3;
 }
 
-message AckMessageResponse { repeated AckMessageResultEntry entries = 1; }
+message AckMessageResponse {
+
+  // RPC tier status, which is used to represent RPC-level errors including
+  // authentication, authorization, throttling and other general failures.
+  Status status = 1;
+
+  repeated AckMessageResultEntry entries = 2;
+}
 
 message NackMessageRequest {
   Resource group = 1;

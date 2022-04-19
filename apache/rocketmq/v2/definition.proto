@@ -277,19 +277,6 @@ message Message {
 
 message Assignment { MessageQueue message_queue = 1; }
 
-enum QueryOffsetPolicy {
-  QUERY_OFFSET_POLICY_UNSPECIFIED = 0;
-
-  // Use this option if client wishes to playback all existing messages.
-  BEGINNING = 1;
-
-  // Use this option if client wishes to skip all existing messages.
-  END = 2;
-
-  // Use this option if time-based seek is targeted.
-  TIME_POINT = 3;
-}
-
 message SendReceipt {
   string message_id = 1;
   string transaction_id = 2;

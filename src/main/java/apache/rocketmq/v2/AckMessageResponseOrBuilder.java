@@ -8,17 +8,26 @@ public interface AckMessageResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.apache.rocketmq.v2.Status status = 1;</code>
-   * @return Whether the status field is set.
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
    */
-  boolean hasStatus();
+  java.util.List<apache.rocketmq.v2.AckMessageResultEntry> 
+      getEntriesList();
   /**
-   * <code>.apache.rocketmq.v2.Status status = 1;</code>
-   * @return The status.
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
    */
-  apache.rocketmq.v2.Status getStatus();
+  apache.rocketmq.v2.AckMessageResultEntry getEntries(int index);
   /**
-   * <code>.apache.rocketmq.v2.Status status = 1;</code>
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
    */
-  apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder();
+  int getEntriesCount();
+  /**
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+   */
+  java.util.List<? extends apache.rocketmq.v2.AckMessageResultEntryOrBuilder> 
+      getEntriesOrBuilderList();
+  /**
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+   */
+  apache.rocketmq.v2.AckMessageResultEntryOrBuilder getEntriesOrBuilder(
+      int index);
 }

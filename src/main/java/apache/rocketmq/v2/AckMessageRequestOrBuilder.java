@@ -38,26 +38,26 @@ public interface AckMessageRequestOrBuilder extends
   apache.rocketmq.v2.ResourceOrBuilder getTopicOrBuilder();
 
   /**
-   * <code>string receipt_handle = 3;</code>
-   * @return The receiptHandle.
+   * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
    */
-  java.lang.String getReceiptHandle();
+  java.util.List<apache.rocketmq.v2.AckMessageEntry> 
+      getEntriesList();
   /**
-   * <code>string receipt_handle = 3;</code>
-   * @return The bytes for receiptHandle.
+   * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
    */
-  com.google.protobuf.ByteString
-      getReceiptHandleBytes();
-
+  apache.rocketmq.v2.AckMessageEntry getEntries(int index);
   /**
-   * <code>string message_id = 4;</code>
-   * @return The messageId.
+   * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
    */
-  java.lang.String getMessageId();
+  int getEntriesCount();
   /**
-   * <code>string message_id = 4;</code>
-   * @return The bytes for messageId.
+   * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
    */
-  com.google.protobuf.ByteString
-      getMessageIdBytes();
+  java.util.List<? extends apache.rocketmq.v2.AckMessageEntryOrBuilder> 
+      getEntriesOrBuilderList();
+  /**
+   * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
+   */
+  apache.rocketmq.v2.AckMessageEntryOrBuilder getEntriesOrBuilder(
+      int index);
 }

@@ -16,8 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private AckMessageRequest() {
-    receiptHandle_ = "";
-    messageId_ = "";
+    entries_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -40,6 +39,7 @@ private static final long serialVersionUID = 0L;
     if (extensionRegistry == null) {
       throw new java.lang.NullPointerException();
     }
+    int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
         com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
@@ -77,15 +77,12 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 26: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            receiptHandle_ = s;
-            break;
-          }
-          case 34: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            messageId_ = s;
+            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+              entries_ = new java.util.ArrayList<apache.rocketmq.v2.AckMessageEntry>();
+              mutable_bitField0_ |= 0x00000001;
+            }
+            entries_.add(
+                input.readMessage(apache.rocketmq.v2.AckMessageEntry.parser(), extensionRegistry));
             break;
           }
           default: {
@@ -103,6 +100,9 @@ private static final long serialVersionUID = 0L;
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      if (((mutable_bitField0_ & 0x00000001) != 0)) {
+        entries_ = java.util.Collections.unmodifiableList(entries_);
+      }
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
@@ -172,80 +172,44 @@ private static final long serialVersionUID = 0L;
     return getTopic();
   }
 
-  public static final int RECEIPT_HANDLE_FIELD_NUMBER = 3;
-  private volatile java.lang.Object receiptHandle_;
+  public static final int ENTRIES_FIELD_NUMBER = 3;
+  private java.util.List<apache.rocketmq.v2.AckMessageEntry> entries_;
   /**
-   * <code>string receipt_handle = 3;</code>
-   * @return The receiptHandle.
+   * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
    */
   @java.lang.Override
-  public java.lang.String getReceiptHandle() {
-    java.lang.Object ref = receiptHandle_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      receiptHandle_ = s;
-      return s;
-    }
+  public java.util.List<apache.rocketmq.v2.AckMessageEntry> getEntriesList() {
+    return entries_;
   }
   /**
-   * <code>string receipt_handle = 3;</code>
-   * @return The bytes for receiptHandle.
+   * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getReceiptHandleBytes() {
-    java.lang.Object ref = receiptHandle_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      receiptHandle_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int MESSAGE_ID_FIELD_NUMBER = 4;
-  private volatile java.lang.Object messageId_;
-  /**
-   * <code>string message_id = 4;</code>
-   * @return The messageId.
-   */
-  @java.lang.Override
-  public java.lang.String getMessageId() {
-    java.lang.Object ref = messageId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      messageId_ = s;
-      return s;
-    }
+  public java.util.List<? extends apache.rocketmq.v2.AckMessageEntryOrBuilder> 
+      getEntriesOrBuilderList() {
+    return entries_;
   }
   /**
-   * <code>string message_id = 4;</code>
-   * @return The bytes for messageId.
+   * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString
-      getMessageIdBytes() {
-    java.lang.Object ref = messageId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      messageId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public int getEntriesCount() {
+    return entries_.size();
+  }
+  /**
+   * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.AckMessageEntry getEntries(int index) {
+    return entries_.get(index);
+  }
+  /**
+   * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.AckMessageEntryOrBuilder getEntriesOrBuilder(
+      int index) {
+    return entries_.get(index);
   }
 
   private byte memoizedIsInitialized = -1;
@@ -268,11 +232,8 @@ private static final long serialVersionUID = 0L;
     if (topic_ != null) {
       output.writeMessage(2, getTopic());
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(receiptHandle_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, receiptHandle_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(messageId_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, messageId_);
+    for (int i = 0; i < entries_.size(); i++) {
+      output.writeMessage(3, entries_.get(i));
     }
     unknownFields.writeTo(output);
   }
@@ -291,11 +252,9 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, getTopic());
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(receiptHandle_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, receiptHandle_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(messageId_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, messageId_);
+    for (int i = 0; i < entries_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(3, entries_.get(i));
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -322,10 +281,8 @@ private static final long serialVersionUID = 0L;
       if (!getTopic()
           .equals(other.getTopic())) return false;
     }
-    if (!getReceiptHandle()
-        .equals(other.getReceiptHandle())) return false;
-    if (!getMessageId()
-        .equals(other.getMessageId())) return false;
+    if (!getEntriesList()
+        .equals(other.getEntriesList())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -345,10 +302,10 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + TOPIC_FIELD_NUMBER;
       hash = (53 * hash) + getTopic().hashCode();
     }
-    hash = (37 * hash) + RECEIPT_HANDLE_FIELD_NUMBER;
-    hash = (53 * hash) + getReceiptHandle().hashCode();
-    hash = (37 * hash) + MESSAGE_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getMessageId().hashCode();
+    if (getEntriesCount() > 0) {
+      hash = (37 * hash) + ENTRIES_FIELD_NUMBER;
+      hash = (53 * hash) + getEntriesList().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -477,6 +434,7 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
+        getEntriesFieldBuilder();
       }
     }
     @java.lang.Override
@@ -494,10 +452,12 @@ private static final long serialVersionUID = 0L;
         topic_ = null;
         topicBuilder_ = null;
       }
-      receiptHandle_ = "";
-
-      messageId_ = "";
-
+      if (entriesBuilder_ == null) {
+        entries_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+      } else {
+        entriesBuilder_.clear();
+      }
       return this;
     }
 
@@ -524,6 +484,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public apache.rocketmq.v2.AckMessageRequest buildPartial() {
       apache.rocketmq.v2.AckMessageRequest result = new apache.rocketmq.v2.AckMessageRequest(this);
+      int from_bitField0_ = bitField0_;
       if (groupBuilder_ == null) {
         result.group_ = group_;
       } else {
@@ -534,8 +495,15 @@ private static final long serialVersionUID = 0L;
       } else {
         result.topic_ = topicBuilder_.build();
       }
-      result.receiptHandle_ = receiptHandle_;
-      result.messageId_ = messageId_;
+      if (entriesBuilder_ == null) {
+        if (((bitField0_ & 0x00000001) != 0)) {
+          entries_ = java.util.Collections.unmodifiableList(entries_);
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.entries_ = entries_;
+      } else {
+        result.entries_ = entriesBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -590,13 +558,31 @@ private static final long serialVersionUID = 0L;
       if (other.hasTopic()) {
         mergeTopic(other.getTopic());
       }
-      if (!other.getReceiptHandle().isEmpty()) {
-        receiptHandle_ = other.receiptHandle_;
-        onChanged();
-      }
-      if (!other.getMessageId().isEmpty()) {
-        messageId_ = other.messageId_;
-        onChanged();
+      if (entriesBuilder_ == null) {
+        if (!other.entries_.isEmpty()) {
+          if (entries_.isEmpty()) {
+            entries_ = other.entries_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureEntriesIsMutable();
+            entries_.addAll(other.entries_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.entries_.isEmpty()) {
+          if (entriesBuilder_.isEmpty()) {
+            entriesBuilder_.dispose();
+            entriesBuilder_ = null;
+            entries_ = other.entries_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+            entriesBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getEntriesFieldBuilder() : null;
+          } else {
+            entriesBuilder_.addAllMessages(other.entries_);
+          }
+        }
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -626,6 +612,7 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+    private int bitField0_;
 
     private apache.rocketmq.v2.Resource group_;
     private com.google.protobuf.SingleFieldBuilderV3<
@@ -865,156 +852,244 @@ private static final long serialVersionUID = 0L;
       return topicBuilder_;
     }
 
-    private java.lang.Object receiptHandle_ = "";
-    /**
-     * <code>string receipt_handle = 3;</code>
-     * @return The receiptHandle.
-     */
-    public java.lang.String getReceiptHandle() {
-      java.lang.Object ref = receiptHandle_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        receiptHandle_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string receipt_handle = 3;</code>
-     * @return The bytes for receiptHandle.
-     */
-    public com.google.protobuf.ByteString
-        getReceiptHandleBytes() {
-      java.lang.Object ref = receiptHandle_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        receiptHandle_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string receipt_handle = 3;</code>
-     * @param value The receiptHandle to set.
-     * @return This builder for chaining.
-     */
-    public Builder setReceiptHandle(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      receiptHandle_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string receipt_handle = 3;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearReceiptHandle() {
-      
-      receiptHandle_ = getDefaultInstance().getReceiptHandle();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string receipt_handle = 3;</code>
-     * @param value The bytes for receiptHandle to set.
-     * @return This builder for chaining.
-     */
-    public Builder setReceiptHandleBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      receiptHandle_ = value;
-      onChanged();
-      return this;
+    private java.util.List<apache.rocketmq.v2.AckMessageEntry> entries_ =
+      java.util.Collections.emptyList();
+    private void ensureEntriesIsMutable() {
+      if (!((bitField0_ & 0x00000001) != 0)) {
+        entries_ = new java.util.ArrayList<apache.rocketmq.v2.AckMessageEntry>(entries_);
+        bitField0_ |= 0x00000001;
+       }
     }
 
-    private java.lang.Object messageId_ = "";
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        apache.rocketmq.v2.AckMessageEntry, apache.rocketmq.v2.AckMessageEntry.Builder, apache.rocketmq.v2.AckMessageEntryOrBuilder> entriesBuilder_;
+
     /**
-     * <code>string message_id = 4;</code>
-     * @return The messageId.
+     * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
      */
-    public java.lang.String getMessageId() {
-      java.lang.Object ref = messageId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        messageId_ = s;
-        return s;
+    public java.util.List<apache.rocketmq.v2.AckMessageEntry> getEntriesList() {
+      if (entriesBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(entries_);
       } else {
-        return (java.lang.String) ref;
+        return entriesBuilder_.getMessageList();
       }
     }
     /**
-     * <code>string message_id = 4;</code>
-     * @return The bytes for messageId.
+     * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
      */
-    public com.google.protobuf.ByteString
-        getMessageIdBytes() {
-      java.lang.Object ref = messageId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        messageId_ = b;
-        return b;
+    public int getEntriesCount() {
+      if (entriesBuilder_ == null) {
+        return entries_.size();
       } else {
-        return (com.google.protobuf.ByteString) ref;
+        return entriesBuilder_.getCount();
       }
     }
     /**
-     * <code>string message_id = 4;</code>
-     * @param value The messageId to set.
-     * @return This builder for chaining.
+     * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
      */
-    public Builder setMessageId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      messageId_ = value;
-      onChanged();
+    public apache.rocketmq.v2.AckMessageEntry getEntries(int index) {
+      if (entriesBuilder_ == null) {
+        return entries_.get(index);
+      } else {
+        return entriesBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
+     */
+    public Builder setEntries(
+        int index, apache.rocketmq.v2.AckMessageEntry value) {
+      if (entriesBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureEntriesIsMutable();
+        entries_.set(index, value);
+        onChanged();
+      } else {
+        entriesBuilder_.setMessage(index, value);
+      }
       return this;
     }
     /**
-     * <code>string message_id = 4;</code>
-     * @return This builder for chaining.
+     * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
      */
-    public Builder clearMessageId() {
-      
-      messageId_ = getDefaultInstance().getMessageId();
-      onChanged();
+    public Builder setEntries(
+        int index, apache.rocketmq.v2.AckMessageEntry.Builder builderForValue) {
+      if (entriesBuilder_ == null) {
+        ensureEntriesIsMutable();
+        entries_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        entriesBuilder_.setMessage(index, builderForValue.build());
+      }
       return this;
     }
     /**
-     * <code>string message_id = 4;</code>
-     * @param value The bytes for messageId to set.
-     * @return This builder for chaining.
+     * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
      */
-    public Builder setMessageIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      messageId_ = value;
-      onChanged();
+    public Builder addEntries(apache.rocketmq.v2.AckMessageEntry value) {
+      if (entriesBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureEntriesIsMutable();
+        entries_.add(value);
+        onChanged();
+      } else {
+        entriesBuilder_.addMessage(value);
+      }
       return this;
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
+     */
+    public Builder addEntries(
+        int index, apache.rocketmq.v2.AckMessageEntry value) {
+      if (entriesBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureEntriesIsMutable();
+        entries_.add(index, value);
+        onChanged();
+      } else {
+        entriesBuilder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
+     */
+    public Builder addEntries(
+        apache.rocketmq.v2.AckMessageEntry.Builder builderForValue) {
+      if (entriesBuilder_ == null) {
+        ensureEntriesIsMutable();
+        entries_.add(builderForValue.build());
+        onChanged();
+      } else {
+        entriesBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
+     */
+    public Builder addEntries(
+        int index, apache.rocketmq.v2.AckMessageEntry.Builder builderForValue) {
+      if (entriesBuilder_ == null) {
+        ensureEntriesIsMutable();
+        entries_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        entriesBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
+     */
+    public Builder addAllEntries(
+        java.lang.Iterable<? extends apache.rocketmq.v2.AckMessageEntry> values) {
+      if (entriesBuilder_ == null) {
+        ensureEntriesIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, entries_);
+        onChanged();
+      } else {
+        entriesBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
+     */
+    public Builder clearEntries() {
+      if (entriesBuilder_ == null) {
+        entries_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+      } else {
+        entriesBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
+     */
+    public Builder removeEntries(int index) {
+      if (entriesBuilder_ == null) {
+        ensureEntriesIsMutable();
+        entries_.remove(index);
+        onChanged();
+      } else {
+        entriesBuilder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
+     */
+    public apache.rocketmq.v2.AckMessageEntry.Builder getEntriesBuilder(
+        int index) {
+      return getEntriesFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
+     */
+    public apache.rocketmq.v2.AckMessageEntryOrBuilder getEntriesOrBuilder(
+        int index) {
+      if (entriesBuilder_ == null) {
+        return entries_.get(index);  } else {
+        return entriesBuilder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
+     */
+    public java.util.List<? extends apache.rocketmq.v2.AckMessageEntryOrBuilder> 
+         getEntriesOrBuilderList() {
+      if (entriesBuilder_ != null) {
+        return entriesBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(entries_);
+      }
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
+     */
+    public apache.rocketmq.v2.AckMessageEntry.Builder addEntriesBuilder() {
+      return getEntriesFieldBuilder().addBuilder(
+          apache.rocketmq.v2.AckMessageEntry.getDefaultInstance());
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
+     */
+    public apache.rocketmq.v2.AckMessageEntry.Builder addEntriesBuilder(
+        int index) {
+      return getEntriesFieldBuilder().addBuilder(
+          index, apache.rocketmq.v2.AckMessageEntry.getDefaultInstance());
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageEntry entries = 3;</code>
+     */
+    public java.util.List<apache.rocketmq.v2.AckMessageEntry.Builder> 
+         getEntriesBuilderList() {
+      return getEntriesFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        apache.rocketmq.v2.AckMessageEntry, apache.rocketmq.v2.AckMessageEntry.Builder, apache.rocketmq.v2.AckMessageEntryOrBuilder> 
+        getEntriesFieldBuilder() {
+      if (entriesBuilder_ == null) {
+        entriesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            apache.rocketmq.v2.AckMessageEntry, apache.rocketmq.v2.AckMessageEntry.Builder, apache.rocketmq.v2.AckMessageEntryOrBuilder>(
+                entries_,
+                ((bitField0_ & 0x00000001) != 0),
+                getParentForChildren(),
+                isClean());
+        entries_ = null;
+      }
+      return entriesBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

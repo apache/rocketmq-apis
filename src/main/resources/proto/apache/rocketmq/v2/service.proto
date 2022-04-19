@@ -46,9 +46,7 @@ option java_outer_classname = "MQService";
 // access-point, which annotates tenant-id, instance-id or other
 // vendor-specific settings. Purpose-built name servers may respond customized
 // results based on these particular requirements.
-message QueryRouteRequest {
-  Resource topic = 1;
-}
+message QueryRouteRequest { Resource topic = 1; }
 
 message QueryRouteResponse {
   Status status = 1;
@@ -92,14 +90,24 @@ message ReceiveMessageResponse {
   google.protobuf.Duration invisible_duration = 4;
 }
 
+message AckMessageEntry {
+  string message_id = 1;
+  string receipt_handle = 2;
+}
+
 message AckMessageRequest {
   Resource group = 1;
   Resource topic = 2;
-  string receipt_handle = 3;
-  string message_id = 4;
+  repeated AckMessageEntry entries = 3;
 }
 
-message AckMessageResponse { Status status = 1; }
+message AckMessageResultEntry {
+  string message_id = 1;
+  string receipt_handle = 2;
+  Status status = 3;
+}
+
+message AckMessageResponse { repeated AckMessageResultEntry entries = 1; }
 
 message NackMessageRequest {
   Resource group = 1;
@@ -137,34 +145,6 @@ message EndTransactionRequest {
 
 message EndTransactionResponse { Status status = 1; }
 
-message QueryOffsetRequest {
-  MessageQueue message_queue = 1;
-  QueryOffsetPolicy policy = 2;
-  google.protobuf.Timestamp time_point = 3;
-}
-
-message QueryOffsetResponse {
-  Status status = 1;
-  int64 offset = 2;
-}
-
-message PullMessageRequest {
-  Resource group = 1;
-  MessageQueue message_queue = 2;
-  int64 offset = 3;
-  int32 batch_size = 4;
-  google.protobuf.Duration await_time = 5;
-  FilterExpression filter_expression = 6;
-}
-
-message PullMessageResponse {
-  Status status = 1;
-  int64 min_offset = 2;
-  int64 next_offset = 3;
-  int64 max_offset = 4;
-  repeated Message messages = 5;
-}
-
 message PrintThreadStackTraceCommand { string nonce = 1; }
 
 message ThreadStackTrace {
@@ -188,51 +168,102 @@ message RecoverOrphanedTransactionCommand {
   string transaction_id = 2;
 }
 
-message Settings {
-  optional Publishing publishing = 1;
-  optional Subscription subscription = 2;
-  Tracing tracing = 3;
+message ActivePublishingSettings {
+  repeated Resource publishing_topics = 1;
+  RetryPolicy retry_policy = 2;
 }
 
-enum Direction {
-  DIRECTION_UNSPECIFIED = 0;
-  REQUEST = 1;
-  RESPONSE = 2;
+message ActiveSubscriptionSettings {
+  Resource group = 1;
+  repeated SubscriptionEntry subscriptions = 2;
+  // Consume thread count is essential if `ClientType` is `PushConsumer`.
+  optional int32 consume_thread_count = 3;
+  // Consume max batch size is essential if `ClientType` is `PushConsumer`.
+  optional int32 consume_max_batch_size = 4;
+  // Max cache message bytes is essential if `ClientType` is `PushConsumer`.
+  optional int64 max_cache_message_bytes = 5;
+  // Await duration here is essential if `ClientType` is `SimpleConsumer`.
+  optional google.protobuf.Duration simple_consumer_receive_await_duration = 6;
 }
 
-message ClientSettings {
+message ReportActiveSettingsCommand {
   string nonce = 1;
-  Direction direction = 2;
-  ClientType client_type = 3;
-  Endpoints access_point = 4;
-  Settings settings = 5;
+  ClientType client_type = 2;
+  Endpoints access_point = 3;
+  google.protobuf.Duration connection_timeout = 4;
+  bool trace_on = 5;
+  // Settings will be ignored by server if it is not match with the client type.
+  oneof settings {
+    ActivePublishingSettings active_publishing_settings = 6;
+    ActiveSubscriptionSettings active_subscription_settings = 7;
+  }
 }
 
-message ClientOverwrittenSettings {
-  string nonce = 1;
-  Direction direction = 2;
-  Settings settings = 3;
+message ReportActiveSettingsResult { string nonce = 1; }
+
+message PassivePublishingSettings {
+  // Message is compressed if the body size exceeds the threshold.
+  int32 message_body_compression_bytes_threshold = 1;
+  // Publishing is rejected if the message body size exceeds the threshold.
+  int32 max_message_body_bytes = 2;
+  google.protobuf.Duration orphaned_transaction_recovery_duration = 3;
 }
+
+message PassiveSubscriptionSettings {
+  bool fifo = 1;
+  // Max fifo consume attempts is essential if `fifo` flag is true, a default
+  // value of 17 is used if this parameter is not set.
+  optional int32 max_fifo_delivery_attempts = 2;
+  // Fifo consume retry interval is essential if `fifo` flag is true, a default
+  // value of 1s is used if this parameter is not set.
+  optional google.protobuf.Duration fifo_delivery_retry_interval = 3;
+  // Message receive batch size here is essential if `ClientType` is
+  // `PushConsumer`,
+  optional int32 push_consumer_receive_batch_size = 4;
+  // Long-polling timeout for `ReceiveMessageRequest`, which is essential if
+  // `ClientType` is `PushCosnumer`. A default value of 30s is
+  // used if this parameter is not set.
+  optional google.protobuf.Duration push_consumer_receive_await_duration = 5;
+  // Consume timeout is only works if the fifo flag is false. A default value of
+  // 15min is used if this parameter is not set.
+  optional google.protobuf.Duration consume_timeout = 6;
+}
+
+message ApplyPassiveSettingsCommand {
+  string nonce = 1;
+  Endpoints trace_access_point = 2;
+  // Settings will be ignored by server if it is not match with the client type.
+  oneof settings {
+    PassivePublishingSettings passive_publishing_settings = 3;
+    PassiveSubscriptionSettings passive_subscription_settings = 4;
+  }
+}
+
+message ApplyPassiveSettingsResult { string nonce = 1; }
 
 message TelemetryCommand {
   oneof command {
     // These messages are from client.
-    // Report local client setting to server.
-    ClientSettings client_settings = 1;
+    // Report active setting to server.
+    ReportActiveSettingsCommand report_active_settings_command = 1;
+    // Ack `ApplyPassiveSettingsCommand` from server.
+    ApplyPassiveSettingsResult apply_passive_settings_result = 2;
     // Report thread stack trace to server.
-    ThreadStackTrace thread_stack_trace = 2;
+    ThreadStackTrace thread_stack_trace = 3;
     // Repost message verify result to server.
-    VerifyMessageResult verify_message_result = 3;
+    VerifyMessageResult verify_message_result = 4;
 
     // There messages are from server.
-    // Overwrite client settings.
-    ClientOverwrittenSettings client_overwritten_settings = 4;
+    // Deliver passive settings to client.
+    ApplyPassiveSettingsCommand apply_passive_settings_command = 5;
+    // Ack `ReportActiveSettingsCommand` from client.
+    ReportActiveSettingsResult report_active_settings_result = 6;
     // Request client to recover the orphaned transaction message.
-    RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 5;
+    RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 7;
     // Request client to print thread stack trace.
-    PrintThreadStackTraceCommand print_thread_stack_trace_command = 6;
+    PrintThreadStackTraceCommand print_thread_stack_trace_command = 8;
     // Request client to verify the consumption of the appointed message.
-    VerifyMessageCommand verify_message_command = 7;
+    VerifyMessageCommand verify_message_command = 9;
   }
 }
 
@@ -325,7 +356,8 @@ service MessagingService {
   // or consumer group doesn't exist, returns `NOT_FOUND`. If there is no new
   // message in the specific topic, returns `OK` with an empty message set.
   // Please note that client may suffer from false empty responses.
-  rpc ReceiveMessage(ReceiveMessageRequest) returns (ReceiveMessageResponse) {}
+  rpc ReceiveMessage(ReceiveMessageRequest)
+      returns (stream ReceiveMessageResponse) {}
 
   // Acknowledges the message associated with the `receipt_handle` or `offset`
   // in the `AckMessageRequest`, it means the message has been successfully
@@ -344,31 +376,13 @@ service MessagingService {
   // `NOT_FOUND`.
   rpc NackMessage(NackMessageRequest) returns (NackMessageResponse) {}
 
-  // Forwards one message to dead letter queue if the DeadLetterPolicy is
-  // triggered by this message at client-side, return `OK` if success.
+  // Forwards one message to dead letter queue if the max delivery attempts is
+  // exceeded by this message at client-side, return `OK` if success.
   rpc ForwardMessageToDeadLetterQueue(ForwardMessageToDeadLetterQueueRequest)
       returns (ForwardMessageToDeadLetterQueueResponse) {}
 
   // Commits or rollback one transactional message.
   rpc EndTransaction(EndTransactionRequest) returns (EndTransactionResponse) {}
-
-  // Queries the offset of the specific message queue, returns the offset with
-  // `OK` if success. The message server should maintain a numerical offset for
-  // each message in a message-queue.
-  rpc QueryOffset(QueryOffsetRequest) returns (QueryOffsetResponse) {}
-
-  // Pulls messages from the specific message-queue, returns a set of messages
-  // with next pull offset. The pulled messages can't be acked or nacked, while
-  // the client is responsible for manage offsets for consumer, typically update
-  // consume offset to local memory or a third-party storage service.
-  //
-  // If the pending concurrent receive requests exceed the quota of the given
-  // consumer group, returns `UNAVAILABLE`. If the upstream store server hangs,
-  // return `DEADLINE_EXCEEDED` in a timely manner. If the corresponding topic
-  // or consumer group doesn't exist, returns `NOT_FOUND`. If there is no new
-  // message in the specific topic, returns `OK` with an empty message set.
-  // Please note that client may suffer from false empty responses.
-  rpc PullMessage(PullMessageRequest) returns (PullMessageResponse) {}
 
   // Once a client starts, it would immediately establishes bi-lateral stream
   // RPCs with brokers, reporting its settings as the initiative command.

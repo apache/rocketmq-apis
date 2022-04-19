@@ -4,27 +4,26 @@
 package apache.rocketmq.v2;
 
 /**
- * Protobuf type {@code apache.rocketmq.v2.ClientOverwrittenSettings}
+ * Protobuf type {@code apache.rocketmq.v2.ApplyPassiveSettingsResult}
  */
-public final class ClientOverwrittenSettings extends
+public final class ApplyPassiveSettingsResult extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:apache.rocketmq.v2.ClientOverwrittenSettings)
-    ClientOverwrittenSettingsOrBuilder {
+    // @@protoc_insertion_point(message_implements:apache.rocketmq.v2.ApplyPassiveSettingsResult)
+    ApplyPassiveSettingsResultOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use ClientOverwrittenSettings.newBuilder() to construct.
-  private ClientOverwrittenSettings(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use ApplyPassiveSettingsResult.newBuilder() to construct.
+  private ApplyPassiveSettingsResult(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private ClientOverwrittenSettings() {
+  private ApplyPassiveSettingsResult() {
     nonce_ = "";
-    direction_ = 0;
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new ClientOverwrittenSettings();
+    return new ApplyPassiveSettingsResult();
   }
 
   @java.lang.Override
@@ -32,7 +31,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private ClientOverwrittenSettings(
+  private ApplyPassiveSettingsResult(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -56,25 +55,6 @@ private static final long serialVersionUID = 0L;
             nonce_ = s;
             break;
           }
-          case 16: {
-            int rawValue = input.readEnum();
-
-            direction_ = rawValue;
-            break;
-          }
-          case 26: {
-            apache.rocketmq.v2.Settings.Builder subBuilder = null;
-            if (settings_ != null) {
-              subBuilder = settings_.toBuilder();
-            }
-            settings_ = input.readMessage(apache.rocketmq.v2.Settings.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(settings_);
-              settings_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -96,15 +76,15 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ClientOverwrittenSettings_descriptor;
+    return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ApplyPassiveSettingsResult_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ClientOverwrittenSettings_fieldAccessorTable
+    return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ApplyPassiveSettingsResult_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            apache.rocketmq.v2.ClientOverwrittenSettings.class, apache.rocketmq.v2.ClientOverwrittenSettings.Builder.class);
+            apache.rocketmq.v2.ApplyPassiveSettingsResult.class, apache.rocketmq.v2.ApplyPassiveSettingsResult.Builder.class);
   }
 
   public static final int NONCE_FIELD_NUMBER = 1;
@@ -145,51 +125,6 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int DIRECTION_FIELD_NUMBER = 2;
-  private int direction_;
-  /**
-   * <code>.apache.rocketmq.v2.Direction direction = 2;</code>
-   * @return The enum numeric value on the wire for direction.
-   */
-  @java.lang.Override public int getDirectionValue() {
-    return direction_;
-  }
-  /**
-   * <code>.apache.rocketmq.v2.Direction direction = 2;</code>
-   * @return The direction.
-   */
-  @java.lang.Override public apache.rocketmq.v2.Direction getDirection() {
-    @SuppressWarnings("deprecation")
-    apache.rocketmq.v2.Direction result = apache.rocketmq.v2.Direction.valueOf(direction_);
-    return result == null ? apache.rocketmq.v2.Direction.UNRECOGNIZED : result;
-  }
-
-  public static final int SETTINGS_FIELD_NUMBER = 3;
-  private apache.rocketmq.v2.Settings settings_;
-  /**
-   * <code>.apache.rocketmq.v2.Settings settings = 3;</code>
-   * @return Whether the settings field is set.
-   */
-  @java.lang.Override
-  public boolean hasSettings() {
-    return settings_ != null;
-  }
-  /**
-   * <code>.apache.rocketmq.v2.Settings settings = 3;</code>
-   * @return The settings.
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.Settings getSettings() {
-    return settings_ == null ? apache.rocketmq.v2.Settings.getDefaultInstance() : settings_;
-  }
-  /**
-   * <code>.apache.rocketmq.v2.Settings settings = 3;</code>
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.SettingsOrBuilder getSettingsOrBuilder() {
-    return getSettings();
-  }
-
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -207,12 +142,6 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nonce_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, nonce_);
     }
-    if (direction_ != apache.rocketmq.v2.Direction.DIRECTION_UNSPECIFIED.getNumber()) {
-      output.writeEnum(2, direction_);
-    }
-    if (settings_ != null) {
-      output.writeMessage(3, getSettings());
-    }
     unknownFields.writeTo(output);
   }
 
@@ -225,14 +154,6 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nonce_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, nonce_);
     }
-    if (direction_ != apache.rocketmq.v2.Direction.DIRECTION_UNSPECIFIED.getNumber()) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(2, direction_);
-    }
-    if (settings_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, getSettings());
-    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -243,19 +164,13 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof apache.rocketmq.v2.ClientOverwrittenSettings)) {
+    if (!(obj instanceof apache.rocketmq.v2.ApplyPassiveSettingsResult)) {
       return super.equals(obj);
     }
-    apache.rocketmq.v2.ClientOverwrittenSettings other = (apache.rocketmq.v2.ClientOverwrittenSettings) obj;
+    apache.rocketmq.v2.ApplyPassiveSettingsResult other = (apache.rocketmq.v2.ApplyPassiveSettingsResult) obj;
 
     if (!getNonce()
         .equals(other.getNonce())) return false;
-    if (direction_ != other.direction_) return false;
-    if (hasSettings() != other.hasSettings()) return false;
-    if (hasSettings()) {
-      if (!getSettings()
-          .equals(other.getSettings())) return false;
-    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -269,80 +184,74 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NONCE_FIELD_NUMBER;
     hash = (53 * hash) + getNonce().hashCode();
-    hash = (37 * hash) + DIRECTION_FIELD_NUMBER;
-    hash = (53 * hash) + direction_;
-    if (hasSettings()) {
-      hash = (37 * hash) + SETTINGS_FIELD_NUMBER;
-      hash = (53 * hash) + getSettings().hashCode();
-    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static apache.rocketmq.v2.ClientOverwrittenSettings parseFrom(
+  public static apache.rocketmq.v2.ApplyPassiveSettingsResult parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static apache.rocketmq.v2.ClientOverwrittenSettings parseFrom(
+  public static apache.rocketmq.v2.ApplyPassiveSettingsResult parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static apache.rocketmq.v2.ClientOverwrittenSettings parseFrom(
+  public static apache.rocketmq.v2.ApplyPassiveSettingsResult parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static apache.rocketmq.v2.ClientOverwrittenSettings parseFrom(
+  public static apache.rocketmq.v2.ApplyPassiveSettingsResult parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static apache.rocketmq.v2.ClientOverwrittenSettings parseFrom(byte[] data)
+  public static apache.rocketmq.v2.ApplyPassiveSettingsResult parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static apache.rocketmq.v2.ClientOverwrittenSettings parseFrom(
+  public static apache.rocketmq.v2.ApplyPassiveSettingsResult parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static apache.rocketmq.v2.ClientOverwrittenSettings parseFrom(java.io.InputStream input)
+  public static apache.rocketmq.v2.ApplyPassiveSettingsResult parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static apache.rocketmq.v2.ClientOverwrittenSettings parseFrom(
+  public static apache.rocketmq.v2.ApplyPassiveSettingsResult parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static apache.rocketmq.v2.ClientOverwrittenSettings parseDelimitedFrom(java.io.InputStream input)
+  public static apache.rocketmq.v2.ApplyPassiveSettingsResult parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static apache.rocketmq.v2.ClientOverwrittenSettings parseDelimitedFrom(
+  public static apache.rocketmq.v2.ApplyPassiveSettingsResult parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static apache.rocketmq.v2.ClientOverwrittenSettings parseFrom(
+  public static apache.rocketmq.v2.ApplyPassiveSettingsResult parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static apache.rocketmq.v2.ClientOverwrittenSettings parseFrom(
+  public static apache.rocketmq.v2.ApplyPassiveSettingsResult parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -355,7 +264,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(apache.rocketmq.v2.ClientOverwrittenSettings prototype) {
+  public static Builder newBuilder(apache.rocketmq.v2.ApplyPassiveSettingsResult prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -371,26 +280,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code apache.rocketmq.v2.ClientOverwrittenSettings}
+   * Protobuf type {@code apache.rocketmq.v2.ApplyPassiveSettingsResult}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:apache.rocketmq.v2.ClientOverwrittenSettings)
-      apache.rocketmq.v2.ClientOverwrittenSettingsOrBuilder {
+      // @@protoc_insertion_point(builder_implements:apache.rocketmq.v2.ApplyPassiveSettingsResult)
+      apache.rocketmq.v2.ApplyPassiveSettingsResultOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ClientOverwrittenSettings_descriptor;
+      return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ApplyPassiveSettingsResult_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ClientOverwrittenSettings_fieldAccessorTable
+      return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ApplyPassiveSettingsResult_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              apache.rocketmq.v2.ClientOverwrittenSettings.class, apache.rocketmq.v2.ClientOverwrittenSettings.Builder.class);
+              apache.rocketmq.v2.ApplyPassiveSettingsResult.class, apache.rocketmq.v2.ApplyPassiveSettingsResult.Builder.class);
     }
 
-    // Construct using apache.rocketmq.v2.ClientOverwrittenSettings.newBuilder()
+    // Construct using apache.rocketmq.v2.ApplyPassiveSettingsResult.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -410,31 +319,23 @@ private static final long serialVersionUID = 0L;
       super.clear();
       nonce_ = "";
 
-      direction_ = 0;
-
-      if (settingsBuilder_ == null) {
-        settings_ = null;
-      } else {
-        settings_ = null;
-        settingsBuilder_ = null;
-      }
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ClientOverwrittenSettings_descriptor;
+      return apache.rocketmq.v2.MQService.internal_static_apache_rocketmq_v2_ApplyPassiveSettingsResult_descriptor;
     }
 
     @java.lang.Override
-    public apache.rocketmq.v2.ClientOverwrittenSettings getDefaultInstanceForType() {
-      return apache.rocketmq.v2.ClientOverwrittenSettings.getDefaultInstance();
+    public apache.rocketmq.v2.ApplyPassiveSettingsResult getDefaultInstanceForType() {
+      return apache.rocketmq.v2.ApplyPassiveSettingsResult.getDefaultInstance();
     }
 
     @java.lang.Override
-    public apache.rocketmq.v2.ClientOverwrittenSettings build() {
-      apache.rocketmq.v2.ClientOverwrittenSettings result = buildPartial();
+    public apache.rocketmq.v2.ApplyPassiveSettingsResult build() {
+      apache.rocketmq.v2.ApplyPassiveSettingsResult result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -442,15 +343,9 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public apache.rocketmq.v2.ClientOverwrittenSettings buildPartial() {
-      apache.rocketmq.v2.ClientOverwrittenSettings result = new apache.rocketmq.v2.ClientOverwrittenSettings(this);
+    public apache.rocketmq.v2.ApplyPassiveSettingsResult buildPartial() {
+      apache.rocketmq.v2.ApplyPassiveSettingsResult result = new apache.rocketmq.v2.ApplyPassiveSettingsResult(this);
       result.nonce_ = nonce_;
-      result.direction_ = direction_;
-      if (settingsBuilder_ == null) {
-        result.settings_ = settings_;
-      } else {
-        result.settings_ = settingsBuilder_.build();
-      }
       onBuilt();
       return result;
     }
@@ -489,25 +384,19 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof apache.rocketmq.v2.ClientOverwrittenSettings) {
-        return mergeFrom((apache.rocketmq.v2.ClientOverwrittenSettings)other);
+      if (other instanceof apache.rocketmq.v2.ApplyPassiveSettingsResult) {
+        return mergeFrom((apache.rocketmq.v2.ApplyPassiveSettingsResult)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(apache.rocketmq.v2.ClientOverwrittenSettings other) {
-      if (other == apache.rocketmq.v2.ClientOverwrittenSettings.getDefaultInstance()) return this;
+    public Builder mergeFrom(apache.rocketmq.v2.ApplyPassiveSettingsResult other) {
+      if (other == apache.rocketmq.v2.ApplyPassiveSettingsResult.getDefaultInstance()) return this;
       if (!other.getNonce().isEmpty()) {
         nonce_ = other.nonce_;
         onChanged();
-      }
-      if (other.direction_ != 0) {
-        setDirectionValue(other.getDirectionValue());
-      }
-      if (other.hasSettings()) {
-        mergeSettings(other.getSettings());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -524,11 +413,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      apache.rocketmq.v2.ClientOverwrittenSettings parsedMessage = null;
+      apache.rocketmq.v2.ApplyPassiveSettingsResult parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (apache.rocketmq.v2.ClientOverwrittenSettings) e.getUnfinishedMessage();
+        parsedMessage = (apache.rocketmq.v2.ApplyPassiveSettingsResult) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -613,179 +502,6 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-
-    private int direction_ = 0;
-    /**
-     * <code>.apache.rocketmq.v2.Direction direction = 2;</code>
-     * @return The enum numeric value on the wire for direction.
-     */
-    @java.lang.Override public int getDirectionValue() {
-      return direction_;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Direction direction = 2;</code>
-     * @param value The enum numeric value on the wire for direction to set.
-     * @return This builder for chaining.
-     */
-    public Builder setDirectionValue(int value) {
-      
-      direction_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Direction direction = 2;</code>
-     * @return The direction.
-     */
-    @java.lang.Override
-    public apache.rocketmq.v2.Direction getDirection() {
-      @SuppressWarnings("deprecation")
-      apache.rocketmq.v2.Direction result = apache.rocketmq.v2.Direction.valueOf(direction_);
-      return result == null ? apache.rocketmq.v2.Direction.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Direction direction = 2;</code>
-     * @param value The direction to set.
-     * @return This builder for chaining.
-     */
-    public Builder setDirection(apache.rocketmq.v2.Direction value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      direction_ = value.getNumber();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Direction direction = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearDirection() {
-      
-      direction_ = 0;
-      onChanged();
-      return this;
-    }
-
-    private apache.rocketmq.v2.Settings settings_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.Settings, apache.rocketmq.v2.Settings.Builder, apache.rocketmq.v2.SettingsOrBuilder> settingsBuilder_;
-    /**
-     * <code>.apache.rocketmq.v2.Settings settings = 3;</code>
-     * @return Whether the settings field is set.
-     */
-    public boolean hasSettings() {
-      return settingsBuilder_ != null || settings_ != null;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Settings settings = 3;</code>
-     * @return The settings.
-     */
-    public apache.rocketmq.v2.Settings getSettings() {
-      if (settingsBuilder_ == null) {
-        return settings_ == null ? apache.rocketmq.v2.Settings.getDefaultInstance() : settings_;
-      } else {
-        return settingsBuilder_.getMessage();
-      }
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Settings settings = 3;</code>
-     */
-    public Builder setSettings(apache.rocketmq.v2.Settings value) {
-      if (settingsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        settings_ = value;
-        onChanged();
-      } else {
-        settingsBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Settings settings = 3;</code>
-     */
-    public Builder setSettings(
-        apache.rocketmq.v2.Settings.Builder builderForValue) {
-      if (settingsBuilder_ == null) {
-        settings_ = builderForValue.build();
-        onChanged();
-      } else {
-        settingsBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Settings settings = 3;</code>
-     */
-    public Builder mergeSettings(apache.rocketmq.v2.Settings value) {
-      if (settingsBuilder_ == null) {
-        if (settings_ != null) {
-          settings_ =
-            apache.rocketmq.v2.Settings.newBuilder(settings_).mergeFrom(value).buildPartial();
-        } else {
-          settings_ = value;
-        }
-        onChanged();
-      } else {
-        settingsBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Settings settings = 3;</code>
-     */
-    public Builder clearSettings() {
-      if (settingsBuilder_ == null) {
-        settings_ = null;
-        onChanged();
-      } else {
-        settings_ = null;
-        settingsBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Settings settings = 3;</code>
-     */
-    public apache.rocketmq.v2.Settings.Builder getSettingsBuilder() {
-      
-      onChanged();
-      return getSettingsFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Settings settings = 3;</code>
-     */
-    public apache.rocketmq.v2.SettingsOrBuilder getSettingsOrBuilder() {
-      if (settingsBuilder_ != null) {
-        return settingsBuilder_.getMessageOrBuilder();
-      } else {
-        return settings_ == null ?
-            apache.rocketmq.v2.Settings.getDefaultInstance() : settings_;
-      }
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Settings settings = 3;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.Settings, apache.rocketmq.v2.Settings.Builder, apache.rocketmq.v2.SettingsOrBuilder> 
-        getSettingsFieldBuilder() {
-      if (settingsBuilder_ == null) {
-        settingsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            apache.rocketmq.v2.Settings, apache.rocketmq.v2.Settings.Builder, apache.rocketmq.v2.SettingsOrBuilder>(
-                getSettings(),
-                getParentForChildren(),
-                isClean());
-        settings_ = null;
-      }
-      return settingsBuilder_;
-    }
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -799,41 +515,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:apache.rocketmq.v2.ClientOverwrittenSettings)
+    // @@protoc_insertion_point(builder_scope:apache.rocketmq.v2.ApplyPassiveSettingsResult)
   }
 
-  // @@protoc_insertion_point(class_scope:apache.rocketmq.v2.ClientOverwrittenSettings)
-  private static final apache.rocketmq.v2.ClientOverwrittenSettings DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:apache.rocketmq.v2.ApplyPassiveSettingsResult)
+  private static final apache.rocketmq.v2.ApplyPassiveSettingsResult DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new apache.rocketmq.v2.ClientOverwrittenSettings();
+    DEFAULT_INSTANCE = new apache.rocketmq.v2.ApplyPassiveSettingsResult();
   }
 
-  public static apache.rocketmq.v2.ClientOverwrittenSettings getDefaultInstance() {
+  public static apache.rocketmq.v2.ApplyPassiveSettingsResult getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<ClientOverwrittenSettings>
-      PARSER = new com.google.protobuf.AbstractParser<ClientOverwrittenSettings>() {
+  private static final com.google.protobuf.Parser<ApplyPassiveSettingsResult>
+      PARSER = new com.google.protobuf.AbstractParser<ApplyPassiveSettingsResult>() {
     @java.lang.Override
-    public ClientOverwrittenSettings parsePartialFrom(
+    public ApplyPassiveSettingsResult parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new ClientOverwrittenSettings(input, extensionRegistry);
+      return new ApplyPassiveSettingsResult(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<ClientOverwrittenSettings> parser() {
+  public static com.google.protobuf.Parser<ApplyPassiveSettingsResult> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<ClientOverwrittenSettings> getParserForType() {
+  public com.google.protobuf.Parser<ApplyPassiveSettingsResult> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public apache.rocketmq.v2.ClientOverwrittenSettings getDefaultInstanceForType() {
+  public apache.rocketmq.v2.ApplyPassiveSettingsResult getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

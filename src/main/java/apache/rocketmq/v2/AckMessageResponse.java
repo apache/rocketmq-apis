@@ -16,6 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private AckMessageResponse() {
+    entries_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -38,6 +39,7 @@ private static final long serialVersionUID = 0L;
     if (extensionRegistry == null) {
       throw new java.lang.NullPointerException();
     }
+    int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
         com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
@@ -49,16 +51,12 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 10: {
-            apache.rocketmq.v2.Status.Builder subBuilder = null;
-            if (status_ != null) {
-              subBuilder = status_.toBuilder();
+            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+              entries_ = new java.util.ArrayList<apache.rocketmq.v2.AckMessageResultEntry>();
+              mutable_bitField0_ |= 0x00000001;
             }
-            status_ = input.readMessage(apache.rocketmq.v2.Status.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(status_);
-              status_ = subBuilder.buildPartial();
-            }
-
+            entries_.add(
+                input.readMessage(apache.rocketmq.v2.AckMessageResultEntry.parser(), extensionRegistry));
             break;
           }
           default: {
@@ -76,6 +74,9 @@ private static final long serialVersionUID = 0L;
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      if (((mutable_bitField0_ & 0x00000001) != 0)) {
+        entries_ = java.util.Collections.unmodifiableList(entries_);
+      }
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
@@ -93,30 +94,44 @@ private static final long serialVersionUID = 0L;
             apache.rocketmq.v2.AckMessageResponse.class, apache.rocketmq.v2.AckMessageResponse.Builder.class);
   }
 
-  public static final int STATUS_FIELD_NUMBER = 1;
-  private apache.rocketmq.v2.Status status_;
+  public static final int ENTRIES_FIELD_NUMBER = 1;
+  private java.util.List<apache.rocketmq.v2.AckMessageResultEntry> entries_;
   /**
-   * <code>.apache.rocketmq.v2.Status status = 1;</code>
-   * @return Whether the status field is set.
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
    */
   @java.lang.Override
-  public boolean hasStatus() {
-    return status_ != null;
+  public java.util.List<apache.rocketmq.v2.AckMessageResultEntry> getEntriesList() {
+    return entries_;
   }
   /**
-   * <code>.apache.rocketmq.v2.Status status = 1;</code>
-   * @return The status.
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
    */
   @java.lang.Override
-  public apache.rocketmq.v2.Status getStatus() {
-    return status_ == null ? apache.rocketmq.v2.Status.getDefaultInstance() : status_;
+  public java.util.List<? extends apache.rocketmq.v2.AckMessageResultEntryOrBuilder> 
+      getEntriesOrBuilderList() {
+    return entries_;
   }
   /**
-   * <code>.apache.rocketmq.v2.Status status = 1;</code>
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
    */
   @java.lang.Override
-  public apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder() {
-    return getStatus();
+  public int getEntriesCount() {
+    return entries_.size();
+  }
+  /**
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.AckMessageResultEntry getEntries(int index) {
+    return entries_.get(index);
+  }
+  /**
+   * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.AckMessageResultEntryOrBuilder getEntriesOrBuilder(
+      int index) {
+    return entries_.get(index);
   }
 
   private byte memoizedIsInitialized = -1;
@@ -133,8 +148,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (status_ != null) {
-      output.writeMessage(1, getStatus());
+    for (int i = 0; i < entries_.size(); i++) {
+      output.writeMessage(1, entries_.get(i));
     }
     unknownFields.writeTo(output);
   }
@@ -145,9 +160,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (status_ != null) {
+    for (int i = 0; i < entries_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, getStatus());
+        .computeMessageSize(1, entries_.get(i));
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -164,11 +179,8 @@ private static final long serialVersionUID = 0L;
     }
     apache.rocketmq.v2.AckMessageResponse other = (apache.rocketmq.v2.AckMessageResponse) obj;
 
-    if (hasStatus() != other.hasStatus()) return false;
-    if (hasStatus()) {
-      if (!getStatus()
-          .equals(other.getStatus())) return false;
-    }
+    if (!getEntriesList()
+        .equals(other.getEntriesList())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -180,9 +192,9 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasStatus()) {
-      hash = (37 * hash) + STATUS_FIELD_NUMBER;
-      hash = (53 * hash) + getStatus().hashCode();
+    if (getEntriesCount() > 0) {
+      hash = (37 * hash) + ENTRIES_FIELD_NUMBER;
+      hash = (53 * hash) + getEntriesList().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -312,16 +324,17 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
+        getEntriesFieldBuilder();
       }
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      if (statusBuilder_ == null) {
-        status_ = null;
+      if (entriesBuilder_ == null) {
+        entries_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
       } else {
-        status_ = null;
-        statusBuilder_ = null;
+        entriesBuilder_.clear();
       }
       return this;
     }
@@ -349,10 +362,15 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public apache.rocketmq.v2.AckMessageResponse buildPartial() {
       apache.rocketmq.v2.AckMessageResponse result = new apache.rocketmq.v2.AckMessageResponse(this);
-      if (statusBuilder_ == null) {
-        result.status_ = status_;
+      int from_bitField0_ = bitField0_;
+      if (entriesBuilder_ == null) {
+        if (((bitField0_ & 0x00000001) != 0)) {
+          entries_ = java.util.Collections.unmodifiableList(entries_);
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.entries_ = entries_;
       } else {
-        result.status_ = statusBuilder_.build();
+        result.entries_ = entriesBuilder_.build();
       }
       onBuilt();
       return result;
@@ -402,8 +420,31 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(apache.rocketmq.v2.AckMessageResponse other) {
       if (other == apache.rocketmq.v2.AckMessageResponse.getDefaultInstance()) return this;
-      if (other.hasStatus()) {
-        mergeStatus(other.getStatus());
+      if (entriesBuilder_ == null) {
+        if (!other.entries_.isEmpty()) {
+          if (entries_.isEmpty()) {
+            entries_ = other.entries_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureEntriesIsMutable();
+            entries_.addAll(other.entries_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.entries_.isEmpty()) {
+          if (entriesBuilder_.isEmpty()) {
+            entriesBuilder_.dispose();
+            entriesBuilder_ = null;
+            entries_ = other.entries_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+            entriesBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getEntriesFieldBuilder() : null;
+          } else {
+            entriesBuilder_.addAllMessages(other.entries_);
+          }
+        }
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -433,124 +474,246 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+    private int bitField0_;
 
-    private apache.rocketmq.v2.Status status_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder> statusBuilder_;
-    /**
-     * <code>.apache.rocketmq.v2.Status status = 1;</code>
-     * @return Whether the status field is set.
-     */
-    public boolean hasStatus() {
-      return statusBuilder_ != null || status_ != null;
+    private java.util.List<apache.rocketmq.v2.AckMessageResultEntry> entries_ =
+      java.util.Collections.emptyList();
+    private void ensureEntriesIsMutable() {
+      if (!((bitField0_ & 0x00000001) != 0)) {
+        entries_ = new java.util.ArrayList<apache.rocketmq.v2.AckMessageResultEntry>(entries_);
+        bitField0_ |= 0x00000001;
+       }
     }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        apache.rocketmq.v2.AckMessageResultEntry, apache.rocketmq.v2.AckMessageResultEntry.Builder, apache.rocketmq.v2.AckMessageResultEntryOrBuilder> entriesBuilder_;
+
     /**
-     * <code>.apache.rocketmq.v2.Status status = 1;</code>
-     * @return The status.
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
      */
-    public apache.rocketmq.v2.Status getStatus() {
-      if (statusBuilder_ == null) {
-        return status_ == null ? apache.rocketmq.v2.Status.getDefaultInstance() : status_;
+    public java.util.List<apache.rocketmq.v2.AckMessageResultEntry> getEntriesList() {
+      if (entriesBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(entries_);
       } else {
-        return statusBuilder_.getMessage();
+        return entriesBuilder_.getMessageList();
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Status status = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
      */
-    public Builder setStatus(apache.rocketmq.v2.Status value) {
-      if (statusBuilder_ == null) {
+    public int getEntriesCount() {
+      if (entriesBuilder_ == null) {
+        return entries_.size();
+      } else {
+        return entriesBuilder_.getCount();
+      }
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     */
+    public apache.rocketmq.v2.AckMessageResultEntry getEntries(int index) {
+      if (entriesBuilder_ == null) {
+        return entries_.get(index);
+      } else {
+        return entriesBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     */
+    public Builder setEntries(
+        int index, apache.rocketmq.v2.AckMessageResultEntry value) {
+      if (entriesBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        status_ = value;
+        ensureEntriesIsMutable();
+        entries_.set(index, value);
         onChanged();
       } else {
-        statusBuilder_.setMessage(value);
+        entriesBuilder_.setMessage(index, value);
       }
-
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Status status = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
      */
-    public Builder setStatus(
-        apache.rocketmq.v2.Status.Builder builderForValue) {
-      if (statusBuilder_ == null) {
-        status_ = builderForValue.build();
+    public Builder setEntries(
+        int index, apache.rocketmq.v2.AckMessageResultEntry.Builder builderForValue) {
+      if (entriesBuilder_ == null) {
+        ensureEntriesIsMutable();
+        entries_.set(index, builderForValue.build());
         onChanged();
       } else {
-        statusBuilder_.setMessage(builderForValue.build());
+        entriesBuilder_.setMessage(index, builderForValue.build());
       }
-
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Status status = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
      */
-    public Builder mergeStatus(apache.rocketmq.v2.Status value) {
-      if (statusBuilder_ == null) {
-        if (status_ != null) {
-          status_ =
-            apache.rocketmq.v2.Status.newBuilder(status_).mergeFrom(value).buildPartial();
-        } else {
-          status_ = value;
+    public Builder addEntries(apache.rocketmq.v2.AckMessageResultEntry value) {
+      if (entriesBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
         }
+        ensureEntriesIsMutable();
+        entries_.add(value);
         onChanged();
       } else {
-        statusBuilder_.mergeFrom(value);
+        entriesBuilder_.addMessage(value);
       }
-
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Status status = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
      */
-    public Builder clearStatus() {
-      if (statusBuilder_ == null) {
-        status_ = null;
+    public Builder addEntries(
+        int index, apache.rocketmq.v2.AckMessageResultEntry value) {
+      if (entriesBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureEntriesIsMutable();
+        entries_.add(index, value);
         onChanged();
       } else {
-        status_ = null;
-        statusBuilder_ = null;
+        entriesBuilder_.addMessage(index, value);
       }
-
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Status status = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
      */
-    public apache.rocketmq.v2.Status.Builder getStatusBuilder() {
-      
-      onChanged();
-      return getStatusFieldBuilder().getBuilder();
+    public Builder addEntries(
+        apache.rocketmq.v2.AckMessageResultEntry.Builder builderForValue) {
+      if (entriesBuilder_ == null) {
+        ensureEntriesIsMutable();
+        entries_.add(builderForValue.build());
+        onChanged();
+      } else {
+        entriesBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Status status = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
      */
-    public apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder() {
-      if (statusBuilder_ != null) {
-        return statusBuilder_.getMessageOrBuilder();
+    public Builder addEntries(
+        int index, apache.rocketmq.v2.AckMessageResultEntry.Builder builderForValue) {
+      if (entriesBuilder_ == null) {
+        ensureEntriesIsMutable();
+        entries_.add(index, builderForValue.build());
+        onChanged();
       } else {
-        return status_ == null ?
-            apache.rocketmq.v2.Status.getDefaultInstance() : status_;
+        entriesBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     */
+    public Builder addAllEntries(
+        java.lang.Iterable<? extends apache.rocketmq.v2.AckMessageResultEntry> values) {
+      if (entriesBuilder_ == null) {
+        ensureEntriesIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, entries_);
+        onChanged();
+      } else {
+        entriesBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     */
+    public Builder clearEntries() {
+      if (entriesBuilder_ == null) {
+        entries_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+      } else {
+        entriesBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     */
+    public Builder removeEntries(int index) {
+      if (entriesBuilder_ == null) {
+        ensureEntriesIsMutable();
+        entries_.remove(index);
+        onChanged();
+      } else {
+        entriesBuilder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     */
+    public apache.rocketmq.v2.AckMessageResultEntry.Builder getEntriesBuilder(
+        int index) {
+      return getEntriesFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     */
+    public apache.rocketmq.v2.AckMessageResultEntryOrBuilder getEntriesOrBuilder(
+        int index) {
+      if (entriesBuilder_ == null) {
+        return entries_.get(index);  } else {
+        return entriesBuilder_.getMessageOrBuilder(index);
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Status status = 1;</code>
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
      */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder> 
-        getStatusFieldBuilder() {
-      if (statusBuilder_ == null) {
-        statusBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder>(
-                getStatus(),
+    public java.util.List<? extends apache.rocketmq.v2.AckMessageResultEntryOrBuilder> 
+         getEntriesOrBuilderList() {
+      if (entriesBuilder_ != null) {
+        return entriesBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(entries_);
+      }
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     */
+    public apache.rocketmq.v2.AckMessageResultEntry.Builder addEntriesBuilder() {
+      return getEntriesFieldBuilder().addBuilder(
+          apache.rocketmq.v2.AckMessageResultEntry.getDefaultInstance());
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     */
+    public apache.rocketmq.v2.AckMessageResultEntry.Builder addEntriesBuilder(
+        int index) {
+      return getEntriesFieldBuilder().addBuilder(
+          index, apache.rocketmq.v2.AckMessageResultEntry.getDefaultInstance());
+    }
+    /**
+     * <code>repeated .apache.rocketmq.v2.AckMessageResultEntry entries = 1;</code>
+     */
+    public java.util.List<apache.rocketmq.v2.AckMessageResultEntry.Builder> 
+         getEntriesBuilderList() {
+      return getEntriesFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        apache.rocketmq.v2.AckMessageResultEntry, apache.rocketmq.v2.AckMessageResultEntry.Builder, apache.rocketmq.v2.AckMessageResultEntryOrBuilder> 
+        getEntriesFieldBuilder() {
+      if (entriesBuilder_ == null) {
+        entriesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            apache.rocketmq.v2.AckMessageResultEntry, apache.rocketmq.v2.AckMessageResultEntry.Builder, apache.rocketmq.v2.AckMessageResultEntryOrBuilder>(
+                entries_,
+                ((bitField0_ & 0x00000001) != 0),
                 getParentForChildren(),
                 isClean());
-        status_ = null;
+        entries_ = null;
       }
-      return statusBuilder_;
+      return entriesBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

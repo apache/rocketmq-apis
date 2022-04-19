@@ -10,39 +10,66 @@ public interface TelemetryCommandOrBuilder extends
   /**
    * <pre>
    * These messages are from client.
-   * Report local client setting to server.
+   * Report active setting to server.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.ClientSettings client_settings = 1;</code>
-   * @return Whether the clientSettings field is set.
+   * <code>.apache.rocketmq.v2.ReportActiveSettingsCommand report_active_settings_command = 1;</code>
+   * @return Whether the reportActiveSettingsCommand field is set.
    */
-  boolean hasClientSettings();
+  boolean hasReportActiveSettingsCommand();
   /**
    * <pre>
    * These messages are from client.
-   * Report local client setting to server.
+   * Report active setting to server.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.ClientSettings client_settings = 1;</code>
-   * @return The clientSettings.
+   * <code>.apache.rocketmq.v2.ReportActiveSettingsCommand report_active_settings_command = 1;</code>
+   * @return The reportActiveSettingsCommand.
    */
-  apache.rocketmq.v2.ClientSettings getClientSettings();
+  apache.rocketmq.v2.ReportActiveSettingsCommand getReportActiveSettingsCommand();
   /**
    * <pre>
    * These messages are from client.
-   * Report local client setting to server.
+   * Report active setting to server.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.ClientSettings client_settings = 1;</code>
+   * <code>.apache.rocketmq.v2.ReportActiveSettingsCommand report_active_settings_command = 1;</code>
    */
-  apache.rocketmq.v2.ClientSettingsOrBuilder getClientSettingsOrBuilder();
+  apache.rocketmq.v2.ReportActiveSettingsCommandOrBuilder getReportActiveSettingsCommandOrBuilder();
+
+  /**
+   * <pre>
+   * Ack `ApplyPassiveSettingsCommand` from server.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.ApplyPassiveSettingsResult apply_passive_settings_result = 2;</code>
+   * @return Whether the applyPassiveSettingsResult field is set.
+   */
+  boolean hasApplyPassiveSettingsResult();
+  /**
+   * <pre>
+   * Ack `ApplyPassiveSettingsCommand` from server.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.ApplyPassiveSettingsResult apply_passive_settings_result = 2;</code>
+   * @return The applyPassiveSettingsResult.
+   */
+  apache.rocketmq.v2.ApplyPassiveSettingsResult getApplyPassiveSettingsResult();
+  /**
+   * <pre>
+   * Ack `ApplyPassiveSettingsCommand` from server.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.ApplyPassiveSettingsResult apply_passive_settings_result = 2;</code>
+   */
+  apache.rocketmq.v2.ApplyPassiveSettingsResultOrBuilder getApplyPassiveSettingsResultOrBuilder();
 
   /**
    * <pre>
    * Report thread stack trace to server.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 2;</code>
+   * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 3;</code>
    * @return Whether the threadStackTrace field is set.
    */
   boolean hasThreadStackTrace();
@@ -51,7 +78,7 @@ public interface TelemetryCommandOrBuilder extends
    * Report thread stack trace to server.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 2;</code>
+   * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 3;</code>
    * @return The threadStackTrace.
    */
   apache.rocketmq.v2.ThreadStackTrace getThreadStackTrace();
@@ -60,7 +87,7 @@ public interface TelemetryCommandOrBuilder extends
    * Report thread stack trace to server.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 2;</code>
+   * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 3;</code>
    */
   apache.rocketmq.v2.ThreadStackTraceOrBuilder getThreadStackTraceOrBuilder();
 
@@ -69,7 +96,7 @@ public interface TelemetryCommandOrBuilder extends
    * Repost message verify result to server.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 3;</code>
+   * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 4;</code>
    * @return Whether the verifyMessageResult field is set.
    */
   boolean hasVerifyMessageResult();
@@ -78,7 +105,7 @@ public interface TelemetryCommandOrBuilder extends
    * Repost message verify result to server.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 3;</code>
+   * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 4;</code>
    * @return The verifyMessageResult.
    */
   apache.rocketmq.v2.VerifyMessageResult getVerifyMessageResult();
@@ -87,46 +114,73 @@ public interface TelemetryCommandOrBuilder extends
    * Repost message verify result to server.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 3;</code>
+   * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 4;</code>
    */
   apache.rocketmq.v2.VerifyMessageResultOrBuilder getVerifyMessageResultOrBuilder();
 
   /**
    * <pre>
    * There messages are from server.
-   * Overwrite client settings.
+   * Deliver passive settings to client.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.ClientOverwrittenSettings client_overwritten_settings = 4;</code>
-   * @return Whether the clientOverwrittenSettings field is set.
+   * <code>.apache.rocketmq.v2.ApplyPassiveSettingsCommand apply_passive_settings_command = 5;</code>
+   * @return Whether the applyPassiveSettingsCommand field is set.
    */
-  boolean hasClientOverwrittenSettings();
+  boolean hasApplyPassiveSettingsCommand();
   /**
    * <pre>
    * There messages are from server.
-   * Overwrite client settings.
+   * Deliver passive settings to client.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.ClientOverwrittenSettings client_overwritten_settings = 4;</code>
-   * @return The clientOverwrittenSettings.
+   * <code>.apache.rocketmq.v2.ApplyPassiveSettingsCommand apply_passive_settings_command = 5;</code>
+   * @return The applyPassiveSettingsCommand.
    */
-  apache.rocketmq.v2.ClientOverwrittenSettings getClientOverwrittenSettings();
+  apache.rocketmq.v2.ApplyPassiveSettingsCommand getApplyPassiveSettingsCommand();
   /**
    * <pre>
    * There messages are from server.
-   * Overwrite client settings.
+   * Deliver passive settings to client.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.ClientOverwrittenSettings client_overwritten_settings = 4;</code>
+   * <code>.apache.rocketmq.v2.ApplyPassiveSettingsCommand apply_passive_settings_command = 5;</code>
    */
-  apache.rocketmq.v2.ClientOverwrittenSettingsOrBuilder getClientOverwrittenSettingsOrBuilder();
+  apache.rocketmq.v2.ApplyPassiveSettingsCommandOrBuilder getApplyPassiveSettingsCommandOrBuilder();
+
+  /**
+   * <pre>
+   * Ack `ReportActiveSettingsCommand` from client.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.ReportActiveSettingsResult report_active_settings_result = 6;</code>
+   * @return Whether the reportActiveSettingsResult field is set.
+   */
+  boolean hasReportActiveSettingsResult();
+  /**
+   * <pre>
+   * Ack `ReportActiveSettingsCommand` from client.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.ReportActiveSettingsResult report_active_settings_result = 6;</code>
+   * @return The reportActiveSettingsResult.
+   */
+  apache.rocketmq.v2.ReportActiveSettingsResult getReportActiveSettingsResult();
+  /**
+   * <pre>
+   * Ack `ReportActiveSettingsCommand` from client.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.ReportActiveSettingsResult report_active_settings_result = 6;</code>
+   */
+  apache.rocketmq.v2.ReportActiveSettingsResultOrBuilder getReportActiveSettingsResultOrBuilder();
 
   /**
    * <pre>
    * Request client to recover the orphaned transaction message.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 5;</code>
+   * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 7;</code>
    * @return Whether the recoverOrphanedTransactionCommand field is set.
    */
   boolean hasRecoverOrphanedTransactionCommand();
@@ -135,7 +189,7 @@ public interface TelemetryCommandOrBuilder extends
    * Request client to recover the orphaned transaction message.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 5;</code>
+   * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 7;</code>
    * @return The recoverOrphanedTransactionCommand.
    */
   apache.rocketmq.v2.RecoverOrphanedTransactionCommand getRecoverOrphanedTransactionCommand();
@@ -144,7 +198,7 @@ public interface TelemetryCommandOrBuilder extends
    * Request client to recover the orphaned transaction message.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 5;</code>
+   * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 7;</code>
    */
   apache.rocketmq.v2.RecoverOrphanedTransactionCommandOrBuilder getRecoverOrphanedTransactionCommandOrBuilder();
 
@@ -153,7 +207,7 @@ public interface TelemetryCommandOrBuilder extends
    * Request client to print thread stack trace.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 6;</code>
+   * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 8;</code>
    * @return Whether the printThreadStackTraceCommand field is set.
    */
   boolean hasPrintThreadStackTraceCommand();
@@ -162,7 +216,7 @@ public interface TelemetryCommandOrBuilder extends
    * Request client to print thread stack trace.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 6;</code>
+   * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 8;</code>
    * @return The printThreadStackTraceCommand.
    */
   apache.rocketmq.v2.PrintThreadStackTraceCommand getPrintThreadStackTraceCommand();
@@ -171,7 +225,7 @@ public interface TelemetryCommandOrBuilder extends
    * Request client to print thread stack trace.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 6;</code>
+   * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 8;</code>
    */
   apache.rocketmq.v2.PrintThreadStackTraceCommandOrBuilder getPrintThreadStackTraceCommandOrBuilder();
 
@@ -180,7 +234,7 @@ public interface TelemetryCommandOrBuilder extends
    * Request client to verify the consumption of the appointed message.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 7;</code>
+   * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 9;</code>
    * @return Whether the verifyMessageCommand field is set.
    */
   boolean hasVerifyMessageCommand();
@@ -189,7 +243,7 @@ public interface TelemetryCommandOrBuilder extends
    * Request client to verify the consumption of the appointed message.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 7;</code>
+   * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 9;</code>
    * @return The verifyMessageCommand.
    */
   apache.rocketmq.v2.VerifyMessageCommand getVerifyMessageCommand();
@@ -198,7 +252,7 @@ public interface TelemetryCommandOrBuilder extends
    * Request client to verify the consumption of the appointed message.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 7;</code>
+   * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 9;</code>
    */
   apache.rocketmq.v2.VerifyMessageCommandOrBuilder getVerifyMessageCommandOrBuilder();
 

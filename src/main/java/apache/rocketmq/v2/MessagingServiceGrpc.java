@@ -157,7 +157,7 @@ public final class MessagingServiceGrpc {
       fullMethodName = SERVICE_NAME + '/' + "ReceiveMessage",
       requestType = apache.rocketmq.v2.ReceiveMessageRequest.class,
       responseType = apache.rocketmq.v2.ReceiveMessageResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
   public static io.grpc.MethodDescriptor<apache.rocketmq.v2.ReceiveMessageRequest,
       apache.rocketmq.v2.ReceiveMessageResponse> getReceiveMessageMethod() {
     io.grpc.MethodDescriptor<apache.rocketmq.v2.ReceiveMessageRequest, apache.rocketmq.v2.ReceiveMessageResponse> getReceiveMessageMethod;
@@ -166,7 +166,7 @@ public final class MessagingServiceGrpc {
         if ((getReceiveMessageMethod = MessagingServiceGrpc.getReceiveMessageMethod) == null) {
           MessagingServiceGrpc.getReceiveMessageMethod = getReceiveMessageMethod =
               io.grpc.MethodDescriptor.<apache.rocketmq.v2.ReceiveMessageRequest, apache.rocketmq.v2.ReceiveMessageResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ReceiveMessage"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
@@ -303,68 +303,6 @@ public final class MessagingServiceGrpc {
       }
     }
     return getEndTransactionMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<apache.rocketmq.v2.QueryOffsetRequest,
-      apache.rocketmq.v2.QueryOffsetResponse> getQueryOffsetMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "QueryOffset",
-      requestType = apache.rocketmq.v2.QueryOffsetRequest.class,
-      responseType = apache.rocketmq.v2.QueryOffsetResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<apache.rocketmq.v2.QueryOffsetRequest,
-      apache.rocketmq.v2.QueryOffsetResponse> getQueryOffsetMethod() {
-    io.grpc.MethodDescriptor<apache.rocketmq.v2.QueryOffsetRequest, apache.rocketmq.v2.QueryOffsetResponse> getQueryOffsetMethod;
-    if ((getQueryOffsetMethod = MessagingServiceGrpc.getQueryOffsetMethod) == null) {
-      synchronized (MessagingServiceGrpc.class) {
-        if ((getQueryOffsetMethod = MessagingServiceGrpc.getQueryOffsetMethod) == null) {
-          MessagingServiceGrpc.getQueryOffsetMethod = getQueryOffsetMethod =
-              io.grpc.MethodDescriptor.<apache.rocketmq.v2.QueryOffsetRequest, apache.rocketmq.v2.QueryOffsetResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "QueryOffset"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  apache.rocketmq.v2.QueryOffsetRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  apache.rocketmq.v2.QueryOffsetResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new MessagingServiceMethodDescriptorSupplier("QueryOffset"))
-              .build();
-        }
-      }
-    }
-    return getQueryOffsetMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<apache.rocketmq.v2.PullMessageRequest,
-      apache.rocketmq.v2.PullMessageResponse> getPullMessageMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "PullMessage",
-      requestType = apache.rocketmq.v2.PullMessageRequest.class,
-      responseType = apache.rocketmq.v2.PullMessageResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<apache.rocketmq.v2.PullMessageRequest,
-      apache.rocketmq.v2.PullMessageResponse> getPullMessageMethod() {
-    io.grpc.MethodDescriptor<apache.rocketmq.v2.PullMessageRequest, apache.rocketmq.v2.PullMessageResponse> getPullMessageMethod;
-    if ((getPullMessageMethod = MessagingServiceGrpc.getPullMessageMethod) == null) {
-      synchronized (MessagingServiceGrpc.class) {
-        if ((getPullMessageMethod = MessagingServiceGrpc.getPullMessageMethod) == null) {
-          MessagingServiceGrpc.getPullMessageMethod = getPullMessageMethod =
-              io.grpc.MethodDescriptor.<apache.rocketmq.v2.PullMessageRequest, apache.rocketmq.v2.PullMessageResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "PullMessage"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  apache.rocketmq.v2.PullMessageRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  apache.rocketmq.v2.PullMessageResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new MessagingServiceMethodDescriptorSupplier("PullMessage"))
-              .build();
-        }
-      }
-    }
-    return getPullMessageMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<apache.rocketmq.v2.TelemetryCommand,
@@ -631,8 +569,8 @@ public final class MessagingServiceGrpc {
 
     /**
      * <pre>
-     * Forwards one message to dead letter queue if the DeadLetterPolicy is
-     * triggered by this message at client-side, return `OK` if success.
+     * Forwards one message to dead letter queue if the max delivery attempts is
+     * exceeded by this message at client-side, return `OK` if success.
      * </pre>
      */
     public void forwardMessageToDeadLetterQueue(apache.rocketmq.v2.ForwardMessageToDeadLetterQueueRequest request,
@@ -648,37 +586,6 @@ public final class MessagingServiceGrpc {
     public void endTransaction(apache.rocketmq.v2.EndTransactionRequest request,
         io.grpc.stub.StreamObserver<apache.rocketmq.v2.EndTransactionResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getEndTransactionMethod(), responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Queries the offset of the specific message queue, returns the offset with
-     * `OK` if success. The message server should maintain a numerical offset for
-     * each message in a message-queue.
-     * </pre>
-     */
-    public void queryOffset(apache.rocketmq.v2.QueryOffsetRequest request,
-        io.grpc.stub.StreamObserver<apache.rocketmq.v2.QueryOffsetResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getQueryOffsetMethod(), responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Pulls messages from the specific message-queue, returns a set of messages
-     * with next pull offset. The pulled messages can't be acked or nacked, while
-     * the client is responsible for manage offsets for consumer, typically update
-     * consume offset to local memory or a third-party storage service.
-     * If the pending concurrent receive requests exceed the quota of the given
-     * consumer group, returns `UNAVAILABLE`. If the upstream store server hangs,
-     * return `DEADLINE_EXCEEDED` in a timely manner. If the corresponding topic
-     * or consumer group doesn't exist, returns `NOT_FOUND`. If there is no new
-     * message in the specific topic, returns `OK` with an empty message set.
-     * Please note that client may suffer from false empty responses.
-     * </pre>
-     */
-    public void pullMessage(apache.rocketmq.v2.PullMessageRequest request,
-        io.grpc.stub.StreamObserver<apache.rocketmq.v2.PullMessageResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getPullMessageMethod(), responseObserver);
     }
 
     /**
@@ -752,7 +659,7 @@ public final class MessagingServiceGrpc {
                   this, METHODID_QUERY_ASSIGNMENT)))
           .addMethod(
             getReceiveMessageMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
+            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
               new MethodHandlers<
                 apache.rocketmq.v2.ReceiveMessageRequest,
                 apache.rocketmq.v2.ReceiveMessageResponse>(
@@ -785,20 +692,6 @@ public final class MessagingServiceGrpc {
                 apache.rocketmq.v2.EndTransactionRequest,
                 apache.rocketmq.v2.EndTransactionResponse>(
                   this, METHODID_END_TRANSACTION)))
-          .addMethod(
-            getQueryOffsetMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                apache.rocketmq.v2.QueryOffsetRequest,
-                apache.rocketmq.v2.QueryOffsetResponse>(
-                  this, METHODID_QUERY_OFFSET)))
-          .addMethod(
-            getPullMessageMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                apache.rocketmq.v2.PullMessageRequest,
-                apache.rocketmq.v2.PullMessageResponse>(
-                  this, METHODID_PULL_MESSAGE)))
           .addMethod(
             getTelemetryMethod(),
             io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
@@ -931,7 +824,7 @@ public final class MessagingServiceGrpc {
      */
     public void receiveMessage(apache.rocketmq.v2.ReceiveMessageRequest request,
         io.grpc.stub.StreamObserver<apache.rocketmq.v2.ReceiveMessageResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
           getChannel().newCall(getReceiveMessageMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -968,8 +861,8 @@ public final class MessagingServiceGrpc {
 
     /**
      * <pre>
-     * Forwards one message to dead letter queue if the DeadLetterPolicy is
-     * triggered by this message at client-side, return `OK` if success.
+     * Forwards one message to dead letter queue if the max delivery attempts is
+     * exceeded by this message at client-side, return `OK` if success.
      * </pre>
      */
     public void forwardMessageToDeadLetterQueue(apache.rocketmq.v2.ForwardMessageToDeadLetterQueueRequest request,
@@ -987,39 +880,6 @@ public final class MessagingServiceGrpc {
         io.grpc.stub.StreamObserver<apache.rocketmq.v2.EndTransactionResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getEndTransactionMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Queries the offset of the specific message queue, returns the offset with
-     * `OK` if success. The message server should maintain a numerical offset for
-     * each message in a message-queue.
-     * </pre>
-     */
-    public void queryOffset(apache.rocketmq.v2.QueryOffsetRequest request,
-        io.grpc.stub.StreamObserver<apache.rocketmq.v2.QueryOffsetResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getQueryOffsetMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Pulls messages from the specific message-queue, returns a set of messages
-     * with next pull offset. The pulled messages can't be acked or nacked, while
-     * the client is responsible for manage offsets for consumer, typically update
-     * consume offset to local memory or a third-party storage service.
-     * If the pending concurrent receive requests exceed the quota of the given
-     * consumer group, returns `UNAVAILABLE`. If the upstream store server hangs,
-     * return `DEADLINE_EXCEEDED` in a timely manner. If the corresponding topic
-     * or consumer group doesn't exist, returns `NOT_FOUND`. If there is no new
-     * message in the specific topic, returns `OK` with an empty message set.
-     * Please note that client may suffer from false empty responses.
-     * </pre>
-     */
-    public void pullMessage(apache.rocketmq.v2.PullMessageRequest request,
-        io.grpc.stub.StreamObserver<apache.rocketmq.v2.PullMessageResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getPullMessageMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1166,8 +1026,9 @@ public final class MessagingServiceGrpc {
      * Please note that client may suffer from false empty responses.
      * </pre>
      */
-    public apache.rocketmq.v2.ReceiveMessageResponse receiveMessage(apache.rocketmq.v2.ReceiveMessageRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public java.util.Iterator<apache.rocketmq.v2.ReceiveMessageResponse> receiveMessage(
+        apache.rocketmq.v2.ReceiveMessageRequest request) {
+      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
           getChannel(), getReceiveMessageMethod(), getCallOptions(), request);
     }
 
@@ -1202,8 +1063,8 @@ public final class MessagingServiceGrpc {
 
     /**
      * <pre>
-     * Forwards one message to dead letter queue if the DeadLetterPolicy is
-     * triggered by this message at client-side, return `OK` if success.
+     * Forwards one message to dead letter queue if the max delivery attempts is
+     * exceeded by this message at client-side, return `OK` if success.
      * </pre>
      */
     public apache.rocketmq.v2.ForwardMessageToDeadLetterQueueResponse forwardMessageToDeadLetterQueue(apache.rocketmq.v2.ForwardMessageToDeadLetterQueueRequest request) {
@@ -1219,37 +1080,6 @@ public final class MessagingServiceGrpc {
     public apache.rocketmq.v2.EndTransactionResponse endTransaction(apache.rocketmq.v2.EndTransactionRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getEndTransactionMethod(), getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
-     * Queries the offset of the specific message queue, returns the offset with
-     * `OK` if success. The message server should maintain a numerical offset for
-     * each message in a message-queue.
-     * </pre>
-     */
-    public apache.rocketmq.v2.QueryOffsetResponse queryOffset(apache.rocketmq.v2.QueryOffsetRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getQueryOffsetMethod(), getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
-     * Pulls messages from the specific message-queue, returns a set of messages
-     * with next pull offset. The pulled messages can't be acked or nacked, while
-     * the client is responsible for manage offsets for consumer, typically update
-     * consume offset to local memory or a third-party storage service.
-     * If the pending concurrent receive requests exceed the quota of the given
-     * consumer group, returns `UNAVAILABLE`. If the upstream store server hangs,
-     * return `DEADLINE_EXCEEDED` in a timely manner. If the corresponding topic
-     * or consumer group doesn't exist, returns `NOT_FOUND`. If there is no new
-     * message in the specific topic, returns `OK` with an empty message set.
-     * Please note that client may suffer from false empty responses.
-     * </pre>
-     */
-    public apache.rocketmq.v2.PullMessageResponse pullMessage(apache.rocketmq.v2.PullMessageRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getPullMessageMethod(), getCallOptions(), request);
     }
 
     /**
@@ -1372,25 +1202,6 @@ public final class MessagingServiceGrpc {
 
     /**
      * <pre>
-     * Receives messages from the server in batch manner, returns a set of
-     * messages if success. The received messages should be acked or nacked after
-     * processed.
-     * If the pending concurrent receive requests exceed the quota of the given
-     * consumer group, returns `UNAVAILABLE`. If the upstream store server hangs,
-     * return `DEADLINE_EXCEEDED` in a timely manner. If the corresponding topic
-     * or consumer group doesn't exist, returns `NOT_FOUND`. If there is no new
-     * message in the specific topic, returns `OK` with an empty message set.
-     * Please note that client may suffer from false empty responses.
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<apache.rocketmq.v2.ReceiveMessageResponse> receiveMessage(
-        apache.rocketmq.v2.ReceiveMessageRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getReceiveMessageMethod(), getCallOptions()), request);
-    }
-
-    /**
-     * <pre>
      * Acknowledges the message associated with the `receipt_handle` or `offset`
      * in the `AckMessageRequest`, it means the message has been successfully
      * processed. Returns `OK` if the message server remove the relevant message
@@ -1422,8 +1233,8 @@ public final class MessagingServiceGrpc {
 
     /**
      * <pre>
-     * Forwards one message to dead letter queue if the DeadLetterPolicy is
-     * triggered by this message at client-side, return `OK` if success.
+     * Forwards one message to dead letter queue if the max delivery attempts is
+     * exceeded by this message at client-side, return `OK` if success.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<apache.rocketmq.v2.ForwardMessageToDeadLetterQueueResponse> forwardMessageToDeadLetterQueue(
@@ -1441,39 +1252,6 @@ public final class MessagingServiceGrpc {
         apache.rocketmq.v2.EndTransactionRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getEndTransactionMethod(), getCallOptions()), request);
-    }
-
-    /**
-     * <pre>
-     * Queries the offset of the specific message queue, returns the offset with
-     * `OK` if success. The message server should maintain a numerical offset for
-     * each message in a message-queue.
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<apache.rocketmq.v2.QueryOffsetResponse> queryOffset(
-        apache.rocketmq.v2.QueryOffsetRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getQueryOffsetMethod(), getCallOptions()), request);
-    }
-
-    /**
-     * <pre>
-     * Pulls messages from the specific message-queue, returns a set of messages
-     * with next pull offset. The pulled messages can't be acked or nacked, while
-     * the client is responsible for manage offsets for consumer, typically update
-     * consume offset to local memory or a third-party storage service.
-     * If the pending concurrent receive requests exceed the quota of the given
-     * consumer group, returns `UNAVAILABLE`. If the upstream store server hangs,
-     * return `DEADLINE_EXCEEDED` in a timely manner. If the corresponding topic
-     * or consumer group doesn't exist, returns `NOT_FOUND`. If there is no new
-     * message in the specific topic, returns `OK` with an empty message set.
-     * Please note that client may suffer from false empty responses.
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<apache.rocketmq.v2.PullMessageResponse> pullMessage(
-        apache.rocketmq.v2.PullMessageRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getPullMessageMethod(), getCallOptions()), request);
     }
 
     /**
@@ -1513,11 +1291,9 @@ public final class MessagingServiceGrpc {
   private static final int METHODID_NACK_MESSAGE = 6;
   private static final int METHODID_FORWARD_MESSAGE_TO_DEAD_LETTER_QUEUE = 7;
   private static final int METHODID_END_TRANSACTION = 8;
-  private static final int METHODID_QUERY_OFFSET = 9;
-  private static final int METHODID_PULL_MESSAGE = 10;
-  private static final int METHODID_NOTIFY_CLIENT_TERMINATION = 11;
-  private static final int METHODID_CHANGE_INVISIBLE_DURATION = 12;
-  private static final int METHODID_TELEMETRY = 13;
+  private static final int METHODID_NOTIFY_CLIENT_TERMINATION = 9;
+  private static final int METHODID_CHANGE_INVISIBLE_DURATION = 10;
+  private static final int METHODID_TELEMETRY = 11;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1571,14 +1347,6 @@ public final class MessagingServiceGrpc {
         case METHODID_END_TRANSACTION:
           serviceImpl.endTransaction((apache.rocketmq.v2.EndTransactionRequest) request,
               (io.grpc.stub.StreamObserver<apache.rocketmq.v2.EndTransactionResponse>) responseObserver);
-          break;
-        case METHODID_QUERY_OFFSET:
-          serviceImpl.queryOffset((apache.rocketmq.v2.QueryOffsetRequest) request,
-              (io.grpc.stub.StreamObserver<apache.rocketmq.v2.QueryOffsetResponse>) responseObserver);
-          break;
-        case METHODID_PULL_MESSAGE:
-          serviceImpl.pullMessage((apache.rocketmq.v2.PullMessageRequest) request,
-              (io.grpc.stub.StreamObserver<apache.rocketmq.v2.PullMessageResponse>) responseObserver);
           break;
         case METHODID_NOTIFY_CLIENT_TERMINATION:
           serviceImpl.notifyClientTermination((apache.rocketmq.v2.NotifyClientTerminationRequest) request,
@@ -1661,8 +1429,6 @@ public final class MessagingServiceGrpc {
               .addMethod(getNackMessageMethod())
               .addMethod(getForwardMessageToDeadLetterQueueMethod())
               .addMethod(getEndTransactionMethod())
-              .addMethod(getQueryOffsetMethod())
-              .addMethod(getPullMessageMethod())
               .addMethod(getTelemetryMethod())
               .addMethod(getNotifyClientTerminationMethod())
               .addMethod(getChangeInvisibleDurationMethod())

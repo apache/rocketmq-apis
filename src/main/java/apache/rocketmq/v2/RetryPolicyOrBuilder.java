@@ -30,4 +30,10 @@ public interface RetryPolicyOrBuilder extends
    * @return The backoffMultiplier.
    */
   float getBackoffMultiplier();
+
+  /**
+   * <code>bool random = 5;</code>
+   * @return The random.
+   */
+  boolean getRandom();
 }

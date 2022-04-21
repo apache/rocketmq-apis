@@ -77,12 +77,7 @@ private static final long serialVersionUID = 0L;
             fifo_ = input.readBool();
             break;
           }
-          case 32: {
-            bitField0_ |= 0x00000004;
-            maxDeliveryAttempts_ = input.readInt32();
-            break;
-          }
-          case 42: {
+          case 34: {
             apache.rocketmq.v2.RetryPolicy.Builder subBuilder = null;
             if (backoffPolicy_ != null) {
               subBuilder = backoffPolicy_.toBuilder();
@@ -95,14 +90,14 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
-          case 48: {
-            bitField0_ |= 0x00000008;
+          case 40: {
+            bitField0_ |= 0x00000004;
             receiveBatchSize_ = input.readInt32();
             break;
           }
-          case 58: {
+          case 50: {
             com.google.protobuf.Duration.Builder subBuilder = null;
-            if (((bitField0_ & 0x00000010) != 0)) {
+            if (((bitField0_ & 0x00000008) != 0)) {
               subBuilder = longPollingTimeout_.toBuilder();
             }
             longPollingTimeout_ = input.readMessage(com.google.protobuf.Duration.parser(), extensionRegistry);
@@ -110,7 +105,7 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom(longPollingTimeout_);
               longPollingTimeout_ = subBuilder.buildPartial();
             }
-            bitField0_ |= 0x00000010;
+            bitField0_ |= 0x00000008;
             break;
           }
           default: {
@@ -290,34 +285,7 @@ private static final long serialVersionUID = 0L;
     return fifo_;
   }
 
-  public static final int MAX_DELIVERY_ATTEMPTS_FIELD_NUMBER = 4;
-  private int maxDeliveryAttempts_;
-  /**
-   * <pre>
-   * Max delivery attempts.
-   * </pre>
-   *
-   * <code>optional int32 max_delivery_attempts = 4;</code>
-   * @return Whether the maxDeliveryAttempts field is set.
-   */
-  @java.lang.Override
-  public boolean hasMaxDeliveryAttempts() {
-    return ((bitField0_ & 0x00000004) != 0);
-  }
-  /**
-   * <pre>
-   * Max delivery attempts.
-   * </pre>
-   *
-   * <code>optional int32 max_delivery_attempts = 4;</code>
-   * @return The maxDeliveryAttempts.
-   */
-  @java.lang.Override
-  public int getMaxDeliveryAttempts() {
-    return maxDeliveryAttempts_;
-  }
-
-  public static final int BACKOFF_POLICY_FIELD_NUMBER = 5;
+  public static final int BACKOFF_POLICY_FIELD_NUMBER = 4;
   private apache.rocketmq.v2.RetryPolicy backoffPolicy_;
   /**
    * <pre>
@@ -328,7 +296,7 @@ private static final long serialVersionUID = 0L;
    * the prior one depletes its lifecycle.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 5;</code>
+   * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 4;</code>
    * @return Whether the backoffPolicy field is set.
    */
   @java.lang.Override
@@ -344,7 +312,7 @@ private static final long serialVersionUID = 0L;
    * the prior one depletes its lifecycle.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 5;</code>
+   * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 4;</code>
    * @return The backoffPolicy.
    */
   @java.lang.Override
@@ -360,33 +328,33 @@ private static final long serialVersionUID = 0L;
    * the prior one depletes its lifecycle.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 5;</code>
+   * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 4;</code>
    */
   @java.lang.Override
   public apache.rocketmq.v2.RetryPolicyOrBuilder getBackoffPolicyOrBuilder() {
     return getBackoffPolicy();
   }
 
-  public static final int RECEIVE_BATCH_SIZE_FIELD_NUMBER = 6;
+  public static final int RECEIVE_BATCH_SIZE_FIELD_NUMBER = 5;
   private int receiveBatchSize_;
   /**
    * <pre>
    * Message receive batch size here is essential for push consumer.
    * </pre>
    *
-   * <code>optional int32 receive_batch_size = 6;</code>
+   * <code>optional int32 receive_batch_size = 5;</code>
    * @return Whether the receiveBatchSize field is set.
    */
   @java.lang.Override
   public boolean hasReceiveBatchSize() {
-    return ((bitField0_ & 0x00000008) != 0);
+    return ((bitField0_ & 0x00000004) != 0);
   }
   /**
    * <pre>
    * Message receive batch size here is essential for push consumer.
    * </pre>
    *
-   * <code>optional int32 receive_batch_size = 6;</code>
+   * <code>optional int32 receive_batch_size = 5;</code>
    * @return The receiveBatchSize.
    */
   @java.lang.Override
@@ -394,7 +362,7 @@ private static final long serialVersionUID = 0L;
     return receiveBatchSize_;
   }
 
-  public static final int LONG_POLLING_TIMEOUT_FIELD_NUMBER = 7;
+  public static final int LONG_POLLING_TIMEOUT_FIELD_NUMBER = 6;
   private com.google.protobuf.Duration longPollingTimeout_;
   /**
    * <pre>
@@ -402,12 +370,12 @@ private static final long serialVersionUID = 0L;
    * push consumer.
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+   * <code>optional .google.protobuf.Duration long_polling_timeout = 6;</code>
    * @return Whether the longPollingTimeout field is set.
    */
   @java.lang.Override
   public boolean hasLongPollingTimeout() {
-    return ((bitField0_ & 0x00000010) != 0);
+    return ((bitField0_ & 0x00000008) != 0);
   }
   /**
    * <pre>
@@ -415,7 +383,7 @@ private static final long serialVersionUID = 0L;
    * push consumer.
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+   * <code>optional .google.protobuf.Duration long_polling_timeout = 6;</code>
    * @return The longPollingTimeout.
    */
   @java.lang.Override
@@ -428,7 +396,7 @@ private static final long serialVersionUID = 0L;
    * push consumer.
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+   * <code>optional .google.protobuf.Duration long_polling_timeout = 6;</code>
    */
   @java.lang.Override
   public com.google.protobuf.DurationOrBuilder getLongPollingTimeoutOrBuilder() {
@@ -458,17 +426,14 @@ private static final long serialVersionUID = 0L;
     if (((bitField0_ & 0x00000002) != 0)) {
       output.writeBool(3, fifo_);
     }
-    if (((bitField0_ & 0x00000004) != 0)) {
-      output.writeInt32(4, maxDeliveryAttempts_);
-    }
     if (backoffPolicy_ != null) {
-      output.writeMessage(5, getBackoffPolicy());
+      output.writeMessage(4, getBackoffPolicy());
+    }
+    if (((bitField0_ & 0x00000004) != 0)) {
+      output.writeInt32(5, receiveBatchSize_);
     }
     if (((bitField0_ & 0x00000008) != 0)) {
-      output.writeInt32(6, receiveBatchSize_);
-    }
-    if (((bitField0_ & 0x00000010) != 0)) {
-      output.writeMessage(7, getLongPollingTimeout());
+      output.writeMessage(6, getLongPollingTimeout());
     }
     unknownFields.writeTo(output);
   }
@@ -491,21 +456,17 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(3, fifo_);
     }
-    if (((bitField0_ & 0x00000004) != 0)) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(4, maxDeliveryAttempts_);
-    }
     if (backoffPolicy_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(5, getBackoffPolicy());
+        .computeMessageSize(4, getBackoffPolicy());
+    }
+    if (((bitField0_ & 0x00000004) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(5, receiveBatchSize_);
     }
     if (((bitField0_ & 0x00000008) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(6, receiveBatchSize_);
-    }
-    if (((bitField0_ & 0x00000010) != 0)) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(7, getLongPollingTimeout());
+        .computeMessageSize(6, getLongPollingTimeout());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -533,11 +494,6 @@ private static final long serialVersionUID = 0L;
     if (hasFifo()) {
       if (getFifo()
           != other.getFifo()) return false;
-    }
-    if (hasMaxDeliveryAttempts() != other.hasMaxDeliveryAttempts()) return false;
-    if (hasMaxDeliveryAttempts()) {
-      if (getMaxDeliveryAttempts()
-          != other.getMaxDeliveryAttempts()) return false;
     }
     if (hasBackoffPolicy() != other.hasBackoffPolicy()) return false;
     if (hasBackoffPolicy()) {
@@ -577,10 +533,6 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + FIFO_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getFifo());
-    }
-    if (hasMaxDeliveryAttempts()) {
-      hash = (37 * hash) + MAX_DELIVERY_ATTEMPTS_FIELD_NUMBER;
-      hash = (53 * hash) + getMaxDeliveryAttempts();
     }
     if (hasBackoffPolicy()) {
       hash = (37 * hash) + BACKOFF_POLICY_FIELD_NUMBER;
@@ -744,8 +696,6 @@ private static final long serialVersionUID = 0L;
       }
       fifo_ = false;
       bitField0_ = (bitField0_ & ~0x00000004);
-      maxDeliveryAttempts_ = 0;
-      bitField0_ = (bitField0_ & ~0x00000008);
       if (backoffPolicyBuilder_ == null) {
         backoffPolicy_ = null;
       } else {
@@ -753,13 +703,13 @@ private static final long serialVersionUID = 0L;
         backoffPolicyBuilder_ = null;
       }
       receiveBatchSize_ = 0;
-      bitField0_ = (bitField0_ & ~0x00000010);
+      bitField0_ = (bitField0_ & ~0x00000008);
       if (longPollingTimeoutBuilder_ == null) {
         longPollingTimeout_ = null;
       } else {
         longPollingTimeoutBuilder_.clear();
       }
-      bitField0_ = (bitField0_ & ~0x00000020);
+      bitField0_ = (bitField0_ & ~0x00000010);
       return this;
     }
 
@@ -809,26 +759,22 @@ private static final long serialVersionUID = 0L;
         result.fifo_ = fifo_;
         to_bitField0_ |= 0x00000002;
       }
-      if (((from_bitField0_ & 0x00000008) != 0)) {
-        result.maxDeliveryAttempts_ = maxDeliveryAttempts_;
-        to_bitField0_ |= 0x00000004;
-      }
       if (backoffPolicyBuilder_ == null) {
         result.backoffPolicy_ = backoffPolicy_;
       } else {
         result.backoffPolicy_ = backoffPolicyBuilder_.build();
       }
-      if (((from_bitField0_ & 0x00000010) != 0)) {
+      if (((from_bitField0_ & 0x00000008) != 0)) {
         result.receiveBatchSize_ = receiveBatchSize_;
-        to_bitField0_ |= 0x00000008;
+        to_bitField0_ |= 0x00000004;
       }
-      if (((from_bitField0_ & 0x00000020) != 0)) {
+      if (((from_bitField0_ & 0x00000010) != 0)) {
         if (longPollingTimeoutBuilder_ == null) {
           result.longPollingTimeout_ = longPollingTimeout_;
         } else {
           result.longPollingTimeout_ = longPollingTimeoutBuilder_.build();
         }
-        to_bitField0_ |= 0x00000010;
+        to_bitField0_ |= 0x00000008;
       }
       result.bitField0_ = to_bitField0_;
       onBuilt();
@@ -910,9 +856,6 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasFifo()) {
         setFifo(other.getFifo());
-      }
-      if (other.hasMaxDeliveryAttempts()) {
-        setMaxDeliveryAttempts(other.getMaxDeliveryAttempts());
       }
       if (other.hasBackoffPolicy()) {
         mergeBackoffPolicy(other.getBackoffPolicy());
@@ -1514,61 +1457,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int maxDeliveryAttempts_ ;
-    /**
-     * <pre>
-     * Max delivery attempts.
-     * </pre>
-     *
-     * <code>optional int32 max_delivery_attempts = 4;</code>
-     * @return Whether the maxDeliveryAttempts field is set.
-     */
-    @java.lang.Override
-    public boolean hasMaxDeliveryAttempts() {
-      return ((bitField0_ & 0x00000008) != 0);
-    }
-    /**
-     * <pre>
-     * Max delivery attempts.
-     * </pre>
-     *
-     * <code>optional int32 max_delivery_attempts = 4;</code>
-     * @return The maxDeliveryAttempts.
-     */
-    @java.lang.Override
-    public int getMaxDeliveryAttempts() {
-      return maxDeliveryAttempts_;
-    }
-    /**
-     * <pre>
-     * Max delivery attempts.
-     * </pre>
-     *
-     * <code>optional int32 max_delivery_attempts = 4;</code>
-     * @param value The maxDeliveryAttempts to set.
-     * @return This builder for chaining.
-     */
-    public Builder setMaxDeliveryAttempts(int value) {
-      bitField0_ |= 0x00000008;
-      maxDeliveryAttempts_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Max delivery attempts.
-     * </pre>
-     *
-     * <code>optional int32 max_delivery_attempts = 4;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearMaxDeliveryAttempts() {
-      bitField0_ = (bitField0_ & ~0x00000008);
-      maxDeliveryAttempts_ = 0;
-      onChanged();
-      return this;
-    }
-
     private apache.rocketmq.v2.RetryPolicy backoffPolicy_;
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.RetryPolicy, apache.rocketmq.v2.RetryPolicy.Builder, apache.rocketmq.v2.RetryPolicyOrBuilder> backoffPolicyBuilder_;
@@ -1581,7 +1469,7 @@ private static final long serialVersionUID = 0L;
      * the prior one depletes its lifecycle.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 5;</code>
+     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 4;</code>
      * @return Whether the backoffPolicy field is set.
      */
     public boolean hasBackoffPolicy() {
@@ -1596,7 +1484,7 @@ private static final long serialVersionUID = 0L;
      * the prior one depletes its lifecycle.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 5;</code>
+     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 4;</code>
      * @return The backoffPolicy.
      */
     public apache.rocketmq.v2.RetryPolicy getBackoffPolicy() {
@@ -1615,7 +1503,7 @@ private static final long serialVersionUID = 0L;
      * the prior one depletes its lifecycle.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 5;</code>
+     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 4;</code>
      */
     public Builder setBackoffPolicy(apache.rocketmq.v2.RetryPolicy value) {
       if (backoffPolicyBuilder_ == null) {
@@ -1639,7 +1527,7 @@ private static final long serialVersionUID = 0L;
      * the prior one depletes its lifecycle.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 5;</code>
+     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 4;</code>
      */
     public Builder setBackoffPolicy(
         apache.rocketmq.v2.RetryPolicy.Builder builderForValue) {
@@ -1661,7 +1549,7 @@ private static final long serialVersionUID = 0L;
      * the prior one depletes its lifecycle.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 5;</code>
+     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 4;</code>
      */
     public Builder mergeBackoffPolicy(apache.rocketmq.v2.RetryPolicy value) {
       if (backoffPolicyBuilder_ == null) {
@@ -1687,7 +1575,7 @@ private static final long serialVersionUID = 0L;
      * the prior one depletes its lifecycle.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 5;</code>
+     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 4;</code>
      */
     public Builder clearBackoffPolicy() {
       if (backoffPolicyBuilder_ == null) {
@@ -1709,7 +1597,7 @@ private static final long serialVersionUID = 0L;
      * the prior one depletes its lifecycle.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 5;</code>
+     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 4;</code>
      */
     public apache.rocketmq.v2.RetryPolicy.Builder getBackoffPolicyBuilder() {
       
@@ -1725,7 +1613,7 @@ private static final long serialVersionUID = 0L;
      * the prior one depletes its lifecycle.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 5;</code>
+     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 4;</code>
      */
     public apache.rocketmq.v2.RetryPolicyOrBuilder getBackoffPolicyOrBuilder() {
       if (backoffPolicyBuilder_ != null) {
@@ -1744,7 +1632,7 @@ private static final long serialVersionUID = 0L;
      * the prior one depletes its lifecycle.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 5;</code>
+     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.RetryPolicy, apache.rocketmq.v2.RetryPolicy.Builder, apache.rocketmq.v2.RetryPolicyOrBuilder> 
@@ -1766,19 +1654,19 @@ private static final long serialVersionUID = 0L;
      * Message receive batch size here is essential for push consumer.
      * </pre>
      *
-     * <code>optional int32 receive_batch_size = 6;</code>
+     * <code>optional int32 receive_batch_size = 5;</code>
      * @return Whether the receiveBatchSize field is set.
      */
     @java.lang.Override
     public boolean hasReceiveBatchSize() {
-      return ((bitField0_ & 0x00000010) != 0);
+      return ((bitField0_ & 0x00000008) != 0);
     }
     /**
      * <pre>
      * Message receive batch size here is essential for push consumer.
      * </pre>
      *
-     * <code>optional int32 receive_batch_size = 6;</code>
+     * <code>optional int32 receive_batch_size = 5;</code>
      * @return The receiveBatchSize.
      */
     @java.lang.Override
@@ -1790,12 +1678,12 @@ private static final long serialVersionUID = 0L;
      * Message receive batch size here is essential for push consumer.
      * </pre>
      *
-     * <code>optional int32 receive_batch_size = 6;</code>
+     * <code>optional int32 receive_batch_size = 5;</code>
      * @param value The receiveBatchSize to set.
      * @return This builder for chaining.
      */
     public Builder setReceiveBatchSize(int value) {
-      bitField0_ |= 0x00000010;
+      bitField0_ |= 0x00000008;
       receiveBatchSize_ = value;
       onChanged();
       return this;
@@ -1805,11 +1693,11 @@ private static final long serialVersionUID = 0L;
      * Message receive batch size here is essential for push consumer.
      * </pre>
      *
-     * <code>optional int32 receive_batch_size = 6;</code>
+     * <code>optional int32 receive_batch_size = 5;</code>
      * @return This builder for chaining.
      */
     public Builder clearReceiveBatchSize() {
-      bitField0_ = (bitField0_ & ~0x00000010);
+      bitField0_ = (bitField0_ & ~0x00000008);
       receiveBatchSize_ = 0;
       onChanged();
       return this;
@@ -1824,11 +1712,11 @@ private static final long serialVersionUID = 0L;
      * push consumer.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+     * <code>optional .google.protobuf.Duration long_polling_timeout = 6;</code>
      * @return Whether the longPollingTimeout field is set.
      */
     public boolean hasLongPollingTimeout() {
-      return ((bitField0_ & 0x00000020) != 0);
+      return ((bitField0_ & 0x00000010) != 0);
     }
     /**
      * <pre>
@@ -1836,7 +1724,7 @@ private static final long serialVersionUID = 0L;
      * push consumer.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+     * <code>optional .google.protobuf.Duration long_polling_timeout = 6;</code>
      * @return The longPollingTimeout.
      */
     public com.google.protobuf.Duration getLongPollingTimeout() {
@@ -1852,7 +1740,7 @@ private static final long serialVersionUID = 0L;
      * push consumer.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+     * <code>optional .google.protobuf.Duration long_polling_timeout = 6;</code>
      */
     public Builder setLongPollingTimeout(com.google.protobuf.Duration value) {
       if (longPollingTimeoutBuilder_ == null) {
@@ -1864,7 +1752,7 @@ private static final long serialVersionUID = 0L;
       } else {
         longPollingTimeoutBuilder_.setMessage(value);
       }
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000010;
       return this;
     }
     /**
@@ -1873,7 +1761,7 @@ private static final long serialVersionUID = 0L;
      * push consumer.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+     * <code>optional .google.protobuf.Duration long_polling_timeout = 6;</code>
      */
     public Builder setLongPollingTimeout(
         com.google.protobuf.Duration.Builder builderForValue) {
@@ -1883,7 +1771,7 @@ private static final long serialVersionUID = 0L;
       } else {
         longPollingTimeoutBuilder_.setMessage(builderForValue.build());
       }
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000010;
       return this;
     }
     /**
@@ -1892,11 +1780,11 @@ private static final long serialVersionUID = 0L;
      * push consumer.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+     * <code>optional .google.protobuf.Duration long_polling_timeout = 6;</code>
      */
     public Builder mergeLongPollingTimeout(com.google.protobuf.Duration value) {
       if (longPollingTimeoutBuilder_ == null) {
-        if (((bitField0_ & 0x00000020) != 0) &&
+        if (((bitField0_ & 0x00000010) != 0) &&
             longPollingTimeout_ != null &&
             longPollingTimeout_ != com.google.protobuf.Duration.getDefaultInstance()) {
           longPollingTimeout_ =
@@ -1908,7 +1796,7 @@ private static final long serialVersionUID = 0L;
       } else {
         longPollingTimeoutBuilder_.mergeFrom(value);
       }
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000010;
       return this;
     }
     /**
@@ -1917,7 +1805,7 @@ private static final long serialVersionUID = 0L;
      * push consumer.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+     * <code>optional .google.protobuf.Duration long_polling_timeout = 6;</code>
      */
     public Builder clearLongPollingTimeout() {
       if (longPollingTimeoutBuilder_ == null) {
@@ -1926,7 +1814,7 @@ private static final long serialVersionUID = 0L;
       } else {
         longPollingTimeoutBuilder_.clear();
       }
-      bitField0_ = (bitField0_ & ~0x00000020);
+      bitField0_ = (bitField0_ & ~0x00000010);
       return this;
     }
     /**
@@ -1935,10 +1823,10 @@ private static final long serialVersionUID = 0L;
      * push consumer.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+     * <code>optional .google.protobuf.Duration long_polling_timeout = 6;</code>
      */
     public com.google.protobuf.Duration.Builder getLongPollingTimeoutBuilder() {
-      bitField0_ |= 0x00000020;
+      bitField0_ |= 0x00000010;
       onChanged();
       return getLongPollingTimeoutFieldBuilder().getBuilder();
     }
@@ -1948,7 +1836,7 @@ private static final long serialVersionUID = 0L;
      * push consumer.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+     * <code>optional .google.protobuf.Duration long_polling_timeout = 6;</code>
      */
     public com.google.protobuf.DurationOrBuilder getLongPollingTimeoutOrBuilder() {
       if (longPollingTimeoutBuilder_ != null) {
@@ -1964,7 +1852,7 @@ private static final long serialVersionUID = 0L;
      * push consumer.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+     * <code>optional .google.protobuf.Duration long_polling_timeout = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 

@@ -68,6 +68,11 @@ private static final long serialVersionUID = 0L;
             backoffMultiplier_ = input.readFloat();
             break;
           }
+          case 40: {
+
+            random_ = input.readBool();
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -144,6 +149,17 @@ private static final long serialVersionUID = 0L;
     return backoffMultiplier_;
   }
 
+  public static final int RANDOM_FIELD_NUMBER = 5;
+  private boolean random_;
+  /**
+   * <code>bool random = 5;</code>
+   * @return The random.
+   */
+  @java.lang.Override
+  public boolean getRandom() {
+    return random_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -170,6 +186,9 @@ private static final long serialVersionUID = 0L;
     if (java.lang.Float.floatToRawIntBits(backoffMultiplier_) != 0) {
       output.writeFloat(4, backoffMultiplier_);
     }
+    if (random_ != false) {
+      output.writeBool(5, random_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -194,6 +213,10 @@ private static final long serialVersionUID = 0L;
     if (java.lang.Float.floatToRawIntBits(backoffMultiplier_) != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeFloatSize(4, backoffMultiplier_);
+    }
+    if (random_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(5, random_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -221,6 +244,8 @@ private static final long serialVersionUID = 0L;
     if (java.lang.Float.floatToIntBits(getBackoffMultiplier())
         != java.lang.Float.floatToIntBits(
             other.getBackoffMultiplier())) return false;
+    if (getRandom()
+        != other.getRandom()) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -243,6 +268,9 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + BACKOFF_MULTIPLIER_FIELD_NUMBER;
     hash = (53 * hash) + java.lang.Float.floatToIntBits(
         getBackoffMultiplier());
+    hash = (37 * hash) + RANDOM_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getRandom());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -384,6 +412,8 @@ private static final long serialVersionUID = 0L;
 
       backoffMultiplier_ = 0F;
 
+      random_ = false;
+
       return this;
     }
 
@@ -414,6 +444,7 @@ private static final long serialVersionUID = 0L;
       result.initialBackoff_ = initialBackoff_;
       result.maxBackoff_ = maxBackoff_;
       result.backoffMultiplier_ = backoffMultiplier_;
+      result.random_ = random_;
       onBuilt();
       return result;
     }
@@ -473,6 +504,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getBackoffMultiplier() != 0F) {
         setBackoffMultiplier(other.getBackoffMultiplier());
+      }
+      if (other.getRandom() != false) {
+        setRandom(other.getRandom());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -623,6 +657,37 @@ private static final long serialVersionUID = 0L;
     public Builder clearBackoffMultiplier() {
       
       backoffMultiplier_ = 0F;
+      onChanged();
+      return this;
+    }
+
+    private boolean random_ ;
+    /**
+     * <code>bool random = 5;</code>
+     * @return The random.
+     */
+    @java.lang.Override
+    public boolean getRandom() {
+      return random_;
+    }
+    /**
+     * <code>bool random = 5;</code>
+     * @param value The random to set.
+     * @return This builder for chaining.
+     */
+    public Builder setRandom(boolean value) {
+      
+      random_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool random = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearRandom() {
+      
+      random_ = false;
       onChanged();
       return this;
     }

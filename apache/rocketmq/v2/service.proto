@@ -352,8 +352,8 @@ service MessagingService {
   //
   // If the corresponding topic doesn't exist, returns `NOT_FOUND`.
   // If the specific endpoints is empty, returns `INVALID_ARGUMENT`.
-  rpc QueryAssignment(QueryAssignmentRequest)
-      returns (QueryAssignmentResponse) {}
+  rpc QueryAssignment(QueryAssignmentRequest) returns (QueryAssignmentResponse) {
+  }
 
   // Receives messages from the server in batch manner, returns a set of
   // messages if success. The received messages should be acked or nacked after
@@ -365,8 +365,8 @@ service MessagingService {
   // or consumer group doesn't exist, returns `NOT_FOUND`. If there is no new
   // message in the specific topic, returns `OK` with an empty message set.
   // Please note that client may suffer from false empty responses.
-  rpc ReceiveMessage(ReceiveMessageRequest)
-      returns (stream ReceiveMessageResponse) {}
+  rpc ReceiveMessage(ReceiveMessageRequest) returns (stream ReceiveMessageResponse) {
+  }
 
   // Acknowledges the message associated with the `receipt_handle` or `offset`
   // in the `AckMessageRequest`, it means the message has been successfully
@@ -402,8 +402,8 @@ service MessagingService {
   rpc Telemetry(stream TelemetryCommand) returns (stream TelemetryCommand) {}
 
   // Notify the server that the client is terminated.
-  rpc NotifyClientTermination(NotifyClientTerminationRequest)
-      returns (NotifyClientTerminationResponse) {}
+  rpc NotifyClientTermination(NotifyClientTerminationRequest) returns (NotifyClientTerminationResponse) {
+  }
 
   // Once a message is retrieved from consume queue on behalf of the group, it
   // will be kept invisible to other clients of the same group for a period of
@@ -411,6 +411,6 @@ service MessagingService {
   // duration. If the client, which is in charge of the invisible message, is
   // not capable of processing the message timely, it may use
   // ChangeInvisibleDuration to lengthen invisible duration.
-  rpc ChangeInvisibleDuration(ChangeInvisibleDurationRequest)
-      returns (ChangeInvisibleDurationResponse) {}
+  rpc ChangeInvisibleDuration(ChangeInvisibleDurationRequest) returns (ChangeInvisibleDurationResponse) {
+  }
 }

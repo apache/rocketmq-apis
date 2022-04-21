@@ -183,17 +183,24 @@ message Publishing {
   // Publishing settings below here is appointed by client, thus it is
   // unnecessary for server to push at present.
   //
-  // Topic list to push message.
-  repeated Resource publishing_topics = 1;
+  // List of topics to which messages will publish to.
+  repeated Resource topics = 1;
+
+  // If publishing of messages encounters throttle, producer clients shall
+  // apply backoff according to `retry_policy`
   RetryPolicy retry_policy = 2;
 
   // Publishing settings below here are from server, it is essential for
   // server to push.
   //
-  // Message is compressed if the body size exceeds the threshold.
-  int32 message_body_compression_bytes_threshold = 3;
-  // Publishing is rejected if the message body size exceeds the threshold.
-  int32 max_message_body_bytes = 4;
+  // Body of message will be deflated if its size in bytes exceeds the
+  // threshold.
+  int32 compress_body_threshold = 3;
+
+  // If the message body size exceeds `max_body_size`, broker servers would
+  // reject the request. As a result, it is advisable that Producer performs
+  // client-side check validation.
+  int32 max_body_size = 4;
 }
 
 message Subscription {
@@ -202,34 +209,48 @@ message Subscription {
   //
   // Consumer group.
   optional Resource group = 1;
+
   // Subscription for consumer.
   repeated SubscriptionEntry subscriptions = 2;
 
   // Subscription settings below here are from server, it is essential for
   // server to push.
   //
-  // Fifo consumption flag, which is essential for push consumer.
+  // When FIFO flag is `true`, messages of the same message group are processed
+  // in first-in-first-out manner.
+  //
+  // Brokers will not deliver further messages of the same group utill prior
+  // ones are completely acknowledged.
   optional bool fifo = 3;
-  // Max fifo consume attempts is essential if `fifo` flag is true.
-  optional int32 max_fifo_delivery_attempts = 4;
-  // Fifo consume retry interval is essential if `fifo` flag is true.
-  optional google.protobuf.Duration fifo_delivery_retry_interval = 5;
+
+  // Max delivery attempts.
+  optional int32 max_delivery_attempts = 4;
+
+  // When processing message fails, `backoff_policy` describes an interval
+  // after which the message is ready to consume again.
+  //
+  // For FIFO messages, the interval should be relatively small because
+  // messages of the same message group would not be readily available utill
+  // the prior one depletes its lifecycle.
+  RetryPolicy backoff_policy = 5;
+
   // Message receive batch size here is essential for push consumer.
-  optional int32 push_consumer_receive_batch_size = 6;
+  optional int32 receive_batch_size = 6;
+
   // Long-polling timeout for `ReceiveMessageRequest`, which is essential for
   // push consumer.
-  optional google.protobuf.Duration push_consumer_receive_await_duration = 7;
+  optional google.protobuf.Duration long_polling_timeout = 7;
 }
 
 message Settings {
   // Common settings for all kind of clients.
-  //
   optional ClientType client_type = 1;
   optional Endpoints access_point = 2;
-  // Request timeout for RPCs except long-polling.
-  optional google.protobuf.Duration plain_request_duration = 3;
 
-  oneof pubsub {
+  // Request timeout for RPCs excluding long-polling.
+  optional google.protobuf.Duration request_timeout = 3;
+
+  oneof pub_sub {
     Publishing publishing = 4;
     Subscription subscription = 5;
   }

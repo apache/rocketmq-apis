@@ -179,102 +179,100 @@ message RecoverOrphanedTransactionCommand {
   string transaction_id = 2;
 }
 
-message ActivePublishingSettings {
-  repeated Resource publishing_topics = 1;
+message Publishing {
+  // Publishing settings below here is appointed by client, thus it is
+  // unnecessary for server to push at present.
+  //
+  // List of topics to which messages will publish to.
+  repeated Resource topics = 1;
+
+  // If publishing of messages encounters throttle, producer clients shall
+  // apply backoff according to `retry_policy`
   RetryPolicy retry_policy = 2;
+
+  // Publishing settings below here are from server, it is essential for
+  // server to push.
+  //
+  // Body of message will be deflated if its size in bytes exceeds the
+  // threshold.
+  int32 compress_body_threshold = 3;
+
+  // If the message body size exceeds `max_body_size`, broker servers would
+  // reject the request. As a result, it is advisable that Producer performs
+  // client-side check validation.
+  int32 max_body_size = 4;
 }
 
-message ActiveSubscriptionSettings {
-  Resource group = 1;
+message Subscription {
+  // Subscription settings below here is appointed by client, thus it is
+  // unnecessary for server to push at present.
+  //
+  // Consumer group.
+  optional Resource group = 1;
+
+  // Subscription for consumer.
   repeated SubscriptionEntry subscriptions = 2;
-  // Consume thread count is essential if `ClientType` is `PushConsumer`.
-  optional int32 consume_thread_count = 3;
-  // Consume max batch size is essential if `ClientType` is `PushConsumer`.
-  optional int32 consume_max_batch_size = 4;
-  // Max cache message bytes is essential if `ClientType` is `PushConsumer`.
-  optional int64 max_cache_message_bytes = 5;
-  // Await duration here is essential if `ClientType` is `SimpleConsumer`.
-  optional google.protobuf.Duration simple_consumer_receive_await_duration = 6;
+
+  // Subscription settings below here are from server, it is essential for
+  // server to push.
+  //
+  // When FIFO flag is `true`, messages of the same message group are processed
+  // in first-in-first-out manner.
+  //
+  // Brokers will not deliver further messages of the same group utill prior
+  // ones are completely acknowledged.
+  optional bool fifo = 3;
+
+  // Max delivery attempts.
+  optional int32 max_delivery_attempts = 4;
+
+  // When processing message fails, `backoff_policy` describes an interval
+  // after which the message is ready to consume again.
+  //
+  // For FIFO messages, the interval should be relatively small because
+  // messages of the same message group would not be readily available utill
+  // the prior one depletes its lifecycle.
+  RetryPolicy backoff_policy = 5;
+
+  // Message receive batch size here is essential for push consumer.
+  optional int32 receive_batch_size = 6;
+
+  // Long-polling timeout for `ReceiveMessageRequest`, which is essential for
+  // push consumer.
+  optional google.protobuf.Duration long_polling_timeout = 7;
 }
 
-message ReportActiveSettingsCommand {
-  string nonce = 1;
-  ClientType client_type = 2;
-  Endpoints access_point = 3;
-  google.protobuf.Duration connection_timeout = 4;
-  bool trace_on = 5;
-  // Settings will be ignored by server if it is not match with the client type.
-  oneof settings {
-    ActivePublishingSettings active_publishing_settings = 6;
-    ActiveSubscriptionSettings active_subscription_settings = 7;
+message Settings {
+  // Common settings for all kind of clients.
+  optional ClientType client_type = 1;
+  optional Endpoints access_point = 2;
+
+  // Request timeout for RPCs excluding long-polling.
+  optional google.protobuf.Duration request_timeout = 3;
+
+  oneof pub_sub {
+    Publishing publishing = 4;
+    Subscription subscription = 5;
   }
 }
-
-message ReportActiveSettingsResult { string nonce = 1; }
-
-message PassivePublishingSettings {
-  // Message is compressed if the body size exceeds the threshold.
-  int32 message_body_compression_bytes_threshold = 1;
-  // Publishing is rejected if the message body size exceeds the threshold.
-  int32 max_message_body_bytes = 2;
-  google.protobuf.Duration orphaned_transaction_recovery_duration = 3;
-}
-
-message PassiveSubscriptionSettings {
-  bool fifo = 1;
-  // Max fifo consume attempts is essential if `fifo` flag is true, a default
-  // value of 17 is used if this parameter is not set.
-  optional int32 max_fifo_delivery_attempts = 2;
-  // Fifo consume retry interval is essential if `fifo` flag is true, a default
-  // value of 1s is used if this parameter is not set.
-  optional google.protobuf.Duration fifo_delivery_retry_interval = 3;
-  // Message receive batch size here is essential if `ClientType` is
-  // `PushConsumer`,
-  optional int32 push_consumer_receive_batch_size = 4;
-  // Long-polling timeout for `ReceiveMessageRequest`, which is essential if
-  // `ClientType` is `PushCosnumer`. A default value of 30s is
-  // used if this parameter is not set.
-  optional google.protobuf.Duration push_consumer_receive_await_duration = 5;
-  // Consume timeout is only works if the fifo flag is false. A default value of
-  // 15min is used if this parameter is not set.
-  optional google.protobuf.Duration consume_timeout = 6;
-}
-
-message ApplyPassiveSettingsCommand {
-  string nonce = 1;
-  Endpoints trace_access_point = 2;
-  // Settings will be ignored by server if it is not match with the client type.
-  oneof settings {
-    PassivePublishingSettings passive_publishing_settings = 3;
-    PassiveSubscriptionSettings passive_subscription_settings = 4;
-  }
-}
-
-message ApplyPassiveSettingsResult { string nonce = 1; }
 
 message TelemetryCommand {
   oneof command {
+    Settings settings = 1;
     // These messages are from client.
-    // Report active setting to server.
-    ReportActiveSettingsCommand report_active_settings_command = 1;
-    // Ack `ApplyPassiveSettingsCommand` from server.
-    ApplyPassiveSettingsResult apply_passive_settings_result = 2;
+    //
     // Report thread stack trace to server.
-    ThreadStackTrace thread_stack_trace = 3;
-    // Repost message verify result to server.
-    VerifyMessageResult verify_message_result = 4;
-
+    ThreadStackTrace thread_stack_trace = 2;
+    // Report message verify result to server.
+    VerifyMessageResult verify_message_result = 3;
     // There messages are from server.
-    // Deliver passive settings to client.
-    ApplyPassiveSettingsCommand apply_passive_settings_command = 5;
-    // Ack `ReportActiveSettingsCommand` from client.
-    ReportActiveSettingsResult report_active_settings_result = 6;
+    //
     // Request client to recover the orphaned transaction message.
-    RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 7;
+    RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 4;
     // Request client to print thread stack trace.
-    PrintThreadStackTraceCommand print_thread_stack_trace_command = 8;
+    PrintThreadStackTraceCommand print_thread_stack_trace_command = 5;
     // Request client to verify the consumption of the appointed message.
-    VerifyMessageCommand verify_message_command = 9;
+    VerifyMessageCommand verify_message_command = 6;
   }
 }
 
@@ -354,8 +352,8 @@ service MessagingService {
   //
   // If the corresponding topic doesn't exist, returns `NOT_FOUND`.
   // If the specific endpoints is empty, returns `INVALID_ARGUMENT`.
-  rpc QueryAssignment(QueryAssignmentRequest)
-      returns (QueryAssignmentResponse) {}
+  rpc QueryAssignment(QueryAssignmentRequest) returns (QueryAssignmentResponse) {
+  }
 
   // Receives messages from the server in batch manner, returns a set of
   // messages if success. The received messages should be acked or nacked after
@@ -367,8 +365,8 @@ service MessagingService {
   // or consumer group doesn't exist, returns `NOT_FOUND`. If there is no new
   // message in the specific topic, returns `OK` with an empty message set.
   // Please note that client may suffer from false empty responses.
-  rpc ReceiveMessage(ReceiveMessageRequest)
-      returns (stream ReceiveMessageResponse) {}
+  rpc ReceiveMessage(ReceiveMessageRequest) returns (stream ReceiveMessageResponse) {
+  }
 
   // Acknowledges the message associated with the `receipt_handle` or `offset`
   // in the `AckMessageRequest`, it means the message has been successfully
@@ -404,8 +402,8 @@ service MessagingService {
   rpc Telemetry(stream TelemetryCommand) returns (stream TelemetryCommand) {}
 
   // Notify the server that the client is terminated.
-  rpc NotifyClientTermination(NotifyClientTerminationRequest)
-      returns (NotifyClientTerminationResponse) {}
+  rpc NotifyClientTermination(NotifyClientTerminationRequest) returns (NotifyClientTerminationResponse) {
+  }
 
   // Once a message is retrieved from consume queue on behalf of the group, it
   // will be kept invisible to other clients of the same group for a period of
@@ -413,6 +411,6 @@ service MessagingService {
   // duration. If the client, which is in charge of the invisible message, is
   // not capable of processing the message timely, it may use
   // ChangeInvisibleDuration to lengthen invisible duration.
-  rpc ChangeInvisibleDuration(ChangeInvisibleDurationRequest)
-      returns (ChangeInvisibleDurationResponse) {}
+  rpc ChangeInvisibleDuration(ChangeInvisibleDurationRequest) returns (ChangeInvisibleDurationResponse) {
+  }
 }

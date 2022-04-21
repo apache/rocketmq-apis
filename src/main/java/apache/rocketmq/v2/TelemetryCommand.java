@@ -49,36 +49,22 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 10: {
-            apache.rocketmq.v2.ReportActiveSettingsCommand.Builder subBuilder = null;
+            apache.rocketmq.v2.Settings.Builder subBuilder = null;
             if (commandCase_ == 1) {
-              subBuilder = ((apache.rocketmq.v2.ReportActiveSettingsCommand) command_).toBuilder();
+              subBuilder = ((apache.rocketmq.v2.Settings) command_).toBuilder();
             }
             command_ =
-                input.readMessage(apache.rocketmq.v2.ReportActiveSettingsCommand.parser(), extensionRegistry);
+                input.readMessage(apache.rocketmq.v2.Settings.parser(), extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom((apache.rocketmq.v2.ReportActiveSettingsCommand) command_);
+              subBuilder.mergeFrom((apache.rocketmq.v2.Settings) command_);
               command_ = subBuilder.buildPartial();
             }
             commandCase_ = 1;
             break;
           }
           case 18: {
-            apache.rocketmq.v2.ApplyPassiveSettingsResult.Builder subBuilder = null;
-            if (commandCase_ == 2) {
-              subBuilder = ((apache.rocketmq.v2.ApplyPassiveSettingsResult) command_).toBuilder();
-            }
-            command_ =
-                input.readMessage(apache.rocketmq.v2.ApplyPassiveSettingsResult.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom((apache.rocketmq.v2.ApplyPassiveSettingsResult) command_);
-              command_ = subBuilder.buildPartial();
-            }
-            commandCase_ = 2;
-            break;
-          }
-          case 26: {
             apache.rocketmq.v2.ThreadStackTrace.Builder subBuilder = null;
-            if (commandCase_ == 3) {
+            if (commandCase_ == 2) {
               subBuilder = ((apache.rocketmq.v2.ThreadStackTrace) command_).toBuilder();
             }
             command_ =
@@ -87,12 +73,12 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom((apache.rocketmq.v2.ThreadStackTrace) command_);
               command_ = subBuilder.buildPartial();
             }
-            commandCase_ = 3;
+            commandCase_ = 2;
             break;
           }
-          case 34: {
+          case 26: {
             apache.rocketmq.v2.VerifyMessageResult.Builder subBuilder = null;
-            if (commandCase_ == 4) {
+            if (commandCase_ == 3) {
               subBuilder = ((apache.rocketmq.v2.VerifyMessageResult) command_).toBuilder();
             }
             command_ =
@@ -101,40 +87,12 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom((apache.rocketmq.v2.VerifyMessageResult) command_);
               command_ = subBuilder.buildPartial();
             }
-            commandCase_ = 4;
+            commandCase_ = 3;
             break;
           }
-          case 42: {
-            apache.rocketmq.v2.ApplyPassiveSettingsCommand.Builder subBuilder = null;
-            if (commandCase_ == 5) {
-              subBuilder = ((apache.rocketmq.v2.ApplyPassiveSettingsCommand) command_).toBuilder();
-            }
-            command_ =
-                input.readMessage(apache.rocketmq.v2.ApplyPassiveSettingsCommand.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom((apache.rocketmq.v2.ApplyPassiveSettingsCommand) command_);
-              command_ = subBuilder.buildPartial();
-            }
-            commandCase_ = 5;
-            break;
-          }
-          case 50: {
-            apache.rocketmq.v2.ReportActiveSettingsResult.Builder subBuilder = null;
-            if (commandCase_ == 6) {
-              subBuilder = ((apache.rocketmq.v2.ReportActiveSettingsResult) command_).toBuilder();
-            }
-            command_ =
-                input.readMessage(apache.rocketmq.v2.ReportActiveSettingsResult.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom((apache.rocketmq.v2.ReportActiveSettingsResult) command_);
-              command_ = subBuilder.buildPartial();
-            }
-            commandCase_ = 6;
-            break;
-          }
-          case 58: {
+          case 34: {
             apache.rocketmq.v2.RecoverOrphanedTransactionCommand.Builder subBuilder = null;
-            if (commandCase_ == 7) {
+            if (commandCase_ == 4) {
               subBuilder = ((apache.rocketmq.v2.RecoverOrphanedTransactionCommand) command_).toBuilder();
             }
             command_ =
@@ -143,12 +101,12 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom((apache.rocketmq.v2.RecoverOrphanedTransactionCommand) command_);
               command_ = subBuilder.buildPartial();
             }
-            commandCase_ = 7;
+            commandCase_ = 4;
             break;
           }
-          case 66: {
+          case 42: {
             apache.rocketmq.v2.PrintThreadStackTraceCommand.Builder subBuilder = null;
-            if (commandCase_ == 8) {
+            if (commandCase_ == 5) {
               subBuilder = ((apache.rocketmq.v2.PrintThreadStackTraceCommand) command_).toBuilder();
             }
             command_ =
@@ -157,12 +115,12 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom((apache.rocketmq.v2.PrintThreadStackTraceCommand) command_);
               command_ = subBuilder.buildPartial();
             }
-            commandCase_ = 8;
+            commandCase_ = 5;
             break;
           }
-          case 74: {
+          case 50: {
             apache.rocketmq.v2.VerifyMessageCommand.Builder subBuilder = null;
-            if (commandCase_ == 9) {
+            if (commandCase_ == 6) {
               subBuilder = ((apache.rocketmq.v2.VerifyMessageCommand) command_).toBuilder();
             }
             command_ =
@@ -171,7 +129,7 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom((apache.rocketmq.v2.VerifyMessageCommand) command_);
               command_ = subBuilder.buildPartial();
             }
-            commandCase_ = 9;
+            commandCase_ = 6;
             break;
           }
           default: {
@@ -211,15 +169,12 @@ private static final long serialVersionUID = 0L;
   public enum CommandCase
       implements com.google.protobuf.Internal.EnumLite,
           com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-    REPORT_ACTIVE_SETTINGS_COMMAND(1),
-    APPLY_PASSIVE_SETTINGS_RESULT(2),
-    THREAD_STACK_TRACE(3),
-    VERIFY_MESSAGE_RESULT(4),
-    APPLY_PASSIVE_SETTINGS_COMMAND(5),
-    REPORT_ACTIVE_SETTINGS_RESULT(6),
-    RECOVER_ORPHANED_TRANSACTION_COMMAND(7),
-    PRINT_THREAD_STACK_TRACE_COMMAND(8),
-    VERIFY_MESSAGE_COMMAND(9),
+    SETTINGS(1),
+    THREAD_STACK_TRACE(2),
+    VERIFY_MESSAGE_RESULT(3),
+    RECOVER_ORPHANED_TRANSACTION_COMMAND(4),
+    PRINT_THREAD_STACK_TRACE_COMMAND(5),
+    VERIFY_MESSAGE_COMMAND(6),
     COMMAND_NOT_SET(0);
     private final int value;
     private CommandCase(int value) {
@@ -237,15 +192,12 @@ private static final long serialVersionUID = 0L;
 
     public static CommandCase forNumber(int value) {
       switch (value) {
-        case 1: return REPORT_ACTIVE_SETTINGS_COMMAND;
-        case 2: return APPLY_PASSIVE_SETTINGS_RESULT;
-        case 3: return THREAD_STACK_TRACE;
-        case 4: return VERIFY_MESSAGE_RESULT;
-        case 5: return APPLY_PASSIVE_SETTINGS_COMMAND;
-        case 6: return REPORT_ACTIVE_SETTINGS_RESULT;
-        case 7: return RECOVER_ORPHANED_TRANSACTION_COMMAND;
-        case 8: return PRINT_THREAD_STACK_TRACE_COMMAND;
-        case 9: return VERIFY_MESSAGE_COMMAND;
+        case 1: return SETTINGS;
+        case 2: return THREAD_STACK_TRACE;
+        case 3: return VERIFY_MESSAGE_RESULT;
+        case 4: return RECOVER_ORPHANED_TRANSACTION_COMMAND;
+        case 5: return PRINT_THREAD_STACK_TRACE_COMMAND;
+        case 6: return VERIFY_MESSAGE_COMMAND;
         case 0: return COMMAND_NOT_SET;
         default: return null;
       }
@@ -261,337 +213,196 @@ private static final long serialVersionUID = 0L;
         commandCase_);
   }
 
-  public static final int REPORT_ACTIVE_SETTINGS_COMMAND_FIELD_NUMBER = 1;
+  public static final int SETTINGS_FIELD_NUMBER = 1;
   /**
-   * <pre>
-   * These messages are from client.
-   * Report active setting to server.
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.ReportActiveSettingsCommand report_active_settings_command = 1;</code>
-   * @return Whether the reportActiveSettingsCommand field is set.
+   * <code>.apache.rocketmq.v2.Settings settings = 1;</code>
+   * @return Whether the settings field is set.
    */
   @java.lang.Override
-  public boolean hasReportActiveSettingsCommand() {
+  public boolean hasSettings() {
     return commandCase_ == 1;
   }
   /**
-   * <pre>
-   * These messages are from client.
-   * Report active setting to server.
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.ReportActiveSettingsCommand report_active_settings_command = 1;</code>
-   * @return The reportActiveSettingsCommand.
+   * <code>.apache.rocketmq.v2.Settings settings = 1;</code>
+   * @return The settings.
    */
   @java.lang.Override
-  public apache.rocketmq.v2.ReportActiveSettingsCommand getReportActiveSettingsCommand() {
+  public apache.rocketmq.v2.Settings getSettings() {
     if (commandCase_ == 1) {
-       return (apache.rocketmq.v2.ReportActiveSettingsCommand) command_;
+       return (apache.rocketmq.v2.Settings) command_;
     }
-    return apache.rocketmq.v2.ReportActiveSettingsCommand.getDefaultInstance();
+    return apache.rocketmq.v2.Settings.getDefaultInstance();
   }
   /**
-   * <pre>
-   * These messages are from client.
-   * Report active setting to server.
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.ReportActiveSettingsCommand report_active_settings_command = 1;</code>
+   * <code>.apache.rocketmq.v2.Settings settings = 1;</code>
    */
   @java.lang.Override
-  public apache.rocketmq.v2.ReportActiveSettingsCommandOrBuilder getReportActiveSettingsCommandOrBuilder() {
+  public apache.rocketmq.v2.SettingsOrBuilder getSettingsOrBuilder() {
     if (commandCase_ == 1) {
-       return (apache.rocketmq.v2.ReportActiveSettingsCommand) command_;
+       return (apache.rocketmq.v2.Settings) command_;
     }
-    return apache.rocketmq.v2.ReportActiveSettingsCommand.getDefaultInstance();
+    return apache.rocketmq.v2.Settings.getDefaultInstance();
   }
 
-  public static final int APPLY_PASSIVE_SETTINGS_RESULT_FIELD_NUMBER = 2;
+  public static final int THREAD_STACK_TRACE_FIELD_NUMBER = 2;
   /**
    * <pre>
-   * Ack `ApplyPassiveSettingsCommand` from server.
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.ApplyPassiveSettingsResult apply_passive_settings_result = 2;</code>
-   * @return Whether the applyPassiveSettingsResult field is set.
-   */
-  @java.lang.Override
-  public boolean hasApplyPassiveSettingsResult() {
-    return commandCase_ == 2;
-  }
-  /**
-   * <pre>
-   * Ack `ApplyPassiveSettingsCommand` from server.
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.ApplyPassiveSettingsResult apply_passive_settings_result = 2;</code>
-   * @return The applyPassiveSettingsResult.
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.ApplyPassiveSettingsResult getApplyPassiveSettingsResult() {
-    if (commandCase_ == 2) {
-       return (apache.rocketmq.v2.ApplyPassiveSettingsResult) command_;
-    }
-    return apache.rocketmq.v2.ApplyPassiveSettingsResult.getDefaultInstance();
-  }
-  /**
-   * <pre>
-   * Ack `ApplyPassiveSettingsCommand` from server.
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.ApplyPassiveSettingsResult apply_passive_settings_result = 2;</code>
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.ApplyPassiveSettingsResultOrBuilder getApplyPassiveSettingsResultOrBuilder() {
-    if (commandCase_ == 2) {
-       return (apache.rocketmq.v2.ApplyPassiveSettingsResult) command_;
-    }
-    return apache.rocketmq.v2.ApplyPassiveSettingsResult.getDefaultInstance();
-  }
-
-  public static final int THREAD_STACK_TRACE_FIELD_NUMBER = 3;
-  /**
-   * <pre>
+   * These messages are from client.
    * Report thread stack trace to server.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 3;</code>
+   * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 2;</code>
    * @return Whether the threadStackTrace field is set.
    */
   @java.lang.Override
   public boolean hasThreadStackTrace() {
-    return commandCase_ == 3;
+    return commandCase_ == 2;
   }
   /**
    * <pre>
+   * These messages are from client.
    * Report thread stack trace to server.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 3;</code>
+   * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 2;</code>
    * @return The threadStackTrace.
    */
   @java.lang.Override
   public apache.rocketmq.v2.ThreadStackTrace getThreadStackTrace() {
-    if (commandCase_ == 3) {
+    if (commandCase_ == 2) {
        return (apache.rocketmq.v2.ThreadStackTrace) command_;
     }
     return apache.rocketmq.v2.ThreadStackTrace.getDefaultInstance();
   }
   /**
    * <pre>
+   * These messages are from client.
    * Report thread stack trace to server.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 3;</code>
+   * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 2;</code>
    */
   @java.lang.Override
   public apache.rocketmq.v2.ThreadStackTraceOrBuilder getThreadStackTraceOrBuilder() {
-    if (commandCase_ == 3) {
+    if (commandCase_ == 2) {
        return (apache.rocketmq.v2.ThreadStackTrace) command_;
     }
     return apache.rocketmq.v2.ThreadStackTrace.getDefaultInstance();
   }
 
-  public static final int VERIFY_MESSAGE_RESULT_FIELD_NUMBER = 4;
+  public static final int VERIFY_MESSAGE_RESULT_FIELD_NUMBER = 3;
   /**
    * <pre>
-   * Repost message verify result to server.
+   * Report message verify result to server.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 4;</code>
+   * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 3;</code>
    * @return Whether the verifyMessageResult field is set.
    */
   @java.lang.Override
   public boolean hasVerifyMessageResult() {
-    return commandCase_ == 4;
+    return commandCase_ == 3;
   }
   /**
    * <pre>
-   * Repost message verify result to server.
+   * Report message verify result to server.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 4;</code>
+   * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 3;</code>
    * @return The verifyMessageResult.
    */
   @java.lang.Override
   public apache.rocketmq.v2.VerifyMessageResult getVerifyMessageResult() {
-    if (commandCase_ == 4) {
+    if (commandCase_ == 3) {
        return (apache.rocketmq.v2.VerifyMessageResult) command_;
     }
     return apache.rocketmq.v2.VerifyMessageResult.getDefaultInstance();
   }
   /**
    * <pre>
-   * Repost message verify result to server.
+   * Report message verify result to server.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 4;</code>
+   * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 3;</code>
    */
   @java.lang.Override
   public apache.rocketmq.v2.VerifyMessageResultOrBuilder getVerifyMessageResultOrBuilder() {
-    if (commandCase_ == 4) {
+    if (commandCase_ == 3) {
        return (apache.rocketmq.v2.VerifyMessageResult) command_;
     }
     return apache.rocketmq.v2.VerifyMessageResult.getDefaultInstance();
   }
 
-  public static final int APPLY_PASSIVE_SETTINGS_COMMAND_FIELD_NUMBER = 5;
+  public static final int RECOVER_ORPHANED_TRANSACTION_COMMAND_FIELD_NUMBER = 4;
   /**
    * <pre>
    * There messages are from server.
-   * Deliver passive settings to client.
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.ApplyPassiveSettingsCommand apply_passive_settings_command = 5;</code>
-   * @return Whether the applyPassiveSettingsCommand field is set.
-   */
-  @java.lang.Override
-  public boolean hasApplyPassiveSettingsCommand() {
-    return commandCase_ == 5;
-  }
-  /**
-   * <pre>
-   * There messages are from server.
-   * Deliver passive settings to client.
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.ApplyPassiveSettingsCommand apply_passive_settings_command = 5;</code>
-   * @return The applyPassiveSettingsCommand.
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.ApplyPassiveSettingsCommand getApplyPassiveSettingsCommand() {
-    if (commandCase_ == 5) {
-       return (apache.rocketmq.v2.ApplyPassiveSettingsCommand) command_;
-    }
-    return apache.rocketmq.v2.ApplyPassiveSettingsCommand.getDefaultInstance();
-  }
-  /**
-   * <pre>
-   * There messages are from server.
-   * Deliver passive settings to client.
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.ApplyPassiveSettingsCommand apply_passive_settings_command = 5;</code>
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.ApplyPassiveSettingsCommandOrBuilder getApplyPassiveSettingsCommandOrBuilder() {
-    if (commandCase_ == 5) {
-       return (apache.rocketmq.v2.ApplyPassiveSettingsCommand) command_;
-    }
-    return apache.rocketmq.v2.ApplyPassiveSettingsCommand.getDefaultInstance();
-  }
-
-  public static final int REPORT_ACTIVE_SETTINGS_RESULT_FIELD_NUMBER = 6;
-  /**
-   * <pre>
-   * Ack `ReportActiveSettingsCommand` from client.
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.ReportActiveSettingsResult report_active_settings_result = 6;</code>
-   * @return Whether the reportActiveSettingsResult field is set.
-   */
-  @java.lang.Override
-  public boolean hasReportActiveSettingsResult() {
-    return commandCase_ == 6;
-  }
-  /**
-   * <pre>
-   * Ack `ReportActiveSettingsCommand` from client.
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.ReportActiveSettingsResult report_active_settings_result = 6;</code>
-   * @return The reportActiveSettingsResult.
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.ReportActiveSettingsResult getReportActiveSettingsResult() {
-    if (commandCase_ == 6) {
-       return (apache.rocketmq.v2.ReportActiveSettingsResult) command_;
-    }
-    return apache.rocketmq.v2.ReportActiveSettingsResult.getDefaultInstance();
-  }
-  /**
-   * <pre>
-   * Ack `ReportActiveSettingsCommand` from client.
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.ReportActiveSettingsResult report_active_settings_result = 6;</code>
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.ReportActiveSettingsResultOrBuilder getReportActiveSettingsResultOrBuilder() {
-    if (commandCase_ == 6) {
-       return (apache.rocketmq.v2.ReportActiveSettingsResult) command_;
-    }
-    return apache.rocketmq.v2.ReportActiveSettingsResult.getDefaultInstance();
-  }
-
-  public static final int RECOVER_ORPHANED_TRANSACTION_COMMAND_FIELD_NUMBER = 7;
-  /**
-   * <pre>
    * Request client to recover the orphaned transaction message.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 7;</code>
+   * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 4;</code>
    * @return Whether the recoverOrphanedTransactionCommand field is set.
    */
   @java.lang.Override
   public boolean hasRecoverOrphanedTransactionCommand() {
-    return commandCase_ == 7;
+    return commandCase_ == 4;
   }
   /**
    * <pre>
+   * There messages are from server.
    * Request client to recover the orphaned transaction message.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 7;</code>
+   * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 4;</code>
    * @return The recoverOrphanedTransactionCommand.
    */
   @java.lang.Override
   public apache.rocketmq.v2.RecoverOrphanedTransactionCommand getRecoverOrphanedTransactionCommand() {
-    if (commandCase_ == 7) {
+    if (commandCase_ == 4) {
        return (apache.rocketmq.v2.RecoverOrphanedTransactionCommand) command_;
     }
     return apache.rocketmq.v2.RecoverOrphanedTransactionCommand.getDefaultInstance();
   }
   /**
    * <pre>
+   * There messages are from server.
    * Request client to recover the orphaned transaction message.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 7;</code>
+   * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 4;</code>
    */
   @java.lang.Override
   public apache.rocketmq.v2.RecoverOrphanedTransactionCommandOrBuilder getRecoverOrphanedTransactionCommandOrBuilder() {
-    if (commandCase_ == 7) {
+    if (commandCase_ == 4) {
        return (apache.rocketmq.v2.RecoverOrphanedTransactionCommand) command_;
     }
     return apache.rocketmq.v2.RecoverOrphanedTransactionCommand.getDefaultInstance();
   }
 
-  public static final int PRINT_THREAD_STACK_TRACE_COMMAND_FIELD_NUMBER = 8;
+  public static final int PRINT_THREAD_STACK_TRACE_COMMAND_FIELD_NUMBER = 5;
   /**
    * <pre>
    * Request client to print thread stack trace.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 8;</code>
+   * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 5;</code>
    * @return Whether the printThreadStackTraceCommand field is set.
    */
   @java.lang.Override
   public boolean hasPrintThreadStackTraceCommand() {
-    return commandCase_ == 8;
+    return commandCase_ == 5;
   }
   /**
    * <pre>
    * Request client to print thread stack trace.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 8;</code>
+   * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 5;</code>
    * @return The printThreadStackTraceCommand.
    */
   @java.lang.Override
   public apache.rocketmq.v2.PrintThreadStackTraceCommand getPrintThreadStackTraceCommand() {
-    if (commandCase_ == 8) {
+    if (commandCase_ == 5) {
        return (apache.rocketmq.v2.PrintThreadStackTraceCommand) command_;
     }
     return apache.rocketmq.v2.PrintThreadStackTraceCommand.getDefaultInstance();
@@ -601,40 +412,40 @@ private static final long serialVersionUID = 0L;
    * Request client to print thread stack trace.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 8;</code>
+   * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 5;</code>
    */
   @java.lang.Override
   public apache.rocketmq.v2.PrintThreadStackTraceCommandOrBuilder getPrintThreadStackTraceCommandOrBuilder() {
-    if (commandCase_ == 8) {
+    if (commandCase_ == 5) {
        return (apache.rocketmq.v2.PrintThreadStackTraceCommand) command_;
     }
     return apache.rocketmq.v2.PrintThreadStackTraceCommand.getDefaultInstance();
   }
 
-  public static final int VERIFY_MESSAGE_COMMAND_FIELD_NUMBER = 9;
+  public static final int VERIFY_MESSAGE_COMMAND_FIELD_NUMBER = 6;
   /**
    * <pre>
    * Request client to verify the consumption of the appointed message.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 9;</code>
+   * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 6;</code>
    * @return Whether the verifyMessageCommand field is set.
    */
   @java.lang.Override
   public boolean hasVerifyMessageCommand() {
-    return commandCase_ == 9;
+    return commandCase_ == 6;
   }
   /**
    * <pre>
    * Request client to verify the consumption of the appointed message.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 9;</code>
+   * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 6;</code>
    * @return The verifyMessageCommand.
    */
   @java.lang.Override
   public apache.rocketmq.v2.VerifyMessageCommand getVerifyMessageCommand() {
-    if (commandCase_ == 9) {
+    if (commandCase_ == 6) {
        return (apache.rocketmq.v2.VerifyMessageCommand) command_;
     }
     return apache.rocketmq.v2.VerifyMessageCommand.getDefaultInstance();
@@ -644,11 +455,11 @@ private static final long serialVersionUID = 0L;
    * Request client to verify the consumption of the appointed message.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 9;</code>
+   * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 6;</code>
    */
   @java.lang.Override
   public apache.rocketmq.v2.VerifyMessageCommandOrBuilder getVerifyMessageCommandOrBuilder() {
-    if (commandCase_ == 9) {
+    if (commandCase_ == 6) {
        return (apache.rocketmq.v2.VerifyMessageCommand) command_;
     }
     return apache.rocketmq.v2.VerifyMessageCommand.getDefaultInstance();
@@ -669,31 +480,22 @@ private static final long serialVersionUID = 0L;
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     if (commandCase_ == 1) {
-      output.writeMessage(1, (apache.rocketmq.v2.ReportActiveSettingsCommand) command_);
+      output.writeMessage(1, (apache.rocketmq.v2.Settings) command_);
     }
     if (commandCase_ == 2) {
-      output.writeMessage(2, (apache.rocketmq.v2.ApplyPassiveSettingsResult) command_);
+      output.writeMessage(2, (apache.rocketmq.v2.ThreadStackTrace) command_);
     }
     if (commandCase_ == 3) {
-      output.writeMessage(3, (apache.rocketmq.v2.ThreadStackTrace) command_);
+      output.writeMessage(3, (apache.rocketmq.v2.VerifyMessageResult) command_);
     }
     if (commandCase_ == 4) {
-      output.writeMessage(4, (apache.rocketmq.v2.VerifyMessageResult) command_);
+      output.writeMessage(4, (apache.rocketmq.v2.RecoverOrphanedTransactionCommand) command_);
     }
     if (commandCase_ == 5) {
-      output.writeMessage(5, (apache.rocketmq.v2.ApplyPassiveSettingsCommand) command_);
+      output.writeMessage(5, (apache.rocketmq.v2.PrintThreadStackTraceCommand) command_);
     }
     if (commandCase_ == 6) {
-      output.writeMessage(6, (apache.rocketmq.v2.ReportActiveSettingsResult) command_);
-    }
-    if (commandCase_ == 7) {
-      output.writeMessage(7, (apache.rocketmq.v2.RecoverOrphanedTransactionCommand) command_);
-    }
-    if (commandCase_ == 8) {
-      output.writeMessage(8, (apache.rocketmq.v2.PrintThreadStackTraceCommand) command_);
-    }
-    if (commandCase_ == 9) {
-      output.writeMessage(9, (apache.rocketmq.v2.VerifyMessageCommand) command_);
+      output.writeMessage(6, (apache.rocketmq.v2.VerifyMessageCommand) command_);
     }
     unknownFields.writeTo(output);
   }
@@ -706,39 +508,27 @@ private static final long serialVersionUID = 0L;
     size = 0;
     if (commandCase_ == 1) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, (apache.rocketmq.v2.ReportActiveSettingsCommand) command_);
+        .computeMessageSize(1, (apache.rocketmq.v2.Settings) command_);
     }
     if (commandCase_ == 2) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, (apache.rocketmq.v2.ApplyPassiveSettingsResult) command_);
+        .computeMessageSize(2, (apache.rocketmq.v2.ThreadStackTrace) command_);
     }
     if (commandCase_ == 3) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, (apache.rocketmq.v2.ThreadStackTrace) command_);
+        .computeMessageSize(3, (apache.rocketmq.v2.VerifyMessageResult) command_);
     }
     if (commandCase_ == 4) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(4, (apache.rocketmq.v2.VerifyMessageResult) command_);
+        .computeMessageSize(4, (apache.rocketmq.v2.RecoverOrphanedTransactionCommand) command_);
     }
     if (commandCase_ == 5) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(5, (apache.rocketmq.v2.ApplyPassiveSettingsCommand) command_);
+        .computeMessageSize(5, (apache.rocketmq.v2.PrintThreadStackTraceCommand) command_);
     }
     if (commandCase_ == 6) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(6, (apache.rocketmq.v2.ReportActiveSettingsResult) command_);
-    }
-    if (commandCase_ == 7) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(7, (apache.rocketmq.v2.RecoverOrphanedTransactionCommand) command_);
-    }
-    if (commandCase_ == 8) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(8, (apache.rocketmq.v2.PrintThreadStackTraceCommand) command_);
-    }
-    if (commandCase_ == 9) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(9, (apache.rocketmq.v2.VerifyMessageCommand) command_);
+        .computeMessageSize(6, (apache.rocketmq.v2.VerifyMessageCommand) command_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -758,38 +548,26 @@ private static final long serialVersionUID = 0L;
     if (!getCommandCase().equals(other.getCommandCase())) return false;
     switch (commandCase_) {
       case 1:
-        if (!getReportActiveSettingsCommand()
-            .equals(other.getReportActiveSettingsCommand())) return false;
+        if (!getSettings()
+            .equals(other.getSettings())) return false;
         break;
       case 2:
-        if (!getApplyPassiveSettingsResult()
-            .equals(other.getApplyPassiveSettingsResult())) return false;
-        break;
-      case 3:
         if (!getThreadStackTrace()
             .equals(other.getThreadStackTrace())) return false;
         break;
-      case 4:
+      case 3:
         if (!getVerifyMessageResult()
             .equals(other.getVerifyMessageResult())) return false;
         break;
-      case 5:
-        if (!getApplyPassiveSettingsCommand()
-            .equals(other.getApplyPassiveSettingsCommand())) return false;
-        break;
-      case 6:
-        if (!getReportActiveSettingsResult()
-            .equals(other.getReportActiveSettingsResult())) return false;
-        break;
-      case 7:
+      case 4:
         if (!getRecoverOrphanedTransactionCommand()
             .equals(other.getRecoverOrphanedTransactionCommand())) return false;
         break;
-      case 8:
+      case 5:
         if (!getPrintThreadStackTraceCommand()
             .equals(other.getPrintThreadStackTraceCommand())) return false;
         break;
-      case 9:
+      case 6:
         if (!getVerifyMessageCommand()
             .equals(other.getVerifyMessageCommand())) return false;
         break;
@@ -809,38 +587,26 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     switch (commandCase_) {
       case 1:
-        hash = (37 * hash) + REPORT_ACTIVE_SETTINGS_COMMAND_FIELD_NUMBER;
-        hash = (53 * hash) + getReportActiveSettingsCommand().hashCode();
+        hash = (37 * hash) + SETTINGS_FIELD_NUMBER;
+        hash = (53 * hash) + getSettings().hashCode();
         break;
       case 2:
-        hash = (37 * hash) + APPLY_PASSIVE_SETTINGS_RESULT_FIELD_NUMBER;
-        hash = (53 * hash) + getApplyPassiveSettingsResult().hashCode();
-        break;
-      case 3:
         hash = (37 * hash) + THREAD_STACK_TRACE_FIELD_NUMBER;
         hash = (53 * hash) + getThreadStackTrace().hashCode();
         break;
-      case 4:
+      case 3:
         hash = (37 * hash) + VERIFY_MESSAGE_RESULT_FIELD_NUMBER;
         hash = (53 * hash) + getVerifyMessageResult().hashCode();
         break;
-      case 5:
-        hash = (37 * hash) + APPLY_PASSIVE_SETTINGS_COMMAND_FIELD_NUMBER;
-        hash = (53 * hash) + getApplyPassiveSettingsCommand().hashCode();
-        break;
-      case 6:
-        hash = (37 * hash) + REPORT_ACTIVE_SETTINGS_RESULT_FIELD_NUMBER;
-        hash = (53 * hash) + getReportActiveSettingsResult().hashCode();
-        break;
-      case 7:
+      case 4:
         hash = (37 * hash) + RECOVER_ORPHANED_TRANSACTION_COMMAND_FIELD_NUMBER;
         hash = (53 * hash) + getRecoverOrphanedTransactionCommand().hashCode();
         break;
-      case 8:
+      case 5:
         hash = (37 * hash) + PRINT_THREAD_STACK_TRACE_COMMAND_FIELD_NUMBER;
         hash = (53 * hash) + getPrintThreadStackTraceCommand().hashCode();
         break;
-      case 9:
+      case 6:
         hash = (37 * hash) + VERIFY_MESSAGE_COMMAND_FIELD_NUMBER;
         hash = (53 * hash) + getVerifyMessageCommand().hashCode();
         break;
@@ -1009,62 +775,41 @@ private static final long serialVersionUID = 0L;
     public apache.rocketmq.v2.TelemetryCommand buildPartial() {
       apache.rocketmq.v2.TelemetryCommand result = new apache.rocketmq.v2.TelemetryCommand(this);
       if (commandCase_ == 1) {
-        if (reportActiveSettingsCommandBuilder_ == null) {
+        if (settingsBuilder_ == null) {
           result.command_ = command_;
         } else {
-          result.command_ = reportActiveSettingsCommandBuilder_.build();
+          result.command_ = settingsBuilder_.build();
         }
       }
       if (commandCase_ == 2) {
-        if (applyPassiveSettingsResultBuilder_ == null) {
-          result.command_ = command_;
-        } else {
-          result.command_ = applyPassiveSettingsResultBuilder_.build();
-        }
-      }
-      if (commandCase_ == 3) {
         if (threadStackTraceBuilder_ == null) {
           result.command_ = command_;
         } else {
           result.command_ = threadStackTraceBuilder_.build();
         }
       }
-      if (commandCase_ == 4) {
+      if (commandCase_ == 3) {
         if (verifyMessageResultBuilder_ == null) {
           result.command_ = command_;
         } else {
           result.command_ = verifyMessageResultBuilder_.build();
         }
       }
-      if (commandCase_ == 5) {
-        if (applyPassiveSettingsCommandBuilder_ == null) {
-          result.command_ = command_;
-        } else {
-          result.command_ = applyPassiveSettingsCommandBuilder_.build();
-        }
-      }
-      if (commandCase_ == 6) {
-        if (reportActiveSettingsResultBuilder_ == null) {
-          result.command_ = command_;
-        } else {
-          result.command_ = reportActiveSettingsResultBuilder_.build();
-        }
-      }
-      if (commandCase_ == 7) {
+      if (commandCase_ == 4) {
         if (recoverOrphanedTransactionCommandBuilder_ == null) {
           result.command_ = command_;
         } else {
           result.command_ = recoverOrphanedTransactionCommandBuilder_.build();
         }
       }
-      if (commandCase_ == 8) {
+      if (commandCase_ == 5) {
         if (printThreadStackTraceCommandBuilder_ == null) {
           result.command_ = command_;
         } else {
           result.command_ = printThreadStackTraceCommandBuilder_.build();
         }
       }
-      if (commandCase_ == 9) {
+      if (commandCase_ == 6) {
         if (verifyMessageCommandBuilder_ == null) {
           result.command_ = command_;
         } else {
@@ -1121,12 +866,8 @@ private static final long serialVersionUID = 0L;
     public Builder mergeFrom(apache.rocketmq.v2.TelemetryCommand other) {
       if (other == apache.rocketmq.v2.TelemetryCommand.getDefaultInstance()) return this;
       switch (other.getCommandCase()) {
-        case REPORT_ACTIVE_SETTINGS_COMMAND: {
-          mergeReportActiveSettingsCommand(other.getReportActiveSettingsCommand());
-          break;
-        }
-        case APPLY_PASSIVE_SETTINGS_RESULT: {
-          mergeApplyPassiveSettingsResult(other.getApplyPassiveSettingsResult());
+        case SETTINGS: {
+          mergeSettings(other.getSettings());
           break;
         }
         case THREAD_STACK_TRACE: {
@@ -1135,14 +876,6 @@ private static final long serialVersionUID = 0L;
         }
         case VERIFY_MESSAGE_RESULT: {
           mergeVerifyMessageResult(other.getVerifyMessageResult());
-          break;
-        }
-        case APPLY_PASSIVE_SETTINGS_COMMAND: {
-          mergeApplyPassiveSettingsCommand(other.getApplyPassiveSettingsCommand());
-          break;
-        }
-        case REPORT_ACTIVE_SETTINGS_RESULT: {
-          mergeReportActiveSettingsResult(other.getReportActiveSettingsResult());
           break;
         }
         case RECOVER_ORPHANED_TRANSACTION_COMMAND: {
@@ -1206,96 +939,71 @@ private static final long serialVersionUID = 0L;
 
 
     private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.ReportActiveSettingsCommand, apache.rocketmq.v2.ReportActiveSettingsCommand.Builder, apache.rocketmq.v2.ReportActiveSettingsCommandOrBuilder> reportActiveSettingsCommandBuilder_;
+        apache.rocketmq.v2.Settings, apache.rocketmq.v2.Settings.Builder, apache.rocketmq.v2.SettingsOrBuilder> settingsBuilder_;
     /**
-     * <pre>
-     * These messages are from client.
-     * Report active setting to server.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ReportActiveSettingsCommand report_active_settings_command = 1;</code>
-     * @return Whether the reportActiveSettingsCommand field is set.
+     * <code>.apache.rocketmq.v2.Settings settings = 1;</code>
+     * @return Whether the settings field is set.
      */
     @java.lang.Override
-    public boolean hasReportActiveSettingsCommand() {
+    public boolean hasSettings() {
       return commandCase_ == 1;
     }
     /**
-     * <pre>
-     * These messages are from client.
-     * Report active setting to server.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ReportActiveSettingsCommand report_active_settings_command = 1;</code>
-     * @return The reportActiveSettingsCommand.
+     * <code>.apache.rocketmq.v2.Settings settings = 1;</code>
+     * @return The settings.
      */
     @java.lang.Override
-    public apache.rocketmq.v2.ReportActiveSettingsCommand getReportActiveSettingsCommand() {
-      if (reportActiveSettingsCommandBuilder_ == null) {
+    public apache.rocketmq.v2.Settings getSettings() {
+      if (settingsBuilder_ == null) {
         if (commandCase_ == 1) {
-          return (apache.rocketmq.v2.ReportActiveSettingsCommand) command_;
+          return (apache.rocketmq.v2.Settings) command_;
         }
-        return apache.rocketmq.v2.ReportActiveSettingsCommand.getDefaultInstance();
+        return apache.rocketmq.v2.Settings.getDefaultInstance();
       } else {
         if (commandCase_ == 1) {
-          return reportActiveSettingsCommandBuilder_.getMessage();
+          return settingsBuilder_.getMessage();
         }
-        return apache.rocketmq.v2.ReportActiveSettingsCommand.getDefaultInstance();
+        return apache.rocketmq.v2.Settings.getDefaultInstance();
       }
     }
     /**
-     * <pre>
-     * These messages are from client.
-     * Report active setting to server.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ReportActiveSettingsCommand report_active_settings_command = 1;</code>
+     * <code>.apache.rocketmq.v2.Settings settings = 1;</code>
      */
-    public Builder setReportActiveSettingsCommand(apache.rocketmq.v2.ReportActiveSettingsCommand value) {
-      if (reportActiveSettingsCommandBuilder_ == null) {
+    public Builder setSettings(apache.rocketmq.v2.Settings value) {
+      if (settingsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
         command_ = value;
         onChanged();
       } else {
-        reportActiveSettingsCommandBuilder_.setMessage(value);
+        settingsBuilder_.setMessage(value);
       }
       commandCase_ = 1;
       return this;
     }
     /**
-     * <pre>
-     * These messages are from client.
-     * Report active setting to server.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ReportActiveSettingsCommand report_active_settings_command = 1;</code>
+     * <code>.apache.rocketmq.v2.Settings settings = 1;</code>
      */
-    public Builder setReportActiveSettingsCommand(
-        apache.rocketmq.v2.ReportActiveSettingsCommand.Builder builderForValue) {
-      if (reportActiveSettingsCommandBuilder_ == null) {
+    public Builder setSettings(
+        apache.rocketmq.v2.Settings.Builder builderForValue) {
+      if (settingsBuilder_ == null) {
         command_ = builderForValue.build();
         onChanged();
       } else {
-        reportActiveSettingsCommandBuilder_.setMessage(builderForValue.build());
+        settingsBuilder_.setMessage(builderForValue.build());
       }
       commandCase_ = 1;
       return this;
     }
     /**
-     * <pre>
-     * These messages are from client.
-     * Report active setting to server.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ReportActiveSettingsCommand report_active_settings_command = 1;</code>
+     * <code>.apache.rocketmq.v2.Settings settings = 1;</code>
      */
-    public Builder mergeReportActiveSettingsCommand(apache.rocketmq.v2.ReportActiveSettingsCommand value) {
-      if (reportActiveSettingsCommandBuilder_ == null) {
+    public Builder mergeSettings(apache.rocketmq.v2.Settings value) {
+      if (settingsBuilder_ == null) {
         if (commandCase_ == 1 &&
-            command_ != apache.rocketmq.v2.ReportActiveSettingsCommand.getDefaultInstance()) {
-          command_ = apache.rocketmq.v2.ReportActiveSettingsCommand.newBuilder((apache.rocketmq.v2.ReportActiveSettingsCommand) command_)
+            command_ != apache.rocketmq.v2.Settings.getDefaultInstance()) {
+          command_ = apache.rocketmq.v2.Settings.newBuilder((apache.rocketmq.v2.Settings) command_)
               .mergeFrom(value).buildPartial();
         } else {
           command_ = value;
@@ -1303,23 +1011,18 @@ private static final long serialVersionUID = 0L;
         onChanged();
       } else {
         if (commandCase_ == 1) {
-          reportActiveSettingsCommandBuilder_.mergeFrom(value);
+          settingsBuilder_.mergeFrom(value);
         }
-        reportActiveSettingsCommandBuilder_.setMessage(value);
+        settingsBuilder_.setMessage(value);
       }
       commandCase_ = 1;
       return this;
     }
     /**
-     * <pre>
-     * These messages are from client.
-     * Report active setting to server.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ReportActiveSettingsCommand report_active_settings_command = 1;</code>
+     * <code>.apache.rocketmq.v2.Settings settings = 1;</code>
      */
-    public Builder clearReportActiveSettingsCommand() {
-      if (reportActiveSettingsCommandBuilder_ == null) {
+    public Builder clearSettings() {
+      if (settingsBuilder_ == null) {
         if (commandCase_ == 1) {
           commandCase_ = 0;
           command_ = null;
@@ -1330,275 +1033,85 @@ private static final long serialVersionUID = 0L;
           commandCase_ = 0;
           command_ = null;
         }
-        reportActiveSettingsCommandBuilder_.clear();
+        settingsBuilder_.clear();
       }
       return this;
     }
     /**
-     * <pre>
-     * These messages are from client.
-     * Report active setting to server.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ReportActiveSettingsCommand report_active_settings_command = 1;</code>
+     * <code>.apache.rocketmq.v2.Settings settings = 1;</code>
      */
-    public apache.rocketmq.v2.ReportActiveSettingsCommand.Builder getReportActiveSettingsCommandBuilder() {
-      return getReportActiveSettingsCommandFieldBuilder().getBuilder();
+    public apache.rocketmq.v2.Settings.Builder getSettingsBuilder() {
+      return getSettingsFieldBuilder().getBuilder();
     }
     /**
-     * <pre>
-     * These messages are from client.
-     * Report active setting to server.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ReportActiveSettingsCommand report_active_settings_command = 1;</code>
+     * <code>.apache.rocketmq.v2.Settings settings = 1;</code>
      */
     @java.lang.Override
-    public apache.rocketmq.v2.ReportActiveSettingsCommandOrBuilder getReportActiveSettingsCommandOrBuilder() {
-      if ((commandCase_ == 1) && (reportActiveSettingsCommandBuilder_ != null)) {
-        return reportActiveSettingsCommandBuilder_.getMessageOrBuilder();
+    public apache.rocketmq.v2.SettingsOrBuilder getSettingsOrBuilder() {
+      if ((commandCase_ == 1) && (settingsBuilder_ != null)) {
+        return settingsBuilder_.getMessageOrBuilder();
       } else {
         if (commandCase_ == 1) {
-          return (apache.rocketmq.v2.ReportActiveSettingsCommand) command_;
+          return (apache.rocketmq.v2.Settings) command_;
         }
-        return apache.rocketmq.v2.ReportActiveSettingsCommand.getDefaultInstance();
+        return apache.rocketmq.v2.Settings.getDefaultInstance();
       }
     }
     /**
-     * <pre>
-     * These messages are from client.
-     * Report active setting to server.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ReportActiveSettingsCommand report_active_settings_command = 1;</code>
+     * <code>.apache.rocketmq.v2.Settings settings = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.ReportActiveSettingsCommand, apache.rocketmq.v2.ReportActiveSettingsCommand.Builder, apache.rocketmq.v2.ReportActiveSettingsCommandOrBuilder> 
-        getReportActiveSettingsCommandFieldBuilder() {
-      if (reportActiveSettingsCommandBuilder_ == null) {
+        apache.rocketmq.v2.Settings, apache.rocketmq.v2.Settings.Builder, apache.rocketmq.v2.SettingsOrBuilder> 
+        getSettingsFieldBuilder() {
+      if (settingsBuilder_ == null) {
         if (!(commandCase_ == 1)) {
-          command_ = apache.rocketmq.v2.ReportActiveSettingsCommand.getDefaultInstance();
+          command_ = apache.rocketmq.v2.Settings.getDefaultInstance();
         }
-        reportActiveSettingsCommandBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            apache.rocketmq.v2.ReportActiveSettingsCommand, apache.rocketmq.v2.ReportActiveSettingsCommand.Builder, apache.rocketmq.v2.ReportActiveSettingsCommandOrBuilder>(
-                (apache.rocketmq.v2.ReportActiveSettingsCommand) command_,
+        settingsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            apache.rocketmq.v2.Settings, apache.rocketmq.v2.Settings.Builder, apache.rocketmq.v2.SettingsOrBuilder>(
+                (apache.rocketmq.v2.Settings) command_,
                 getParentForChildren(),
                 isClean());
         command_ = null;
       }
       commandCase_ = 1;
       onChanged();;
-      return reportActiveSettingsCommandBuilder_;
-    }
-
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.ApplyPassiveSettingsResult, apache.rocketmq.v2.ApplyPassiveSettingsResult.Builder, apache.rocketmq.v2.ApplyPassiveSettingsResultOrBuilder> applyPassiveSettingsResultBuilder_;
-    /**
-     * <pre>
-     * Ack `ApplyPassiveSettingsCommand` from server.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ApplyPassiveSettingsResult apply_passive_settings_result = 2;</code>
-     * @return Whether the applyPassiveSettingsResult field is set.
-     */
-    @java.lang.Override
-    public boolean hasApplyPassiveSettingsResult() {
-      return commandCase_ == 2;
-    }
-    /**
-     * <pre>
-     * Ack `ApplyPassiveSettingsCommand` from server.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ApplyPassiveSettingsResult apply_passive_settings_result = 2;</code>
-     * @return The applyPassiveSettingsResult.
-     */
-    @java.lang.Override
-    public apache.rocketmq.v2.ApplyPassiveSettingsResult getApplyPassiveSettingsResult() {
-      if (applyPassiveSettingsResultBuilder_ == null) {
-        if (commandCase_ == 2) {
-          return (apache.rocketmq.v2.ApplyPassiveSettingsResult) command_;
-        }
-        return apache.rocketmq.v2.ApplyPassiveSettingsResult.getDefaultInstance();
-      } else {
-        if (commandCase_ == 2) {
-          return applyPassiveSettingsResultBuilder_.getMessage();
-        }
-        return apache.rocketmq.v2.ApplyPassiveSettingsResult.getDefaultInstance();
-      }
-    }
-    /**
-     * <pre>
-     * Ack `ApplyPassiveSettingsCommand` from server.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ApplyPassiveSettingsResult apply_passive_settings_result = 2;</code>
-     */
-    public Builder setApplyPassiveSettingsResult(apache.rocketmq.v2.ApplyPassiveSettingsResult value) {
-      if (applyPassiveSettingsResultBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        command_ = value;
-        onChanged();
-      } else {
-        applyPassiveSettingsResultBuilder_.setMessage(value);
-      }
-      commandCase_ = 2;
-      return this;
-    }
-    /**
-     * <pre>
-     * Ack `ApplyPassiveSettingsCommand` from server.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ApplyPassiveSettingsResult apply_passive_settings_result = 2;</code>
-     */
-    public Builder setApplyPassiveSettingsResult(
-        apache.rocketmq.v2.ApplyPassiveSettingsResult.Builder builderForValue) {
-      if (applyPassiveSettingsResultBuilder_ == null) {
-        command_ = builderForValue.build();
-        onChanged();
-      } else {
-        applyPassiveSettingsResultBuilder_.setMessage(builderForValue.build());
-      }
-      commandCase_ = 2;
-      return this;
-    }
-    /**
-     * <pre>
-     * Ack `ApplyPassiveSettingsCommand` from server.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ApplyPassiveSettingsResult apply_passive_settings_result = 2;</code>
-     */
-    public Builder mergeApplyPassiveSettingsResult(apache.rocketmq.v2.ApplyPassiveSettingsResult value) {
-      if (applyPassiveSettingsResultBuilder_ == null) {
-        if (commandCase_ == 2 &&
-            command_ != apache.rocketmq.v2.ApplyPassiveSettingsResult.getDefaultInstance()) {
-          command_ = apache.rocketmq.v2.ApplyPassiveSettingsResult.newBuilder((apache.rocketmq.v2.ApplyPassiveSettingsResult) command_)
-              .mergeFrom(value).buildPartial();
-        } else {
-          command_ = value;
-        }
-        onChanged();
-      } else {
-        if (commandCase_ == 2) {
-          applyPassiveSettingsResultBuilder_.mergeFrom(value);
-        }
-        applyPassiveSettingsResultBuilder_.setMessage(value);
-      }
-      commandCase_ = 2;
-      return this;
-    }
-    /**
-     * <pre>
-     * Ack `ApplyPassiveSettingsCommand` from server.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ApplyPassiveSettingsResult apply_passive_settings_result = 2;</code>
-     */
-    public Builder clearApplyPassiveSettingsResult() {
-      if (applyPassiveSettingsResultBuilder_ == null) {
-        if (commandCase_ == 2) {
-          commandCase_ = 0;
-          command_ = null;
-          onChanged();
-        }
-      } else {
-        if (commandCase_ == 2) {
-          commandCase_ = 0;
-          command_ = null;
-        }
-        applyPassiveSettingsResultBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Ack `ApplyPassiveSettingsCommand` from server.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ApplyPassiveSettingsResult apply_passive_settings_result = 2;</code>
-     */
-    public apache.rocketmq.v2.ApplyPassiveSettingsResult.Builder getApplyPassiveSettingsResultBuilder() {
-      return getApplyPassiveSettingsResultFieldBuilder().getBuilder();
-    }
-    /**
-     * <pre>
-     * Ack `ApplyPassiveSettingsCommand` from server.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ApplyPassiveSettingsResult apply_passive_settings_result = 2;</code>
-     */
-    @java.lang.Override
-    public apache.rocketmq.v2.ApplyPassiveSettingsResultOrBuilder getApplyPassiveSettingsResultOrBuilder() {
-      if ((commandCase_ == 2) && (applyPassiveSettingsResultBuilder_ != null)) {
-        return applyPassiveSettingsResultBuilder_.getMessageOrBuilder();
-      } else {
-        if (commandCase_ == 2) {
-          return (apache.rocketmq.v2.ApplyPassiveSettingsResult) command_;
-        }
-        return apache.rocketmq.v2.ApplyPassiveSettingsResult.getDefaultInstance();
-      }
-    }
-    /**
-     * <pre>
-     * Ack `ApplyPassiveSettingsCommand` from server.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ApplyPassiveSettingsResult apply_passive_settings_result = 2;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.ApplyPassiveSettingsResult, apache.rocketmq.v2.ApplyPassiveSettingsResult.Builder, apache.rocketmq.v2.ApplyPassiveSettingsResultOrBuilder> 
-        getApplyPassiveSettingsResultFieldBuilder() {
-      if (applyPassiveSettingsResultBuilder_ == null) {
-        if (!(commandCase_ == 2)) {
-          command_ = apache.rocketmq.v2.ApplyPassiveSettingsResult.getDefaultInstance();
-        }
-        applyPassiveSettingsResultBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            apache.rocketmq.v2.ApplyPassiveSettingsResult, apache.rocketmq.v2.ApplyPassiveSettingsResult.Builder, apache.rocketmq.v2.ApplyPassiveSettingsResultOrBuilder>(
-                (apache.rocketmq.v2.ApplyPassiveSettingsResult) command_,
-                getParentForChildren(),
-                isClean());
-        command_ = null;
-      }
-      commandCase_ = 2;
-      onChanged();;
-      return applyPassiveSettingsResultBuilder_;
+      return settingsBuilder_;
     }
 
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.ThreadStackTrace, apache.rocketmq.v2.ThreadStackTrace.Builder, apache.rocketmq.v2.ThreadStackTraceOrBuilder> threadStackTraceBuilder_;
     /**
      * <pre>
+     * These messages are from client.
      * Report thread stack trace to server.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 3;</code>
+     * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 2;</code>
      * @return Whether the threadStackTrace field is set.
      */
     @java.lang.Override
     public boolean hasThreadStackTrace() {
-      return commandCase_ == 3;
+      return commandCase_ == 2;
     }
     /**
      * <pre>
+     * These messages are from client.
      * Report thread stack trace to server.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 3;</code>
+     * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 2;</code>
      * @return The threadStackTrace.
      */
     @java.lang.Override
     public apache.rocketmq.v2.ThreadStackTrace getThreadStackTrace() {
       if (threadStackTraceBuilder_ == null) {
-        if (commandCase_ == 3) {
+        if (commandCase_ == 2) {
           return (apache.rocketmq.v2.ThreadStackTrace) command_;
         }
         return apache.rocketmq.v2.ThreadStackTrace.getDefaultInstance();
       } else {
-        if (commandCase_ == 3) {
+        if (commandCase_ == 2) {
           return threadStackTraceBuilder_.getMessage();
         }
         return apache.rocketmq.v2.ThreadStackTrace.getDefaultInstance();
@@ -1606,10 +1119,11 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
+     * These messages are from client.
      * Report thread stack trace to server.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 3;</code>
+     * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 2;</code>
      */
     public Builder setThreadStackTrace(apache.rocketmq.v2.ThreadStackTrace value) {
       if (threadStackTraceBuilder_ == null) {
@@ -1621,15 +1135,16 @@ private static final long serialVersionUID = 0L;
       } else {
         threadStackTraceBuilder_.setMessage(value);
       }
-      commandCase_ = 3;
+      commandCase_ = 2;
       return this;
     }
     /**
      * <pre>
+     * These messages are from client.
      * Report thread stack trace to server.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 3;</code>
+     * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 2;</code>
      */
     public Builder setThreadStackTrace(
         apache.rocketmq.v2.ThreadStackTrace.Builder builderForValue) {
@@ -1639,19 +1154,20 @@ private static final long serialVersionUID = 0L;
       } else {
         threadStackTraceBuilder_.setMessage(builderForValue.build());
       }
-      commandCase_ = 3;
+      commandCase_ = 2;
       return this;
     }
     /**
      * <pre>
+     * These messages are from client.
      * Report thread stack trace to server.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 3;</code>
+     * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 2;</code>
      */
     public Builder mergeThreadStackTrace(apache.rocketmq.v2.ThreadStackTrace value) {
       if (threadStackTraceBuilder_ == null) {
-        if (commandCase_ == 3 &&
+        if (commandCase_ == 2 &&
             command_ != apache.rocketmq.v2.ThreadStackTrace.getDefaultInstance()) {
           command_ = apache.rocketmq.v2.ThreadStackTrace.newBuilder((apache.rocketmq.v2.ThreadStackTrace) command_)
               .mergeFrom(value).buildPartial();
@@ -1660,30 +1176,31 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       } else {
-        if (commandCase_ == 3) {
+        if (commandCase_ == 2) {
           threadStackTraceBuilder_.mergeFrom(value);
         }
         threadStackTraceBuilder_.setMessage(value);
       }
-      commandCase_ = 3;
+      commandCase_ = 2;
       return this;
     }
     /**
      * <pre>
+     * These messages are from client.
      * Report thread stack trace to server.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 3;</code>
+     * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 2;</code>
      */
     public Builder clearThreadStackTrace() {
       if (threadStackTraceBuilder_ == null) {
-        if (commandCase_ == 3) {
+        if (commandCase_ == 2) {
           commandCase_ = 0;
           command_ = null;
           onChanged();
         }
       } else {
-        if (commandCase_ == 3) {
+        if (commandCase_ == 2) {
           commandCase_ = 0;
           command_ = null;
         }
@@ -1693,27 +1210,29 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
+     * These messages are from client.
      * Report thread stack trace to server.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 3;</code>
+     * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 2;</code>
      */
     public apache.rocketmq.v2.ThreadStackTrace.Builder getThreadStackTraceBuilder() {
       return getThreadStackTraceFieldBuilder().getBuilder();
     }
     /**
      * <pre>
+     * These messages are from client.
      * Report thread stack trace to server.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 3;</code>
+     * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 2;</code>
      */
     @java.lang.Override
     public apache.rocketmq.v2.ThreadStackTraceOrBuilder getThreadStackTraceOrBuilder() {
-      if ((commandCase_ == 3) && (threadStackTraceBuilder_ != null)) {
+      if ((commandCase_ == 2) && (threadStackTraceBuilder_ != null)) {
         return threadStackTraceBuilder_.getMessageOrBuilder();
       } else {
-        if (commandCase_ == 3) {
+        if (commandCase_ == 2) {
           return (apache.rocketmq.v2.ThreadStackTrace) command_;
         }
         return apache.rocketmq.v2.ThreadStackTrace.getDefaultInstance();
@@ -1721,16 +1240,17 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
+     * These messages are from client.
      * Report thread stack trace to server.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 3;</code>
+     * <code>.apache.rocketmq.v2.ThreadStackTrace thread_stack_trace = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.ThreadStackTrace, apache.rocketmq.v2.ThreadStackTrace.Builder, apache.rocketmq.v2.ThreadStackTraceOrBuilder> 
         getThreadStackTraceFieldBuilder() {
       if (threadStackTraceBuilder_ == null) {
-        if (!(commandCase_ == 3)) {
+        if (!(commandCase_ == 2)) {
           command_ = apache.rocketmq.v2.ThreadStackTrace.getDefaultInstance();
         }
         threadStackTraceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -1740,7 +1260,7 @@ private static final long serialVersionUID = 0L;
                 isClean());
         command_ = null;
       }
-      commandCase_ = 3;
+      commandCase_ = 2;
       onChanged();;
       return threadStackTraceBuilder_;
     }
@@ -1749,33 +1269,33 @@ private static final long serialVersionUID = 0L;
         apache.rocketmq.v2.VerifyMessageResult, apache.rocketmq.v2.VerifyMessageResult.Builder, apache.rocketmq.v2.VerifyMessageResultOrBuilder> verifyMessageResultBuilder_;
     /**
      * <pre>
-     * Repost message verify result to server.
+     * Report message verify result to server.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 4;</code>
+     * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 3;</code>
      * @return Whether the verifyMessageResult field is set.
      */
     @java.lang.Override
     public boolean hasVerifyMessageResult() {
-      return commandCase_ == 4;
+      return commandCase_ == 3;
     }
     /**
      * <pre>
-     * Repost message verify result to server.
+     * Report message verify result to server.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 4;</code>
+     * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 3;</code>
      * @return The verifyMessageResult.
      */
     @java.lang.Override
     public apache.rocketmq.v2.VerifyMessageResult getVerifyMessageResult() {
       if (verifyMessageResultBuilder_ == null) {
-        if (commandCase_ == 4) {
+        if (commandCase_ == 3) {
           return (apache.rocketmq.v2.VerifyMessageResult) command_;
         }
         return apache.rocketmq.v2.VerifyMessageResult.getDefaultInstance();
       } else {
-        if (commandCase_ == 4) {
+        if (commandCase_ == 3) {
           return verifyMessageResultBuilder_.getMessage();
         }
         return apache.rocketmq.v2.VerifyMessageResult.getDefaultInstance();
@@ -1783,10 +1303,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Repost message verify result to server.
+     * Report message verify result to server.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 4;</code>
+     * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 3;</code>
      */
     public Builder setVerifyMessageResult(apache.rocketmq.v2.VerifyMessageResult value) {
       if (verifyMessageResultBuilder_ == null) {
@@ -1798,15 +1318,15 @@ private static final long serialVersionUID = 0L;
       } else {
         verifyMessageResultBuilder_.setMessage(value);
       }
-      commandCase_ = 4;
+      commandCase_ = 3;
       return this;
     }
     /**
      * <pre>
-     * Repost message verify result to server.
+     * Report message verify result to server.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 4;</code>
+     * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 3;</code>
      */
     public Builder setVerifyMessageResult(
         apache.rocketmq.v2.VerifyMessageResult.Builder builderForValue) {
@@ -1816,19 +1336,19 @@ private static final long serialVersionUID = 0L;
       } else {
         verifyMessageResultBuilder_.setMessage(builderForValue.build());
       }
-      commandCase_ = 4;
+      commandCase_ = 3;
       return this;
     }
     /**
      * <pre>
-     * Repost message verify result to server.
+     * Report message verify result to server.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 4;</code>
+     * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 3;</code>
      */
     public Builder mergeVerifyMessageResult(apache.rocketmq.v2.VerifyMessageResult value) {
       if (verifyMessageResultBuilder_ == null) {
-        if (commandCase_ == 4 &&
+        if (commandCase_ == 3 &&
             command_ != apache.rocketmq.v2.VerifyMessageResult.getDefaultInstance()) {
           command_ = apache.rocketmq.v2.VerifyMessageResult.newBuilder((apache.rocketmq.v2.VerifyMessageResult) command_)
               .mergeFrom(value).buildPartial();
@@ -1837,30 +1357,30 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       } else {
-        if (commandCase_ == 4) {
+        if (commandCase_ == 3) {
           verifyMessageResultBuilder_.mergeFrom(value);
         }
         verifyMessageResultBuilder_.setMessage(value);
       }
-      commandCase_ = 4;
+      commandCase_ = 3;
       return this;
     }
     /**
      * <pre>
-     * Repost message verify result to server.
+     * Report message verify result to server.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 4;</code>
+     * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 3;</code>
      */
     public Builder clearVerifyMessageResult() {
       if (verifyMessageResultBuilder_ == null) {
-        if (commandCase_ == 4) {
+        if (commandCase_ == 3) {
           commandCase_ = 0;
           command_ = null;
           onChanged();
         }
       } else {
-        if (commandCase_ == 4) {
+        if (commandCase_ == 3) {
           commandCase_ = 0;
           command_ = null;
         }
@@ -1870,27 +1390,27 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Repost message verify result to server.
+     * Report message verify result to server.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 4;</code>
+     * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 3;</code>
      */
     public apache.rocketmq.v2.VerifyMessageResult.Builder getVerifyMessageResultBuilder() {
       return getVerifyMessageResultFieldBuilder().getBuilder();
     }
     /**
      * <pre>
-     * Repost message verify result to server.
+     * Report message verify result to server.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 4;</code>
+     * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 3;</code>
      */
     @java.lang.Override
     public apache.rocketmq.v2.VerifyMessageResultOrBuilder getVerifyMessageResultOrBuilder() {
-      if ((commandCase_ == 4) && (verifyMessageResultBuilder_ != null)) {
+      if ((commandCase_ == 3) && (verifyMessageResultBuilder_ != null)) {
         return verifyMessageResultBuilder_.getMessageOrBuilder();
       } else {
-        if (commandCase_ == 4) {
+        if (commandCase_ == 3) {
           return (apache.rocketmq.v2.VerifyMessageResult) command_;
         }
         return apache.rocketmq.v2.VerifyMessageResult.getDefaultInstance();
@@ -1898,16 +1418,16 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Repost message verify result to server.
+     * Report message verify result to server.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 4;</code>
+     * <code>.apache.rocketmq.v2.VerifyMessageResult verify_message_result = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.VerifyMessageResult, apache.rocketmq.v2.VerifyMessageResult.Builder, apache.rocketmq.v2.VerifyMessageResultOrBuilder> 
         getVerifyMessageResultFieldBuilder() {
       if (verifyMessageResultBuilder_ == null) {
-        if (!(commandCase_ == 4)) {
+        if (!(commandCase_ == 3)) {
           command_ = apache.rocketmq.v2.VerifyMessageResult.getDefaultInstance();
         }
         verifyMessageResultBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -1917,405 +1437,44 @@ private static final long serialVersionUID = 0L;
                 isClean());
         command_ = null;
       }
-      commandCase_ = 4;
+      commandCase_ = 3;
       onChanged();;
       return verifyMessageResultBuilder_;
-    }
-
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.ApplyPassiveSettingsCommand, apache.rocketmq.v2.ApplyPassiveSettingsCommand.Builder, apache.rocketmq.v2.ApplyPassiveSettingsCommandOrBuilder> applyPassiveSettingsCommandBuilder_;
-    /**
-     * <pre>
-     * There messages are from server.
-     * Deliver passive settings to client.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ApplyPassiveSettingsCommand apply_passive_settings_command = 5;</code>
-     * @return Whether the applyPassiveSettingsCommand field is set.
-     */
-    @java.lang.Override
-    public boolean hasApplyPassiveSettingsCommand() {
-      return commandCase_ == 5;
-    }
-    /**
-     * <pre>
-     * There messages are from server.
-     * Deliver passive settings to client.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ApplyPassiveSettingsCommand apply_passive_settings_command = 5;</code>
-     * @return The applyPassiveSettingsCommand.
-     */
-    @java.lang.Override
-    public apache.rocketmq.v2.ApplyPassiveSettingsCommand getApplyPassiveSettingsCommand() {
-      if (applyPassiveSettingsCommandBuilder_ == null) {
-        if (commandCase_ == 5) {
-          return (apache.rocketmq.v2.ApplyPassiveSettingsCommand) command_;
-        }
-        return apache.rocketmq.v2.ApplyPassiveSettingsCommand.getDefaultInstance();
-      } else {
-        if (commandCase_ == 5) {
-          return applyPassiveSettingsCommandBuilder_.getMessage();
-        }
-        return apache.rocketmq.v2.ApplyPassiveSettingsCommand.getDefaultInstance();
-      }
-    }
-    /**
-     * <pre>
-     * There messages are from server.
-     * Deliver passive settings to client.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ApplyPassiveSettingsCommand apply_passive_settings_command = 5;</code>
-     */
-    public Builder setApplyPassiveSettingsCommand(apache.rocketmq.v2.ApplyPassiveSettingsCommand value) {
-      if (applyPassiveSettingsCommandBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        command_ = value;
-        onChanged();
-      } else {
-        applyPassiveSettingsCommandBuilder_.setMessage(value);
-      }
-      commandCase_ = 5;
-      return this;
-    }
-    /**
-     * <pre>
-     * There messages are from server.
-     * Deliver passive settings to client.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ApplyPassiveSettingsCommand apply_passive_settings_command = 5;</code>
-     */
-    public Builder setApplyPassiveSettingsCommand(
-        apache.rocketmq.v2.ApplyPassiveSettingsCommand.Builder builderForValue) {
-      if (applyPassiveSettingsCommandBuilder_ == null) {
-        command_ = builderForValue.build();
-        onChanged();
-      } else {
-        applyPassiveSettingsCommandBuilder_.setMessage(builderForValue.build());
-      }
-      commandCase_ = 5;
-      return this;
-    }
-    /**
-     * <pre>
-     * There messages are from server.
-     * Deliver passive settings to client.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ApplyPassiveSettingsCommand apply_passive_settings_command = 5;</code>
-     */
-    public Builder mergeApplyPassiveSettingsCommand(apache.rocketmq.v2.ApplyPassiveSettingsCommand value) {
-      if (applyPassiveSettingsCommandBuilder_ == null) {
-        if (commandCase_ == 5 &&
-            command_ != apache.rocketmq.v2.ApplyPassiveSettingsCommand.getDefaultInstance()) {
-          command_ = apache.rocketmq.v2.ApplyPassiveSettingsCommand.newBuilder((apache.rocketmq.v2.ApplyPassiveSettingsCommand) command_)
-              .mergeFrom(value).buildPartial();
-        } else {
-          command_ = value;
-        }
-        onChanged();
-      } else {
-        if (commandCase_ == 5) {
-          applyPassiveSettingsCommandBuilder_.mergeFrom(value);
-        }
-        applyPassiveSettingsCommandBuilder_.setMessage(value);
-      }
-      commandCase_ = 5;
-      return this;
-    }
-    /**
-     * <pre>
-     * There messages are from server.
-     * Deliver passive settings to client.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ApplyPassiveSettingsCommand apply_passive_settings_command = 5;</code>
-     */
-    public Builder clearApplyPassiveSettingsCommand() {
-      if (applyPassiveSettingsCommandBuilder_ == null) {
-        if (commandCase_ == 5) {
-          commandCase_ = 0;
-          command_ = null;
-          onChanged();
-        }
-      } else {
-        if (commandCase_ == 5) {
-          commandCase_ = 0;
-          command_ = null;
-        }
-        applyPassiveSettingsCommandBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * There messages are from server.
-     * Deliver passive settings to client.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ApplyPassiveSettingsCommand apply_passive_settings_command = 5;</code>
-     */
-    public apache.rocketmq.v2.ApplyPassiveSettingsCommand.Builder getApplyPassiveSettingsCommandBuilder() {
-      return getApplyPassiveSettingsCommandFieldBuilder().getBuilder();
-    }
-    /**
-     * <pre>
-     * There messages are from server.
-     * Deliver passive settings to client.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ApplyPassiveSettingsCommand apply_passive_settings_command = 5;</code>
-     */
-    @java.lang.Override
-    public apache.rocketmq.v2.ApplyPassiveSettingsCommandOrBuilder getApplyPassiveSettingsCommandOrBuilder() {
-      if ((commandCase_ == 5) && (applyPassiveSettingsCommandBuilder_ != null)) {
-        return applyPassiveSettingsCommandBuilder_.getMessageOrBuilder();
-      } else {
-        if (commandCase_ == 5) {
-          return (apache.rocketmq.v2.ApplyPassiveSettingsCommand) command_;
-        }
-        return apache.rocketmq.v2.ApplyPassiveSettingsCommand.getDefaultInstance();
-      }
-    }
-    /**
-     * <pre>
-     * There messages are from server.
-     * Deliver passive settings to client.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ApplyPassiveSettingsCommand apply_passive_settings_command = 5;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.ApplyPassiveSettingsCommand, apache.rocketmq.v2.ApplyPassiveSettingsCommand.Builder, apache.rocketmq.v2.ApplyPassiveSettingsCommandOrBuilder> 
-        getApplyPassiveSettingsCommandFieldBuilder() {
-      if (applyPassiveSettingsCommandBuilder_ == null) {
-        if (!(commandCase_ == 5)) {
-          command_ = apache.rocketmq.v2.ApplyPassiveSettingsCommand.getDefaultInstance();
-        }
-        applyPassiveSettingsCommandBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            apache.rocketmq.v2.ApplyPassiveSettingsCommand, apache.rocketmq.v2.ApplyPassiveSettingsCommand.Builder, apache.rocketmq.v2.ApplyPassiveSettingsCommandOrBuilder>(
-                (apache.rocketmq.v2.ApplyPassiveSettingsCommand) command_,
-                getParentForChildren(),
-                isClean());
-        command_ = null;
-      }
-      commandCase_ = 5;
-      onChanged();;
-      return applyPassiveSettingsCommandBuilder_;
-    }
-
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.ReportActiveSettingsResult, apache.rocketmq.v2.ReportActiveSettingsResult.Builder, apache.rocketmq.v2.ReportActiveSettingsResultOrBuilder> reportActiveSettingsResultBuilder_;
-    /**
-     * <pre>
-     * Ack `ReportActiveSettingsCommand` from client.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ReportActiveSettingsResult report_active_settings_result = 6;</code>
-     * @return Whether the reportActiveSettingsResult field is set.
-     */
-    @java.lang.Override
-    public boolean hasReportActiveSettingsResult() {
-      return commandCase_ == 6;
-    }
-    /**
-     * <pre>
-     * Ack `ReportActiveSettingsCommand` from client.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ReportActiveSettingsResult report_active_settings_result = 6;</code>
-     * @return The reportActiveSettingsResult.
-     */
-    @java.lang.Override
-    public apache.rocketmq.v2.ReportActiveSettingsResult getReportActiveSettingsResult() {
-      if (reportActiveSettingsResultBuilder_ == null) {
-        if (commandCase_ == 6) {
-          return (apache.rocketmq.v2.ReportActiveSettingsResult) command_;
-        }
-        return apache.rocketmq.v2.ReportActiveSettingsResult.getDefaultInstance();
-      } else {
-        if (commandCase_ == 6) {
-          return reportActiveSettingsResultBuilder_.getMessage();
-        }
-        return apache.rocketmq.v2.ReportActiveSettingsResult.getDefaultInstance();
-      }
-    }
-    /**
-     * <pre>
-     * Ack `ReportActiveSettingsCommand` from client.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ReportActiveSettingsResult report_active_settings_result = 6;</code>
-     */
-    public Builder setReportActiveSettingsResult(apache.rocketmq.v2.ReportActiveSettingsResult value) {
-      if (reportActiveSettingsResultBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        command_ = value;
-        onChanged();
-      } else {
-        reportActiveSettingsResultBuilder_.setMessage(value);
-      }
-      commandCase_ = 6;
-      return this;
-    }
-    /**
-     * <pre>
-     * Ack `ReportActiveSettingsCommand` from client.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ReportActiveSettingsResult report_active_settings_result = 6;</code>
-     */
-    public Builder setReportActiveSettingsResult(
-        apache.rocketmq.v2.ReportActiveSettingsResult.Builder builderForValue) {
-      if (reportActiveSettingsResultBuilder_ == null) {
-        command_ = builderForValue.build();
-        onChanged();
-      } else {
-        reportActiveSettingsResultBuilder_.setMessage(builderForValue.build());
-      }
-      commandCase_ = 6;
-      return this;
-    }
-    /**
-     * <pre>
-     * Ack `ReportActiveSettingsCommand` from client.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ReportActiveSettingsResult report_active_settings_result = 6;</code>
-     */
-    public Builder mergeReportActiveSettingsResult(apache.rocketmq.v2.ReportActiveSettingsResult value) {
-      if (reportActiveSettingsResultBuilder_ == null) {
-        if (commandCase_ == 6 &&
-            command_ != apache.rocketmq.v2.ReportActiveSettingsResult.getDefaultInstance()) {
-          command_ = apache.rocketmq.v2.ReportActiveSettingsResult.newBuilder((apache.rocketmq.v2.ReportActiveSettingsResult) command_)
-              .mergeFrom(value).buildPartial();
-        } else {
-          command_ = value;
-        }
-        onChanged();
-      } else {
-        if (commandCase_ == 6) {
-          reportActiveSettingsResultBuilder_.mergeFrom(value);
-        }
-        reportActiveSettingsResultBuilder_.setMessage(value);
-      }
-      commandCase_ = 6;
-      return this;
-    }
-    /**
-     * <pre>
-     * Ack `ReportActiveSettingsCommand` from client.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ReportActiveSettingsResult report_active_settings_result = 6;</code>
-     */
-    public Builder clearReportActiveSettingsResult() {
-      if (reportActiveSettingsResultBuilder_ == null) {
-        if (commandCase_ == 6) {
-          commandCase_ = 0;
-          command_ = null;
-          onChanged();
-        }
-      } else {
-        if (commandCase_ == 6) {
-          commandCase_ = 0;
-          command_ = null;
-        }
-        reportActiveSettingsResultBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <pre>
-     * Ack `ReportActiveSettingsCommand` from client.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ReportActiveSettingsResult report_active_settings_result = 6;</code>
-     */
-    public apache.rocketmq.v2.ReportActiveSettingsResult.Builder getReportActiveSettingsResultBuilder() {
-      return getReportActiveSettingsResultFieldBuilder().getBuilder();
-    }
-    /**
-     * <pre>
-     * Ack `ReportActiveSettingsCommand` from client.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ReportActiveSettingsResult report_active_settings_result = 6;</code>
-     */
-    @java.lang.Override
-    public apache.rocketmq.v2.ReportActiveSettingsResultOrBuilder getReportActiveSettingsResultOrBuilder() {
-      if ((commandCase_ == 6) && (reportActiveSettingsResultBuilder_ != null)) {
-        return reportActiveSettingsResultBuilder_.getMessageOrBuilder();
-      } else {
-        if (commandCase_ == 6) {
-          return (apache.rocketmq.v2.ReportActiveSettingsResult) command_;
-        }
-        return apache.rocketmq.v2.ReportActiveSettingsResult.getDefaultInstance();
-      }
-    }
-    /**
-     * <pre>
-     * Ack `ReportActiveSettingsCommand` from client.
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.ReportActiveSettingsResult report_active_settings_result = 6;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.ReportActiveSettingsResult, apache.rocketmq.v2.ReportActiveSettingsResult.Builder, apache.rocketmq.v2.ReportActiveSettingsResultOrBuilder> 
-        getReportActiveSettingsResultFieldBuilder() {
-      if (reportActiveSettingsResultBuilder_ == null) {
-        if (!(commandCase_ == 6)) {
-          command_ = apache.rocketmq.v2.ReportActiveSettingsResult.getDefaultInstance();
-        }
-        reportActiveSettingsResultBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            apache.rocketmq.v2.ReportActiveSettingsResult, apache.rocketmq.v2.ReportActiveSettingsResult.Builder, apache.rocketmq.v2.ReportActiveSettingsResultOrBuilder>(
-                (apache.rocketmq.v2.ReportActiveSettingsResult) command_,
-                getParentForChildren(),
-                isClean());
-        command_ = null;
-      }
-      commandCase_ = 6;
-      onChanged();;
-      return reportActiveSettingsResultBuilder_;
     }
 
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.RecoverOrphanedTransactionCommand, apache.rocketmq.v2.RecoverOrphanedTransactionCommand.Builder, apache.rocketmq.v2.RecoverOrphanedTransactionCommandOrBuilder> recoverOrphanedTransactionCommandBuilder_;
     /**
      * <pre>
+     * There messages are from server.
      * Request client to recover the orphaned transaction message.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 7;</code>
+     * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 4;</code>
      * @return Whether the recoverOrphanedTransactionCommand field is set.
      */
     @java.lang.Override
     public boolean hasRecoverOrphanedTransactionCommand() {
-      return commandCase_ == 7;
+      return commandCase_ == 4;
     }
     /**
      * <pre>
+     * There messages are from server.
      * Request client to recover the orphaned transaction message.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 7;</code>
+     * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 4;</code>
      * @return The recoverOrphanedTransactionCommand.
      */
     @java.lang.Override
     public apache.rocketmq.v2.RecoverOrphanedTransactionCommand getRecoverOrphanedTransactionCommand() {
       if (recoverOrphanedTransactionCommandBuilder_ == null) {
-        if (commandCase_ == 7) {
+        if (commandCase_ == 4) {
           return (apache.rocketmq.v2.RecoverOrphanedTransactionCommand) command_;
         }
         return apache.rocketmq.v2.RecoverOrphanedTransactionCommand.getDefaultInstance();
       } else {
-        if (commandCase_ == 7) {
+        if (commandCase_ == 4) {
           return recoverOrphanedTransactionCommandBuilder_.getMessage();
         }
         return apache.rocketmq.v2.RecoverOrphanedTransactionCommand.getDefaultInstance();
@@ -2323,10 +1482,11 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
+     * There messages are from server.
      * Request client to recover the orphaned transaction message.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 7;</code>
+     * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 4;</code>
      */
     public Builder setRecoverOrphanedTransactionCommand(apache.rocketmq.v2.RecoverOrphanedTransactionCommand value) {
       if (recoverOrphanedTransactionCommandBuilder_ == null) {
@@ -2338,15 +1498,16 @@ private static final long serialVersionUID = 0L;
       } else {
         recoverOrphanedTransactionCommandBuilder_.setMessage(value);
       }
-      commandCase_ = 7;
+      commandCase_ = 4;
       return this;
     }
     /**
      * <pre>
+     * There messages are from server.
      * Request client to recover the orphaned transaction message.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 7;</code>
+     * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 4;</code>
      */
     public Builder setRecoverOrphanedTransactionCommand(
         apache.rocketmq.v2.RecoverOrphanedTransactionCommand.Builder builderForValue) {
@@ -2356,19 +1517,20 @@ private static final long serialVersionUID = 0L;
       } else {
         recoverOrphanedTransactionCommandBuilder_.setMessage(builderForValue.build());
       }
-      commandCase_ = 7;
+      commandCase_ = 4;
       return this;
     }
     /**
      * <pre>
+     * There messages are from server.
      * Request client to recover the orphaned transaction message.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 7;</code>
+     * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 4;</code>
      */
     public Builder mergeRecoverOrphanedTransactionCommand(apache.rocketmq.v2.RecoverOrphanedTransactionCommand value) {
       if (recoverOrphanedTransactionCommandBuilder_ == null) {
-        if (commandCase_ == 7 &&
+        if (commandCase_ == 4 &&
             command_ != apache.rocketmq.v2.RecoverOrphanedTransactionCommand.getDefaultInstance()) {
           command_ = apache.rocketmq.v2.RecoverOrphanedTransactionCommand.newBuilder((apache.rocketmq.v2.RecoverOrphanedTransactionCommand) command_)
               .mergeFrom(value).buildPartial();
@@ -2377,30 +1539,31 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       } else {
-        if (commandCase_ == 7) {
+        if (commandCase_ == 4) {
           recoverOrphanedTransactionCommandBuilder_.mergeFrom(value);
         }
         recoverOrphanedTransactionCommandBuilder_.setMessage(value);
       }
-      commandCase_ = 7;
+      commandCase_ = 4;
       return this;
     }
     /**
      * <pre>
+     * There messages are from server.
      * Request client to recover the orphaned transaction message.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 7;</code>
+     * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 4;</code>
      */
     public Builder clearRecoverOrphanedTransactionCommand() {
       if (recoverOrphanedTransactionCommandBuilder_ == null) {
-        if (commandCase_ == 7) {
+        if (commandCase_ == 4) {
           commandCase_ = 0;
           command_ = null;
           onChanged();
         }
       } else {
-        if (commandCase_ == 7) {
+        if (commandCase_ == 4) {
           commandCase_ = 0;
           command_ = null;
         }
@@ -2410,27 +1573,29 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
+     * There messages are from server.
      * Request client to recover the orphaned transaction message.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 7;</code>
+     * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 4;</code>
      */
     public apache.rocketmq.v2.RecoverOrphanedTransactionCommand.Builder getRecoverOrphanedTransactionCommandBuilder() {
       return getRecoverOrphanedTransactionCommandFieldBuilder().getBuilder();
     }
     /**
      * <pre>
+     * There messages are from server.
      * Request client to recover the orphaned transaction message.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 7;</code>
+     * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 4;</code>
      */
     @java.lang.Override
     public apache.rocketmq.v2.RecoverOrphanedTransactionCommandOrBuilder getRecoverOrphanedTransactionCommandOrBuilder() {
-      if ((commandCase_ == 7) && (recoverOrphanedTransactionCommandBuilder_ != null)) {
+      if ((commandCase_ == 4) && (recoverOrphanedTransactionCommandBuilder_ != null)) {
         return recoverOrphanedTransactionCommandBuilder_.getMessageOrBuilder();
       } else {
-        if (commandCase_ == 7) {
+        if (commandCase_ == 4) {
           return (apache.rocketmq.v2.RecoverOrphanedTransactionCommand) command_;
         }
         return apache.rocketmq.v2.RecoverOrphanedTransactionCommand.getDefaultInstance();
@@ -2438,16 +1603,17 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
+     * There messages are from server.
      * Request client to recover the orphaned transaction message.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 7;</code>
+     * <code>.apache.rocketmq.v2.RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.RecoverOrphanedTransactionCommand, apache.rocketmq.v2.RecoverOrphanedTransactionCommand.Builder, apache.rocketmq.v2.RecoverOrphanedTransactionCommandOrBuilder> 
         getRecoverOrphanedTransactionCommandFieldBuilder() {
       if (recoverOrphanedTransactionCommandBuilder_ == null) {
-        if (!(commandCase_ == 7)) {
+        if (!(commandCase_ == 4)) {
           command_ = apache.rocketmq.v2.RecoverOrphanedTransactionCommand.getDefaultInstance();
         }
         recoverOrphanedTransactionCommandBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -2457,7 +1623,7 @@ private static final long serialVersionUID = 0L;
                 isClean());
         command_ = null;
       }
-      commandCase_ = 7;
+      commandCase_ = 4;
       onChanged();;
       return recoverOrphanedTransactionCommandBuilder_;
     }
@@ -2469,30 +1635,30 @@ private static final long serialVersionUID = 0L;
      * Request client to print thread stack trace.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 8;</code>
+     * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 5;</code>
      * @return Whether the printThreadStackTraceCommand field is set.
      */
     @java.lang.Override
     public boolean hasPrintThreadStackTraceCommand() {
-      return commandCase_ == 8;
+      return commandCase_ == 5;
     }
     /**
      * <pre>
      * Request client to print thread stack trace.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 8;</code>
+     * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 5;</code>
      * @return The printThreadStackTraceCommand.
      */
     @java.lang.Override
     public apache.rocketmq.v2.PrintThreadStackTraceCommand getPrintThreadStackTraceCommand() {
       if (printThreadStackTraceCommandBuilder_ == null) {
-        if (commandCase_ == 8) {
+        if (commandCase_ == 5) {
           return (apache.rocketmq.v2.PrintThreadStackTraceCommand) command_;
         }
         return apache.rocketmq.v2.PrintThreadStackTraceCommand.getDefaultInstance();
       } else {
-        if (commandCase_ == 8) {
+        if (commandCase_ == 5) {
           return printThreadStackTraceCommandBuilder_.getMessage();
         }
         return apache.rocketmq.v2.PrintThreadStackTraceCommand.getDefaultInstance();
@@ -2503,7 +1669,7 @@ private static final long serialVersionUID = 0L;
      * Request client to print thread stack trace.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 8;</code>
+     * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 5;</code>
      */
     public Builder setPrintThreadStackTraceCommand(apache.rocketmq.v2.PrintThreadStackTraceCommand value) {
       if (printThreadStackTraceCommandBuilder_ == null) {
@@ -2515,7 +1681,7 @@ private static final long serialVersionUID = 0L;
       } else {
         printThreadStackTraceCommandBuilder_.setMessage(value);
       }
-      commandCase_ = 8;
+      commandCase_ = 5;
       return this;
     }
     /**
@@ -2523,7 +1689,7 @@ private static final long serialVersionUID = 0L;
      * Request client to print thread stack trace.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 8;</code>
+     * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 5;</code>
      */
     public Builder setPrintThreadStackTraceCommand(
         apache.rocketmq.v2.PrintThreadStackTraceCommand.Builder builderForValue) {
@@ -2533,7 +1699,7 @@ private static final long serialVersionUID = 0L;
       } else {
         printThreadStackTraceCommandBuilder_.setMessage(builderForValue.build());
       }
-      commandCase_ = 8;
+      commandCase_ = 5;
       return this;
     }
     /**
@@ -2541,11 +1707,11 @@ private static final long serialVersionUID = 0L;
      * Request client to print thread stack trace.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 8;</code>
+     * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 5;</code>
      */
     public Builder mergePrintThreadStackTraceCommand(apache.rocketmq.v2.PrintThreadStackTraceCommand value) {
       if (printThreadStackTraceCommandBuilder_ == null) {
-        if (commandCase_ == 8 &&
+        if (commandCase_ == 5 &&
             command_ != apache.rocketmq.v2.PrintThreadStackTraceCommand.getDefaultInstance()) {
           command_ = apache.rocketmq.v2.PrintThreadStackTraceCommand.newBuilder((apache.rocketmq.v2.PrintThreadStackTraceCommand) command_)
               .mergeFrom(value).buildPartial();
@@ -2554,12 +1720,12 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       } else {
-        if (commandCase_ == 8) {
+        if (commandCase_ == 5) {
           printThreadStackTraceCommandBuilder_.mergeFrom(value);
         }
         printThreadStackTraceCommandBuilder_.setMessage(value);
       }
-      commandCase_ = 8;
+      commandCase_ = 5;
       return this;
     }
     /**
@@ -2567,17 +1733,17 @@ private static final long serialVersionUID = 0L;
      * Request client to print thread stack trace.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 8;</code>
+     * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 5;</code>
      */
     public Builder clearPrintThreadStackTraceCommand() {
       if (printThreadStackTraceCommandBuilder_ == null) {
-        if (commandCase_ == 8) {
+        if (commandCase_ == 5) {
           commandCase_ = 0;
           command_ = null;
           onChanged();
         }
       } else {
-        if (commandCase_ == 8) {
+        if (commandCase_ == 5) {
           commandCase_ = 0;
           command_ = null;
         }
@@ -2590,7 +1756,7 @@ private static final long serialVersionUID = 0L;
      * Request client to print thread stack trace.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 8;</code>
+     * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 5;</code>
      */
     public apache.rocketmq.v2.PrintThreadStackTraceCommand.Builder getPrintThreadStackTraceCommandBuilder() {
       return getPrintThreadStackTraceCommandFieldBuilder().getBuilder();
@@ -2600,14 +1766,14 @@ private static final long serialVersionUID = 0L;
      * Request client to print thread stack trace.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 8;</code>
+     * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 5;</code>
      */
     @java.lang.Override
     public apache.rocketmq.v2.PrintThreadStackTraceCommandOrBuilder getPrintThreadStackTraceCommandOrBuilder() {
-      if ((commandCase_ == 8) && (printThreadStackTraceCommandBuilder_ != null)) {
+      if ((commandCase_ == 5) && (printThreadStackTraceCommandBuilder_ != null)) {
         return printThreadStackTraceCommandBuilder_.getMessageOrBuilder();
       } else {
-        if (commandCase_ == 8) {
+        if (commandCase_ == 5) {
           return (apache.rocketmq.v2.PrintThreadStackTraceCommand) command_;
         }
         return apache.rocketmq.v2.PrintThreadStackTraceCommand.getDefaultInstance();
@@ -2618,13 +1784,13 @@ private static final long serialVersionUID = 0L;
      * Request client to print thread stack trace.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 8;</code>
+     * <code>.apache.rocketmq.v2.PrintThreadStackTraceCommand print_thread_stack_trace_command = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.PrintThreadStackTraceCommand, apache.rocketmq.v2.PrintThreadStackTraceCommand.Builder, apache.rocketmq.v2.PrintThreadStackTraceCommandOrBuilder> 
         getPrintThreadStackTraceCommandFieldBuilder() {
       if (printThreadStackTraceCommandBuilder_ == null) {
-        if (!(commandCase_ == 8)) {
+        if (!(commandCase_ == 5)) {
           command_ = apache.rocketmq.v2.PrintThreadStackTraceCommand.getDefaultInstance();
         }
         printThreadStackTraceCommandBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -2634,7 +1800,7 @@ private static final long serialVersionUID = 0L;
                 isClean());
         command_ = null;
       }
-      commandCase_ = 8;
+      commandCase_ = 5;
       onChanged();;
       return printThreadStackTraceCommandBuilder_;
     }
@@ -2646,30 +1812,30 @@ private static final long serialVersionUID = 0L;
      * Request client to verify the consumption of the appointed message.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 9;</code>
+     * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 6;</code>
      * @return Whether the verifyMessageCommand field is set.
      */
     @java.lang.Override
     public boolean hasVerifyMessageCommand() {
-      return commandCase_ == 9;
+      return commandCase_ == 6;
     }
     /**
      * <pre>
      * Request client to verify the consumption of the appointed message.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 9;</code>
+     * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 6;</code>
      * @return The verifyMessageCommand.
      */
     @java.lang.Override
     public apache.rocketmq.v2.VerifyMessageCommand getVerifyMessageCommand() {
       if (verifyMessageCommandBuilder_ == null) {
-        if (commandCase_ == 9) {
+        if (commandCase_ == 6) {
           return (apache.rocketmq.v2.VerifyMessageCommand) command_;
         }
         return apache.rocketmq.v2.VerifyMessageCommand.getDefaultInstance();
       } else {
-        if (commandCase_ == 9) {
+        if (commandCase_ == 6) {
           return verifyMessageCommandBuilder_.getMessage();
         }
         return apache.rocketmq.v2.VerifyMessageCommand.getDefaultInstance();
@@ -2680,7 +1846,7 @@ private static final long serialVersionUID = 0L;
      * Request client to verify the consumption of the appointed message.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 9;</code>
+     * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 6;</code>
      */
     public Builder setVerifyMessageCommand(apache.rocketmq.v2.VerifyMessageCommand value) {
       if (verifyMessageCommandBuilder_ == null) {
@@ -2692,7 +1858,7 @@ private static final long serialVersionUID = 0L;
       } else {
         verifyMessageCommandBuilder_.setMessage(value);
       }
-      commandCase_ = 9;
+      commandCase_ = 6;
       return this;
     }
     /**
@@ -2700,7 +1866,7 @@ private static final long serialVersionUID = 0L;
      * Request client to verify the consumption of the appointed message.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 9;</code>
+     * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 6;</code>
      */
     public Builder setVerifyMessageCommand(
         apache.rocketmq.v2.VerifyMessageCommand.Builder builderForValue) {
@@ -2710,7 +1876,7 @@ private static final long serialVersionUID = 0L;
       } else {
         verifyMessageCommandBuilder_.setMessage(builderForValue.build());
       }
-      commandCase_ = 9;
+      commandCase_ = 6;
       return this;
     }
     /**
@@ -2718,11 +1884,11 @@ private static final long serialVersionUID = 0L;
      * Request client to verify the consumption of the appointed message.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 9;</code>
+     * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 6;</code>
      */
     public Builder mergeVerifyMessageCommand(apache.rocketmq.v2.VerifyMessageCommand value) {
       if (verifyMessageCommandBuilder_ == null) {
-        if (commandCase_ == 9 &&
+        if (commandCase_ == 6 &&
             command_ != apache.rocketmq.v2.VerifyMessageCommand.getDefaultInstance()) {
           command_ = apache.rocketmq.v2.VerifyMessageCommand.newBuilder((apache.rocketmq.v2.VerifyMessageCommand) command_)
               .mergeFrom(value).buildPartial();
@@ -2731,12 +1897,12 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       } else {
-        if (commandCase_ == 9) {
+        if (commandCase_ == 6) {
           verifyMessageCommandBuilder_.mergeFrom(value);
         }
         verifyMessageCommandBuilder_.setMessage(value);
       }
-      commandCase_ = 9;
+      commandCase_ = 6;
       return this;
     }
     /**
@@ -2744,17 +1910,17 @@ private static final long serialVersionUID = 0L;
      * Request client to verify the consumption of the appointed message.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 9;</code>
+     * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 6;</code>
      */
     public Builder clearVerifyMessageCommand() {
       if (verifyMessageCommandBuilder_ == null) {
-        if (commandCase_ == 9) {
+        if (commandCase_ == 6) {
           commandCase_ = 0;
           command_ = null;
           onChanged();
         }
       } else {
-        if (commandCase_ == 9) {
+        if (commandCase_ == 6) {
           commandCase_ = 0;
           command_ = null;
         }
@@ -2767,7 +1933,7 @@ private static final long serialVersionUID = 0L;
      * Request client to verify the consumption of the appointed message.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 9;</code>
+     * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 6;</code>
      */
     public apache.rocketmq.v2.VerifyMessageCommand.Builder getVerifyMessageCommandBuilder() {
       return getVerifyMessageCommandFieldBuilder().getBuilder();
@@ -2777,14 +1943,14 @@ private static final long serialVersionUID = 0L;
      * Request client to verify the consumption of the appointed message.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 9;</code>
+     * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 6;</code>
      */
     @java.lang.Override
     public apache.rocketmq.v2.VerifyMessageCommandOrBuilder getVerifyMessageCommandOrBuilder() {
-      if ((commandCase_ == 9) && (verifyMessageCommandBuilder_ != null)) {
+      if ((commandCase_ == 6) && (verifyMessageCommandBuilder_ != null)) {
         return verifyMessageCommandBuilder_.getMessageOrBuilder();
       } else {
-        if (commandCase_ == 9) {
+        if (commandCase_ == 6) {
           return (apache.rocketmq.v2.VerifyMessageCommand) command_;
         }
         return apache.rocketmq.v2.VerifyMessageCommand.getDefaultInstance();
@@ -2795,13 +1961,13 @@ private static final long serialVersionUID = 0L;
      * Request client to verify the consumption of the appointed message.
      * </pre>
      *
-     * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 9;</code>
+     * <code>.apache.rocketmq.v2.VerifyMessageCommand verify_message_command = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.VerifyMessageCommand, apache.rocketmq.v2.VerifyMessageCommand.Builder, apache.rocketmq.v2.VerifyMessageCommandOrBuilder> 
         getVerifyMessageCommandFieldBuilder() {
       if (verifyMessageCommandBuilder_ == null) {
-        if (!(commandCase_ == 9)) {
+        if (!(commandCase_ == 6)) {
           command_ = apache.rocketmq.v2.VerifyMessageCommand.getDefaultInstance();
         }
         verifyMessageCommandBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -2811,7 +1977,7 @@ private static final long serialVersionUID = 0L;
                 isClean());
         command_ = null;
       }
-      commandCase_ = 9;
+      commandCase_ = 6;
       onChanged();;
       return verifyMessageCommandBuilder_;
     }

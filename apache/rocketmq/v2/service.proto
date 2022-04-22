@@ -222,23 +222,20 @@ message Subscription {
   // ones are completely acknowledged.
   optional bool fifo = 3;
 
-  // Max delivery attempts.
-  optional int32 max_delivery_attempts = 4;
-
   // When processing message fails, `backoff_policy` describes an interval
   // after which the message is ready to consume again.
   //
   // For FIFO messages, the interval should be relatively small because
   // messages of the same message group would not be readily available utill
   // the prior one depletes its lifecycle.
-  RetryPolicy backoff_policy = 5;
+  optional RetryPolicy backoff_policy = 4;
 
   // Message receive batch size here is essential for push consumer.
-  optional int32 receive_batch_size = 6;
+  optional int32 receive_batch_size = 5;
 
   // Long-polling timeout for `ReceiveMessageRequest`, which is essential for
   // push consumer.
-  optional google.protobuf.Duration long_polling_timeout = 7;
+  optional google.protobuf.Duration long_polling_timeout = 6;
 }
 
 message Settings {

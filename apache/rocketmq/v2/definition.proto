@@ -63,6 +63,7 @@ message RetryPolicy {
   float initial_backoff = 2;
   float max_backoff = 3;
   float backoff_multiplier = 4;
+  bool random = 5;
 }
 
 message Resource {

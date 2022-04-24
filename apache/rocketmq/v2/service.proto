@@ -248,7 +248,7 @@ message Settings {
   // For FIFO messages, the interval should be relatively small because
   // messages of the same message group would not be readily available utill
   // the prior one depletes its lifecycle.
-  RetryPolicy backoff_policy = 3;
+  optional RetryPolicy backoff_policy = 3;
 
   // Request timeout for RPCs excluding long-polling.
   optional google.protobuf.Duration request_timeout = 4;

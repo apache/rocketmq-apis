@@ -84,7 +84,7 @@ message ReceiveMessageRequest {
 
 message ReceiveMessageResponse {
   Status status = 1;
-  repeated Message messages = 2;
+  Message message = 2;
   google.protobuf.Timestamp delivery_timestamp = 3;
   google.protobuf.Duration invisible_duration = 4;
 }

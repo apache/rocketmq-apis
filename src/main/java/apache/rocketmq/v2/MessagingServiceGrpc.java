@@ -531,6 +531,9 @@ public final class MessagingServiceGrpc {
      * or consumer group doesn't exist, returns `NOT_FOUND`. If there is no new
      * message in the specific topic, returns `OK` with an empty message set.
      * Please note that client may suffer from false empty responses.
+     * If failed to receive message from remote, server must return only one
+     * `ReceiveMessageResponse` as the reply to the request, whose `Status` indicates
+     * the specific reason of failure, otherwise, the reply is considered successful.
      * </pre>
      */
     public void receiveMessage(apache.rocketmq.v2.ReceiveMessageRequest request,
@@ -820,6 +823,9 @@ public final class MessagingServiceGrpc {
      * or consumer group doesn't exist, returns `NOT_FOUND`. If there is no new
      * message in the specific topic, returns `OK` with an empty message set.
      * Please note that client may suffer from false empty responses.
+     * If failed to receive message from remote, server must return only one
+     * `ReceiveMessageResponse` as the reply to the request, whose `Status` indicates
+     * the specific reason of failure, otherwise, the reply is considered successful.
      * </pre>
      */
     public void receiveMessage(apache.rocketmq.v2.ReceiveMessageRequest request,
@@ -1024,6 +1030,9 @@ public final class MessagingServiceGrpc {
      * or consumer group doesn't exist, returns `NOT_FOUND`. If there is no new
      * message in the specific topic, returns `OK` with an empty message set.
      * Please note that client may suffer from false empty responses.
+     * If failed to receive message from remote, server must return only one
+     * `ReceiveMessageResponse` as the reply to the request, whose `Status` indicates
+     * the specific reason of failure, otherwise, the reply is considered successful.
      * </pre>
      */
     public java.util.Iterator<apache.rocketmq.v2.ReceiveMessageResponse> receiveMessage(

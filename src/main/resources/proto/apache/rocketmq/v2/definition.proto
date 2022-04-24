@@ -60,10 +60,22 @@ message FilterExpression {
 
 message RetryPolicy {
   int32 max_attempts = 1;
-  float initial_backoff = 2;
-  float max_backoff = 3;
-  float backoff_multiplier = 4;
-  bool random = 5;
+  oneof strategy {
+    ExponentialBackoff exponential_backoff = 2;
+    CustomizedBackoff customized_backoff = 3;
+  }
+}
+
+message ExponentialBackoff {
+  float initial_backoff = 1;
+  float max_backoff = 2;
+  float backoff_multiplier = 3;
+}
+
+message CustomizedBackoff {
+  // To support classic backoff strategy which is arbitary defined by end users.
+  // Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
+  repeated google.protobuf.Duration next = 1;
 }
 
 message Resource {

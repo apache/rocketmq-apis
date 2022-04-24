@@ -53,24 +53,32 @@ private static final long serialVersionUID = 0L;
             maxAttempts_ = input.readInt32();
             break;
           }
-          case 21: {
-
-            initialBackoff_ = input.readFloat();
+          case 18: {
+            apache.rocketmq.v2.ExponentialBackoff.Builder subBuilder = null;
+            if (strategyCase_ == 2) {
+              subBuilder = ((apache.rocketmq.v2.ExponentialBackoff) strategy_).toBuilder();
+            }
+            strategy_ =
+                input.readMessage(apache.rocketmq.v2.ExponentialBackoff.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom((apache.rocketmq.v2.ExponentialBackoff) strategy_);
+              strategy_ = subBuilder.buildPartial();
+            }
+            strategyCase_ = 2;
             break;
           }
-          case 29: {
-
-            maxBackoff_ = input.readFloat();
-            break;
-          }
-          case 37: {
-
-            backoffMultiplier_ = input.readFloat();
-            break;
-          }
-          case 40: {
-
-            random_ = input.readBool();
+          case 26: {
+            apache.rocketmq.v2.CustomizedBackoff.Builder subBuilder = null;
+            if (strategyCase_ == 3) {
+              subBuilder = ((apache.rocketmq.v2.CustomizedBackoff) strategy_).toBuilder();
+            }
+            strategy_ =
+                input.readMessage(apache.rocketmq.v2.CustomizedBackoff.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom((apache.rocketmq.v2.CustomizedBackoff) strategy_);
+              strategy_ = subBuilder.buildPartial();
+            }
+            strategyCase_ = 3;
             break;
           }
           default: {
@@ -105,6 +113,47 @@ private static final long serialVersionUID = 0L;
             apache.rocketmq.v2.RetryPolicy.class, apache.rocketmq.v2.RetryPolicy.Builder.class);
   }
 
+  private int strategyCase_ = 0;
+  private java.lang.Object strategy_;
+  public enum StrategyCase
+      implements com.google.protobuf.Internal.EnumLite,
+          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+    EXPONENTIAL_BACKOFF(2),
+    CUSTOMIZED_BACKOFF(3),
+    STRATEGY_NOT_SET(0);
+    private final int value;
+    private StrategyCase(int value) {
+      this.value = value;
+    }
+    /**
+     * @param value The number of the enum to look for.
+     * @return The enum associated with the given number.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static StrategyCase valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static StrategyCase forNumber(int value) {
+      switch (value) {
+        case 2: return EXPONENTIAL_BACKOFF;
+        case 3: return CUSTOMIZED_BACKOFF;
+        case 0: return STRATEGY_NOT_SET;
+        default: return null;
+      }
+    }
+    public int getNumber() {
+      return this.value;
+    }
+  };
+
+  public StrategyCase
+  getStrategyCase() {
+    return StrategyCase.forNumber(
+        strategyCase_);
+  }
+
   public static final int MAX_ATTEMPTS_FIELD_NUMBER = 1;
   private int maxAttempts_;
   /**
@@ -116,48 +165,66 @@ private static final long serialVersionUID = 0L;
     return maxAttempts_;
   }
 
-  public static final int INITIAL_BACKOFF_FIELD_NUMBER = 2;
-  private float initialBackoff_;
+  public static final int EXPONENTIAL_BACKOFF_FIELD_NUMBER = 2;
   /**
-   * <code>float initial_backoff = 2;</code>
-   * @return The initialBackoff.
+   * <code>.apache.rocketmq.v2.ExponentialBackoff exponential_backoff = 2;</code>
+   * @return Whether the exponentialBackoff field is set.
    */
   @java.lang.Override
-  public float getInitialBackoff() {
-    return initialBackoff_;
+  public boolean hasExponentialBackoff() {
+    return strategyCase_ == 2;
+  }
+  /**
+   * <code>.apache.rocketmq.v2.ExponentialBackoff exponential_backoff = 2;</code>
+   * @return The exponentialBackoff.
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.ExponentialBackoff getExponentialBackoff() {
+    if (strategyCase_ == 2) {
+       return (apache.rocketmq.v2.ExponentialBackoff) strategy_;
+    }
+    return apache.rocketmq.v2.ExponentialBackoff.getDefaultInstance();
+  }
+  /**
+   * <code>.apache.rocketmq.v2.ExponentialBackoff exponential_backoff = 2;</code>
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.ExponentialBackoffOrBuilder getExponentialBackoffOrBuilder() {
+    if (strategyCase_ == 2) {
+       return (apache.rocketmq.v2.ExponentialBackoff) strategy_;
+    }
+    return apache.rocketmq.v2.ExponentialBackoff.getDefaultInstance();
   }
 
-  public static final int MAX_BACKOFF_FIELD_NUMBER = 3;
-  private float maxBackoff_;
+  public static final int CUSTOMIZED_BACKOFF_FIELD_NUMBER = 3;
   /**
-   * <code>float max_backoff = 3;</code>
-   * @return The maxBackoff.
+   * <code>.apache.rocketmq.v2.CustomizedBackoff customized_backoff = 3;</code>
+   * @return Whether the customizedBackoff field is set.
    */
   @java.lang.Override
-  public float getMaxBackoff() {
-    return maxBackoff_;
+  public boolean hasCustomizedBackoff() {
+    return strategyCase_ == 3;
   }
-
-  public static final int BACKOFF_MULTIPLIER_FIELD_NUMBER = 4;
-  private float backoffMultiplier_;
   /**
-   * <code>float backoff_multiplier = 4;</code>
-   * @return The backoffMultiplier.
+   * <code>.apache.rocketmq.v2.CustomizedBackoff customized_backoff = 3;</code>
+   * @return The customizedBackoff.
    */
   @java.lang.Override
-  public float getBackoffMultiplier() {
-    return backoffMultiplier_;
+  public apache.rocketmq.v2.CustomizedBackoff getCustomizedBackoff() {
+    if (strategyCase_ == 3) {
+       return (apache.rocketmq.v2.CustomizedBackoff) strategy_;
+    }
+    return apache.rocketmq.v2.CustomizedBackoff.getDefaultInstance();
   }
-
-  public static final int RANDOM_FIELD_NUMBER = 5;
-  private boolean random_;
   /**
-   * <code>bool random = 5;</code>
-   * @return The random.
+   * <code>.apache.rocketmq.v2.CustomizedBackoff customized_backoff = 3;</code>
    */
   @java.lang.Override
-  public boolean getRandom() {
-    return random_;
+  public apache.rocketmq.v2.CustomizedBackoffOrBuilder getCustomizedBackoffOrBuilder() {
+    if (strategyCase_ == 3) {
+       return (apache.rocketmq.v2.CustomizedBackoff) strategy_;
+    }
+    return apache.rocketmq.v2.CustomizedBackoff.getDefaultInstance();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -177,17 +244,11 @@ private static final long serialVersionUID = 0L;
     if (maxAttempts_ != 0) {
       output.writeInt32(1, maxAttempts_);
     }
-    if (java.lang.Float.floatToRawIntBits(initialBackoff_) != 0) {
-      output.writeFloat(2, initialBackoff_);
+    if (strategyCase_ == 2) {
+      output.writeMessage(2, (apache.rocketmq.v2.ExponentialBackoff) strategy_);
     }
-    if (java.lang.Float.floatToRawIntBits(maxBackoff_) != 0) {
-      output.writeFloat(3, maxBackoff_);
-    }
-    if (java.lang.Float.floatToRawIntBits(backoffMultiplier_) != 0) {
-      output.writeFloat(4, backoffMultiplier_);
-    }
-    if (random_ != false) {
-      output.writeBool(5, random_);
+    if (strategyCase_ == 3) {
+      output.writeMessage(3, (apache.rocketmq.v2.CustomizedBackoff) strategy_);
     }
     unknownFields.writeTo(output);
   }
@@ -202,21 +263,13 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(1, maxAttempts_);
     }
-    if (java.lang.Float.floatToRawIntBits(initialBackoff_) != 0) {
+    if (strategyCase_ == 2) {
       size += com.google.protobuf.CodedOutputStream
-        .computeFloatSize(2, initialBackoff_);
+        .computeMessageSize(2, (apache.rocketmq.v2.ExponentialBackoff) strategy_);
     }
-    if (java.lang.Float.floatToRawIntBits(maxBackoff_) != 0) {
+    if (strategyCase_ == 3) {
       size += com.google.protobuf.CodedOutputStream
-        .computeFloatSize(3, maxBackoff_);
-    }
-    if (java.lang.Float.floatToRawIntBits(backoffMultiplier_) != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeFloatSize(4, backoffMultiplier_);
-    }
-    if (random_ != false) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(5, random_);
+        .computeMessageSize(3, (apache.rocketmq.v2.CustomizedBackoff) strategy_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -235,17 +288,19 @@ private static final long serialVersionUID = 0L;
 
     if (getMaxAttempts()
         != other.getMaxAttempts()) return false;
-    if (java.lang.Float.floatToIntBits(getInitialBackoff())
-        != java.lang.Float.floatToIntBits(
-            other.getInitialBackoff())) return false;
-    if (java.lang.Float.floatToIntBits(getMaxBackoff())
-        != java.lang.Float.floatToIntBits(
-            other.getMaxBackoff())) return false;
-    if (java.lang.Float.floatToIntBits(getBackoffMultiplier())
-        != java.lang.Float.floatToIntBits(
-            other.getBackoffMultiplier())) return false;
-    if (getRandom()
-        != other.getRandom()) return false;
+    if (!getStrategyCase().equals(other.getStrategyCase())) return false;
+    switch (strategyCase_) {
+      case 2:
+        if (!getExponentialBackoff()
+            .equals(other.getExponentialBackoff())) return false;
+        break;
+      case 3:
+        if (!getCustomizedBackoff()
+            .equals(other.getCustomizedBackoff())) return false;
+        break;
+      case 0:
+      default:
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -259,18 +314,18 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + MAX_ATTEMPTS_FIELD_NUMBER;
     hash = (53 * hash) + getMaxAttempts();
-    hash = (37 * hash) + INITIAL_BACKOFF_FIELD_NUMBER;
-    hash = (53 * hash) + java.lang.Float.floatToIntBits(
-        getInitialBackoff());
-    hash = (37 * hash) + MAX_BACKOFF_FIELD_NUMBER;
-    hash = (53 * hash) + java.lang.Float.floatToIntBits(
-        getMaxBackoff());
-    hash = (37 * hash) + BACKOFF_MULTIPLIER_FIELD_NUMBER;
-    hash = (53 * hash) + java.lang.Float.floatToIntBits(
-        getBackoffMultiplier());
-    hash = (37 * hash) + RANDOM_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getRandom());
+    switch (strategyCase_) {
+      case 2:
+        hash = (37 * hash) + EXPONENTIAL_BACKOFF_FIELD_NUMBER;
+        hash = (53 * hash) + getExponentialBackoff().hashCode();
+        break;
+      case 3:
+        hash = (37 * hash) + CUSTOMIZED_BACKOFF_FIELD_NUMBER;
+        hash = (53 * hash) + getCustomizedBackoff().hashCode();
+        break;
+      case 0:
+      default:
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -406,14 +461,8 @@ private static final long serialVersionUID = 0L;
       super.clear();
       maxAttempts_ = 0;
 
-      initialBackoff_ = 0F;
-
-      maxBackoff_ = 0F;
-
-      backoffMultiplier_ = 0F;
-
-      random_ = false;
-
+      strategyCase_ = 0;
+      strategy_ = null;
       return this;
     }
 
@@ -441,10 +490,21 @@ private static final long serialVersionUID = 0L;
     public apache.rocketmq.v2.RetryPolicy buildPartial() {
       apache.rocketmq.v2.RetryPolicy result = new apache.rocketmq.v2.RetryPolicy(this);
       result.maxAttempts_ = maxAttempts_;
-      result.initialBackoff_ = initialBackoff_;
-      result.maxBackoff_ = maxBackoff_;
-      result.backoffMultiplier_ = backoffMultiplier_;
-      result.random_ = random_;
+      if (strategyCase_ == 2) {
+        if (exponentialBackoffBuilder_ == null) {
+          result.strategy_ = strategy_;
+        } else {
+          result.strategy_ = exponentialBackoffBuilder_.build();
+        }
+      }
+      if (strategyCase_ == 3) {
+        if (customizedBackoffBuilder_ == null) {
+          result.strategy_ = strategy_;
+        } else {
+          result.strategy_ = customizedBackoffBuilder_.build();
+        }
+      }
+      result.strategyCase_ = strategyCase_;
       onBuilt();
       return result;
     }
@@ -496,17 +556,18 @@ private static final long serialVersionUID = 0L;
       if (other.getMaxAttempts() != 0) {
         setMaxAttempts(other.getMaxAttempts());
       }
-      if (other.getInitialBackoff() != 0F) {
-        setInitialBackoff(other.getInitialBackoff());
-      }
-      if (other.getMaxBackoff() != 0F) {
-        setMaxBackoff(other.getMaxBackoff());
-      }
-      if (other.getBackoffMultiplier() != 0F) {
-        setBackoffMultiplier(other.getBackoffMultiplier());
-      }
-      if (other.getRandom() != false) {
-        setRandom(other.getRandom());
+      switch (other.getStrategyCase()) {
+        case EXPONENTIAL_BACKOFF: {
+          mergeExponentialBackoff(other.getExponentialBackoff());
+          break;
+        }
+        case CUSTOMIZED_BACKOFF: {
+          mergeCustomizedBackoff(other.getCustomizedBackoff());
+          break;
+        }
+        case STRATEGY_NOT_SET: {
+          break;
+        }
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -536,6 +597,21 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+    private int strategyCase_ = 0;
+    private java.lang.Object strategy_;
+    public StrategyCase
+        getStrategyCase() {
+      return StrategyCase.forNumber(
+          strategyCase_);
+    }
+
+    public Builder clearStrategy() {
+      strategyCase_ = 0;
+      strategy_ = null;
+      onChanged();
+      return this;
+    }
+
 
     private int maxAttempts_ ;
     /**
@@ -568,128 +644,286 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private float initialBackoff_ ;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.ExponentialBackoff, apache.rocketmq.v2.ExponentialBackoff.Builder, apache.rocketmq.v2.ExponentialBackoffOrBuilder> exponentialBackoffBuilder_;
     /**
-     * <code>float initial_backoff = 2;</code>
-     * @return The initialBackoff.
+     * <code>.apache.rocketmq.v2.ExponentialBackoff exponential_backoff = 2;</code>
+     * @return Whether the exponentialBackoff field is set.
      */
     @java.lang.Override
-    public float getInitialBackoff() {
-      return initialBackoff_;
+    public boolean hasExponentialBackoff() {
+      return strategyCase_ == 2;
     }
     /**
-     * <code>float initial_backoff = 2;</code>
-     * @param value The initialBackoff to set.
-     * @return This builder for chaining.
+     * <code>.apache.rocketmq.v2.ExponentialBackoff exponential_backoff = 2;</code>
+     * @return The exponentialBackoff.
      */
-    public Builder setInitialBackoff(float value) {
-      
-      initialBackoff_ = value;
-      onChanged();
+    @java.lang.Override
+    public apache.rocketmq.v2.ExponentialBackoff getExponentialBackoff() {
+      if (exponentialBackoffBuilder_ == null) {
+        if (strategyCase_ == 2) {
+          return (apache.rocketmq.v2.ExponentialBackoff) strategy_;
+        }
+        return apache.rocketmq.v2.ExponentialBackoff.getDefaultInstance();
+      } else {
+        if (strategyCase_ == 2) {
+          return exponentialBackoffBuilder_.getMessage();
+        }
+        return apache.rocketmq.v2.ExponentialBackoff.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.apache.rocketmq.v2.ExponentialBackoff exponential_backoff = 2;</code>
+     */
+    public Builder setExponentialBackoff(apache.rocketmq.v2.ExponentialBackoff value) {
+      if (exponentialBackoffBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        strategy_ = value;
+        onChanged();
+      } else {
+        exponentialBackoffBuilder_.setMessage(value);
+      }
+      strategyCase_ = 2;
       return this;
     }
     /**
-     * <code>float initial_backoff = 2;</code>
-     * @return This builder for chaining.
+     * <code>.apache.rocketmq.v2.ExponentialBackoff exponential_backoff = 2;</code>
      */
-    public Builder clearInitialBackoff() {
-      
-      initialBackoff_ = 0F;
-      onChanged();
+    public Builder setExponentialBackoff(
+        apache.rocketmq.v2.ExponentialBackoff.Builder builderForValue) {
+      if (exponentialBackoffBuilder_ == null) {
+        strategy_ = builderForValue.build();
+        onChanged();
+      } else {
+        exponentialBackoffBuilder_.setMessage(builderForValue.build());
+      }
+      strategyCase_ = 2;
       return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.ExponentialBackoff exponential_backoff = 2;</code>
+     */
+    public Builder mergeExponentialBackoff(apache.rocketmq.v2.ExponentialBackoff value) {
+      if (exponentialBackoffBuilder_ == null) {
+        if (strategyCase_ == 2 &&
+            strategy_ != apache.rocketmq.v2.ExponentialBackoff.getDefaultInstance()) {
+          strategy_ = apache.rocketmq.v2.ExponentialBackoff.newBuilder((apache.rocketmq.v2.ExponentialBackoff) strategy_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          strategy_ = value;
+        }
+        onChanged();
+      } else {
+        if (strategyCase_ == 2) {
+          exponentialBackoffBuilder_.mergeFrom(value);
+        }
+        exponentialBackoffBuilder_.setMessage(value);
+      }
+      strategyCase_ = 2;
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.ExponentialBackoff exponential_backoff = 2;</code>
+     */
+    public Builder clearExponentialBackoff() {
+      if (exponentialBackoffBuilder_ == null) {
+        if (strategyCase_ == 2) {
+          strategyCase_ = 0;
+          strategy_ = null;
+          onChanged();
+        }
+      } else {
+        if (strategyCase_ == 2) {
+          strategyCase_ = 0;
+          strategy_ = null;
+        }
+        exponentialBackoffBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.ExponentialBackoff exponential_backoff = 2;</code>
+     */
+    public apache.rocketmq.v2.ExponentialBackoff.Builder getExponentialBackoffBuilder() {
+      return getExponentialBackoffFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.apache.rocketmq.v2.ExponentialBackoff exponential_backoff = 2;</code>
+     */
+    @java.lang.Override
+    public apache.rocketmq.v2.ExponentialBackoffOrBuilder getExponentialBackoffOrBuilder() {
+      if ((strategyCase_ == 2) && (exponentialBackoffBuilder_ != null)) {
+        return exponentialBackoffBuilder_.getMessageOrBuilder();
+      } else {
+        if (strategyCase_ == 2) {
+          return (apache.rocketmq.v2.ExponentialBackoff) strategy_;
+        }
+        return apache.rocketmq.v2.ExponentialBackoff.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.apache.rocketmq.v2.ExponentialBackoff exponential_backoff = 2;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.ExponentialBackoff, apache.rocketmq.v2.ExponentialBackoff.Builder, apache.rocketmq.v2.ExponentialBackoffOrBuilder> 
+        getExponentialBackoffFieldBuilder() {
+      if (exponentialBackoffBuilder_ == null) {
+        if (!(strategyCase_ == 2)) {
+          strategy_ = apache.rocketmq.v2.ExponentialBackoff.getDefaultInstance();
+        }
+        exponentialBackoffBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            apache.rocketmq.v2.ExponentialBackoff, apache.rocketmq.v2.ExponentialBackoff.Builder, apache.rocketmq.v2.ExponentialBackoffOrBuilder>(
+                (apache.rocketmq.v2.ExponentialBackoff) strategy_,
+                getParentForChildren(),
+                isClean());
+        strategy_ = null;
+      }
+      strategyCase_ = 2;
+      onChanged();;
+      return exponentialBackoffBuilder_;
     }
 
-    private float maxBackoff_ ;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.CustomizedBackoff, apache.rocketmq.v2.CustomizedBackoff.Builder, apache.rocketmq.v2.CustomizedBackoffOrBuilder> customizedBackoffBuilder_;
     /**
-     * <code>float max_backoff = 3;</code>
-     * @return The maxBackoff.
+     * <code>.apache.rocketmq.v2.CustomizedBackoff customized_backoff = 3;</code>
+     * @return Whether the customizedBackoff field is set.
      */
     @java.lang.Override
-    public float getMaxBackoff() {
-      return maxBackoff_;
+    public boolean hasCustomizedBackoff() {
+      return strategyCase_ == 3;
     }
     /**
-     * <code>float max_backoff = 3;</code>
-     * @param value The maxBackoff to set.
-     * @return This builder for chaining.
-     */
-    public Builder setMaxBackoff(float value) {
-      
-      maxBackoff_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>float max_backoff = 3;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearMaxBackoff() {
-      
-      maxBackoff_ = 0F;
-      onChanged();
-      return this;
-    }
-
-    private float backoffMultiplier_ ;
-    /**
-     * <code>float backoff_multiplier = 4;</code>
-     * @return The backoffMultiplier.
+     * <code>.apache.rocketmq.v2.CustomizedBackoff customized_backoff = 3;</code>
+     * @return The customizedBackoff.
      */
     @java.lang.Override
-    public float getBackoffMultiplier() {
-      return backoffMultiplier_;
+    public apache.rocketmq.v2.CustomizedBackoff getCustomizedBackoff() {
+      if (customizedBackoffBuilder_ == null) {
+        if (strategyCase_ == 3) {
+          return (apache.rocketmq.v2.CustomizedBackoff) strategy_;
+        }
+        return apache.rocketmq.v2.CustomizedBackoff.getDefaultInstance();
+      } else {
+        if (strategyCase_ == 3) {
+          return customizedBackoffBuilder_.getMessage();
+        }
+        return apache.rocketmq.v2.CustomizedBackoff.getDefaultInstance();
+      }
     }
     /**
-     * <code>float backoff_multiplier = 4;</code>
-     * @param value The backoffMultiplier to set.
-     * @return This builder for chaining.
+     * <code>.apache.rocketmq.v2.CustomizedBackoff customized_backoff = 3;</code>
      */
-    public Builder setBackoffMultiplier(float value) {
-      
-      backoffMultiplier_ = value;
-      onChanged();
+    public Builder setCustomizedBackoff(apache.rocketmq.v2.CustomizedBackoff value) {
+      if (customizedBackoffBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        strategy_ = value;
+        onChanged();
+      } else {
+        customizedBackoffBuilder_.setMessage(value);
+      }
+      strategyCase_ = 3;
       return this;
     }
     /**
-     * <code>float backoff_multiplier = 4;</code>
-     * @return This builder for chaining.
+     * <code>.apache.rocketmq.v2.CustomizedBackoff customized_backoff = 3;</code>
      */
-    public Builder clearBackoffMultiplier() {
-      
-      backoffMultiplier_ = 0F;
-      onChanged();
+    public Builder setCustomizedBackoff(
+        apache.rocketmq.v2.CustomizedBackoff.Builder builderForValue) {
+      if (customizedBackoffBuilder_ == null) {
+        strategy_ = builderForValue.build();
+        onChanged();
+      } else {
+        customizedBackoffBuilder_.setMessage(builderForValue.build());
+      }
+      strategyCase_ = 3;
       return this;
     }
-
-    private boolean random_ ;
     /**
-     * <code>bool random = 5;</code>
-     * @return The random.
+     * <code>.apache.rocketmq.v2.CustomizedBackoff customized_backoff = 3;</code>
+     */
+    public Builder mergeCustomizedBackoff(apache.rocketmq.v2.CustomizedBackoff value) {
+      if (customizedBackoffBuilder_ == null) {
+        if (strategyCase_ == 3 &&
+            strategy_ != apache.rocketmq.v2.CustomizedBackoff.getDefaultInstance()) {
+          strategy_ = apache.rocketmq.v2.CustomizedBackoff.newBuilder((apache.rocketmq.v2.CustomizedBackoff) strategy_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          strategy_ = value;
+        }
+        onChanged();
+      } else {
+        if (strategyCase_ == 3) {
+          customizedBackoffBuilder_.mergeFrom(value);
+        }
+        customizedBackoffBuilder_.setMessage(value);
+      }
+      strategyCase_ = 3;
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.CustomizedBackoff customized_backoff = 3;</code>
+     */
+    public Builder clearCustomizedBackoff() {
+      if (customizedBackoffBuilder_ == null) {
+        if (strategyCase_ == 3) {
+          strategyCase_ = 0;
+          strategy_ = null;
+          onChanged();
+        }
+      } else {
+        if (strategyCase_ == 3) {
+          strategyCase_ = 0;
+          strategy_ = null;
+        }
+        customizedBackoffBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.CustomizedBackoff customized_backoff = 3;</code>
+     */
+    public apache.rocketmq.v2.CustomizedBackoff.Builder getCustomizedBackoffBuilder() {
+      return getCustomizedBackoffFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.apache.rocketmq.v2.CustomizedBackoff customized_backoff = 3;</code>
      */
     @java.lang.Override
-    public boolean getRandom() {
-      return random_;
+    public apache.rocketmq.v2.CustomizedBackoffOrBuilder getCustomizedBackoffOrBuilder() {
+      if ((strategyCase_ == 3) && (customizedBackoffBuilder_ != null)) {
+        return customizedBackoffBuilder_.getMessageOrBuilder();
+      } else {
+        if (strategyCase_ == 3) {
+          return (apache.rocketmq.v2.CustomizedBackoff) strategy_;
+        }
+        return apache.rocketmq.v2.CustomizedBackoff.getDefaultInstance();
+      }
     }
     /**
-     * <code>bool random = 5;</code>
-     * @param value The random to set.
-     * @return This builder for chaining.
+     * <code>.apache.rocketmq.v2.CustomizedBackoff customized_backoff = 3;</code>
      */
-    public Builder setRandom(boolean value) {
-      
-      random_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool random = 5;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearRandom() {
-      
-      random_ = false;
-      onChanged();
-      return this;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.CustomizedBackoff, apache.rocketmq.v2.CustomizedBackoff.Builder, apache.rocketmq.v2.CustomizedBackoffOrBuilder> 
+        getCustomizedBackoffFieldBuilder() {
+      if (customizedBackoffBuilder_ == null) {
+        if (!(strategyCase_ == 3)) {
+          strategy_ = apache.rocketmq.v2.CustomizedBackoff.getDefaultInstance();
+        }
+        customizedBackoffBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            apache.rocketmq.v2.CustomizedBackoff, apache.rocketmq.v2.CustomizedBackoff.Builder, apache.rocketmq.v2.CustomizedBackoffOrBuilder>(
+                (apache.rocketmq.v2.CustomizedBackoff) strategy_,
+                getParentForChildren(),
+                isClean());
+        strategy_ = null;
+      }
+      strategyCase_ = 3;
+      onChanged();;
+      return customizedBackoffBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

@@ -23,28 +23,19 @@ public interface ReceiveMessageResponseOrBuilder extends
   apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder();
 
   /**
-   * <code>repeated .apache.rocketmq.v2.Message messages = 2;</code>
+   * <code>.apache.rocketmq.v2.Message message = 2;</code>
+   * @return Whether the message field is set.
    */
-  java.util.List<apache.rocketmq.v2.Message> 
-      getMessagesList();
+  boolean hasMessage();
   /**
-   * <code>repeated .apache.rocketmq.v2.Message messages = 2;</code>
+   * <code>.apache.rocketmq.v2.Message message = 2;</code>
+   * @return The message.
    */
-  apache.rocketmq.v2.Message getMessages(int index);
+  apache.rocketmq.v2.Message getMessage();
   /**
-   * <code>repeated .apache.rocketmq.v2.Message messages = 2;</code>
+   * <code>.apache.rocketmq.v2.Message message = 2;</code>
    */
-  int getMessagesCount();
-  /**
-   * <code>repeated .apache.rocketmq.v2.Message messages = 2;</code>
-   */
-  java.util.List<? extends apache.rocketmq.v2.MessageOrBuilder> 
-      getMessagesOrBuilderList();
-  /**
-   * <code>repeated .apache.rocketmq.v2.Message messages = 2;</code>
-   */
-  apache.rocketmq.v2.MessageOrBuilder getMessagesOrBuilder(
-      int index);
+  apache.rocketmq.v2.MessageOrBuilder getMessageOrBuilder();
 
   /**
    * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>

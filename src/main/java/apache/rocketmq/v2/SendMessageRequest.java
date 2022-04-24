@@ -59,19 +59,6 @@ private static final long serialVersionUID = 0L;
                 input.readMessage(apache.rocketmq.v2.Message.parser(), extensionRegistry));
             break;
           }
-          case 18: {
-            apache.rocketmq.v2.MessageQueue.Builder subBuilder = null;
-            if (messageQueue_ != null) {
-              subBuilder = messageQueue_.toBuilder();
-            }
-            messageQueue_ = input.readMessage(apache.rocketmq.v2.MessageQueue.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(messageQueue_);
-              messageQueue_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -147,32 +134,6 @@ private static final long serialVersionUID = 0L;
     return messages_.get(index);
   }
 
-  public static final int MESSAGE_QUEUE_FIELD_NUMBER = 2;
-  private apache.rocketmq.v2.MessageQueue messageQueue_;
-  /**
-   * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
-   * @return Whether the messageQueue field is set.
-   */
-  @java.lang.Override
-  public boolean hasMessageQueue() {
-    return messageQueue_ != null;
-  }
-  /**
-   * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
-   * @return The messageQueue.
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.MessageQueue getMessageQueue() {
-    return messageQueue_ == null ? apache.rocketmq.v2.MessageQueue.getDefaultInstance() : messageQueue_;
-  }
-  /**
-   * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.MessageQueueOrBuilder getMessageQueueOrBuilder() {
-    return getMessageQueue();
-  }
-
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -190,9 +151,6 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < messages_.size(); i++) {
       output.writeMessage(1, messages_.get(i));
     }
-    if (messageQueue_ != null) {
-      output.writeMessage(2, getMessageQueue());
-    }
     unknownFields.writeTo(output);
   }
 
@@ -205,10 +163,6 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < messages_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, messages_.get(i));
-    }
-    if (messageQueue_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, getMessageQueue());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -227,11 +181,6 @@ private static final long serialVersionUID = 0L;
 
     if (!getMessagesList()
         .equals(other.getMessagesList())) return false;
-    if (hasMessageQueue() != other.hasMessageQueue()) return false;
-    if (hasMessageQueue()) {
-      if (!getMessageQueue()
-          .equals(other.getMessageQueue())) return false;
-    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -246,10 +195,6 @@ private static final long serialVersionUID = 0L;
     if (getMessagesCount() > 0) {
       hash = (37 * hash) + MESSAGES_FIELD_NUMBER;
       hash = (53 * hash) + getMessagesList().hashCode();
-    }
-    if (hasMessageQueue()) {
-      hash = (37 * hash) + MESSAGE_QUEUE_FIELD_NUMBER;
-      hash = (53 * hash) + getMessageQueue().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -391,12 +336,6 @@ private static final long serialVersionUID = 0L;
       } else {
         messagesBuilder_.clear();
       }
-      if (messageQueueBuilder_ == null) {
-        messageQueue_ = null;
-      } else {
-        messageQueue_ = null;
-        messageQueueBuilder_ = null;
-      }
       return this;
     }
 
@@ -432,11 +371,6 @@ private static final long serialVersionUID = 0L;
         result.messages_ = messages_;
       } else {
         result.messages_ = messagesBuilder_.build();
-      }
-      if (messageQueueBuilder_ == null) {
-        result.messageQueue_ = messageQueue_;
-      } else {
-        result.messageQueue_ = messageQueueBuilder_.build();
       }
       onBuilt();
       return result;
@@ -511,9 +445,6 @@ private static final long serialVersionUID = 0L;
             messagesBuilder_.addAllMessages(other.messages_);
           }
         }
-      }
-      if (other.hasMessageQueue()) {
-        mergeMessageQueue(other.getMessageQueue());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -783,125 +714,6 @@ private static final long serialVersionUID = 0L;
         messages_ = null;
       }
       return messagesBuilder_;
-    }
-
-    private apache.rocketmq.v2.MessageQueue messageQueue_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.MessageQueue, apache.rocketmq.v2.MessageQueue.Builder, apache.rocketmq.v2.MessageQueueOrBuilder> messageQueueBuilder_;
-    /**
-     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
-     * @return Whether the messageQueue field is set.
-     */
-    public boolean hasMessageQueue() {
-      return messageQueueBuilder_ != null || messageQueue_ != null;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
-     * @return The messageQueue.
-     */
-    public apache.rocketmq.v2.MessageQueue getMessageQueue() {
-      if (messageQueueBuilder_ == null) {
-        return messageQueue_ == null ? apache.rocketmq.v2.MessageQueue.getDefaultInstance() : messageQueue_;
-      } else {
-        return messageQueueBuilder_.getMessage();
-      }
-    }
-    /**
-     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
-     */
-    public Builder setMessageQueue(apache.rocketmq.v2.MessageQueue value) {
-      if (messageQueueBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        messageQueue_ = value;
-        onChanged();
-      } else {
-        messageQueueBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
-     */
-    public Builder setMessageQueue(
-        apache.rocketmq.v2.MessageQueue.Builder builderForValue) {
-      if (messageQueueBuilder_ == null) {
-        messageQueue_ = builderForValue.build();
-        onChanged();
-      } else {
-        messageQueueBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
-     */
-    public Builder mergeMessageQueue(apache.rocketmq.v2.MessageQueue value) {
-      if (messageQueueBuilder_ == null) {
-        if (messageQueue_ != null) {
-          messageQueue_ =
-            apache.rocketmq.v2.MessageQueue.newBuilder(messageQueue_).mergeFrom(value).buildPartial();
-        } else {
-          messageQueue_ = value;
-        }
-        onChanged();
-      } else {
-        messageQueueBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
-     */
-    public Builder clearMessageQueue() {
-      if (messageQueueBuilder_ == null) {
-        messageQueue_ = null;
-        onChanged();
-      } else {
-        messageQueue_ = null;
-        messageQueueBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
-     */
-    public apache.rocketmq.v2.MessageQueue.Builder getMessageQueueBuilder() {
-      
-      onChanged();
-      return getMessageQueueFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
-     */
-    public apache.rocketmq.v2.MessageQueueOrBuilder getMessageQueueOrBuilder() {
-      if (messageQueueBuilder_ != null) {
-        return messageQueueBuilder_.getMessageOrBuilder();
-      } else {
-        return messageQueue_ == null ?
-            apache.rocketmq.v2.MessageQueue.getDefaultInstance() : messageQueue_;
-      }
-    }
-    /**
-     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.MessageQueue, apache.rocketmq.v2.MessageQueue.Builder, apache.rocketmq.v2.MessageQueueOrBuilder> 
-        getMessageQueueFieldBuilder() {
-      if (messageQueueBuilder_ == null) {
-        messageQueueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            apache.rocketmq.v2.MessageQueue, apache.rocketmq.v2.MessageQueue.Builder, apache.rocketmq.v2.MessageQueueOrBuilder>(
-                getMessageQueue(),
-                getParentForChildren(),
-                isClean());
-        messageQueue_ = null;
-      }
-      return messageQueueBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

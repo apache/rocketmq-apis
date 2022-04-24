@@ -14,26 +14,34 @@ public interface RetryPolicyOrBuilder extends
   int getMaxAttempts();
 
   /**
-   * <code>float initial_backoff = 2;</code>
-   * @return The initialBackoff.
+   * <code>.apache.rocketmq.v2.ExponentialBackoff exponential_backoff = 2;</code>
+   * @return Whether the exponentialBackoff field is set.
    */
-  float getInitialBackoff();
+  boolean hasExponentialBackoff();
+  /**
+   * <code>.apache.rocketmq.v2.ExponentialBackoff exponential_backoff = 2;</code>
+   * @return The exponentialBackoff.
+   */
+  apache.rocketmq.v2.ExponentialBackoff getExponentialBackoff();
+  /**
+   * <code>.apache.rocketmq.v2.ExponentialBackoff exponential_backoff = 2;</code>
+   */
+  apache.rocketmq.v2.ExponentialBackoffOrBuilder getExponentialBackoffOrBuilder();
 
   /**
-   * <code>float max_backoff = 3;</code>
-   * @return The maxBackoff.
+   * <code>.apache.rocketmq.v2.CustomizedBackoff customized_backoff = 3;</code>
+   * @return Whether the customizedBackoff field is set.
    */
-  float getMaxBackoff();
-
+  boolean hasCustomizedBackoff();
   /**
-   * <code>float backoff_multiplier = 4;</code>
-   * @return The backoffMultiplier.
+   * <code>.apache.rocketmq.v2.CustomizedBackoff customized_backoff = 3;</code>
+   * @return The customizedBackoff.
    */
-  float getBackoffMultiplier();
-
+  apache.rocketmq.v2.CustomizedBackoff getCustomizedBackoff();
   /**
-   * <code>bool random = 5;</code>
-   * @return The random.
+   * <code>.apache.rocketmq.v2.CustomizedBackoff customized_backoff = 3;</code>
    */
-  boolean getRandom();
+  apache.rocketmq.v2.CustomizedBackoffOrBuilder getCustomizedBackoffOrBuilder();
+
+  public apache.rocketmq.v2.RetryPolicy.StrategyCase getStrategyCase();
 }

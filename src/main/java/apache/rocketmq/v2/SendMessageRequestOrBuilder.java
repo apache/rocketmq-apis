@@ -30,19 +30,4 @@ public interface SendMessageRequestOrBuilder extends
    */
   apache.rocketmq.v2.MessageOrBuilder getMessagesOrBuilder(
       int index);
-
-  /**
-   * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
-   * @return Whether the messageQueue field is set.
-   */
-  boolean hasMessageQueue();
-  /**
-   * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
-   * @return The messageQueue.
-   */
-  apache.rocketmq.v2.MessageQueue getMessageQueue();
-  /**
-   * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
-   */
-  apache.rocketmq.v2.MessageQueueOrBuilder getMessageQueueOrBuilder();
 }

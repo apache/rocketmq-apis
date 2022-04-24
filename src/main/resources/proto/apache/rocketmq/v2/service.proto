@@ -83,10 +83,10 @@ message ReceiveMessageRequest {
 }
 
 message ReceiveMessageResponse {
-  Status status = 1;
-  Message message = 2;
-  google.protobuf.Timestamp delivery_timestamp = 3;
-  google.protobuf.Duration invisible_duration = 4;
+  oneof content {
+    Status status = 1;
+    Message message = 2;
+  }
 }
 
 message AckMessageEntry {

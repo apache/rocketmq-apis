@@ -50,54 +50,30 @@ private static final long serialVersionUID = 0L;
             break;
           case 10: {
             apache.rocketmq.v2.Status.Builder subBuilder = null;
-            if (status_ != null) {
-              subBuilder = status_.toBuilder();
+            if (contentCase_ == 1) {
+              subBuilder = ((apache.rocketmq.v2.Status) content_).toBuilder();
             }
-            status_ = input.readMessage(apache.rocketmq.v2.Status.parser(), extensionRegistry);
+            content_ =
+                input.readMessage(apache.rocketmq.v2.Status.parser(), extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom(status_);
-              status_ = subBuilder.buildPartial();
+              subBuilder.mergeFrom((apache.rocketmq.v2.Status) content_);
+              content_ = subBuilder.buildPartial();
             }
-
+            contentCase_ = 1;
             break;
           }
           case 18: {
             apache.rocketmq.v2.Message.Builder subBuilder = null;
-            if (message_ != null) {
-              subBuilder = message_.toBuilder();
+            if (contentCase_ == 2) {
+              subBuilder = ((apache.rocketmq.v2.Message) content_).toBuilder();
             }
-            message_ = input.readMessage(apache.rocketmq.v2.Message.parser(), extensionRegistry);
+            content_ =
+                input.readMessage(apache.rocketmq.v2.Message.parser(), extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom(message_);
-              message_ = subBuilder.buildPartial();
+              subBuilder.mergeFrom((apache.rocketmq.v2.Message) content_);
+              content_ = subBuilder.buildPartial();
             }
-
-            break;
-          }
-          case 26: {
-            com.google.protobuf.Timestamp.Builder subBuilder = null;
-            if (deliveryTimestamp_ != null) {
-              subBuilder = deliveryTimestamp_.toBuilder();
-            }
-            deliveryTimestamp_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(deliveryTimestamp_);
-              deliveryTimestamp_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 34: {
-            com.google.protobuf.Duration.Builder subBuilder = null;
-            if (invisibleDuration_ != null) {
-              subBuilder = invisibleDuration_.toBuilder();
-            }
-            invisibleDuration_ = input.readMessage(com.google.protobuf.Duration.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(invisibleDuration_);
-              invisibleDuration_ = subBuilder.buildPartial();
-            }
-
+            contentCase_ = 2;
             break;
           }
           default: {
@@ -132,15 +108,55 @@ private static final long serialVersionUID = 0L;
             apache.rocketmq.v2.ReceiveMessageResponse.class, apache.rocketmq.v2.ReceiveMessageResponse.Builder.class);
   }
 
+  private int contentCase_ = 0;
+  private java.lang.Object content_;
+  public enum ContentCase
+      implements com.google.protobuf.Internal.EnumLite,
+          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+    STATUS(1),
+    MESSAGE(2),
+    CONTENT_NOT_SET(0);
+    private final int value;
+    private ContentCase(int value) {
+      this.value = value;
+    }
+    /**
+     * @param value The number of the enum to look for.
+     * @return The enum associated with the given number.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static ContentCase valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ContentCase forNumber(int value) {
+      switch (value) {
+        case 1: return STATUS;
+        case 2: return MESSAGE;
+        case 0: return CONTENT_NOT_SET;
+        default: return null;
+      }
+    }
+    public int getNumber() {
+      return this.value;
+    }
+  };
+
+  public ContentCase
+  getContentCase() {
+    return ContentCase.forNumber(
+        contentCase_);
+  }
+
   public static final int STATUS_FIELD_NUMBER = 1;
-  private apache.rocketmq.v2.Status status_;
   /**
    * <code>.apache.rocketmq.v2.Status status = 1;</code>
    * @return Whether the status field is set.
    */
   @java.lang.Override
   public boolean hasStatus() {
-    return status_ != null;
+    return contentCase_ == 1;
   }
   /**
    * <code>.apache.rocketmq.v2.Status status = 1;</code>
@@ -148,25 +164,30 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public apache.rocketmq.v2.Status getStatus() {
-    return status_ == null ? apache.rocketmq.v2.Status.getDefaultInstance() : status_;
+    if (contentCase_ == 1) {
+       return (apache.rocketmq.v2.Status) content_;
+    }
+    return apache.rocketmq.v2.Status.getDefaultInstance();
   }
   /**
    * <code>.apache.rocketmq.v2.Status status = 1;</code>
    */
   @java.lang.Override
   public apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder() {
-    return getStatus();
+    if (contentCase_ == 1) {
+       return (apache.rocketmq.v2.Status) content_;
+    }
+    return apache.rocketmq.v2.Status.getDefaultInstance();
   }
 
   public static final int MESSAGE_FIELD_NUMBER = 2;
-  private apache.rocketmq.v2.Message message_;
   /**
    * <code>.apache.rocketmq.v2.Message message = 2;</code>
    * @return Whether the message field is set.
    */
   @java.lang.Override
   public boolean hasMessage() {
-    return message_ != null;
+    return contentCase_ == 2;
   }
   /**
    * <code>.apache.rocketmq.v2.Message message = 2;</code>
@@ -174,66 +195,20 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public apache.rocketmq.v2.Message getMessage() {
-    return message_ == null ? apache.rocketmq.v2.Message.getDefaultInstance() : message_;
+    if (contentCase_ == 2) {
+       return (apache.rocketmq.v2.Message) content_;
+    }
+    return apache.rocketmq.v2.Message.getDefaultInstance();
   }
   /**
    * <code>.apache.rocketmq.v2.Message message = 2;</code>
    */
   @java.lang.Override
   public apache.rocketmq.v2.MessageOrBuilder getMessageOrBuilder() {
-    return getMessage();
-  }
-
-  public static final int DELIVERY_TIMESTAMP_FIELD_NUMBER = 3;
-  private com.google.protobuf.Timestamp deliveryTimestamp_;
-  /**
-   * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
-   * @return Whether the deliveryTimestamp field is set.
-   */
-  @java.lang.Override
-  public boolean hasDeliveryTimestamp() {
-    return deliveryTimestamp_ != null;
-  }
-  /**
-   * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
-   * @return The deliveryTimestamp.
-   */
-  @java.lang.Override
-  public com.google.protobuf.Timestamp getDeliveryTimestamp() {
-    return deliveryTimestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : deliveryTimestamp_;
-  }
-  /**
-   * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
-   */
-  @java.lang.Override
-  public com.google.protobuf.TimestampOrBuilder getDeliveryTimestampOrBuilder() {
-    return getDeliveryTimestamp();
-  }
-
-  public static final int INVISIBLE_DURATION_FIELD_NUMBER = 4;
-  private com.google.protobuf.Duration invisibleDuration_;
-  /**
-   * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-   * @return Whether the invisibleDuration field is set.
-   */
-  @java.lang.Override
-  public boolean hasInvisibleDuration() {
-    return invisibleDuration_ != null;
-  }
-  /**
-   * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-   * @return The invisibleDuration.
-   */
-  @java.lang.Override
-  public com.google.protobuf.Duration getInvisibleDuration() {
-    return invisibleDuration_ == null ? com.google.protobuf.Duration.getDefaultInstance() : invisibleDuration_;
-  }
-  /**
-   * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-   */
-  @java.lang.Override
-  public com.google.protobuf.DurationOrBuilder getInvisibleDurationOrBuilder() {
-    return getInvisibleDuration();
+    if (contentCase_ == 2) {
+       return (apache.rocketmq.v2.Message) content_;
+    }
+    return apache.rocketmq.v2.Message.getDefaultInstance();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -250,17 +225,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (status_ != null) {
-      output.writeMessage(1, getStatus());
+    if (contentCase_ == 1) {
+      output.writeMessage(1, (apache.rocketmq.v2.Status) content_);
     }
-    if (message_ != null) {
-      output.writeMessage(2, getMessage());
-    }
-    if (deliveryTimestamp_ != null) {
-      output.writeMessage(3, getDeliveryTimestamp());
-    }
-    if (invisibleDuration_ != null) {
-      output.writeMessage(4, getInvisibleDuration());
+    if (contentCase_ == 2) {
+      output.writeMessage(2, (apache.rocketmq.v2.Message) content_);
     }
     unknownFields.writeTo(output);
   }
@@ -271,21 +240,13 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (status_ != null) {
+    if (contentCase_ == 1) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, getStatus());
+        .computeMessageSize(1, (apache.rocketmq.v2.Status) content_);
     }
-    if (message_ != null) {
+    if (contentCase_ == 2) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, getMessage());
-    }
-    if (deliveryTimestamp_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, getDeliveryTimestamp());
-    }
-    if (invisibleDuration_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(4, getInvisibleDuration());
+        .computeMessageSize(2, (apache.rocketmq.v2.Message) content_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -302,25 +263,18 @@ private static final long serialVersionUID = 0L;
     }
     apache.rocketmq.v2.ReceiveMessageResponse other = (apache.rocketmq.v2.ReceiveMessageResponse) obj;
 
-    if (hasStatus() != other.hasStatus()) return false;
-    if (hasStatus()) {
-      if (!getStatus()
-          .equals(other.getStatus())) return false;
-    }
-    if (hasMessage() != other.hasMessage()) return false;
-    if (hasMessage()) {
-      if (!getMessage()
-          .equals(other.getMessage())) return false;
-    }
-    if (hasDeliveryTimestamp() != other.hasDeliveryTimestamp()) return false;
-    if (hasDeliveryTimestamp()) {
-      if (!getDeliveryTimestamp()
-          .equals(other.getDeliveryTimestamp())) return false;
-    }
-    if (hasInvisibleDuration() != other.hasInvisibleDuration()) return false;
-    if (hasInvisibleDuration()) {
-      if (!getInvisibleDuration()
-          .equals(other.getInvisibleDuration())) return false;
+    if (!getContentCase().equals(other.getContentCase())) return false;
+    switch (contentCase_) {
+      case 1:
+        if (!getStatus()
+            .equals(other.getStatus())) return false;
+        break;
+      case 2:
+        if (!getMessage()
+            .equals(other.getMessage())) return false;
+        break;
+      case 0:
+      default:
     }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
@@ -333,21 +287,17 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasStatus()) {
-      hash = (37 * hash) + STATUS_FIELD_NUMBER;
-      hash = (53 * hash) + getStatus().hashCode();
-    }
-    if (hasMessage()) {
-      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
-      hash = (53 * hash) + getMessage().hashCode();
-    }
-    if (hasDeliveryTimestamp()) {
-      hash = (37 * hash) + DELIVERY_TIMESTAMP_FIELD_NUMBER;
-      hash = (53 * hash) + getDeliveryTimestamp().hashCode();
-    }
-    if (hasInvisibleDuration()) {
-      hash = (37 * hash) + INVISIBLE_DURATION_FIELD_NUMBER;
-      hash = (53 * hash) + getInvisibleDuration().hashCode();
+    switch (contentCase_) {
+      case 1:
+        hash = (37 * hash) + STATUS_FIELD_NUMBER;
+        hash = (53 * hash) + getStatus().hashCode();
+        break;
+      case 2:
+        hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
+        hash = (53 * hash) + getMessage().hashCode();
+        break;
+      case 0:
+      default:
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -482,30 +432,8 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      if (statusBuilder_ == null) {
-        status_ = null;
-      } else {
-        status_ = null;
-        statusBuilder_ = null;
-      }
-      if (messageBuilder_ == null) {
-        message_ = null;
-      } else {
-        message_ = null;
-        messageBuilder_ = null;
-      }
-      if (deliveryTimestampBuilder_ == null) {
-        deliveryTimestamp_ = null;
-      } else {
-        deliveryTimestamp_ = null;
-        deliveryTimestampBuilder_ = null;
-      }
-      if (invisibleDurationBuilder_ == null) {
-        invisibleDuration_ = null;
-      } else {
-        invisibleDuration_ = null;
-        invisibleDurationBuilder_ = null;
-      }
+      contentCase_ = 0;
+      content_ = null;
       return this;
     }
 
@@ -532,26 +460,21 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public apache.rocketmq.v2.ReceiveMessageResponse buildPartial() {
       apache.rocketmq.v2.ReceiveMessageResponse result = new apache.rocketmq.v2.ReceiveMessageResponse(this);
-      if (statusBuilder_ == null) {
-        result.status_ = status_;
-      } else {
-        result.status_ = statusBuilder_.build();
+      if (contentCase_ == 1) {
+        if (statusBuilder_ == null) {
+          result.content_ = content_;
+        } else {
+          result.content_ = statusBuilder_.build();
+        }
       }
-      if (messageBuilder_ == null) {
-        result.message_ = message_;
-      } else {
-        result.message_ = messageBuilder_.build();
+      if (contentCase_ == 2) {
+        if (messageBuilder_ == null) {
+          result.content_ = content_;
+        } else {
+          result.content_ = messageBuilder_.build();
+        }
       }
-      if (deliveryTimestampBuilder_ == null) {
-        result.deliveryTimestamp_ = deliveryTimestamp_;
-      } else {
-        result.deliveryTimestamp_ = deliveryTimestampBuilder_.build();
-      }
-      if (invisibleDurationBuilder_ == null) {
-        result.invisibleDuration_ = invisibleDuration_;
-      } else {
-        result.invisibleDuration_ = invisibleDurationBuilder_.build();
-      }
+      result.contentCase_ = contentCase_;
       onBuilt();
       return result;
     }
@@ -600,17 +523,18 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(apache.rocketmq.v2.ReceiveMessageResponse other) {
       if (other == apache.rocketmq.v2.ReceiveMessageResponse.getDefaultInstance()) return this;
-      if (other.hasStatus()) {
-        mergeStatus(other.getStatus());
-      }
-      if (other.hasMessage()) {
-        mergeMessage(other.getMessage());
-      }
-      if (other.hasDeliveryTimestamp()) {
-        mergeDeliveryTimestamp(other.getDeliveryTimestamp());
-      }
-      if (other.hasInvisibleDuration()) {
-        mergeInvisibleDuration(other.getInvisibleDuration());
+      switch (other.getContentCase()) {
+        case STATUS: {
+          mergeStatus(other.getStatus());
+          break;
+        }
+        case MESSAGE: {
+          mergeMessage(other.getMessage());
+          break;
+        }
+        case CONTENT_NOT_SET: {
+          break;
+        }
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -640,26 +564,48 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+    private int contentCase_ = 0;
+    private java.lang.Object content_;
+    public ContentCase
+        getContentCase() {
+      return ContentCase.forNumber(
+          contentCase_);
+    }
 
-    private apache.rocketmq.v2.Status status_;
+    public Builder clearContent() {
+      contentCase_ = 0;
+      content_ = null;
+      onChanged();
+      return this;
+    }
+
+
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder> statusBuilder_;
     /**
      * <code>.apache.rocketmq.v2.Status status = 1;</code>
      * @return Whether the status field is set.
      */
+    @java.lang.Override
     public boolean hasStatus() {
-      return statusBuilder_ != null || status_ != null;
+      return contentCase_ == 1;
     }
     /**
      * <code>.apache.rocketmq.v2.Status status = 1;</code>
      * @return The status.
      */
+    @java.lang.Override
     public apache.rocketmq.v2.Status getStatus() {
       if (statusBuilder_ == null) {
-        return status_ == null ? apache.rocketmq.v2.Status.getDefaultInstance() : status_;
+        if (contentCase_ == 1) {
+          return (apache.rocketmq.v2.Status) content_;
+        }
+        return apache.rocketmq.v2.Status.getDefaultInstance();
       } else {
-        return statusBuilder_.getMessage();
+        if (contentCase_ == 1) {
+          return statusBuilder_.getMessage();
+        }
+        return apache.rocketmq.v2.Status.getDefaultInstance();
       }
     }
     /**
@@ -670,12 +616,12 @@ private static final long serialVersionUID = 0L;
         if (value == null) {
           throw new NullPointerException();
         }
-        status_ = value;
+        content_ = value;
         onChanged();
       } else {
         statusBuilder_.setMessage(value);
       }
-
+      contentCase_ = 1;
       return this;
     }
     /**
@@ -684,12 +630,12 @@ private static final long serialVersionUID = 0L;
     public Builder setStatus(
         apache.rocketmq.v2.Status.Builder builderForValue) {
       if (statusBuilder_ == null) {
-        status_ = builderForValue.build();
+        content_ = builderForValue.build();
         onChanged();
       } else {
         statusBuilder_.setMessage(builderForValue.build());
       }
-
+      contentCase_ = 1;
       return this;
     }
     /**
@@ -697,17 +643,21 @@ private static final long serialVersionUID = 0L;
      */
     public Builder mergeStatus(apache.rocketmq.v2.Status value) {
       if (statusBuilder_ == null) {
-        if (status_ != null) {
-          status_ =
-            apache.rocketmq.v2.Status.newBuilder(status_).mergeFrom(value).buildPartial();
+        if (contentCase_ == 1 &&
+            content_ != apache.rocketmq.v2.Status.getDefaultInstance()) {
+          content_ = apache.rocketmq.v2.Status.newBuilder((apache.rocketmq.v2.Status) content_)
+              .mergeFrom(value).buildPartial();
         } else {
-          status_ = value;
+          content_ = value;
         }
         onChanged();
       } else {
-        statusBuilder_.mergeFrom(value);
+        if (contentCase_ == 1) {
+          statusBuilder_.mergeFrom(value);
+        }
+        statusBuilder_.setMessage(value);
       }
-
+      contentCase_ = 1;
       return this;
     }
     /**
@@ -715,32 +665,38 @@ private static final long serialVersionUID = 0L;
      */
     public Builder clearStatus() {
       if (statusBuilder_ == null) {
-        status_ = null;
-        onChanged();
+        if (contentCase_ == 1) {
+          contentCase_ = 0;
+          content_ = null;
+          onChanged();
+        }
       } else {
-        status_ = null;
-        statusBuilder_ = null;
+        if (contentCase_ == 1) {
+          contentCase_ = 0;
+          content_ = null;
+        }
+        statusBuilder_.clear();
       }
-
       return this;
     }
     /**
      * <code>.apache.rocketmq.v2.Status status = 1;</code>
      */
     public apache.rocketmq.v2.Status.Builder getStatusBuilder() {
-      
-      onChanged();
       return getStatusFieldBuilder().getBuilder();
     }
     /**
      * <code>.apache.rocketmq.v2.Status status = 1;</code>
      */
+    @java.lang.Override
     public apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder() {
-      if (statusBuilder_ != null) {
+      if ((contentCase_ == 1) && (statusBuilder_ != null)) {
         return statusBuilder_.getMessageOrBuilder();
       } else {
-        return status_ == null ?
-            apache.rocketmq.v2.Status.getDefaultInstance() : status_;
+        if (contentCase_ == 1) {
+          return (apache.rocketmq.v2.Status) content_;
+        }
+        return apache.rocketmq.v2.Status.getDefaultInstance();
       }
     }
     /**
@@ -750,35 +706,47 @@ private static final long serialVersionUID = 0L;
         apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder> 
         getStatusFieldBuilder() {
       if (statusBuilder_ == null) {
+        if (!(contentCase_ == 1)) {
+          content_ = apache.rocketmq.v2.Status.getDefaultInstance();
+        }
         statusBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder>(
-                getStatus(),
+                (apache.rocketmq.v2.Status) content_,
                 getParentForChildren(),
                 isClean());
-        status_ = null;
+        content_ = null;
       }
+      contentCase_ = 1;
+      onChanged();;
       return statusBuilder_;
     }
 
-    private apache.rocketmq.v2.Message message_;
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Message, apache.rocketmq.v2.Message.Builder, apache.rocketmq.v2.MessageOrBuilder> messageBuilder_;
     /**
      * <code>.apache.rocketmq.v2.Message message = 2;</code>
      * @return Whether the message field is set.
      */
+    @java.lang.Override
     public boolean hasMessage() {
-      return messageBuilder_ != null || message_ != null;
+      return contentCase_ == 2;
     }
     /**
      * <code>.apache.rocketmq.v2.Message message = 2;</code>
      * @return The message.
      */
+    @java.lang.Override
     public apache.rocketmq.v2.Message getMessage() {
       if (messageBuilder_ == null) {
-        return message_ == null ? apache.rocketmq.v2.Message.getDefaultInstance() : message_;
+        if (contentCase_ == 2) {
+          return (apache.rocketmq.v2.Message) content_;
+        }
+        return apache.rocketmq.v2.Message.getDefaultInstance();
       } else {
-        return messageBuilder_.getMessage();
+        if (contentCase_ == 2) {
+          return messageBuilder_.getMessage();
+        }
+        return apache.rocketmq.v2.Message.getDefaultInstance();
       }
     }
     /**
@@ -789,12 +757,12 @@ private static final long serialVersionUID = 0L;
         if (value == null) {
           throw new NullPointerException();
         }
-        message_ = value;
+        content_ = value;
         onChanged();
       } else {
         messageBuilder_.setMessage(value);
       }
-
+      contentCase_ = 2;
       return this;
     }
     /**
@@ -803,12 +771,12 @@ private static final long serialVersionUID = 0L;
     public Builder setMessage(
         apache.rocketmq.v2.Message.Builder builderForValue) {
       if (messageBuilder_ == null) {
-        message_ = builderForValue.build();
+        content_ = builderForValue.build();
         onChanged();
       } else {
         messageBuilder_.setMessage(builderForValue.build());
       }
-
+      contentCase_ = 2;
       return this;
     }
     /**
@@ -816,17 +784,21 @@ private static final long serialVersionUID = 0L;
      */
     public Builder mergeMessage(apache.rocketmq.v2.Message value) {
       if (messageBuilder_ == null) {
-        if (message_ != null) {
-          message_ =
-            apache.rocketmq.v2.Message.newBuilder(message_).mergeFrom(value).buildPartial();
+        if (contentCase_ == 2 &&
+            content_ != apache.rocketmq.v2.Message.getDefaultInstance()) {
+          content_ = apache.rocketmq.v2.Message.newBuilder((apache.rocketmq.v2.Message) content_)
+              .mergeFrom(value).buildPartial();
         } else {
-          message_ = value;
+          content_ = value;
         }
         onChanged();
       } else {
-        messageBuilder_.mergeFrom(value);
+        if (contentCase_ == 2) {
+          messageBuilder_.mergeFrom(value);
+        }
+        messageBuilder_.setMessage(value);
       }
-
+      contentCase_ = 2;
       return this;
     }
     /**
@@ -834,32 +806,38 @@ private static final long serialVersionUID = 0L;
      */
     public Builder clearMessage() {
       if (messageBuilder_ == null) {
-        message_ = null;
-        onChanged();
+        if (contentCase_ == 2) {
+          contentCase_ = 0;
+          content_ = null;
+          onChanged();
+        }
       } else {
-        message_ = null;
-        messageBuilder_ = null;
+        if (contentCase_ == 2) {
+          contentCase_ = 0;
+          content_ = null;
+        }
+        messageBuilder_.clear();
       }
-
       return this;
     }
     /**
      * <code>.apache.rocketmq.v2.Message message = 2;</code>
      */
     public apache.rocketmq.v2.Message.Builder getMessageBuilder() {
-      
-      onChanged();
       return getMessageFieldBuilder().getBuilder();
     }
     /**
      * <code>.apache.rocketmq.v2.Message message = 2;</code>
      */
+    @java.lang.Override
     public apache.rocketmq.v2.MessageOrBuilder getMessageOrBuilder() {
-      if (messageBuilder_ != null) {
+      if ((contentCase_ == 2) && (messageBuilder_ != null)) {
         return messageBuilder_.getMessageOrBuilder();
       } else {
-        return message_ == null ?
-            apache.rocketmq.v2.Message.getDefaultInstance() : message_;
+        if (contentCase_ == 2) {
+          return (apache.rocketmq.v2.Message) content_;
+        }
+        return apache.rocketmq.v2.Message.getDefaultInstance();
       }
     }
     /**
@@ -869,252 +847,19 @@ private static final long serialVersionUID = 0L;
         apache.rocketmq.v2.Message, apache.rocketmq.v2.Message.Builder, apache.rocketmq.v2.MessageOrBuilder> 
         getMessageFieldBuilder() {
       if (messageBuilder_ == null) {
+        if (!(contentCase_ == 2)) {
+          content_ = apache.rocketmq.v2.Message.getDefaultInstance();
+        }
         messageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             apache.rocketmq.v2.Message, apache.rocketmq.v2.Message.Builder, apache.rocketmq.v2.MessageOrBuilder>(
-                getMessage(),
+                (apache.rocketmq.v2.Message) content_,
                 getParentForChildren(),
                 isClean());
-        message_ = null;
+        content_ = null;
       }
+      contentCase_ = 2;
+      onChanged();;
       return messageBuilder_;
-    }
-
-    private com.google.protobuf.Timestamp deliveryTimestamp_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> deliveryTimestampBuilder_;
-    /**
-     * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
-     * @return Whether the deliveryTimestamp field is set.
-     */
-    public boolean hasDeliveryTimestamp() {
-      return deliveryTimestampBuilder_ != null || deliveryTimestamp_ != null;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
-     * @return The deliveryTimestamp.
-     */
-    public com.google.protobuf.Timestamp getDeliveryTimestamp() {
-      if (deliveryTimestampBuilder_ == null) {
-        return deliveryTimestamp_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : deliveryTimestamp_;
-      } else {
-        return deliveryTimestampBuilder_.getMessage();
-      }
-    }
-    /**
-     * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
-     */
-    public Builder setDeliveryTimestamp(com.google.protobuf.Timestamp value) {
-      if (deliveryTimestampBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        deliveryTimestamp_ = value;
-        onChanged();
-      } else {
-        deliveryTimestampBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
-     */
-    public Builder setDeliveryTimestamp(
-        com.google.protobuf.Timestamp.Builder builderForValue) {
-      if (deliveryTimestampBuilder_ == null) {
-        deliveryTimestamp_ = builderForValue.build();
-        onChanged();
-      } else {
-        deliveryTimestampBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
-     */
-    public Builder mergeDeliveryTimestamp(com.google.protobuf.Timestamp value) {
-      if (deliveryTimestampBuilder_ == null) {
-        if (deliveryTimestamp_ != null) {
-          deliveryTimestamp_ =
-            com.google.protobuf.Timestamp.newBuilder(deliveryTimestamp_).mergeFrom(value).buildPartial();
-        } else {
-          deliveryTimestamp_ = value;
-        }
-        onChanged();
-      } else {
-        deliveryTimestampBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
-     */
-    public Builder clearDeliveryTimestamp() {
-      if (deliveryTimestampBuilder_ == null) {
-        deliveryTimestamp_ = null;
-        onChanged();
-      } else {
-        deliveryTimestamp_ = null;
-        deliveryTimestampBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
-     */
-    public com.google.protobuf.Timestamp.Builder getDeliveryTimestampBuilder() {
-      
-      onChanged();
-      return getDeliveryTimestampFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
-     */
-    public com.google.protobuf.TimestampOrBuilder getDeliveryTimestampOrBuilder() {
-      if (deliveryTimestampBuilder_ != null) {
-        return deliveryTimestampBuilder_.getMessageOrBuilder();
-      } else {
-        return deliveryTimestamp_ == null ?
-            com.google.protobuf.Timestamp.getDefaultInstance() : deliveryTimestamp_;
-      }
-    }
-    /**
-     * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
-        getDeliveryTimestampFieldBuilder() {
-      if (deliveryTimestampBuilder_ == null) {
-        deliveryTimestampBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
-                getDeliveryTimestamp(),
-                getParentForChildren(),
-                isClean());
-        deliveryTimestamp_ = null;
-      }
-      return deliveryTimestampBuilder_;
-    }
-
-    private com.google.protobuf.Duration invisibleDuration_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> invisibleDurationBuilder_;
-    /**
-     * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-     * @return Whether the invisibleDuration field is set.
-     */
-    public boolean hasInvisibleDuration() {
-      return invisibleDurationBuilder_ != null || invisibleDuration_ != null;
-    }
-    /**
-     * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-     * @return The invisibleDuration.
-     */
-    public com.google.protobuf.Duration getInvisibleDuration() {
-      if (invisibleDurationBuilder_ == null) {
-        return invisibleDuration_ == null ? com.google.protobuf.Duration.getDefaultInstance() : invisibleDuration_;
-      } else {
-        return invisibleDurationBuilder_.getMessage();
-      }
-    }
-    /**
-     * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-     */
-    public Builder setInvisibleDuration(com.google.protobuf.Duration value) {
-      if (invisibleDurationBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        invisibleDuration_ = value;
-        onChanged();
-      } else {
-        invisibleDurationBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-     */
-    public Builder setInvisibleDuration(
-        com.google.protobuf.Duration.Builder builderForValue) {
-      if (invisibleDurationBuilder_ == null) {
-        invisibleDuration_ = builderForValue.build();
-        onChanged();
-      } else {
-        invisibleDurationBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-     */
-    public Builder mergeInvisibleDuration(com.google.protobuf.Duration value) {
-      if (invisibleDurationBuilder_ == null) {
-        if (invisibleDuration_ != null) {
-          invisibleDuration_ =
-            com.google.protobuf.Duration.newBuilder(invisibleDuration_).mergeFrom(value).buildPartial();
-        } else {
-          invisibleDuration_ = value;
-        }
-        onChanged();
-      } else {
-        invisibleDurationBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-     */
-    public Builder clearInvisibleDuration() {
-      if (invisibleDurationBuilder_ == null) {
-        invisibleDuration_ = null;
-        onChanged();
-      } else {
-        invisibleDuration_ = null;
-        invisibleDurationBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-     */
-    public com.google.protobuf.Duration.Builder getInvisibleDurationBuilder() {
-      
-      onChanged();
-      return getInvisibleDurationFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-     */
-    public com.google.protobuf.DurationOrBuilder getInvisibleDurationOrBuilder() {
-      if (invisibleDurationBuilder_ != null) {
-        return invisibleDurationBuilder_.getMessageOrBuilder();
-      } else {
-        return invisibleDuration_ == null ?
-            com.google.protobuf.Duration.getDefaultInstance() : invisibleDuration_;
-      }
-    }
-    /**
-     * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
-        getInvisibleDurationFieldBuilder() {
-      if (invisibleDurationBuilder_ == null) {
-        invisibleDurationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder>(
-                getInvisibleDuration(),
-                getParentForChildren(),
-                isClean());
-        invisibleDuration_ = null;
-      }
-      return invisibleDurationBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

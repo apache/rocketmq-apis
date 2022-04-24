@@ -214,146 +214,143 @@ public final class MQService {
       "on\030\003 \001(\0132$.apache.rocketmq.v2.FilterExpr" +
       "ession\022\022\n\nbatch_size\030\004 \001(\005\022:\n\022invisible_" +
       "duration\030\005 \001(\0132\031.google.protobuf.Duratio" +
-      "nH\000\210\001\001B\025\n\023_invisible_duration\"\341\001\n\026Receiv" +
-      "eMessageResponse\022*\n\006status\030\001 \001(\0132\032.apach" +
-      "e.rocketmq.v2.Status\022,\n\007message\030\002 \001(\0132\033." +
-      "apache.rocketmq.v2.Message\0226\n\022delivery_t" +
-      "imestamp\030\003 \001(\0132\032.google.protobuf.Timesta" +
-      "mp\0225\n\022invisible_duration\030\004 \001(\0132\031.google." +
-      "protobuf.Duration\"=\n\017AckMessageEntry\022\022\n\n" +
-      "message_id\030\001 \001(\t\022\026\n\016receipt_handle\030\002 \001(\t" +
-      "\"\243\001\n\021AckMessageRequest\022+\n\005group\030\001 \001(\0132\034." +
+      "nH\000\210\001\001B\025\n\023_invisible_duration\"\201\001\n\026Receiv" +
+      "eMessageResponse\022,\n\006status\030\001 \001(\0132\032.apach" +
+      "e.rocketmq.v2.StatusH\000\022.\n\007message\030\002 \001(\0132" +
+      "\033.apache.rocketmq.v2.MessageH\000B\t\n\007conten" +
+      "t\"=\n\017AckMessageEntry\022\022\n\nmessage_id\030\001 \001(\t" +
+      "\022\026\n\016receipt_handle\030\002 \001(\t\"\243\001\n\021AckMessageR" +
+      "equest\022+\n\005group\030\001 \001(\0132\034.apache.rocketmq." +
+      "v2.Resource\022+\n\005topic\030\002 \001(\0132\034.apache.rock" +
+      "etmq.v2.Resource\0224\n\007entries\030\003 \003(\0132#.apac" +
+      "he.rocketmq.v2.AckMessageEntry\"o\n\025AckMes" +
+      "sageResultEntry\022\022\n\nmessage_id\030\001 \001(\t\022\026\n\016r" +
+      "eceipt_handle\030\002 \001(\t\022*\n\006status\030\003 \001(\0132\032.ap" +
+      "ache.rocketmq.v2.Status\"|\n\022AckMessageRes" +
+      "ponse\022*\n\006status\030\001 \001(\0132\032.apache.rocketmq." +
+      "v2.Status\022:\n\007entries\030\002 \003(\0132).apache.rock" +
+      "etmq.v2.AckMessageResultEntry\"\264\001\n\022NackMe" +
+      "ssageRequest\022+\n\005group\030\001 \001(\0132\034.apache.roc" +
+      "ketmq.v2.Resource\022+\n\005topic\030\002 \001(\0132\034.apach" +
+      "e.rocketmq.v2.Resource\022\026\n\016receipt_handle" +
+      "\030\003 \001(\t\022\022\n\nmessage_id\030\004 \001(\t\022\030\n\020delivery_a" +
+      "ttempt\030\005 \001(\005\"A\n\023NackMessageResponse\022*\n\006s" +
+      "tatus\030\001 \001(\0132\032.apache.rocketmq.v2.Status\"" +
+      "\347\001\n&ForwardMessageToDeadLetterQueueReque" +
+      "st\022+\n\005group\030\001 \001(\0132\034.apache.rocketmq.v2.R" +
+      "esource\022+\n\005topic\030\002 \001(\0132\034.apache.rocketmq" +
+      ".v2.Resource\022\026\n\016receipt_handle\030\003 \001(\t\022\022\n\n" +
+      "message_id\030\004 \001(\t\022\030\n\020delivery_attempt\030\005 \001" +
+      "(\005\022\035\n\025max_delivery_attempts\030\006 \001(\005\"U\n\'For" +
+      "wardMessageToDeadLetterQueueResponse\022*\n\006" +
+      "status\030\001 \001(\0132\032.apache.rocketmq.v2.Status" +
+      "\"N\n\020HeartbeatRequest\0220\n\005group\030\001 \001(\0132\034.ap" +
+      "ache.rocketmq.v2.ResourceH\000\210\001\001B\010\n\006_group" +
+      "\"?\n\021HeartbeatResponse\022*\n\006status\030\001 \001(\0132\032." +
+      "apache.rocketmq.v2.Status\"\375\001\n\025EndTransac" +
+      "tionRequest\022+\n\005topic\030\001 \001(\0132\034.apache.rock" +
+      "etmq.v2.Resource\022\022\n\nmessage_id\030\002 \001(\t\022\026\n\016" +
+      "transaction_id\030\003 \001(\t\022=\n\nresolution\030\004 \001(\016" +
+      "2).apache.rocketmq.v2.TransactionResolut" +
+      "ion\0225\n\006source\030\005 \001(\0162%.apache.rocketmq.v2" +
+      ".TransactionSource\022\025\n\rtrace_context\030\006 \001(" +
+      "\t\"D\n\026EndTransactionResponse\022*\n\006status\030\001 " +
+      "\001(\0132\032.apache.rocketmq.v2.Status\"-\n\034Print" +
+      "ThreadStackTraceCommand\022\r\n\005nonce\030\001 \001(\t\"\205" +
+      "\001\n\020ThreadStackTrace\022\r\n\005nonce\030\001 \001(\t\022*\n\006st" +
+      "atus\030\002 \001(\0132\032.apache.rocketmq.v2.Status\022\037" +
+      "\n\022thread_stack_trace\030\003 \001(\tH\000\210\001\001B\025\n\023_thre" +
+      "ad_stack_trace\"S\n\024VerifyMessageCommand\022\r" +
+      "\n\005nonce\030\001 \001(\t\022,\n\007message\030\002 \001(\0132\033.apache." +
+      "rocketmq.v2.Message\"P\n\023VerifyMessageResu" +
+      "lt\022\r\n\005nonce\030\001 \001(\t\022*\n\006status\030\002 \001(\0132\032.apac" +
+      "he.rocketmq.v2.Status\"\200\001\n!RecoverOrphane" +
+      "dTransactionCommand\022C\n\036orphaned_transact" +
+      "ional_message\030\001 \001(\0132\033.apache.rocketmq.v2" +
+      ".Message\022\026\n\016transaction_id\030\002 \001(\t\"\251\001\n\nPub" +
+      "lishing\022,\n\006topics\030\001 \003(\0132\034.apache.rocketm" +
+      "q.v2.Resource\0225\n\014retry_policy\030\002 \001(\0132\037.ap" +
+      "ache.rocketmq.v2.RetryPolicy\022\037\n\027compress" +
+      "_body_threshold\030\003 \001(\005\022\025\n\rmax_body_size\030\004" +
+      " \001(\005\"\204\003\n\014Subscription\0220\n\005group\030\001 \001(\0132\034.a" +
+      "pache.rocketmq.v2.ResourceH\000\210\001\001\022<\n\rsubsc" +
+      "riptions\030\002 \003(\0132%.apache.rocketmq.v2.Subs" +
+      "criptionEntry\022\021\n\004fifo\030\003 \001(\010H\001\210\001\001\022<\n\016back" +
+      "off_policy\030\004 \001(\0132\037.apache.rocketmq.v2.Re" +
+      "tryPolicyH\002\210\001\001\022\037\n\022receive_batch_size\030\005 \001" +
+      "(\005H\003\210\001\001\022<\n\024long_polling_timeout\030\006 \001(\0132\031." +
+      "google.protobuf.DurationH\004\210\001\001B\010\n\006_groupB" +
+      "\007\n\005_fifoB\021\n\017_backoff_policyB\025\n\023_receive_" +
+      "batch_sizeB\027\n\025_long_polling_timeout\"\347\002\n\010" +
+      "Settings\0228\n\013client_type\030\001 \001(\0162\036.apache.r" +
+      "ocketmq.v2.ClientTypeH\001\210\001\001\0228\n\014access_poi" +
+      "nt\030\002 \001(\0132\035.apache.rocketmq.v2.EndpointsH" +
+      "\002\210\001\001\0227\n\017request_timeout\030\003 \001(\0132\031.google.p" +
+      "rotobuf.DurationH\003\210\001\001\0224\n\npublishing\030\004 \001(" +
+      "\0132\036.apache.rocketmq.v2.PublishingH\000\0228\n\014s" +
+      "ubscription\030\005 \001(\0132 .apache.rocketmq.v2.S" +
+      "ubscriptionH\000B\t\n\007pub_subB\016\n\014_client_type" +
+      "B\017\n\r_access_pointB\022\n\020_request_timeout\"\356\003" +
+      "\n\020TelemetryCommand\0220\n\010settings\030\001 \001(\0132\034.a" +
+      "pache.rocketmq.v2.SettingsH\000\022B\n\022thread_s" +
+      "tack_trace\030\002 \001(\0132$.apache.rocketmq.v2.Th" +
+      "readStackTraceH\000\022H\n\025verify_message_resul" +
+      "t\030\003 \001(\0132\'.apache.rocketmq.v2.VerifyMessa" +
+      "geResultH\000\022e\n$recover_orphaned_transacti" +
+      "on_command\030\004 \001(\01325.apache.rocketmq.v2.Re" +
+      "coverOrphanedTransactionCommandH\000\022\\\n pri" +
+      "nt_thread_stack_trace_command\030\005 \001(\01320.ap" +
+      "ache.rocketmq.v2.PrintThreadStackTraceCo" +
+      "mmandH\000\022J\n\026verify_message_command\030\006 \001(\0132" +
+      "(.apache.rocketmq.v2.VerifyMessageComman" +
+      "dH\000B\t\n\007command\"\\\n\036NotifyClientTerminatio" +
+      "nRequest\0220\n\005group\030\001 \001(\0132\034.apache.rocketm" +
+      "q.v2.ResourceH\000\210\001\001B\010\n\006_group\"M\n\037NotifyCl" +
+      "ientTerminationResponse\022*\n\006status\030\001 \001(\0132" +
+      "\032.apache.rocketmq.v2.Status\"\311\001\n\036ChangeIn" +
+      "visibleDurationRequest\022+\n\005group\030\001 \001(\0132\034." +
       "apache.rocketmq.v2.Resource\022+\n\005topic\030\002 \001" +
-      "(\0132\034.apache.rocketmq.v2.Resource\0224\n\007entr" +
-      "ies\030\003 \003(\0132#.apache.rocketmq.v2.AckMessag" +
-      "eEntry\"o\n\025AckMessageResultEntry\022\022\n\nmessa" +
-      "ge_id\030\001 \001(\t\022\026\n\016receipt_handle\030\002 \001(\t\022*\n\006s" +
-      "tatus\030\003 \001(\0132\032.apache.rocketmq.v2.Status\"" +
-      "|\n\022AckMessageResponse\022*\n\006status\030\001 \001(\0132\032." +
-      "apache.rocketmq.v2.Status\022:\n\007entries\030\002 \003" +
-      "(\0132).apache.rocketmq.v2.AckMessageResult" +
-      "Entry\"\264\001\n\022NackMessageRequest\022+\n\005group\030\001 " +
-      "\001(\0132\034.apache.rocketmq.v2.Resource\022+\n\005top" +
-      "ic\030\002 \001(\0132\034.apache.rocketmq.v2.Resource\022\026" +
-      "\n\016receipt_handle\030\003 \001(\t\022\022\n\nmessage_id\030\004 \001" +
-      "(\t\022\030\n\020delivery_attempt\030\005 \001(\005\"A\n\023NackMess" +
-      "ageResponse\022*\n\006status\030\001 \001(\0132\032.apache.roc" +
-      "ketmq.v2.Status\"\347\001\n&ForwardMessageToDead" +
-      "LetterQueueRequest\022+\n\005group\030\001 \001(\0132\034.apac" +
-      "he.rocketmq.v2.Resource\022+\n\005topic\030\002 \001(\0132\034" +
-      ".apache.rocketmq.v2.Resource\022\026\n\016receipt_" +
-      "handle\030\003 \001(\t\022\022\n\nmessage_id\030\004 \001(\t\022\030\n\020deli" +
-      "very_attempt\030\005 \001(\005\022\035\n\025max_delivery_attem" +
-      "pts\030\006 \001(\005\"U\n\'ForwardMessageToDeadLetterQ" +
-      "ueueResponse\022*\n\006status\030\001 \001(\0132\032.apache.ro" +
-      "cketmq.v2.Status\"N\n\020HeartbeatRequest\0220\n\005" +
-      "group\030\001 \001(\0132\034.apache.rocketmq.v2.Resourc" +
-      "eH\000\210\001\001B\010\n\006_group\"?\n\021HeartbeatResponse\022*\n" +
-      "\006status\030\001 \001(\0132\032.apache.rocketmq.v2.Statu" +
-      "s\"\375\001\n\025EndTransactionRequest\022+\n\005topic\030\001 \001" +
-      "(\0132\034.apache.rocketmq.v2.Resource\022\022\n\nmess" +
-      "age_id\030\002 \001(\t\022\026\n\016transaction_id\030\003 \001(\t\022=\n\n" +
-      "resolution\030\004 \001(\0162).apache.rocketmq.v2.Tr" +
-      "ansactionResolution\0225\n\006source\030\005 \001(\0162%.ap" +
-      "ache.rocketmq.v2.TransactionSource\022\025\n\rtr" +
-      "ace_context\030\006 \001(\t\"D\n\026EndTransactionRespo" +
-      "nse\022*\n\006status\030\001 \001(\0132\032.apache.rocketmq.v2" +
-      ".Status\"-\n\034PrintThreadStackTraceCommand\022" +
-      "\r\n\005nonce\030\001 \001(\t\"\205\001\n\020ThreadStackTrace\022\r\n\005n" +
-      "once\030\001 \001(\t\022*\n\006status\030\002 \001(\0132\032.apache.rock" +
-      "etmq.v2.Status\022\037\n\022thread_stack_trace\030\003 \001" +
-      "(\tH\000\210\001\001B\025\n\023_thread_stack_trace\"S\n\024Verify" +
-      "MessageCommand\022\r\n\005nonce\030\001 \001(\t\022,\n\007message" +
-      "\030\002 \001(\0132\033.apache.rocketmq.v2.Message\"P\n\023V" +
-      "erifyMessageResult\022\r\n\005nonce\030\001 \001(\t\022*\n\006sta" +
-      "tus\030\002 \001(\0132\032.apache.rocketmq.v2.Status\"\200\001" +
-      "\n!RecoverOrphanedTransactionCommand\022C\n\036o" +
-      "rphaned_transactional_message\030\001 \001(\0132\033.ap" +
-      "ache.rocketmq.v2.Message\022\026\n\016transaction_" +
-      "id\030\002 \001(\t\"\251\001\n\nPublishing\022,\n\006topics\030\001 \003(\0132" +
-      "\034.apache.rocketmq.v2.Resource\0225\n\014retry_p" +
-      "olicy\030\002 \001(\0132\037.apache.rocketmq.v2.RetryPo" +
-      "licy\022\037\n\027compress_body_threshold\030\003 \001(\005\022\025\n" +
-      "\rmax_body_size\030\004 \001(\005\"\204\003\n\014Subscription\0220\n" +
-      "\005group\030\001 \001(\0132\034.apache.rocketmq.v2.Resour" +
-      "ceH\000\210\001\001\022<\n\rsubscriptions\030\002 \003(\0132%.apache." +
-      "rocketmq.v2.SubscriptionEntry\022\021\n\004fifo\030\003 " +
-      "\001(\010H\001\210\001\001\022<\n\016backoff_policy\030\004 \001(\0132\037.apach" +
-      "e.rocketmq.v2.RetryPolicyH\002\210\001\001\022\037\n\022receiv" +
-      "e_batch_size\030\005 \001(\005H\003\210\001\001\022<\n\024long_polling_" +
-      "timeout\030\006 \001(\0132\031.google.protobuf.Duration" +
-      "H\004\210\001\001B\010\n\006_groupB\007\n\005_fifoB\021\n\017_backoff_pol" +
-      "icyB\025\n\023_receive_batch_sizeB\027\n\025_long_poll" +
-      "ing_timeout\"\347\002\n\010Settings\0228\n\013client_type\030" +
-      "\001 \001(\0162\036.apache.rocketmq.v2.ClientTypeH\001\210" +
-      "\001\001\0228\n\014access_point\030\002 \001(\0132\035.apache.rocket" +
-      "mq.v2.EndpointsH\002\210\001\001\0227\n\017request_timeout\030" +
-      "\003 \001(\0132\031.google.protobuf.DurationH\003\210\001\001\0224\n" +
-      "\npublishing\030\004 \001(\0132\036.apache.rocketmq.v2.P" +
-      "ublishingH\000\0228\n\014subscription\030\005 \001(\0132 .apac" +
-      "he.rocketmq.v2.SubscriptionH\000B\t\n\007pub_sub" +
-      "B\016\n\014_client_typeB\017\n\r_access_pointB\022\n\020_re" +
-      "quest_timeout\"\356\003\n\020TelemetryCommand\0220\n\010se" +
-      "ttings\030\001 \001(\0132\034.apache.rocketmq.v2.Settin" +
-      "gsH\000\022B\n\022thread_stack_trace\030\002 \001(\0132$.apach" +
-      "e.rocketmq.v2.ThreadStackTraceH\000\022H\n\025veri" +
-      "fy_message_result\030\003 \001(\0132\'.apache.rocketm" +
-      "q.v2.VerifyMessageResultH\000\022e\n$recover_or" +
-      "phaned_transaction_command\030\004 \001(\01325.apach" +
-      "e.rocketmq.v2.RecoverOrphanedTransaction" +
-      "CommandH\000\022\\\n print_thread_stack_trace_co" +
-      "mmand\030\005 \001(\01320.apache.rocketmq.v2.PrintTh" +
-      "readStackTraceCommandH\000\022J\n\026verify_messag" +
-      "e_command\030\006 \001(\0132(.apache.rocketmq.v2.Ver" +
-      "ifyMessageCommandH\000B\t\n\007command\"\\\n\036Notify" +
-      "ClientTerminationRequest\0220\n\005group\030\001 \001(\0132" +
-      "\034.apache.rocketmq.v2.ResourceH\000\210\001\001B\010\n\006_g" +
-      "roup\"M\n\037NotifyClientTerminationResponse\022" +
-      "*\n\006status\030\001 \001(\0132\032.apache.rocketmq.v2.Sta" +
-      "tus\"\311\001\n\036ChangeInvisibleDurationRequest\022+" +
-      "\n\005group\030\001 \001(\0132\034.apache.rocketmq.v2.Resou" +
-      "rce\022+\n\005topic\030\002 \001(\0132\034.apache.rocketmq.v2." +
-      "Resource\022\026\n\016receipt_handle\030\003 \001(\t\0225\n\022invi" +
-      "sible_duration\030\004 \001(\0132\031.google.protobuf.D" +
-      "uration\"e\n\037ChangeInvisibleDurationRespon" +
-      "se\022*\n\006status\030\001 \001(\0132\032.apache.rocketmq.v2." +
-      "Status\022\026\n\016receipt_handle\030\002 \001(\t2\302\n\n\020Messa" +
-      "gingService\022]\n\nQueryRoute\022%.apache.rocke" +
-      "tmq.v2.QueryRouteRequest\032&.apache.rocket" +
-      "mq.v2.QueryRouteResponse\"\000\022Z\n\tHeartbeat\022" +
-      "$.apache.rocketmq.v2.HeartbeatRequest\032%." +
-      "apache.rocketmq.v2.HeartbeatResponse\"\000\022`" +
-      "\n\013SendMessage\022&.apache.rocketmq.v2.SendM" +
-      "essageRequest\032\'.apache.rocketmq.v2.SendM" +
-      "essageResponse\"\000\022l\n\017QueryAssignment\022*.ap" +
-      "ache.rocketmq.v2.QueryAssignmentRequest\032" +
-      "+.apache.rocketmq.v2.QueryAssignmentResp" +
-      "onse\"\000\022k\n\016ReceiveMessage\022).apache.rocket" +
-      "mq.v2.ReceiveMessageRequest\032*.apache.roc" +
-      "ketmq.v2.ReceiveMessageResponse\"\0000\001\022]\n\nA" +
-      "ckMessage\022%.apache.rocketmq.v2.AckMessag" +
-      "eRequest\032&.apache.rocketmq.v2.AckMessage" +
-      "Response\"\000\022`\n\013NackMessage\022&.apache.rocke" +
-      "tmq.v2.NackMessageRequest\032\'.apache.rocke" +
-      "tmq.v2.NackMessageResponse\"\000\022\234\001\n\037Forward" +
-      "MessageToDeadLetterQueue\022:.apache.rocket" +
-      "mq.v2.ForwardMessageToDeadLetterQueueReq" +
-      "uest\032;.apache.rocketmq.v2.ForwardMessage" +
-      "ToDeadLetterQueueResponse\"\000\022i\n\016EndTransa" +
-      "ction\022).apache.rocketmq.v2.EndTransactio" +
-      "nRequest\032*.apache.rocketmq.v2.EndTransac" +
-      "tionResponse\"\000\022]\n\tTelemetry\022$.apache.roc" +
-      "ketmq.v2.TelemetryCommand\032$.apache.rocke" +
-      "tmq.v2.TelemetryCommand\"\000(\0010\001\022\204\001\n\027Notify" +
-      "ClientTermination\0222.apache.rocketmq.v2.N" +
-      "otifyClientTerminationRequest\0323.apache.r" +
-      "ocketmq.v2.NotifyClientTerminationRespon" +
-      "se\"\000\022\204\001\n\027ChangeInvisibleDuration\0222.apach" +
-      "e.rocketmq.v2.ChangeInvisibleDurationReq" +
-      "uest\0323.apache.rocketmq.v2.ChangeInvisibl" +
-      "eDurationResponse\"\000B<\n\022apache.rocketmq.v" +
-      "2B\tMQServiceP\001\240\001\001\330\001\001\252\002\022Apache.Rocketmq.V" +
-      "2b\006proto3"
+      "(\0132\034.apache.rocketmq.v2.Resource\022\026\n\016rece" +
+      "ipt_handle\030\003 \001(\t\0225\n\022invisible_duration\030\004" +
+      " \001(\0132\031.google.protobuf.Duration\"e\n\037Chang" +
+      "eInvisibleDurationResponse\022*\n\006status\030\001 \001" +
+      "(\0132\032.apache.rocketmq.v2.Status\022\026\n\016receip" +
+      "t_handle\030\002 \001(\t2\302\n\n\020MessagingService\022]\n\nQ" +
+      "ueryRoute\022%.apache.rocketmq.v2.QueryRout" +
+      "eRequest\032&.apache.rocketmq.v2.QueryRoute" +
+      "Response\"\000\022Z\n\tHeartbeat\022$.apache.rocketm" +
+      "q.v2.HeartbeatRequest\032%.apache.rocketmq." +
+      "v2.HeartbeatResponse\"\000\022`\n\013SendMessage\022&." +
+      "apache.rocketmq.v2.SendMessageRequest\032\'." +
+      "apache.rocketmq.v2.SendMessageResponse\"\000" +
+      "\022l\n\017QueryAssignment\022*.apache.rocketmq.v2" +
+      ".QueryAssignmentRequest\032+.apache.rocketm" +
+      "q.v2.QueryAssignmentResponse\"\000\022k\n\016Receiv" +
+      "eMessage\022).apache.rocketmq.v2.ReceiveMes" +
+      "sageRequest\032*.apache.rocketmq.v2.Receive" +
+      "MessageResponse\"\0000\001\022]\n\nAckMessage\022%.apac" +
+      "he.rocketmq.v2.AckMessageRequest\032&.apach" +
+      "e.rocketmq.v2.AckMessageResponse\"\000\022`\n\013Na" +
+      "ckMessage\022&.apache.rocketmq.v2.NackMessa" +
+      "geRequest\032\'.apache.rocketmq.v2.NackMessa" +
+      "geResponse\"\000\022\234\001\n\037ForwardMessageToDeadLet" +
+      "terQueue\022:.apache.rocketmq.v2.ForwardMes" +
+      "sageToDeadLetterQueueRequest\032;.apache.ro" +
+      "cketmq.v2.ForwardMessageToDeadLetterQueu" +
+      "eResponse\"\000\022i\n\016EndTransaction\022).apache.r" +
+      "ocketmq.v2.EndTransactionRequest\032*.apach" +
+      "e.rocketmq.v2.EndTransactionResponse\"\000\022]" +
+      "\n\tTelemetry\022$.apache.rocketmq.v2.Telemet" +
+      "ryCommand\032$.apache.rocketmq.v2.Telemetry" +
+      "Command\"\000(\0010\001\022\204\001\n\027NotifyClientTerminatio" +
+      "n\0222.apache.rocketmq.v2.NotifyClientTermi" +
+      "nationRequest\0323.apache.rocketmq.v2.Notif" +
+      "yClientTerminationResponse\"\000\022\204\001\n\027ChangeI" +
+      "nvisibleDuration\0222.apache.rocketmq.v2.Ch" +
+      "angeInvisibleDurationRequest\0323.apache.ro" +
+      "cketmq.v2.ChangeInvisibleDurationRespons" +
+      "e\"\000B<\n\022apache.rocketmq.v2B\tMQServiceP\001\240\001" +
+      "\001\330\001\001\252\002\022Apache.Rocketmq.V2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -409,7 +406,7 @@ public final class MQService {
     internal_static_apache_rocketmq_v2_ReceiveMessageResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_ReceiveMessageResponse_descriptor,
-        new java.lang.String[] { "Status", "Message", "DeliveryTimestamp", "InvisibleDuration", });
+        new java.lang.String[] { "Status", "Message", "Content", });
     internal_static_apache_rocketmq_v2_AckMessageEntry_descriptor =
       getDescriptor().getMessageTypes().get(8);
     internal_static_apache_rocketmq_v2_AckMessageEntry_fieldAccessorTable = new

@@ -37,33 +37,5 @@ public interface ReceiveMessageResponseOrBuilder extends
    */
   apache.rocketmq.v2.MessageOrBuilder getMessageOrBuilder();
 
-  /**
-   * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
-   * @return Whether the deliveryTimestamp field is set.
-   */
-  boolean hasDeliveryTimestamp();
-  /**
-   * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
-   * @return The deliveryTimestamp.
-   */
-  com.google.protobuf.Timestamp getDeliveryTimestamp();
-  /**
-   * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
-   */
-  com.google.protobuf.TimestampOrBuilder getDeliveryTimestampOrBuilder();
-
-  /**
-   * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-   * @return Whether the invisibleDuration field is set.
-   */
-  boolean hasInvisibleDuration();
-  /**
-   * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-   * @return The invisibleDuration.
-   */
-  com.google.protobuf.Duration getInvisibleDuration();
-  /**
-   * <code>.google.protobuf.Duration invisible_duration = 4;</code>
-   */
-  com.google.protobuf.DurationOrBuilder getInvisibleDurationOrBuilder();
+  public apache.rocketmq.v2.ReceiveMessageResponse.ContentCase getContentCase();
 }

@@ -66,10 +66,11 @@ message RetryPolicy {
   }
 }
 
+// https://en.wikipedia.org/wiki/Exponential_backoff
 message ExponentialBackoff {
-  float initial_backoff = 1;
-  float max_backoff = 2;
-  float backoff_multiplier = 3;
+  google.protobuf.Duration initial = 1;
+  google.protobuf.Duration max = 2;
+  float multiplier = 3;
 }
 
 message CustomizedBackoff {

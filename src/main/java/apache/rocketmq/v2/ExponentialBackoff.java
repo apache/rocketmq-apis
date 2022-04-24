@@ -4,6 +4,10 @@
 package apache.rocketmq.v2;
 
 /**
+ * <pre>
+ * https://en.wikipedia.org/wiki/Exponential_backoff
+ * </pre>
+ *
  * Protobuf type {@code apache.rocketmq.v2.ExponentialBackoff}
  */
 public final class ExponentialBackoff extends
@@ -48,19 +52,35 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 13: {
+          case 10: {
+            com.google.protobuf.Duration.Builder subBuilder = null;
+            if (initial_ != null) {
+              subBuilder = initial_.toBuilder();
+            }
+            initial_ = input.readMessage(com.google.protobuf.Duration.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(initial_);
+              initial_ = subBuilder.buildPartial();
+            }
 
-            initialBackoff_ = input.readFloat();
             break;
           }
-          case 21: {
+          case 18: {
+            com.google.protobuf.Duration.Builder subBuilder = null;
+            if (max_ != null) {
+              subBuilder = max_.toBuilder();
+            }
+            max_ = input.readMessage(com.google.protobuf.Duration.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(max_);
+              max_ = subBuilder.buildPartial();
+            }
 
-            maxBackoff_ = input.readFloat();
             break;
           }
           case 29: {
 
-            backoffMultiplier_ = input.readFloat();
+            multiplier_ = input.readFloat();
             break;
           }
           default: {
@@ -95,37 +115,67 @@ private static final long serialVersionUID = 0L;
             apache.rocketmq.v2.ExponentialBackoff.class, apache.rocketmq.v2.ExponentialBackoff.Builder.class);
   }
 
-  public static final int INITIAL_BACKOFF_FIELD_NUMBER = 1;
-  private float initialBackoff_;
+  public static final int INITIAL_FIELD_NUMBER = 1;
+  private com.google.protobuf.Duration initial_;
   /**
-   * <code>float initial_backoff = 1;</code>
-   * @return The initialBackoff.
+   * <code>.google.protobuf.Duration initial = 1;</code>
+   * @return Whether the initial field is set.
    */
   @java.lang.Override
-  public float getInitialBackoff() {
-    return initialBackoff_;
+  public boolean hasInitial() {
+    return initial_ != null;
+  }
+  /**
+   * <code>.google.protobuf.Duration initial = 1;</code>
+   * @return The initial.
+   */
+  @java.lang.Override
+  public com.google.protobuf.Duration getInitial() {
+    return initial_ == null ? com.google.protobuf.Duration.getDefaultInstance() : initial_;
+  }
+  /**
+   * <code>.google.protobuf.Duration initial = 1;</code>
+   */
+  @java.lang.Override
+  public com.google.protobuf.DurationOrBuilder getInitialOrBuilder() {
+    return getInitial();
   }
 
-  public static final int MAX_BACKOFF_FIELD_NUMBER = 2;
-  private float maxBackoff_;
+  public static final int MAX_FIELD_NUMBER = 2;
+  private com.google.protobuf.Duration max_;
   /**
-   * <code>float max_backoff = 2;</code>
-   * @return The maxBackoff.
+   * <code>.google.protobuf.Duration max = 2;</code>
+   * @return Whether the max field is set.
    */
   @java.lang.Override
-  public float getMaxBackoff() {
-    return maxBackoff_;
+  public boolean hasMax() {
+    return max_ != null;
+  }
+  /**
+   * <code>.google.protobuf.Duration max = 2;</code>
+   * @return The max.
+   */
+  @java.lang.Override
+  public com.google.protobuf.Duration getMax() {
+    return max_ == null ? com.google.protobuf.Duration.getDefaultInstance() : max_;
+  }
+  /**
+   * <code>.google.protobuf.Duration max = 2;</code>
+   */
+  @java.lang.Override
+  public com.google.protobuf.DurationOrBuilder getMaxOrBuilder() {
+    return getMax();
   }
 
-  public static final int BACKOFF_MULTIPLIER_FIELD_NUMBER = 3;
-  private float backoffMultiplier_;
+  public static final int MULTIPLIER_FIELD_NUMBER = 3;
+  private float multiplier_;
   /**
-   * <code>float backoff_multiplier = 3;</code>
-   * @return The backoffMultiplier.
+   * <code>float multiplier = 3;</code>
+   * @return The multiplier.
    */
   @java.lang.Override
-  public float getBackoffMultiplier() {
-    return backoffMultiplier_;
+  public float getMultiplier() {
+    return multiplier_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -142,14 +192,14 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (java.lang.Float.floatToRawIntBits(initialBackoff_) != 0) {
-      output.writeFloat(1, initialBackoff_);
+    if (initial_ != null) {
+      output.writeMessage(1, getInitial());
     }
-    if (java.lang.Float.floatToRawIntBits(maxBackoff_) != 0) {
-      output.writeFloat(2, maxBackoff_);
+    if (max_ != null) {
+      output.writeMessage(2, getMax());
     }
-    if (java.lang.Float.floatToRawIntBits(backoffMultiplier_) != 0) {
-      output.writeFloat(3, backoffMultiplier_);
+    if (java.lang.Float.floatToRawIntBits(multiplier_) != 0) {
+      output.writeFloat(3, multiplier_);
     }
     unknownFields.writeTo(output);
   }
@@ -160,17 +210,17 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (java.lang.Float.floatToRawIntBits(initialBackoff_) != 0) {
+    if (initial_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeFloatSize(1, initialBackoff_);
+        .computeMessageSize(1, getInitial());
     }
-    if (java.lang.Float.floatToRawIntBits(maxBackoff_) != 0) {
+    if (max_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeFloatSize(2, maxBackoff_);
+        .computeMessageSize(2, getMax());
     }
-    if (java.lang.Float.floatToRawIntBits(backoffMultiplier_) != 0) {
+    if (java.lang.Float.floatToRawIntBits(multiplier_) != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeFloatSize(3, backoffMultiplier_);
+        .computeFloatSize(3, multiplier_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -187,15 +237,19 @@ private static final long serialVersionUID = 0L;
     }
     apache.rocketmq.v2.ExponentialBackoff other = (apache.rocketmq.v2.ExponentialBackoff) obj;
 
-    if (java.lang.Float.floatToIntBits(getInitialBackoff())
+    if (hasInitial() != other.hasInitial()) return false;
+    if (hasInitial()) {
+      if (!getInitial()
+          .equals(other.getInitial())) return false;
+    }
+    if (hasMax() != other.hasMax()) return false;
+    if (hasMax()) {
+      if (!getMax()
+          .equals(other.getMax())) return false;
+    }
+    if (java.lang.Float.floatToIntBits(getMultiplier())
         != java.lang.Float.floatToIntBits(
-            other.getInitialBackoff())) return false;
-    if (java.lang.Float.floatToIntBits(getMaxBackoff())
-        != java.lang.Float.floatToIntBits(
-            other.getMaxBackoff())) return false;
-    if (java.lang.Float.floatToIntBits(getBackoffMultiplier())
-        != java.lang.Float.floatToIntBits(
-            other.getBackoffMultiplier())) return false;
+            other.getMultiplier())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -207,15 +261,17 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + INITIAL_BACKOFF_FIELD_NUMBER;
+    if (hasInitial()) {
+      hash = (37 * hash) + INITIAL_FIELD_NUMBER;
+      hash = (53 * hash) + getInitial().hashCode();
+    }
+    if (hasMax()) {
+      hash = (37 * hash) + MAX_FIELD_NUMBER;
+      hash = (53 * hash) + getMax().hashCode();
+    }
+    hash = (37 * hash) + MULTIPLIER_FIELD_NUMBER;
     hash = (53 * hash) + java.lang.Float.floatToIntBits(
-        getInitialBackoff());
-    hash = (37 * hash) + MAX_BACKOFF_FIELD_NUMBER;
-    hash = (53 * hash) + java.lang.Float.floatToIntBits(
-        getMaxBackoff());
-    hash = (37 * hash) + BACKOFF_MULTIPLIER_FIELD_NUMBER;
-    hash = (53 * hash) + java.lang.Float.floatToIntBits(
-        getBackoffMultiplier());
+        getMultiplier());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -312,6 +368,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   * https://en.wikipedia.org/wiki/Exponential_backoff
+   * </pre>
+   *
    * Protobuf type {@code apache.rocketmq.v2.ExponentialBackoff}
    */
   public static final class Builder extends
@@ -349,11 +409,19 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      initialBackoff_ = 0F;
-
-      maxBackoff_ = 0F;
-
-      backoffMultiplier_ = 0F;
+      if (initialBuilder_ == null) {
+        initial_ = null;
+      } else {
+        initial_ = null;
+        initialBuilder_ = null;
+      }
+      if (maxBuilder_ == null) {
+        max_ = null;
+      } else {
+        max_ = null;
+        maxBuilder_ = null;
+      }
+      multiplier_ = 0F;
 
       return this;
     }
@@ -381,9 +449,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public apache.rocketmq.v2.ExponentialBackoff buildPartial() {
       apache.rocketmq.v2.ExponentialBackoff result = new apache.rocketmq.v2.ExponentialBackoff(this);
-      result.initialBackoff_ = initialBackoff_;
-      result.maxBackoff_ = maxBackoff_;
-      result.backoffMultiplier_ = backoffMultiplier_;
+      if (initialBuilder_ == null) {
+        result.initial_ = initial_;
+      } else {
+        result.initial_ = initialBuilder_.build();
+      }
+      if (maxBuilder_ == null) {
+        result.max_ = max_;
+      } else {
+        result.max_ = maxBuilder_.build();
+      }
+      result.multiplier_ = multiplier_;
       onBuilt();
       return result;
     }
@@ -432,14 +508,14 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(apache.rocketmq.v2.ExponentialBackoff other) {
       if (other == apache.rocketmq.v2.ExponentialBackoff.getDefaultInstance()) return this;
-      if (other.getInitialBackoff() != 0F) {
-        setInitialBackoff(other.getInitialBackoff());
+      if (other.hasInitial()) {
+        mergeInitial(other.getInitial());
       }
-      if (other.getMaxBackoff() != 0F) {
-        setMaxBackoff(other.getMaxBackoff());
+      if (other.hasMax()) {
+        mergeMax(other.getMax());
       }
-      if (other.getBackoffMultiplier() != 0F) {
-        setBackoffMultiplier(other.getBackoffMultiplier());
+      if (other.getMultiplier() != 0F) {
+        setMultiplier(other.getMultiplier());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -470,95 +546,271 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private float initialBackoff_ ;
+    private com.google.protobuf.Duration initial_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> initialBuilder_;
     /**
-     * <code>float initial_backoff = 1;</code>
-     * @return The initialBackoff.
+     * <code>.google.protobuf.Duration initial = 1;</code>
+     * @return Whether the initial field is set.
      */
-    @java.lang.Override
-    public float getInitialBackoff() {
-      return initialBackoff_;
+    public boolean hasInitial() {
+      return initialBuilder_ != null || initial_ != null;
     }
     /**
-     * <code>float initial_backoff = 1;</code>
-     * @param value The initialBackoff to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.Duration initial = 1;</code>
+     * @return The initial.
      */
-    public Builder setInitialBackoff(float value) {
-      
-      initialBackoff_ = value;
-      onChanged();
+    public com.google.protobuf.Duration getInitial() {
+      if (initialBuilder_ == null) {
+        return initial_ == null ? com.google.protobuf.Duration.getDefaultInstance() : initial_;
+      } else {
+        return initialBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.google.protobuf.Duration initial = 1;</code>
+     */
+    public Builder setInitial(com.google.protobuf.Duration value) {
+      if (initialBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        initial_ = value;
+        onChanged();
+      } else {
+        initialBuilder_.setMessage(value);
+      }
+
       return this;
     }
     /**
-     * <code>float initial_backoff = 1;</code>
-     * @return This builder for chaining.
+     * <code>.google.protobuf.Duration initial = 1;</code>
      */
-    public Builder clearInitialBackoff() {
-      
-      initialBackoff_ = 0F;
-      onChanged();
+    public Builder setInitial(
+        com.google.protobuf.Duration.Builder builderForValue) {
+      if (initialBuilder_ == null) {
+        initial_ = builderForValue.build();
+        onChanged();
+      } else {
+        initialBuilder_.setMessage(builderForValue.build());
+      }
+
       return this;
+    }
+    /**
+     * <code>.google.protobuf.Duration initial = 1;</code>
+     */
+    public Builder mergeInitial(com.google.protobuf.Duration value) {
+      if (initialBuilder_ == null) {
+        if (initial_ != null) {
+          initial_ =
+            com.google.protobuf.Duration.newBuilder(initial_).mergeFrom(value).buildPartial();
+        } else {
+          initial_ = value;
+        }
+        onChanged();
+      } else {
+        initialBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Duration initial = 1;</code>
+     */
+    public Builder clearInitial() {
+      if (initialBuilder_ == null) {
+        initial_ = null;
+        onChanged();
+      } else {
+        initial_ = null;
+        initialBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Duration initial = 1;</code>
+     */
+    public com.google.protobuf.Duration.Builder getInitialBuilder() {
+      
+      onChanged();
+      return getInitialFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.Duration initial = 1;</code>
+     */
+    public com.google.protobuf.DurationOrBuilder getInitialOrBuilder() {
+      if (initialBuilder_ != null) {
+        return initialBuilder_.getMessageOrBuilder();
+      } else {
+        return initial_ == null ?
+            com.google.protobuf.Duration.getDefaultInstance() : initial_;
+      }
+    }
+    /**
+     * <code>.google.protobuf.Duration initial = 1;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
+        getInitialFieldBuilder() {
+      if (initialBuilder_ == null) {
+        initialBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder>(
+                getInitial(),
+                getParentForChildren(),
+                isClean());
+        initial_ = null;
+      }
+      return initialBuilder_;
     }
 
-    private float maxBackoff_ ;
+    private com.google.protobuf.Duration max_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> maxBuilder_;
     /**
-     * <code>float max_backoff = 2;</code>
-     * @return The maxBackoff.
+     * <code>.google.protobuf.Duration max = 2;</code>
+     * @return Whether the max field is set.
      */
-    @java.lang.Override
-    public float getMaxBackoff() {
-      return maxBackoff_;
+    public boolean hasMax() {
+      return maxBuilder_ != null || max_ != null;
     }
     /**
-     * <code>float max_backoff = 2;</code>
-     * @param value The maxBackoff to set.
-     * @return This builder for chaining.
+     * <code>.google.protobuf.Duration max = 2;</code>
+     * @return The max.
      */
-    public Builder setMaxBackoff(float value) {
-      
-      maxBackoff_ = value;
-      onChanged();
+    public com.google.protobuf.Duration getMax() {
+      if (maxBuilder_ == null) {
+        return max_ == null ? com.google.protobuf.Duration.getDefaultInstance() : max_;
+      } else {
+        return maxBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.google.protobuf.Duration max = 2;</code>
+     */
+    public Builder setMax(com.google.protobuf.Duration value) {
+      if (maxBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        max_ = value;
+        onChanged();
+      } else {
+        maxBuilder_.setMessage(value);
+      }
+
       return this;
     }
     /**
-     * <code>float max_backoff = 2;</code>
-     * @return This builder for chaining.
+     * <code>.google.protobuf.Duration max = 2;</code>
      */
-    public Builder clearMaxBackoff() {
-      
-      maxBackoff_ = 0F;
-      onChanged();
+    public Builder setMax(
+        com.google.protobuf.Duration.Builder builderForValue) {
+      if (maxBuilder_ == null) {
+        max_ = builderForValue.build();
+        onChanged();
+      } else {
+        maxBuilder_.setMessage(builderForValue.build());
+      }
+
       return this;
+    }
+    /**
+     * <code>.google.protobuf.Duration max = 2;</code>
+     */
+    public Builder mergeMax(com.google.protobuf.Duration value) {
+      if (maxBuilder_ == null) {
+        if (max_ != null) {
+          max_ =
+            com.google.protobuf.Duration.newBuilder(max_).mergeFrom(value).buildPartial();
+        } else {
+          max_ = value;
+        }
+        onChanged();
+      } else {
+        maxBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Duration max = 2;</code>
+     */
+    public Builder clearMax() {
+      if (maxBuilder_ == null) {
+        max_ = null;
+        onChanged();
+      } else {
+        max_ = null;
+        maxBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Duration max = 2;</code>
+     */
+    public com.google.protobuf.Duration.Builder getMaxBuilder() {
+      
+      onChanged();
+      return getMaxFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.Duration max = 2;</code>
+     */
+    public com.google.protobuf.DurationOrBuilder getMaxOrBuilder() {
+      if (maxBuilder_ != null) {
+        return maxBuilder_.getMessageOrBuilder();
+      } else {
+        return max_ == null ?
+            com.google.protobuf.Duration.getDefaultInstance() : max_;
+      }
+    }
+    /**
+     * <code>.google.protobuf.Duration max = 2;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
+        getMaxFieldBuilder() {
+      if (maxBuilder_ == null) {
+        maxBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder>(
+                getMax(),
+                getParentForChildren(),
+                isClean());
+        max_ = null;
+      }
+      return maxBuilder_;
     }
 
-    private float backoffMultiplier_ ;
+    private float multiplier_ ;
     /**
-     * <code>float backoff_multiplier = 3;</code>
-     * @return The backoffMultiplier.
+     * <code>float multiplier = 3;</code>
+     * @return The multiplier.
      */
     @java.lang.Override
-    public float getBackoffMultiplier() {
-      return backoffMultiplier_;
+    public float getMultiplier() {
+      return multiplier_;
     }
     /**
-     * <code>float backoff_multiplier = 3;</code>
-     * @param value The backoffMultiplier to set.
+     * <code>float multiplier = 3;</code>
+     * @param value The multiplier to set.
      * @return This builder for chaining.
      */
-    public Builder setBackoffMultiplier(float value) {
+    public Builder setMultiplier(float value) {
       
-      backoffMultiplier_ = value;
+      multiplier_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>float backoff_multiplier = 3;</code>
+     * <code>float multiplier = 3;</code>
      * @return This builder for chaining.
      */
-    public Builder clearBackoffMultiplier() {
+    public Builder clearMultiplier() {
       
-      backoffMultiplier_ = 0F;
+      multiplier_ = 0F;
       onChanged();
       return this;
     }

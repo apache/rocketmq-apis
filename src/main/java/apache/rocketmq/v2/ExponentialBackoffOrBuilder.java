@@ -8,20 +8,38 @@ public interface ExponentialBackoffOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>float initial_backoff = 1;</code>
-   * @return The initialBackoff.
+   * <code>.google.protobuf.Duration initial = 1;</code>
+   * @return Whether the initial field is set.
    */
-  float getInitialBackoff();
+  boolean hasInitial();
+  /**
+   * <code>.google.protobuf.Duration initial = 1;</code>
+   * @return The initial.
+   */
+  com.google.protobuf.Duration getInitial();
+  /**
+   * <code>.google.protobuf.Duration initial = 1;</code>
+   */
+  com.google.protobuf.DurationOrBuilder getInitialOrBuilder();
 
   /**
-   * <code>float max_backoff = 2;</code>
-   * @return The maxBackoff.
+   * <code>.google.protobuf.Duration max = 2;</code>
+   * @return Whether the max field is set.
    */
-  float getMaxBackoff();
+  boolean hasMax();
+  /**
+   * <code>.google.protobuf.Duration max = 2;</code>
+   * @return The max.
+   */
+  com.google.protobuf.Duration getMax();
+  /**
+   * <code>.google.protobuf.Duration max = 2;</code>
+   */
+  com.google.protobuf.DurationOrBuilder getMaxOrBuilder();
 
   /**
-   * <code>float backoff_multiplier = 3;</code>
-   * @return The backoffMultiplier.
+   * <code>float multiplier = 3;</code>
+   * @return The multiplier.
    */
-  float getBackoffMultiplier();
+  float getMultiplier();
 }

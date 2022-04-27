@@ -63,43 +63,13 @@ public interface PublishingOrBuilder extends
 
   /**
    * <pre>
-   * If publishing of messages encounters throttle, producer clients shall
-   * apply backoff according to `retry_policy`
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 2;</code>
-   * @return Whether the retryPolicy field is set.
-   */
-  boolean hasRetryPolicy();
-  /**
-   * <pre>
-   * If publishing of messages encounters throttle, producer clients shall
-   * apply backoff according to `retry_policy`
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 2;</code>
-   * @return The retryPolicy.
-   */
-  apache.rocketmq.v2.RetryPolicy getRetryPolicy();
-  /**
-   * <pre>
-   * If publishing of messages encounters throttle, producer clients shall
-   * apply backoff according to `retry_policy`
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 2;</code>
-   */
-  apache.rocketmq.v2.RetryPolicyOrBuilder getRetryPolicyOrBuilder();
-
-  /**
-   * <pre>
    * Publishing settings below here are from server, it is essential for
    * server to push.
    * Body of message will be deflated if its size in bytes exceeds the
    * threshold.
    * </pre>
    *
-   * <code>int32 compress_body_threshold = 3;</code>
+   * <code>int32 compress_body_threshold = 2;</code>
    * @return The compressBodyThreshold.
    */
   int getCompressBodyThreshold();
@@ -111,7 +81,7 @@ public interface PublishingOrBuilder extends
    * client-side check validation.
    * </pre>
    *
-   * <code>int32 max_body_size = 4;</code>
+   * <code>int32 max_body_size = 3;</code>
    * @return The maxBodySize.
    */
   int getMaxBodySize();

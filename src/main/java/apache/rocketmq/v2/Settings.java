@@ -70,6 +70,19 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 26: {
+            apache.rocketmq.v2.RetryPolicy.Builder subBuilder = null;
+            if (backoffPolicy_ != null) {
+              subBuilder = backoffPolicy_.toBuilder();
+            }
+            backoffPolicy_ = input.readMessage(apache.rocketmq.v2.RetryPolicy.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(backoffPolicy_);
+              backoffPolicy_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
+          case 34: {
             com.google.protobuf.Duration.Builder subBuilder = null;
             if (((bitField0_ & 0x00000004) != 0)) {
               subBuilder = requestTimeout_.toBuilder();
@@ -82,9 +95,9 @@ private static final long serialVersionUID = 0L;
             bitField0_ |= 0x00000004;
             break;
           }
-          case 34: {
+          case 42: {
             apache.rocketmq.v2.Publishing.Builder subBuilder = null;
-            if (pubSubCase_ == 4) {
+            if (pubSubCase_ == 5) {
               subBuilder = ((apache.rocketmq.v2.Publishing) pubSub_).toBuilder();
             }
             pubSub_ =
@@ -93,12 +106,12 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom((apache.rocketmq.v2.Publishing) pubSub_);
               pubSub_ = subBuilder.buildPartial();
             }
-            pubSubCase_ = 4;
+            pubSubCase_ = 5;
             break;
           }
-          case 42: {
+          case 50: {
             apache.rocketmq.v2.Subscription.Builder subBuilder = null;
-            if (pubSubCase_ == 5) {
+            if (pubSubCase_ == 6) {
               subBuilder = ((apache.rocketmq.v2.Subscription) pubSub_).toBuilder();
             }
             pubSub_ =
@@ -107,7 +120,7 @@ private static final long serialVersionUID = 0L;
               subBuilder.mergeFrom((apache.rocketmq.v2.Subscription) pubSub_);
               pubSub_ = subBuilder.buildPartial();
             }
-            pubSubCase_ = 5;
+            pubSubCase_ = 6;
             break;
           }
           default: {
@@ -148,8 +161,8 @@ private static final long serialVersionUID = 0L;
   public enum PubSubCase
       implements com.google.protobuf.Internal.EnumLite,
           com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-    PUBLISHING(4),
-    SUBSCRIPTION(5),
+    PUBLISHING(5),
+    SUBSCRIPTION(6),
     PUBSUB_NOT_SET(0);
     private final int value;
     private PubSubCase(int value) {
@@ -167,8 +180,8 @@ private static final long serialVersionUID = 0L;
 
     public static PubSubCase forNumber(int value) {
       switch (value) {
-        case 4: return PUBLISHING;
-        case 5: return SUBSCRIPTION;
+        case 5: return PUBLISHING;
+        case 6: return SUBSCRIPTION;
         case 0: return PUBSUB_NOT_SET;
         default: return null;
       }
@@ -188,7 +201,7 @@ private static final long serialVersionUID = 0L;
   private int clientType_;
   /**
    * <pre>
-   * Common settings for all kind of clients.
+   * Configurations for all clients.
    * </pre>
    *
    * <code>optional .apache.rocketmq.v2.ClientType client_type = 1;</code>
@@ -199,7 +212,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Common settings for all kind of clients.
+   * Configurations for all clients.
    * </pre>
    *
    * <code>optional .apache.rocketmq.v2.ClientType client_type = 1;</code>
@@ -210,7 +223,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Common settings for all kind of clients.
+   * Configurations for all clients.
    * </pre>
    *
    * <code>optional .apache.rocketmq.v2.ClientType client_type = 1;</code>
@@ -248,14 +261,73 @@ private static final long serialVersionUID = 0L;
     return accessPoint_ == null ? apache.rocketmq.v2.Endpoints.getDefaultInstance() : accessPoint_;
   }
 
-  public static final int REQUEST_TIMEOUT_FIELD_NUMBER = 3;
+  public static final int BACKOFF_POLICY_FIELD_NUMBER = 3;
+  private apache.rocketmq.v2.RetryPolicy backoffPolicy_;
+  /**
+   * <pre>
+   * If publishing of messages encounters throttling or server internal errors,
+   * publishers should implement automatic retries after progressive longer
+   * back-offs for consecutive errors.
+   * When processing message fails, `backoff_policy` describes an interval
+   * after which the message should be available to consume again.
+   * For FIFO messages, the interval should be relatively small because
+   * messages of the same message group would not be readily available utill
+   * the prior one depletes its lifecycle.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 3;</code>
+   * @return Whether the backoffPolicy field is set.
+   */
+  @java.lang.Override
+  public boolean hasBackoffPolicy() {
+    return backoffPolicy_ != null;
+  }
+  /**
+   * <pre>
+   * If publishing of messages encounters throttling or server internal errors,
+   * publishers should implement automatic retries after progressive longer
+   * back-offs for consecutive errors.
+   * When processing message fails, `backoff_policy` describes an interval
+   * after which the message should be available to consume again.
+   * For FIFO messages, the interval should be relatively small because
+   * messages of the same message group would not be readily available utill
+   * the prior one depletes its lifecycle.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 3;</code>
+   * @return The backoffPolicy.
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.RetryPolicy getBackoffPolicy() {
+    return backoffPolicy_ == null ? apache.rocketmq.v2.RetryPolicy.getDefaultInstance() : backoffPolicy_;
+  }
+  /**
+   * <pre>
+   * If publishing of messages encounters throttling or server internal errors,
+   * publishers should implement automatic retries after progressive longer
+   * back-offs for consecutive errors.
+   * When processing message fails, `backoff_policy` describes an interval
+   * after which the message should be available to consume again.
+   * For FIFO messages, the interval should be relatively small because
+   * messages of the same message group would not be readily available utill
+   * the prior one depletes its lifecycle.
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 3;</code>
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.RetryPolicyOrBuilder getBackoffPolicyOrBuilder() {
+    return getBackoffPolicy();
+  }
+
+  public static final int REQUEST_TIMEOUT_FIELD_NUMBER = 4;
   private com.google.protobuf.Duration requestTimeout_;
   /**
    * <pre>
    * Request timeout for RPCs excluding long-polling.
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration request_timeout = 3;</code>
+   * <code>optional .google.protobuf.Duration request_timeout = 4;</code>
    * @return Whether the requestTimeout field is set.
    */
   @java.lang.Override
@@ -267,7 +339,7 @@ private static final long serialVersionUID = 0L;
    * Request timeout for RPCs excluding long-polling.
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration request_timeout = 3;</code>
+   * <code>optional .google.protobuf.Duration request_timeout = 4;</code>
    * @return The requestTimeout.
    */
   @java.lang.Override
@@ -279,70 +351,70 @@ private static final long serialVersionUID = 0L;
    * Request timeout for RPCs excluding long-polling.
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration request_timeout = 3;</code>
+   * <code>optional .google.protobuf.Duration request_timeout = 4;</code>
    */
   @java.lang.Override
   public com.google.protobuf.DurationOrBuilder getRequestTimeoutOrBuilder() {
     return requestTimeout_ == null ? com.google.protobuf.Duration.getDefaultInstance() : requestTimeout_;
   }
 
-  public static final int PUBLISHING_FIELD_NUMBER = 4;
+  public static final int PUBLISHING_FIELD_NUMBER = 5;
   /**
-   * <code>.apache.rocketmq.v2.Publishing publishing = 4;</code>
+   * <code>.apache.rocketmq.v2.Publishing publishing = 5;</code>
    * @return Whether the publishing field is set.
    */
   @java.lang.Override
   public boolean hasPublishing() {
-    return pubSubCase_ == 4;
+    return pubSubCase_ == 5;
   }
   /**
-   * <code>.apache.rocketmq.v2.Publishing publishing = 4;</code>
+   * <code>.apache.rocketmq.v2.Publishing publishing = 5;</code>
    * @return The publishing.
    */
   @java.lang.Override
   public apache.rocketmq.v2.Publishing getPublishing() {
-    if (pubSubCase_ == 4) {
+    if (pubSubCase_ == 5) {
        return (apache.rocketmq.v2.Publishing) pubSub_;
     }
     return apache.rocketmq.v2.Publishing.getDefaultInstance();
   }
   /**
-   * <code>.apache.rocketmq.v2.Publishing publishing = 4;</code>
+   * <code>.apache.rocketmq.v2.Publishing publishing = 5;</code>
    */
   @java.lang.Override
   public apache.rocketmq.v2.PublishingOrBuilder getPublishingOrBuilder() {
-    if (pubSubCase_ == 4) {
+    if (pubSubCase_ == 5) {
        return (apache.rocketmq.v2.Publishing) pubSub_;
     }
     return apache.rocketmq.v2.Publishing.getDefaultInstance();
   }
 
-  public static final int SUBSCRIPTION_FIELD_NUMBER = 5;
+  public static final int SUBSCRIPTION_FIELD_NUMBER = 6;
   /**
-   * <code>.apache.rocketmq.v2.Subscription subscription = 5;</code>
+   * <code>.apache.rocketmq.v2.Subscription subscription = 6;</code>
    * @return Whether the subscription field is set.
    */
   @java.lang.Override
   public boolean hasSubscription() {
-    return pubSubCase_ == 5;
+    return pubSubCase_ == 6;
   }
   /**
-   * <code>.apache.rocketmq.v2.Subscription subscription = 5;</code>
+   * <code>.apache.rocketmq.v2.Subscription subscription = 6;</code>
    * @return The subscription.
    */
   @java.lang.Override
   public apache.rocketmq.v2.Subscription getSubscription() {
-    if (pubSubCase_ == 5) {
+    if (pubSubCase_ == 6) {
        return (apache.rocketmq.v2.Subscription) pubSub_;
     }
     return apache.rocketmq.v2.Subscription.getDefaultInstance();
   }
   /**
-   * <code>.apache.rocketmq.v2.Subscription subscription = 5;</code>
+   * <code>.apache.rocketmq.v2.Subscription subscription = 6;</code>
    */
   @java.lang.Override
   public apache.rocketmq.v2.SubscriptionOrBuilder getSubscriptionOrBuilder() {
-    if (pubSubCase_ == 5) {
+    if (pubSubCase_ == 6) {
        return (apache.rocketmq.v2.Subscription) pubSub_;
     }
     return apache.rocketmq.v2.Subscription.getDefaultInstance();
@@ -368,14 +440,17 @@ private static final long serialVersionUID = 0L;
     if (((bitField0_ & 0x00000002) != 0)) {
       output.writeMessage(2, getAccessPoint());
     }
-    if (((bitField0_ & 0x00000004) != 0)) {
-      output.writeMessage(3, getRequestTimeout());
+    if (backoffPolicy_ != null) {
+      output.writeMessage(3, getBackoffPolicy());
     }
-    if (pubSubCase_ == 4) {
-      output.writeMessage(4, (apache.rocketmq.v2.Publishing) pubSub_);
+    if (((bitField0_ & 0x00000004) != 0)) {
+      output.writeMessage(4, getRequestTimeout());
     }
     if (pubSubCase_ == 5) {
-      output.writeMessage(5, (apache.rocketmq.v2.Subscription) pubSub_);
+      output.writeMessage(5, (apache.rocketmq.v2.Publishing) pubSub_);
+    }
+    if (pubSubCase_ == 6) {
+      output.writeMessage(6, (apache.rocketmq.v2.Subscription) pubSub_);
     }
     unknownFields.writeTo(output);
   }
@@ -394,17 +469,21 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, getAccessPoint());
     }
+    if (backoffPolicy_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(3, getBackoffPolicy());
+    }
     if (((bitField0_ & 0x00000004) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, getRequestTimeout());
-    }
-    if (pubSubCase_ == 4) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(4, (apache.rocketmq.v2.Publishing) pubSub_);
+        .computeMessageSize(4, getRequestTimeout());
     }
     if (pubSubCase_ == 5) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(5, (apache.rocketmq.v2.Subscription) pubSub_);
+        .computeMessageSize(5, (apache.rocketmq.v2.Publishing) pubSub_);
+    }
+    if (pubSubCase_ == 6) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(6, (apache.rocketmq.v2.Subscription) pubSub_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -430,6 +509,11 @@ private static final long serialVersionUID = 0L;
       if (!getAccessPoint()
           .equals(other.getAccessPoint())) return false;
     }
+    if (hasBackoffPolicy() != other.hasBackoffPolicy()) return false;
+    if (hasBackoffPolicy()) {
+      if (!getBackoffPolicy()
+          .equals(other.getBackoffPolicy())) return false;
+    }
     if (hasRequestTimeout() != other.hasRequestTimeout()) return false;
     if (hasRequestTimeout()) {
       if (!getRequestTimeout()
@@ -437,11 +521,11 @@ private static final long serialVersionUID = 0L;
     }
     if (!getPubSubCase().equals(other.getPubSubCase())) return false;
     switch (pubSubCase_) {
-      case 4:
+      case 5:
         if (!getPublishing()
             .equals(other.getPublishing())) return false;
         break;
-      case 5:
+      case 6:
         if (!getSubscription()
             .equals(other.getSubscription())) return false;
         break;
@@ -467,16 +551,20 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + ACCESS_POINT_FIELD_NUMBER;
       hash = (53 * hash) + getAccessPoint().hashCode();
     }
+    if (hasBackoffPolicy()) {
+      hash = (37 * hash) + BACKOFF_POLICY_FIELD_NUMBER;
+      hash = (53 * hash) + getBackoffPolicy().hashCode();
+    }
     if (hasRequestTimeout()) {
       hash = (37 * hash) + REQUEST_TIMEOUT_FIELD_NUMBER;
       hash = (53 * hash) + getRequestTimeout().hashCode();
     }
     switch (pubSubCase_) {
-      case 4:
+      case 5:
         hash = (37 * hash) + PUBLISHING_FIELD_NUMBER;
         hash = (53 * hash) + getPublishing().hashCode();
         break;
-      case 5:
+      case 6:
         hash = (37 * hash) + SUBSCRIPTION_FIELD_NUMBER;
         hash = (53 * hash) + getSubscription().hashCode();
         break;
@@ -626,6 +714,12 @@ private static final long serialVersionUID = 0L;
         accessPointBuilder_.clear();
       }
       bitField0_ = (bitField0_ & ~0x00000002);
+      if (backoffPolicyBuilder_ == null) {
+        backoffPolicy_ = null;
+      } else {
+        backoffPolicy_ = null;
+        backoffPolicyBuilder_ = null;
+      }
       if (requestTimeoutBuilder_ == null) {
         requestTimeout_ = null;
       } else {
@@ -674,6 +768,11 @@ private static final long serialVersionUID = 0L;
         }
         to_bitField0_ |= 0x00000002;
       }
+      if (backoffPolicyBuilder_ == null) {
+        result.backoffPolicy_ = backoffPolicy_;
+      } else {
+        result.backoffPolicy_ = backoffPolicyBuilder_.build();
+      }
       if (((from_bitField0_ & 0x00000004) != 0)) {
         if (requestTimeoutBuilder_ == null) {
           result.requestTimeout_ = requestTimeout_;
@@ -682,14 +781,14 @@ private static final long serialVersionUID = 0L;
         }
         to_bitField0_ |= 0x00000004;
       }
-      if (pubSubCase_ == 4) {
+      if (pubSubCase_ == 5) {
         if (publishingBuilder_ == null) {
           result.pubSub_ = pubSub_;
         } else {
           result.pubSub_ = publishingBuilder_.build();
         }
       }
-      if (pubSubCase_ == 5) {
+      if (pubSubCase_ == 6) {
         if (subscriptionBuilder_ == null) {
           result.pubSub_ = pubSub_;
         } else {
@@ -751,6 +850,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasAccessPoint()) {
         mergeAccessPoint(other.getAccessPoint());
+      }
+      if (other.hasBackoffPolicy()) {
+        mergeBackoffPolicy(other.getBackoffPolicy());
       }
       if (other.hasRequestTimeout()) {
         mergeRequestTimeout(other.getRequestTimeout());
@@ -816,7 +918,7 @@ private static final long serialVersionUID = 0L;
     private int clientType_ = 0;
     /**
      * <pre>
-     * Common settings for all kind of clients.
+     * Configurations for all clients.
      * </pre>
      *
      * <code>optional .apache.rocketmq.v2.ClientType client_type = 1;</code>
@@ -827,7 +929,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Common settings for all kind of clients.
+     * Configurations for all clients.
      * </pre>
      *
      * <code>optional .apache.rocketmq.v2.ClientType client_type = 1;</code>
@@ -838,7 +940,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Common settings for all kind of clients.
+     * Configurations for all clients.
      * </pre>
      *
      * <code>optional .apache.rocketmq.v2.ClientType client_type = 1;</code>
@@ -853,7 +955,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Common settings for all kind of clients.
+     * Configurations for all clients.
      * </pre>
      *
      * <code>optional .apache.rocketmq.v2.ClientType client_type = 1;</code>
@@ -867,7 +969,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Common settings for all kind of clients.
+     * Configurations for all clients.
      * </pre>
      *
      * <code>optional .apache.rocketmq.v2.ClientType client_type = 1;</code>
@@ -885,7 +987,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Common settings for all kind of clients.
+     * Configurations for all clients.
      * </pre>
      *
      * <code>optional .apache.rocketmq.v2.ClientType client_type = 1;</code>
@@ -1018,6 +1120,224 @@ private static final long serialVersionUID = 0L;
       return accessPointBuilder_;
     }
 
+    private apache.rocketmq.v2.RetryPolicy backoffPolicy_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.RetryPolicy, apache.rocketmq.v2.RetryPolicy.Builder, apache.rocketmq.v2.RetryPolicyOrBuilder> backoffPolicyBuilder_;
+    /**
+     * <pre>
+     * If publishing of messages encounters throttling or server internal errors,
+     * publishers should implement automatic retries after progressive longer
+     * back-offs for consecutive errors.
+     * When processing message fails, `backoff_policy` describes an interval
+     * after which the message should be available to consume again.
+     * For FIFO messages, the interval should be relatively small because
+     * messages of the same message group would not be readily available utill
+     * the prior one depletes its lifecycle.
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 3;</code>
+     * @return Whether the backoffPolicy field is set.
+     */
+    public boolean hasBackoffPolicy() {
+      return backoffPolicyBuilder_ != null || backoffPolicy_ != null;
+    }
+    /**
+     * <pre>
+     * If publishing of messages encounters throttling or server internal errors,
+     * publishers should implement automatic retries after progressive longer
+     * back-offs for consecutive errors.
+     * When processing message fails, `backoff_policy` describes an interval
+     * after which the message should be available to consume again.
+     * For FIFO messages, the interval should be relatively small because
+     * messages of the same message group would not be readily available utill
+     * the prior one depletes its lifecycle.
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 3;</code>
+     * @return The backoffPolicy.
+     */
+    public apache.rocketmq.v2.RetryPolicy getBackoffPolicy() {
+      if (backoffPolicyBuilder_ == null) {
+        return backoffPolicy_ == null ? apache.rocketmq.v2.RetryPolicy.getDefaultInstance() : backoffPolicy_;
+      } else {
+        return backoffPolicyBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * If publishing of messages encounters throttling or server internal errors,
+     * publishers should implement automatic retries after progressive longer
+     * back-offs for consecutive errors.
+     * When processing message fails, `backoff_policy` describes an interval
+     * after which the message should be available to consume again.
+     * For FIFO messages, the interval should be relatively small because
+     * messages of the same message group would not be readily available utill
+     * the prior one depletes its lifecycle.
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 3;</code>
+     */
+    public Builder setBackoffPolicy(apache.rocketmq.v2.RetryPolicy value) {
+      if (backoffPolicyBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        backoffPolicy_ = value;
+        onChanged();
+      } else {
+        backoffPolicyBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * If publishing of messages encounters throttling or server internal errors,
+     * publishers should implement automatic retries after progressive longer
+     * back-offs for consecutive errors.
+     * When processing message fails, `backoff_policy` describes an interval
+     * after which the message should be available to consume again.
+     * For FIFO messages, the interval should be relatively small because
+     * messages of the same message group would not be readily available utill
+     * the prior one depletes its lifecycle.
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 3;</code>
+     */
+    public Builder setBackoffPolicy(
+        apache.rocketmq.v2.RetryPolicy.Builder builderForValue) {
+      if (backoffPolicyBuilder_ == null) {
+        backoffPolicy_ = builderForValue.build();
+        onChanged();
+      } else {
+        backoffPolicyBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * If publishing of messages encounters throttling or server internal errors,
+     * publishers should implement automatic retries after progressive longer
+     * back-offs for consecutive errors.
+     * When processing message fails, `backoff_policy` describes an interval
+     * after which the message should be available to consume again.
+     * For FIFO messages, the interval should be relatively small because
+     * messages of the same message group would not be readily available utill
+     * the prior one depletes its lifecycle.
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 3;</code>
+     */
+    public Builder mergeBackoffPolicy(apache.rocketmq.v2.RetryPolicy value) {
+      if (backoffPolicyBuilder_ == null) {
+        if (backoffPolicy_ != null) {
+          backoffPolicy_ =
+            apache.rocketmq.v2.RetryPolicy.newBuilder(backoffPolicy_).mergeFrom(value).buildPartial();
+        } else {
+          backoffPolicy_ = value;
+        }
+        onChanged();
+      } else {
+        backoffPolicyBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * If publishing of messages encounters throttling or server internal errors,
+     * publishers should implement automatic retries after progressive longer
+     * back-offs for consecutive errors.
+     * When processing message fails, `backoff_policy` describes an interval
+     * after which the message should be available to consume again.
+     * For FIFO messages, the interval should be relatively small because
+     * messages of the same message group would not be readily available utill
+     * the prior one depletes its lifecycle.
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 3;</code>
+     */
+    public Builder clearBackoffPolicy() {
+      if (backoffPolicyBuilder_ == null) {
+        backoffPolicy_ = null;
+        onChanged();
+      } else {
+        backoffPolicy_ = null;
+        backoffPolicyBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * If publishing of messages encounters throttling or server internal errors,
+     * publishers should implement automatic retries after progressive longer
+     * back-offs for consecutive errors.
+     * When processing message fails, `backoff_policy` describes an interval
+     * after which the message should be available to consume again.
+     * For FIFO messages, the interval should be relatively small because
+     * messages of the same message group would not be readily available utill
+     * the prior one depletes its lifecycle.
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 3;</code>
+     */
+    public apache.rocketmq.v2.RetryPolicy.Builder getBackoffPolicyBuilder() {
+      
+      onChanged();
+      return getBackoffPolicyFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * If publishing of messages encounters throttling or server internal errors,
+     * publishers should implement automatic retries after progressive longer
+     * back-offs for consecutive errors.
+     * When processing message fails, `backoff_policy` describes an interval
+     * after which the message should be available to consume again.
+     * For FIFO messages, the interval should be relatively small because
+     * messages of the same message group would not be readily available utill
+     * the prior one depletes its lifecycle.
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 3;</code>
+     */
+    public apache.rocketmq.v2.RetryPolicyOrBuilder getBackoffPolicyOrBuilder() {
+      if (backoffPolicyBuilder_ != null) {
+        return backoffPolicyBuilder_.getMessageOrBuilder();
+      } else {
+        return backoffPolicy_ == null ?
+            apache.rocketmq.v2.RetryPolicy.getDefaultInstance() : backoffPolicy_;
+      }
+    }
+    /**
+     * <pre>
+     * If publishing of messages encounters throttling or server internal errors,
+     * publishers should implement automatic retries after progressive longer
+     * back-offs for consecutive errors.
+     * When processing message fails, `backoff_policy` describes an interval
+     * after which the message should be available to consume again.
+     * For FIFO messages, the interval should be relatively small because
+     * messages of the same message group would not be readily available utill
+     * the prior one depletes its lifecycle.
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 3;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.RetryPolicy, apache.rocketmq.v2.RetryPolicy.Builder, apache.rocketmq.v2.RetryPolicyOrBuilder> 
+        getBackoffPolicyFieldBuilder() {
+      if (backoffPolicyBuilder_ == null) {
+        backoffPolicyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            apache.rocketmq.v2.RetryPolicy, apache.rocketmq.v2.RetryPolicy.Builder, apache.rocketmq.v2.RetryPolicyOrBuilder>(
+                getBackoffPolicy(),
+                getParentForChildren(),
+                isClean());
+        backoffPolicy_ = null;
+      }
+      return backoffPolicyBuilder_;
+    }
+
     private com.google.protobuf.Duration requestTimeout_;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> requestTimeoutBuilder_;
@@ -1026,7 +1346,7 @@ private static final long serialVersionUID = 0L;
      * Request timeout for RPCs excluding long-polling.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration request_timeout = 3;</code>
+     * <code>optional .google.protobuf.Duration request_timeout = 4;</code>
      * @return Whether the requestTimeout field is set.
      */
     public boolean hasRequestTimeout() {
@@ -1037,7 +1357,7 @@ private static final long serialVersionUID = 0L;
      * Request timeout for RPCs excluding long-polling.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration request_timeout = 3;</code>
+     * <code>optional .google.protobuf.Duration request_timeout = 4;</code>
      * @return The requestTimeout.
      */
     public com.google.protobuf.Duration getRequestTimeout() {
@@ -1052,7 +1372,7 @@ private static final long serialVersionUID = 0L;
      * Request timeout for RPCs excluding long-polling.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration request_timeout = 3;</code>
+     * <code>optional .google.protobuf.Duration request_timeout = 4;</code>
      */
     public Builder setRequestTimeout(com.google.protobuf.Duration value) {
       if (requestTimeoutBuilder_ == null) {
@@ -1072,7 +1392,7 @@ private static final long serialVersionUID = 0L;
      * Request timeout for RPCs excluding long-polling.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration request_timeout = 3;</code>
+     * <code>optional .google.protobuf.Duration request_timeout = 4;</code>
      */
     public Builder setRequestTimeout(
         com.google.protobuf.Duration.Builder builderForValue) {
@@ -1090,7 +1410,7 @@ private static final long serialVersionUID = 0L;
      * Request timeout for RPCs excluding long-polling.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration request_timeout = 3;</code>
+     * <code>optional .google.protobuf.Duration request_timeout = 4;</code>
      */
     public Builder mergeRequestTimeout(com.google.protobuf.Duration value) {
       if (requestTimeoutBuilder_ == null) {
@@ -1114,7 +1434,7 @@ private static final long serialVersionUID = 0L;
      * Request timeout for RPCs excluding long-polling.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration request_timeout = 3;</code>
+     * <code>optional .google.protobuf.Duration request_timeout = 4;</code>
      */
     public Builder clearRequestTimeout() {
       if (requestTimeoutBuilder_ == null) {
@@ -1131,7 +1451,7 @@ private static final long serialVersionUID = 0L;
      * Request timeout for RPCs excluding long-polling.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration request_timeout = 3;</code>
+     * <code>optional .google.protobuf.Duration request_timeout = 4;</code>
      */
     public com.google.protobuf.Duration.Builder getRequestTimeoutBuilder() {
       bitField0_ |= 0x00000004;
@@ -1143,7 +1463,7 @@ private static final long serialVersionUID = 0L;
      * Request timeout for RPCs excluding long-polling.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration request_timeout = 3;</code>
+     * <code>optional .google.protobuf.Duration request_timeout = 4;</code>
      */
     public com.google.protobuf.DurationOrBuilder getRequestTimeoutOrBuilder() {
       if (requestTimeoutBuilder_ != null) {
@@ -1158,7 +1478,7 @@ private static final long serialVersionUID = 0L;
      * Request timeout for RPCs excluding long-polling.
      * </pre>
      *
-     * <code>optional .google.protobuf.Duration request_timeout = 3;</code>
+     * <code>optional .google.protobuf.Duration request_timeout = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
@@ -1177,33 +1497,33 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Publishing, apache.rocketmq.v2.Publishing.Builder, apache.rocketmq.v2.PublishingOrBuilder> publishingBuilder_;
     /**
-     * <code>.apache.rocketmq.v2.Publishing publishing = 4;</code>
+     * <code>.apache.rocketmq.v2.Publishing publishing = 5;</code>
      * @return Whether the publishing field is set.
      */
     @java.lang.Override
     public boolean hasPublishing() {
-      return pubSubCase_ == 4;
+      return pubSubCase_ == 5;
     }
     /**
-     * <code>.apache.rocketmq.v2.Publishing publishing = 4;</code>
+     * <code>.apache.rocketmq.v2.Publishing publishing = 5;</code>
      * @return The publishing.
      */
     @java.lang.Override
     public apache.rocketmq.v2.Publishing getPublishing() {
       if (publishingBuilder_ == null) {
-        if (pubSubCase_ == 4) {
+        if (pubSubCase_ == 5) {
           return (apache.rocketmq.v2.Publishing) pubSub_;
         }
         return apache.rocketmq.v2.Publishing.getDefaultInstance();
       } else {
-        if (pubSubCase_ == 4) {
+        if (pubSubCase_ == 5) {
           return publishingBuilder_.getMessage();
         }
         return apache.rocketmq.v2.Publishing.getDefaultInstance();
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Publishing publishing = 4;</code>
+     * <code>.apache.rocketmq.v2.Publishing publishing = 5;</code>
      */
     public Builder setPublishing(apache.rocketmq.v2.Publishing value) {
       if (publishingBuilder_ == null) {
@@ -1215,11 +1535,11 @@ private static final long serialVersionUID = 0L;
       } else {
         publishingBuilder_.setMessage(value);
       }
-      pubSubCase_ = 4;
+      pubSubCase_ = 5;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Publishing publishing = 4;</code>
+     * <code>.apache.rocketmq.v2.Publishing publishing = 5;</code>
      */
     public Builder setPublishing(
         apache.rocketmq.v2.Publishing.Builder builderForValue) {
@@ -1229,15 +1549,15 @@ private static final long serialVersionUID = 0L;
       } else {
         publishingBuilder_.setMessage(builderForValue.build());
       }
-      pubSubCase_ = 4;
+      pubSubCase_ = 5;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Publishing publishing = 4;</code>
+     * <code>.apache.rocketmq.v2.Publishing publishing = 5;</code>
      */
     public Builder mergePublishing(apache.rocketmq.v2.Publishing value) {
       if (publishingBuilder_ == null) {
-        if (pubSubCase_ == 4 &&
+        if (pubSubCase_ == 5 &&
             pubSub_ != apache.rocketmq.v2.Publishing.getDefaultInstance()) {
           pubSub_ = apache.rocketmq.v2.Publishing.newBuilder((apache.rocketmq.v2.Publishing) pubSub_)
               .mergeFrom(value).buildPartial();
@@ -1246,26 +1566,26 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       } else {
-        if (pubSubCase_ == 4) {
+        if (pubSubCase_ == 5) {
           publishingBuilder_.mergeFrom(value);
         }
         publishingBuilder_.setMessage(value);
       }
-      pubSubCase_ = 4;
+      pubSubCase_ = 5;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Publishing publishing = 4;</code>
+     * <code>.apache.rocketmq.v2.Publishing publishing = 5;</code>
      */
     public Builder clearPublishing() {
       if (publishingBuilder_ == null) {
-        if (pubSubCase_ == 4) {
+        if (pubSubCase_ == 5) {
           pubSubCase_ = 0;
           pubSub_ = null;
           onChanged();
         }
       } else {
-        if (pubSubCase_ == 4) {
+        if (pubSubCase_ == 5) {
           pubSubCase_ = 0;
           pubSub_ = null;
         }
@@ -1274,33 +1594,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Publishing publishing = 4;</code>
+     * <code>.apache.rocketmq.v2.Publishing publishing = 5;</code>
      */
     public apache.rocketmq.v2.Publishing.Builder getPublishingBuilder() {
       return getPublishingFieldBuilder().getBuilder();
     }
     /**
-     * <code>.apache.rocketmq.v2.Publishing publishing = 4;</code>
+     * <code>.apache.rocketmq.v2.Publishing publishing = 5;</code>
      */
     @java.lang.Override
     public apache.rocketmq.v2.PublishingOrBuilder getPublishingOrBuilder() {
-      if ((pubSubCase_ == 4) && (publishingBuilder_ != null)) {
+      if ((pubSubCase_ == 5) && (publishingBuilder_ != null)) {
         return publishingBuilder_.getMessageOrBuilder();
       } else {
-        if (pubSubCase_ == 4) {
+        if (pubSubCase_ == 5) {
           return (apache.rocketmq.v2.Publishing) pubSub_;
         }
         return apache.rocketmq.v2.Publishing.getDefaultInstance();
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Publishing publishing = 4;</code>
+     * <code>.apache.rocketmq.v2.Publishing publishing = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Publishing, apache.rocketmq.v2.Publishing.Builder, apache.rocketmq.v2.PublishingOrBuilder> 
         getPublishingFieldBuilder() {
       if (publishingBuilder_ == null) {
-        if (!(pubSubCase_ == 4)) {
+        if (!(pubSubCase_ == 5)) {
           pubSub_ = apache.rocketmq.v2.Publishing.getDefaultInstance();
         }
         publishingBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -1310,7 +1630,7 @@ private static final long serialVersionUID = 0L;
                 isClean());
         pubSub_ = null;
       }
-      pubSubCase_ = 4;
+      pubSubCase_ = 5;
       onChanged();;
       return publishingBuilder_;
     }
@@ -1318,33 +1638,33 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Subscription, apache.rocketmq.v2.Subscription.Builder, apache.rocketmq.v2.SubscriptionOrBuilder> subscriptionBuilder_;
     /**
-     * <code>.apache.rocketmq.v2.Subscription subscription = 5;</code>
+     * <code>.apache.rocketmq.v2.Subscription subscription = 6;</code>
      * @return Whether the subscription field is set.
      */
     @java.lang.Override
     public boolean hasSubscription() {
-      return pubSubCase_ == 5;
+      return pubSubCase_ == 6;
     }
     /**
-     * <code>.apache.rocketmq.v2.Subscription subscription = 5;</code>
+     * <code>.apache.rocketmq.v2.Subscription subscription = 6;</code>
      * @return The subscription.
      */
     @java.lang.Override
     public apache.rocketmq.v2.Subscription getSubscription() {
       if (subscriptionBuilder_ == null) {
-        if (pubSubCase_ == 5) {
+        if (pubSubCase_ == 6) {
           return (apache.rocketmq.v2.Subscription) pubSub_;
         }
         return apache.rocketmq.v2.Subscription.getDefaultInstance();
       } else {
-        if (pubSubCase_ == 5) {
+        if (pubSubCase_ == 6) {
           return subscriptionBuilder_.getMessage();
         }
         return apache.rocketmq.v2.Subscription.getDefaultInstance();
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Subscription subscription = 5;</code>
+     * <code>.apache.rocketmq.v2.Subscription subscription = 6;</code>
      */
     public Builder setSubscription(apache.rocketmq.v2.Subscription value) {
       if (subscriptionBuilder_ == null) {
@@ -1356,11 +1676,11 @@ private static final long serialVersionUID = 0L;
       } else {
         subscriptionBuilder_.setMessage(value);
       }
-      pubSubCase_ = 5;
+      pubSubCase_ = 6;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Subscription subscription = 5;</code>
+     * <code>.apache.rocketmq.v2.Subscription subscription = 6;</code>
      */
     public Builder setSubscription(
         apache.rocketmq.v2.Subscription.Builder builderForValue) {
@@ -1370,15 +1690,15 @@ private static final long serialVersionUID = 0L;
       } else {
         subscriptionBuilder_.setMessage(builderForValue.build());
       }
-      pubSubCase_ = 5;
+      pubSubCase_ = 6;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Subscription subscription = 5;</code>
+     * <code>.apache.rocketmq.v2.Subscription subscription = 6;</code>
      */
     public Builder mergeSubscription(apache.rocketmq.v2.Subscription value) {
       if (subscriptionBuilder_ == null) {
-        if (pubSubCase_ == 5 &&
+        if (pubSubCase_ == 6 &&
             pubSub_ != apache.rocketmq.v2.Subscription.getDefaultInstance()) {
           pubSub_ = apache.rocketmq.v2.Subscription.newBuilder((apache.rocketmq.v2.Subscription) pubSub_)
               .mergeFrom(value).buildPartial();
@@ -1387,26 +1707,26 @@ private static final long serialVersionUID = 0L;
         }
         onChanged();
       } else {
-        if (pubSubCase_ == 5) {
+        if (pubSubCase_ == 6) {
           subscriptionBuilder_.mergeFrom(value);
         }
         subscriptionBuilder_.setMessage(value);
       }
-      pubSubCase_ = 5;
+      pubSubCase_ = 6;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Subscription subscription = 5;</code>
+     * <code>.apache.rocketmq.v2.Subscription subscription = 6;</code>
      */
     public Builder clearSubscription() {
       if (subscriptionBuilder_ == null) {
-        if (pubSubCase_ == 5) {
+        if (pubSubCase_ == 6) {
           pubSubCase_ = 0;
           pubSub_ = null;
           onChanged();
         }
       } else {
-        if (pubSubCase_ == 5) {
+        if (pubSubCase_ == 6) {
           pubSubCase_ = 0;
           pubSub_ = null;
         }
@@ -1415,33 +1735,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Subscription subscription = 5;</code>
+     * <code>.apache.rocketmq.v2.Subscription subscription = 6;</code>
      */
     public apache.rocketmq.v2.Subscription.Builder getSubscriptionBuilder() {
       return getSubscriptionFieldBuilder().getBuilder();
     }
     /**
-     * <code>.apache.rocketmq.v2.Subscription subscription = 5;</code>
+     * <code>.apache.rocketmq.v2.Subscription subscription = 6;</code>
      */
     @java.lang.Override
     public apache.rocketmq.v2.SubscriptionOrBuilder getSubscriptionOrBuilder() {
-      if ((pubSubCase_ == 5) && (subscriptionBuilder_ != null)) {
+      if ((pubSubCase_ == 6) && (subscriptionBuilder_ != null)) {
         return subscriptionBuilder_.getMessageOrBuilder();
       } else {
-        if (pubSubCase_ == 5) {
+        if (pubSubCase_ == 6) {
           return (apache.rocketmq.v2.Subscription) pubSub_;
         }
         return apache.rocketmq.v2.Subscription.getDefaultInstance();
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Subscription subscription = 5;</code>
+     * <code>.apache.rocketmq.v2.Subscription subscription = 6;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Subscription, apache.rocketmq.v2.Subscription.Builder, apache.rocketmq.v2.SubscriptionOrBuilder> 
         getSubscriptionFieldBuilder() {
       if (subscriptionBuilder_ == null) {
-        if (!(pubSubCase_ == 5)) {
+        if (!(pubSubCase_ == 6)) {
           pubSub_ = apache.rocketmq.v2.Subscription.getDefaultInstance();
         }
         subscriptionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -1451,7 +1771,7 @@ private static final long serialVersionUID = 0L;
                 isClean());
         pubSub_ = null;
       }
-      pubSubCase_ = 5;
+      pubSubCase_ = 6;
       onChanged();;
       return subscriptionBuilder_;
     }

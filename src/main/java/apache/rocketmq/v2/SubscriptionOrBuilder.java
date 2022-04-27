@@ -115,49 +115,10 @@ public interface SubscriptionOrBuilder extends
 
   /**
    * <pre>
-   * When processing message fails, `backoff_policy` describes an interval
-   * after which the message is ready to consume again.
-   * For FIFO messages, the interval should be relatively small because
-   * messages of the same message group would not be readily available utill
-   * the prior one depletes its lifecycle.
-   * </pre>
-   *
-   * <code>optional .apache.rocketmq.v2.RetryPolicy backoff_policy = 4;</code>
-   * @return Whether the backoffPolicy field is set.
-   */
-  boolean hasBackoffPolicy();
-  /**
-   * <pre>
-   * When processing message fails, `backoff_policy` describes an interval
-   * after which the message is ready to consume again.
-   * For FIFO messages, the interval should be relatively small because
-   * messages of the same message group would not be readily available utill
-   * the prior one depletes its lifecycle.
-   * </pre>
-   *
-   * <code>optional .apache.rocketmq.v2.RetryPolicy backoff_policy = 4;</code>
-   * @return The backoffPolicy.
-   */
-  apache.rocketmq.v2.RetryPolicy getBackoffPolicy();
-  /**
-   * <pre>
-   * When processing message fails, `backoff_policy` describes an interval
-   * after which the message is ready to consume again.
-   * For FIFO messages, the interval should be relatively small because
-   * messages of the same message group would not be readily available utill
-   * the prior one depletes its lifecycle.
-   * </pre>
-   *
-   * <code>optional .apache.rocketmq.v2.RetryPolicy backoff_policy = 4;</code>
-   */
-  apache.rocketmq.v2.RetryPolicyOrBuilder getBackoffPolicyOrBuilder();
-
-  /**
-   * <pre>
    * Message receive batch size here is essential for push consumer.
    * </pre>
    *
-   * <code>optional int32 receive_batch_size = 5;</code>
+   * <code>optional int32 receive_batch_size = 4;</code>
    * @return Whether the receiveBatchSize field is set.
    */
   boolean hasReceiveBatchSize();
@@ -166,7 +127,7 @@ public interface SubscriptionOrBuilder extends
    * Message receive batch size here is essential for push consumer.
    * </pre>
    *
-   * <code>optional int32 receive_batch_size = 5;</code>
+   * <code>optional int32 receive_batch_size = 4;</code>
    * @return The receiveBatchSize.
    */
   int getReceiveBatchSize();
@@ -177,7 +138,7 @@ public interface SubscriptionOrBuilder extends
    * push consumer.
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration long_polling_timeout = 6;</code>
+   * <code>optional .google.protobuf.Duration long_polling_timeout = 5;</code>
    * @return Whether the longPollingTimeout field is set.
    */
   boolean hasLongPollingTimeout();
@@ -187,7 +148,7 @@ public interface SubscriptionOrBuilder extends
    * push consumer.
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration long_polling_timeout = 6;</code>
+   * <code>optional .google.protobuf.Duration long_polling_timeout = 5;</code>
    * @return The longPollingTimeout.
    */
   com.google.protobuf.Duration getLongPollingTimeout();
@@ -197,7 +158,7 @@ public interface SubscriptionOrBuilder extends
    * push consumer.
    * </pre>
    *
-   * <code>optional .google.protobuf.Duration long_polling_timeout = 6;</code>
+   * <code>optional .google.protobuf.Duration long_polling_timeout = 5;</code>
    */
   com.google.protobuf.DurationOrBuilder getLongPollingTimeoutOrBuilder();
 }

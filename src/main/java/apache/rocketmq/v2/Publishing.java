@@ -59,25 +59,12 @@ private static final long serialVersionUID = 0L;
                 input.readMessage(apache.rocketmq.v2.Resource.parser(), extensionRegistry));
             break;
           }
-          case 18: {
-            apache.rocketmq.v2.RetryPolicy.Builder subBuilder = null;
-            if (retryPolicy_ != null) {
-              subBuilder = retryPolicy_.toBuilder();
-            }
-            retryPolicy_ = input.readMessage(apache.rocketmq.v2.RetryPolicy.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(retryPolicy_);
-              retryPolicy_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 24: {
+          case 16: {
 
             compressBodyThreshold_ = input.readInt32();
             break;
           }
-          case 32: {
+          case 24: {
 
             maxBodySize_ = input.readInt32();
             break;
@@ -187,48 +174,7 @@ private static final long serialVersionUID = 0L;
     return topics_.get(index);
   }
 
-  public static final int RETRY_POLICY_FIELD_NUMBER = 2;
-  private apache.rocketmq.v2.RetryPolicy retryPolicy_;
-  /**
-   * <pre>
-   * If publishing of messages encounters throttle, producer clients shall
-   * apply backoff according to `retry_policy`
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 2;</code>
-   * @return Whether the retryPolicy field is set.
-   */
-  @java.lang.Override
-  public boolean hasRetryPolicy() {
-    return retryPolicy_ != null;
-  }
-  /**
-   * <pre>
-   * If publishing of messages encounters throttle, producer clients shall
-   * apply backoff according to `retry_policy`
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 2;</code>
-   * @return The retryPolicy.
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.RetryPolicy getRetryPolicy() {
-    return retryPolicy_ == null ? apache.rocketmq.v2.RetryPolicy.getDefaultInstance() : retryPolicy_;
-  }
-  /**
-   * <pre>
-   * If publishing of messages encounters throttle, producer clients shall
-   * apply backoff according to `retry_policy`
-   * </pre>
-   *
-   * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 2;</code>
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.RetryPolicyOrBuilder getRetryPolicyOrBuilder() {
-    return getRetryPolicy();
-  }
-
-  public static final int COMPRESS_BODY_THRESHOLD_FIELD_NUMBER = 3;
+  public static final int COMPRESS_BODY_THRESHOLD_FIELD_NUMBER = 2;
   private int compressBodyThreshold_;
   /**
    * <pre>
@@ -238,7 +184,7 @@ private static final long serialVersionUID = 0L;
    * threshold.
    * </pre>
    *
-   * <code>int32 compress_body_threshold = 3;</code>
+   * <code>int32 compress_body_threshold = 2;</code>
    * @return The compressBodyThreshold.
    */
   @java.lang.Override
@@ -246,7 +192,7 @@ private static final long serialVersionUID = 0L;
     return compressBodyThreshold_;
   }
 
-  public static final int MAX_BODY_SIZE_FIELD_NUMBER = 4;
+  public static final int MAX_BODY_SIZE_FIELD_NUMBER = 3;
   private int maxBodySize_;
   /**
    * <pre>
@@ -255,7 +201,7 @@ private static final long serialVersionUID = 0L;
    * client-side check validation.
    * </pre>
    *
-   * <code>int32 max_body_size = 4;</code>
+   * <code>int32 max_body_size = 3;</code>
    * @return The maxBodySize.
    */
   @java.lang.Override
@@ -280,14 +226,11 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < topics_.size(); i++) {
       output.writeMessage(1, topics_.get(i));
     }
-    if (retryPolicy_ != null) {
-      output.writeMessage(2, getRetryPolicy());
-    }
     if (compressBodyThreshold_ != 0) {
-      output.writeInt32(3, compressBodyThreshold_);
+      output.writeInt32(2, compressBodyThreshold_);
     }
     if (maxBodySize_ != 0) {
-      output.writeInt32(4, maxBodySize_);
+      output.writeInt32(3, maxBodySize_);
     }
     unknownFields.writeTo(output);
   }
@@ -302,17 +245,13 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, topics_.get(i));
     }
-    if (retryPolicy_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, getRetryPolicy());
-    }
     if (compressBodyThreshold_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(3, compressBodyThreshold_);
+        .computeInt32Size(2, compressBodyThreshold_);
     }
     if (maxBodySize_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(4, maxBodySize_);
+        .computeInt32Size(3, maxBodySize_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -331,11 +270,6 @@ private static final long serialVersionUID = 0L;
 
     if (!getTopicsList()
         .equals(other.getTopicsList())) return false;
-    if (hasRetryPolicy() != other.hasRetryPolicy()) return false;
-    if (hasRetryPolicy()) {
-      if (!getRetryPolicy()
-          .equals(other.getRetryPolicy())) return false;
-    }
     if (getCompressBodyThreshold()
         != other.getCompressBodyThreshold()) return false;
     if (getMaxBodySize()
@@ -354,10 +288,6 @@ private static final long serialVersionUID = 0L;
     if (getTopicsCount() > 0) {
       hash = (37 * hash) + TOPICS_FIELD_NUMBER;
       hash = (53 * hash) + getTopicsList().hashCode();
-    }
-    if (hasRetryPolicy()) {
-      hash = (37 * hash) + RETRY_POLICY_FIELD_NUMBER;
-      hash = (53 * hash) + getRetryPolicy().hashCode();
     }
     hash = (37 * hash) + COMPRESS_BODY_THRESHOLD_FIELD_NUMBER;
     hash = (53 * hash) + getCompressBodyThreshold();
@@ -503,12 +433,6 @@ private static final long serialVersionUID = 0L;
       } else {
         topicsBuilder_.clear();
       }
-      if (retryPolicyBuilder_ == null) {
-        retryPolicy_ = null;
-      } else {
-        retryPolicy_ = null;
-        retryPolicyBuilder_ = null;
-      }
       compressBodyThreshold_ = 0;
 
       maxBodySize_ = 0;
@@ -548,11 +472,6 @@ private static final long serialVersionUID = 0L;
         result.topics_ = topics_;
       } else {
         result.topics_ = topicsBuilder_.build();
-      }
-      if (retryPolicyBuilder_ == null) {
-        result.retryPolicy_ = retryPolicy_;
-      } else {
-        result.retryPolicy_ = retryPolicyBuilder_.build();
       }
       result.compressBodyThreshold_ = compressBodyThreshold_;
       result.maxBodySize_ = maxBodySize_;
@@ -629,9 +548,6 @@ private static final long serialVersionUID = 0L;
             topicsBuilder_.addAllMessages(other.topics_);
           }
         }
-      }
-      if (other.hasRetryPolicy()) {
-        mergeRetryPolicy(other.getRetryPolicy());
       }
       if (other.getCompressBodyThreshold() != 0) {
         setCompressBodyThreshold(other.getCompressBodyThreshold());
@@ -1017,170 +933,6 @@ private static final long serialVersionUID = 0L;
       return topicsBuilder_;
     }
 
-    private apache.rocketmq.v2.RetryPolicy retryPolicy_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.RetryPolicy, apache.rocketmq.v2.RetryPolicy.Builder, apache.rocketmq.v2.RetryPolicyOrBuilder> retryPolicyBuilder_;
-    /**
-     * <pre>
-     * If publishing of messages encounters throttle, producer clients shall
-     * apply backoff according to `retry_policy`
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 2;</code>
-     * @return Whether the retryPolicy field is set.
-     */
-    public boolean hasRetryPolicy() {
-      return retryPolicyBuilder_ != null || retryPolicy_ != null;
-    }
-    /**
-     * <pre>
-     * If publishing of messages encounters throttle, producer clients shall
-     * apply backoff according to `retry_policy`
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 2;</code>
-     * @return The retryPolicy.
-     */
-    public apache.rocketmq.v2.RetryPolicy getRetryPolicy() {
-      if (retryPolicyBuilder_ == null) {
-        return retryPolicy_ == null ? apache.rocketmq.v2.RetryPolicy.getDefaultInstance() : retryPolicy_;
-      } else {
-        return retryPolicyBuilder_.getMessage();
-      }
-    }
-    /**
-     * <pre>
-     * If publishing of messages encounters throttle, producer clients shall
-     * apply backoff according to `retry_policy`
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 2;</code>
-     */
-    public Builder setRetryPolicy(apache.rocketmq.v2.RetryPolicy value) {
-      if (retryPolicyBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        retryPolicy_ = value;
-        onChanged();
-      } else {
-        retryPolicyBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * If publishing of messages encounters throttle, producer clients shall
-     * apply backoff according to `retry_policy`
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 2;</code>
-     */
-    public Builder setRetryPolicy(
-        apache.rocketmq.v2.RetryPolicy.Builder builderForValue) {
-      if (retryPolicyBuilder_ == null) {
-        retryPolicy_ = builderForValue.build();
-        onChanged();
-      } else {
-        retryPolicyBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * If publishing of messages encounters throttle, producer clients shall
-     * apply backoff according to `retry_policy`
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 2;</code>
-     */
-    public Builder mergeRetryPolicy(apache.rocketmq.v2.RetryPolicy value) {
-      if (retryPolicyBuilder_ == null) {
-        if (retryPolicy_ != null) {
-          retryPolicy_ =
-            apache.rocketmq.v2.RetryPolicy.newBuilder(retryPolicy_).mergeFrom(value).buildPartial();
-        } else {
-          retryPolicy_ = value;
-        }
-        onChanged();
-      } else {
-        retryPolicyBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * If publishing of messages encounters throttle, producer clients shall
-     * apply backoff according to `retry_policy`
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 2;</code>
-     */
-    public Builder clearRetryPolicy() {
-      if (retryPolicyBuilder_ == null) {
-        retryPolicy_ = null;
-        onChanged();
-      } else {
-        retryPolicy_ = null;
-        retryPolicyBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * If publishing of messages encounters throttle, producer clients shall
-     * apply backoff according to `retry_policy`
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 2;</code>
-     */
-    public apache.rocketmq.v2.RetryPolicy.Builder getRetryPolicyBuilder() {
-      
-      onChanged();
-      return getRetryPolicyFieldBuilder().getBuilder();
-    }
-    /**
-     * <pre>
-     * If publishing of messages encounters throttle, producer clients shall
-     * apply backoff according to `retry_policy`
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 2;</code>
-     */
-    public apache.rocketmq.v2.RetryPolicyOrBuilder getRetryPolicyOrBuilder() {
-      if (retryPolicyBuilder_ != null) {
-        return retryPolicyBuilder_.getMessageOrBuilder();
-      } else {
-        return retryPolicy_ == null ?
-            apache.rocketmq.v2.RetryPolicy.getDefaultInstance() : retryPolicy_;
-      }
-    }
-    /**
-     * <pre>
-     * If publishing of messages encounters throttle, producer clients shall
-     * apply backoff according to `retry_policy`
-     * </pre>
-     *
-     * <code>.apache.rocketmq.v2.RetryPolicy retry_policy = 2;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.RetryPolicy, apache.rocketmq.v2.RetryPolicy.Builder, apache.rocketmq.v2.RetryPolicyOrBuilder> 
-        getRetryPolicyFieldBuilder() {
-      if (retryPolicyBuilder_ == null) {
-        retryPolicyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            apache.rocketmq.v2.RetryPolicy, apache.rocketmq.v2.RetryPolicy.Builder, apache.rocketmq.v2.RetryPolicyOrBuilder>(
-                getRetryPolicy(),
-                getParentForChildren(),
-                isClean());
-        retryPolicy_ = null;
-      }
-      return retryPolicyBuilder_;
-    }
-
     private int compressBodyThreshold_ ;
     /**
      * <pre>
@@ -1190,7 +942,7 @@ private static final long serialVersionUID = 0L;
      * threshold.
      * </pre>
      *
-     * <code>int32 compress_body_threshold = 3;</code>
+     * <code>int32 compress_body_threshold = 2;</code>
      * @return The compressBodyThreshold.
      */
     @java.lang.Override
@@ -1205,7 +957,7 @@ private static final long serialVersionUID = 0L;
      * threshold.
      * </pre>
      *
-     * <code>int32 compress_body_threshold = 3;</code>
+     * <code>int32 compress_body_threshold = 2;</code>
      * @param value The compressBodyThreshold to set.
      * @return This builder for chaining.
      */
@@ -1223,7 +975,7 @@ private static final long serialVersionUID = 0L;
      * threshold.
      * </pre>
      *
-     * <code>int32 compress_body_threshold = 3;</code>
+     * <code>int32 compress_body_threshold = 2;</code>
      * @return This builder for chaining.
      */
     public Builder clearCompressBodyThreshold() {
@@ -1241,7 +993,7 @@ private static final long serialVersionUID = 0L;
      * client-side check validation.
      * </pre>
      *
-     * <code>int32 max_body_size = 4;</code>
+     * <code>int32 max_body_size = 3;</code>
      * @return The maxBodySize.
      */
     @java.lang.Override
@@ -1255,7 +1007,7 @@ private static final long serialVersionUID = 0L;
      * client-side check validation.
      * </pre>
      *
-     * <code>int32 max_body_size = 4;</code>
+     * <code>int32 max_body_size = 3;</code>
      * @param value The maxBodySize to set.
      * @return This builder for chaining.
      */
@@ -1272,7 +1024,7 @@ private static final long serialVersionUID = 0L;
      * client-side check validation.
      * </pre>
      *
-     * <code>int32 max_body_size = 4;</code>
+     * <code>int32 max_body_size = 3;</code>
      * @return This builder for chaining.
      */
     public Builder clearMaxBodySize() {

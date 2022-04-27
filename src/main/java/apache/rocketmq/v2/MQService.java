@@ -267,28 +267,26 @@ public final class MQService {
       "he.rocketmq.v2.Status\"\200\001\n!RecoverOrphane" +
       "dTransactionCommand\022C\n\036orphaned_transact" +
       "ional_message\030\001 \001(\0132\033.apache.rocketmq.v2" +
-      ".Message\022\026\n\016transaction_id\030\002 \001(\t\"\251\001\n\nPub" +
-      "lishing\022,\n\006topics\030\001 \003(\0132\034.apache.rocketm" +
-      "q.v2.Resource\0225\n\014retry_policy\030\002 \001(\0132\037.ap" +
-      "ache.rocketmq.v2.RetryPolicy\022\037\n\027compress" +
-      "_body_threshold\030\003 \001(\005\022\025\n\rmax_body_size\030\004" +
-      " \001(\005\"\204\003\n\014Subscription\0220\n\005group\030\001 \001(\0132\034.a" +
-      "pache.rocketmq.v2.ResourceH\000\210\001\001\022<\n\rsubsc" +
-      "riptions\030\002 \003(\0132%.apache.rocketmq.v2.Subs" +
-      "criptionEntry\022\021\n\004fifo\030\003 \001(\010H\001\210\001\001\022<\n\016back" +
-      "off_policy\030\004 \001(\0132\037.apache.rocketmq.v2.Re" +
-      "tryPolicyH\002\210\001\001\022\037\n\022receive_batch_size\030\005 \001" +
-      "(\005H\003\210\001\001\022<\n\024long_polling_timeout\030\006 \001(\0132\031." +
-      "google.protobuf.DurationH\004\210\001\001B\010\n\006_groupB" +
-      "\007\n\005_fifoB\021\n\017_backoff_policyB\025\n\023_receive_" +
-      "batch_sizeB\027\n\025_long_polling_timeout\"\347\002\n\010" +
-      "Settings\0228\n\013client_type\030\001 \001(\0162\036.apache.r" +
-      "ocketmq.v2.ClientTypeH\001\210\001\001\0228\n\014access_poi" +
-      "nt\030\002 \001(\0132\035.apache.rocketmq.v2.EndpointsH" +
-      "\002\210\001\001\0227\n\017request_timeout\030\003 \001(\0132\031.google.p" +
-      "rotobuf.DurationH\003\210\001\001\0224\n\npublishing\030\004 \001(" +
+      ".Message\022\026\n\016transaction_id\030\002 \001(\t\"r\n\nPubl" +
+      "ishing\022,\n\006topics\030\001 \003(\0132\034.apache.rocketmq" +
+      ".v2.Resource\022\037\n\027compress_body_threshold\030" +
+      "\002 \001(\005\022\025\n\rmax_body_size\030\003 \001(\005\"\263\002\n\014Subscri" +
+      "ption\0220\n\005group\030\001 \001(\0132\034.apache.rocketmq.v" +
+      "2.ResourceH\000\210\001\001\022<\n\rsubscriptions\030\002 \003(\0132%" +
+      ".apache.rocketmq.v2.SubscriptionEntry\022\021\n" +
+      "\004fifo\030\003 \001(\010H\001\210\001\001\022\037\n\022receive_batch_size\030\004" +
+      " \001(\005H\002\210\001\001\022<\n\024long_polling_timeout\030\005 \001(\0132" +
+      "\031.google.protobuf.DurationH\003\210\001\001B\010\n\006_grou" +
+      "pB\007\n\005_fifoB\025\n\023_receive_batch_sizeB\027\n\025_lo" +
+      "ng_polling_timeout\"\240\003\n\010Settings\0228\n\013clien" +
+      "t_type\030\001 \001(\0162\036.apache.rocketmq.v2.Client" +
+      "TypeH\001\210\001\001\0228\n\014access_point\030\002 \001(\0132\035.apache" +
+      ".rocketmq.v2.EndpointsH\002\210\001\001\0227\n\016backoff_p" +
+      "olicy\030\003 \001(\0132\037.apache.rocketmq.v2.RetryPo" +
+      "licy\0227\n\017request_timeout\030\004 \001(\0132\031.google.p" +
+      "rotobuf.DurationH\003\210\001\001\0224\n\npublishing\030\005 \001(" +
       "\0132\036.apache.rocketmq.v2.PublishingH\000\0228\n\014s" +
-      "ubscription\030\005 \001(\0132 .apache.rocketmq.v2.S" +
+      "ubscription\030\006 \001(\0132 .apache.rocketmq.v2.S" +
       "ubscriptionH\000B\t\n\007pub_subB\016\n\014_client_type" +
       "B\017\n\r_access_pointB\022\n\020_request_timeout\"\356\003" +
       "\n\020TelemetryCommand\0220\n\010settings\030\001 \001(\0132\034.a" +
@@ -514,19 +512,19 @@ public final class MQService {
     internal_static_apache_rocketmq_v2_Publishing_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_Publishing_descriptor,
-        new java.lang.String[] { "Topics", "RetryPolicy", "CompressBodyThreshold", "MaxBodySize", });
+        new java.lang.String[] { "Topics", "CompressBodyThreshold", "MaxBodySize", });
     internal_static_apache_rocketmq_v2_Subscription_descriptor =
       getDescriptor().getMessageTypes().get(26);
     internal_static_apache_rocketmq_v2_Subscription_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_Subscription_descriptor,
-        new java.lang.String[] { "Group", "Subscriptions", "Fifo", "BackoffPolicy", "ReceiveBatchSize", "LongPollingTimeout", "Group", "Fifo", "BackoffPolicy", "ReceiveBatchSize", "LongPollingTimeout", });
+        new java.lang.String[] { "Group", "Subscriptions", "Fifo", "ReceiveBatchSize", "LongPollingTimeout", "Group", "Fifo", "ReceiveBatchSize", "LongPollingTimeout", });
     internal_static_apache_rocketmq_v2_Settings_descriptor =
       getDescriptor().getMessageTypes().get(27);
     internal_static_apache_rocketmq_v2_Settings_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_Settings_descriptor,
-        new java.lang.String[] { "ClientType", "AccessPoint", "RequestTimeout", "Publishing", "Subscription", "PubSub", "ClientType", "AccessPoint", "RequestTimeout", });
+        new java.lang.String[] { "ClientType", "AccessPoint", "BackoffPolicy", "RequestTimeout", "Publishing", "Subscription", "PubSub", "ClientType", "AccessPoint", "RequestTimeout", });
     internal_static_apache_rocketmq_v2_TelemetryCommand_descriptor =
       getDescriptor().getMessageTypes().get(28);
     internal_static_apache_rocketmq_v2_TelemetryCommand_fieldAccessorTable = new

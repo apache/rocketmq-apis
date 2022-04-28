@@ -84,4 +84,14 @@ public interface ReceiveMessageRequestOrBuilder extends
    * <code>optional .google.protobuf.Duration invisible_duration = 5;</code>
    */
   com.google.protobuf.DurationOrBuilder getInvisibleDurationOrBuilder();
+
+  /**
+   * <pre>
+   * For message auto renew and clean
+   * </pre>
+   *
+   * <code>bool auto_renew = 6;</code>
+   * @return The autoRenew.
+   */
+  boolean getAutoRenew();
 }

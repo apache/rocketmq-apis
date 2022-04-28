@@ -74,6 +74,19 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
+          case 26: {
+            apache.rocketmq.v2.Endpoints.Builder subBuilder = null;
+            if (endpoints_ != null) {
+              subBuilder = endpoints_.toBuilder();
+            }
+            endpoints_ = input.readMessage(apache.rocketmq.v2.Endpoints.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(endpoints_);
+              endpoints_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -158,6 +171,32 @@ private static final long serialVersionUID = 0L;
     return getGroup();
   }
 
+  public static final int ENDPOINTS_FIELD_NUMBER = 3;
+  private apache.rocketmq.v2.Endpoints endpoints_;
+  /**
+   * <code>.apache.rocketmq.v2.Endpoints endpoints = 3;</code>
+   * @return Whether the endpoints field is set.
+   */
+  @java.lang.Override
+  public boolean hasEndpoints() {
+    return endpoints_ != null;
+  }
+  /**
+   * <code>.apache.rocketmq.v2.Endpoints endpoints = 3;</code>
+   * @return The endpoints.
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.Endpoints getEndpoints() {
+    return endpoints_ == null ? apache.rocketmq.v2.Endpoints.getDefaultInstance() : endpoints_;
+  }
+  /**
+   * <code>.apache.rocketmq.v2.Endpoints endpoints = 3;</code>
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.EndpointsOrBuilder getEndpointsOrBuilder() {
+    return getEndpoints();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -178,6 +217,9 @@ private static final long serialVersionUID = 0L;
     if (group_ != null) {
       output.writeMessage(2, getGroup());
     }
+    if (endpoints_ != null) {
+      output.writeMessage(3, getEndpoints());
+    }
     unknownFields.writeTo(output);
   }
 
@@ -194,6 +236,10 @@ private static final long serialVersionUID = 0L;
     if (group_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, getGroup());
+    }
+    if (endpoints_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(3, getEndpoints());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -220,6 +266,11 @@ private static final long serialVersionUID = 0L;
       if (!getGroup()
           .equals(other.getGroup())) return false;
     }
+    if (hasEndpoints() != other.hasEndpoints()) return false;
+    if (hasEndpoints()) {
+      if (!getEndpoints()
+          .equals(other.getEndpoints())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -238,6 +289,10 @@ private static final long serialVersionUID = 0L;
     if (hasGroup()) {
       hash = (37 * hash) + GROUP_FIELD_NUMBER;
       hash = (53 * hash) + getGroup().hashCode();
+    }
+    if (hasEndpoints()) {
+      hash = (37 * hash) + ENDPOINTS_FIELD_NUMBER;
+      hash = (53 * hash) + getEndpoints().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -384,6 +439,12 @@ private static final long serialVersionUID = 0L;
         group_ = null;
         groupBuilder_ = null;
       }
+      if (endpointsBuilder_ == null) {
+        endpoints_ = null;
+      } else {
+        endpoints_ = null;
+        endpointsBuilder_ = null;
+      }
       return this;
     }
 
@@ -419,6 +480,11 @@ private static final long serialVersionUID = 0L;
         result.group_ = group_;
       } else {
         result.group_ = groupBuilder_.build();
+      }
+      if (endpointsBuilder_ == null) {
+        result.endpoints_ = endpoints_;
+      } else {
+        result.endpoints_ = endpointsBuilder_.build();
       }
       onBuilt();
       return result;
@@ -473,6 +539,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasGroup()) {
         mergeGroup(other.getGroup());
+      }
+      if (other.hasEndpoints()) {
+        mergeEndpoints(other.getEndpoints());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -739,6 +808,125 @@ private static final long serialVersionUID = 0L;
         group_ = null;
       }
       return groupBuilder_;
+    }
+
+    private apache.rocketmq.v2.Endpoints endpoints_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.Endpoints, apache.rocketmq.v2.Endpoints.Builder, apache.rocketmq.v2.EndpointsOrBuilder> endpointsBuilder_;
+    /**
+     * <code>.apache.rocketmq.v2.Endpoints endpoints = 3;</code>
+     * @return Whether the endpoints field is set.
+     */
+    public boolean hasEndpoints() {
+      return endpointsBuilder_ != null || endpoints_ != null;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Endpoints endpoints = 3;</code>
+     * @return The endpoints.
+     */
+    public apache.rocketmq.v2.Endpoints getEndpoints() {
+      if (endpointsBuilder_ == null) {
+        return endpoints_ == null ? apache.rocketmq.v2.Endpoints.getDefaultInstance() : endpoints_;
+      } else {
+        return endpointsBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Endpoints endpoints = 3;</code>
+     */
+    public Builder setEndpoints(apache.rocketmq.v2.Endpoints value) {
+      if (endpointsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        endpoints_ = value;
+        onChanged();
+      } else {
+        endpointsBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Endpoints endpoints = 3;</code>
+     */
+    public Builder setEndpoints(
+        apache.rocketmq.v2.Endpoints.Builder builderForValue) {
+      if (endpointsBuilder_ == null) {
+        endpoints_ = builderForValue.build();
+        onChanged();
+      } else {
+        endpointsBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Endpoints endpoints = 3;</code>
+     */
+    public Builder mergeEndpoints(apache.rocketmq.v2.Endpoints value) {
+      if (endpointsBuilder_ == null) {
+        if (endpoints_ != null) {
+          endpoints_ =
+            apache.rocketmq.v2.Endpoints.newBuilder(endpoints_).mergeFrom(value).buildPartial();
+        } else {
+          endpoints_ = value;
+        }
+        onChanged();
+      } else {
+        endpointsBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Endpoints endpoints = 3;</code>
+     */
+    public Builder clearEndpoints() {
+      if (endpointsBuilder_ == null) {
+        endpoints_ = null;
+        onChanged();
+      } else {
+        endpoints_ = null;
+        endpointsBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Endpoints endpoints = 3;</code>
+     */
+    public apache.rocketmq.v2.Endpoints.Builder getEndpointsBuilder() {
+      
+      onChanged();
+      return getEndpointsFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Endpoints endpoints = 3;</code>
+     */
+    public apache.rocketmq.v2.EndpointsOrBuilder getEndpointsOrBuilder() {
+      if (endpointsBuilder_ != null) {
+        return endpointsBuilder_.getMessageOrBuilder();
+      } else {
+        return endpoints_ == null ?
+            apache.rocketmq.v2.Endpoints.getDefaultInstance() : endpoints_;
+      }
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Endpoints endpoints = 3;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.Endpoints, apache.rocketmq.v2.Endpoints.Builder, apache.rocketmq.v2.EndpointsOrBuilder> 
+        getEndpointsFieldBuilder() {
+      if (endpointsBuilder_ == null) {
+        endpointsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            apache.rocketmq.v2.Endpoints, apache.rocketmq.v2.Endpoints.Builder, apache.rocketmq.v2.EndpointsOrBuilder>(
+                getEndpoints(),
+                getParentForChildren(),
+                isClean());
+        endpoints_ = null;
+      }
+      return endpointsBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

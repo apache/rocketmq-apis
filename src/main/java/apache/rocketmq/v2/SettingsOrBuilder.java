@@ -62,7 +62,7 @@ public interface SettingsOrBuilder extends
    * the prior one depletes its lifecycle.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 3;</code>
+   * <code>optional .apache.rocketmq.v2.RetryPolicy backoff_policy = 3;</code>
    * @return Whether the backoffPolicy field is set.
    */
   boolean hasBackoffPolicy();
@@ -78,7 +78,7 @@ public interface SettingsOrBuilder extends
    * the prior one depletes its lifecycle.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 3;</code>
+   * <code>optional .apache.rocketmq.v2.RetryPolicy backoff_policy = 3;</code>
    * @return The backoffPolicy.
    */
   apache.rocketmq.v2.RetryPolicy getBackoffPolicy();
@@ -94,7 +94,7 @@ public interface SettingsOrBuilder extends
    * the prior one depletes its lifecycle.
    * </pre>
    *
-   * <code>.apache.rocketmq.v2.RetryPolicy backoff_policy = 3;</code>
+   * <code>optional .apache.rocketmq.v2.RetryPolicy backoff_policy = 3;</code>
    */
   apache.rocketmq.v2.RetryPolicyOrBuilder getBackoffPolicyOrBuilder();
 

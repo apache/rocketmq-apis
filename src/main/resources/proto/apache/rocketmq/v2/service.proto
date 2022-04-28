@@ -46,7 +46,10 @@ option java_outer_classname = "MQService";
 // access-point, which annotates tenant-id, instance-id or other
 // vendor-specific settings. Purpose-built name servers may respond customized
 // results based on these particular requirements.
-message QueryRouteRequest { Resource topic = 1; }
+message QueryRouteRequest {
+  Resource topic = 1;
+  Endpoints endpoints = 2;
+}
 
 message QueryRouteResponse {
   Status status = 1;
@@ -66,6 +69,7 @@ message SendMessageResponse {
 message QueryAssignmentRequest {
   Resource topic = 1;
   Resource group = 2;
+  Endpoints endpoints = 3;
 }
 
 message QueryAssignmentResponse {
@@ -80,6 +84,8 @@ message ReceiveMessageRequest {
   int32 batch_size = 4;
   // Required if client type is simple consumer.
   optional google.protobuf.Duration invisible_duration = 5;
+  // For message auto renew and clean
+  bool auto_renew = 6;
 }
 
 message ReceiveMessageResponse {
@@ -242,7 +248,7 @@ message Settings {
   // For FIFO messages, the interval should be relatively small because
   // messages of the same message group would not be readily available utill
   // the prior one depletes its lifecycle.
-  RetryPolicy backoff_policy = 3;
+  optional RetryPolicy backoff_policy = 3;
 
   // Request timeout for RPCs excluding long-polling.
   optional google.protobuf.Duration request_timeout = 4;
@@ -290,6 +296,9 @@ message ChangeInvisibleDurationRequest {
 
   // New invisible duration
   google.protobuf.Duration invisible_duration = 4;
+
+  // For message tracing
+  string message_id = 5;
 }
 
 message ChangeInvisibleDurationResponse {

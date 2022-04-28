@@ -106,6 +106,11 @@ private static final long serialVersionUID = 0L;
             bitField0_ |= 0x00000001;
             break;
           }
+          case 48: {
+
+            autoRenew_ = input.readBool();
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -266,6 +271,21 @@ private static final long serialVersionUID = 0L;
     return invisibleDuration_ == null ? com.google.protobuf.Duration.getDefaultInstance() : invisibleDuration_;
   }
 
+  public static final int AUTO_RENEW_FIELD_NUMBER = 6;
+  private boolean autoRenew_;
+  /**
+   * <pre>
+   * For message auto renew and clean
+   * </pre>
+   *
+   * <code>bool auto_renew = 6;</code>
+   * @return The autoRenew.
+   */
+  @java.lang.Override
+  public boolean getAutoRenew() {
+    return autoRenew_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -295,6 +315,9 @@ private static final long serialVersionUID = 0L;
     if (((bitField0_ & 0x00000001) != 0)) {
       output.writeMessage(5, getInvisibleDuration());
     }
+    if (autoRenew_ != false) {
+      output.writeBool(6, autoRenew_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -323,6 +346,10 @@ private static final long serialVersionUID = 0L;
     if (((bitField0_ & 0x00000001) != 0)) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(5, getInvisibleDuration());
+    }
+    if (autoRenew_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(6, autoRenew_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -361,6 +388,8 @@ private static final long serialVersionUID = 0L;
       if (!getInvisibleDuration()
           .equals(other.getInvisibleDuration())) return false;
     }
+    if (getAutoRenew()
+        != other.getAutoRenew()) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -390,6 +419,9 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + INVISIBLE_DURATION_FIELD_NUMBER;
       hash = (53 * hash) + getInvisibleDuration().hashCode();
     }
+    hash = (37 * hash) + AUTO_RENEW_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getAutoRenew());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -550,6 +582,8 @@ private static final long serialVersionUID = 0L;
         invisibleDurationBuilder_.clear();
       }
       bitField0_ = (bitField0_ & ~0x00000001);
+      autoRenew_ = false;
+
       return this;
     }
 
@@ -602,6 +636,7 @@ private static final long serialVersionUID = 0L;
         }
         to_bitField0_ |= 0x00000001;
       }
+      result.autoRenew_ = autoRenew_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -665,6 +700,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasInvisibleDuration()) {
         mergeInvisibleDuration(other.getInvisibleDuration());
+      }
+      if (other.getAutoRenew() != false) {
+        setAutoRenew(other.getAutoRenew());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1238,6 +1276,49 @@ private static final long serialVersionUID = 0L;
         invisibleDuration_ = null;
       }
       return invisibleDurationBuilder_;
+    }
+
+    private boolean autoRenew_ ;
+    /**
+     * <pre>
+     * For message auto renew and clean
+     * </pre>
+     *
+     * <code>bool auto_renew = 6;</code>
+     * @return The autoRenew.
+     */
+    @java.lang.Override
+    public boolean getAutoRenew() {
+      return autoRenew_;
+    }
+    /**
+     * <pre>
+     * For message auto renew and clean
+     * </pre>
+     *
+     * <code>bool auto_renew = 6;</code>
+     * @param value The autoRenew to set.
+     * @return This builder for chaining.
+     */
+    public Builder setAutoRenew(boolean value) {
+      
+      autoRenew_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * For message auto renew and clean
+     * </pre>
+     *
+     * <code>bool auto_renew = 6;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearAutoRenew() {
+      
+      autoRenew_ = false;
+      onChanged();
+      return this;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

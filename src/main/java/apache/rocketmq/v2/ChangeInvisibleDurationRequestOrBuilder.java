@@ -83,4 +83,24 @@ public interface ChangeInvisibleDurationRequestOrBuilder extends
    * <code>.google.protobuf.Duration invisible_duration = 4;</code>
    */
   com.google.protobuf.DurationOrBuilder getInvisibleDurationOrBuilder();
+
+  /**
+   * <pre>
+   * For message tracing
+   * </pre>
+   *
+   * <code>string message_id = 5;</code>
+   * @return The messageId.
+   */
+  java.lang.String getMessageId();
+  /**
+   * <pre>
+   * For message tracing
+   * </pre>
+   *
+   * <code>string message_id = 5;</code>
+   * @return The bytes for messageId.
+   */
+  com.google.protobuf.ByteString
+      getMessageIdBytes();
 }

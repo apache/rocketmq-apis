@@ -36,4 +36,19 @@ public interface QueryAssignmentRequestOrBuilder extends
    * <code>.apache.rocketmq.v2.Resource group = 2;</code>
    */
   apache.rocketmq.v2.ResourceOrBuilder getGroupOrBuilder();
+
+  /**
+   * <code>.apache.rocketmq.v2.Endpoints endpoints = 3;</code>
+   * @return Whether the endpoints field is set.
+   */
+  boolean hasEndpoints();
+  /**
+   * <code>.apache.rocketmq.v2.Endpoints endpoints = 3;</code>
+   * @return The endpoints.
+   */
+  apache.rocketmq.v2.Endpoints getEndpoints();
+  /**
+   * <code>.apache.rocketmq.v2.Endpoints endpoints = 3;</code>
+   */
+  apache.rocketmq.v2.EndpointsOrBuilder getEndpointsOrBuilder();
 }

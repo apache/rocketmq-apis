@@ -17,6 +17,7 @@ private static final long serialVersionUID = 0L;
   }
   private ChangeInvisibleDurationRequest() {
     receiptHandle_ = "";
+    messageId_ = "";
   }
 
   @java.lang.Override
@@ -92,6 +93,12 @@ private static final long serialVersionUID = 0L;
               invisibleDuration_ = subBuilder.buildPartial();
             }
 
+            break;
+          }
+          case 42: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            messageId_ = s;
             break;
           }
           default: {
@@ -262,6 +269,52 @@ private static final long serialVersionUID = 0L;
     return getInvisibleDuration();
   }
 
+  public static final int MESSAGE_ID_FIELD_NUMBER = 5;
+  private volatile java.lang.Object messageId_;
+  /**
+   * <pre>
+   * For message tracing
+   * </pre>
+   *
+   * <code>string message_id = 5;</code>
+   * @return The messageId.
+   */
+  @java.lang.Override
+  public java.lang.String getMessageId() {
+    java.lang.Object ref = messageId_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      messageId_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * For message tracing
+   * </pre>
+   *
+   * <code>string message_id = 5;</code>
+   * @return The bytes for messageId.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getMessageIdBytes() {
+    java.lang.Object ref = messageId_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      messageId_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -288,6 +341,9 @@ private static final long serialVersionUID = 0L;
     if (invisibleDuration_ != null) {
       output.writeMessage(4, getInvisibleDuration());
     }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(messageId_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 5, messageId_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -311,6 +367,9 @@ private static final long serialVersionUID = 0L;
     if (invisibleDuration_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, getInvisibleDuration());
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(messageId_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, messageId_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -344,6 +403,8 @@ private static final long serialVersionUID = 0L;
       if (!getInvisibleDuration()
           .equals(other.getInvisibleDuration())) return false;
     }
+    if (!getMessageId()
+        .equals(other.getMessageId())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -369,6 +430,8 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + INVISIBLE_DURATION_FIELD_NUMBER;
       hash = (53 * hash) + getInvisibleDuration().hashCode();
     }
+    hash = (37 * hash) + MESSAGE_ID_FIELD_NUMBER;
+    hash = (53 * hash) + getMessageId().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -522,6 +585,8 @@ private static final long serialVersionUID = 0L;
         invisibleDuration_ = null;
         invisibleDurationBuilder_ = null;
       }
+      messageId_ = "";
+
       return this;
     }
 
@@ -564,6 +629,7 @@ private static final long serialVersionUID = 0L;
       } else {
         result.invisibleDuration_ = invisibleDurationBuilder_.build();
       }
+      result.messageId_ = messageId_;
       onBuilt();
       return result;
     }
@@ -624,6 +690,10 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasInvisibleDuration()) {
         mergeInvisibleDuration(other.getInvisibleDuration());
+      }
+      if (!other.getMessageId().isEmpty()) {
+        messageId_ = other.messageId_;
+        onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1141,6 +1211,102 @@ private static final long serialVersionUID = 0L;
         invisibleDuration_ = null;
       }
       return invisibleDurationBuilder_;
+    }
+
+    private java.lang.Object messageId_ = "";
+    /**
+     * <pre>
+     * For message tracing
+     * </pre>
+     *
+     * <code>string message_id = 5;</code>
+     * @return The messageId.
+     */
+    public java.lang.String getMessageId() {
+      java.lang.Object ref = messageId_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        messageId_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * For message tracing
+     * </pre>
+     *
+     * <code>string message_id = 5;</code>
+     * @return The bytes for messageId.
+     */
+    public com.google.protobuf.ByteString
+        getMessageIdBytes() {
+      java.lang.Object ref = messageId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        messageId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * For message tracing
+     * </pre>
+     *
+     * <code>string message_id = 5;</code>
+     * @param value The messageId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setMessageId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      messageId_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * For message tracing
+     * </pre>
+     *
+     * <code>string message_id = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearMessageId() {
+      
+      messageId_ = getDefaultInstance().getMessageId();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * For message tracing
+     * </pre>
+     *
+     * <code>string message_id = 5;</code>
+     * @param value The bytes for messageId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setMessageIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      messageId_ = value;
+      onChanged();
+      return this;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

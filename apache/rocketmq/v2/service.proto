@@ -296,6 +296,9 @@ message ChangeInvisibleDurationRequest {
 
   // New invisible duration
   google.protobuf.Duration invisible_duration = 4;
+
+  // For message tracing
+  string message_id = 5;
 }
 
 message ChangeInvisibleDurationResponse {

@@ -212,37 +212,6 @@ public final class MessagingServiceGrpc {
     return getAckMessageMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<apache.rocketmq.v2.NackMessageRequest,
-      apache.rocketmq.v2.NackMessageResponse> getNackMessageMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "NackMessage",
-      requestType = apache.rocketmq.v2.NackMessageRequest.class,
-      responseType = apache.rocketmq.v2.NackMessageResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<apache.rocketmq.v2.NackMessageRequest,
-      apache.rocketmq.v2.NackMessageResponse> getNackMessageMethod() {
-    io.grpc.MethodDescriptor<apache.rocketmq.v2.NackMessageRequest, apache.rocketmq.v2.NackMessageResponse> getNackMessageMethod;
-    if ((getNackMessageMethod = MessagingServiceGrpc.getNackMessageMethod) == null) {
-      synchronized (MessagingServiceGrpc.class) {
-        if ((getNackMessageMethod = MessagingServiceGrpc.getNackMessageMethod) == null) {
-          MessagingServiceGrpc.getNackMessageMethod = getNackMessageMethod =
-              io.grpc.MethodDescriptor.<apache.rocketmq.v2.NackMessageRequest, apache.rocketmq.v2.NackMessageResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "NackMessage"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  apache.rocketmq.v2.NackMessageRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  apache.rocketmq.v2.NackMessageResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new MessagingServiceMethodDescriptorSupplier("NackMessage"))
-              .build();
-        }
-      }
-    }
-    return getNackMessageMethod;
-  }
-
   private static volatile io.grpc.MethodDescriptor<apache.rocketmq.v2.ForwardMessageToDeadLetterQueueRequest,
       apache.rocketmq.v2.ForwardMessageToDeadLetterQueueResponse> getForwardMessageToDeadLetterQueueMethod;
 
@@ -523,8 +492,8 @@ public final class MessagingServiceGrpc {
     /**
      * <pre>
      * Receives messages from the server in batch manner, returns a set of
-     * messages if success. The received messages should be acked or nacked after
-     * processed.
+     * messages if success. The received messages should be acked or redelivered
+     * after processed.
      * If the pending concurrent receive requests exceed the quota of the given
      * consumer group, returns `UNAVAILABLE`. If the upstream store server hangs,
      * return `DEADLINE_EXCEEDED` in a timely manner. If the corresponding topic
@@ -554,20 +523,6 @@ public final class MessagingServiceGrpc {
     public void ackMessage(apache.rocketmq.v2.AckMessageRequest request,
         io.grpc.stub.StreamObserver<apache.rocketmq.v2.AckMessageResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAckMessageMethod(), responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Signals that the message has not been successfully processed. The message
-     * server should resend the message follow the retry policy defined at
-     * server-side.
-     * If the corresponding topic or consumer group doesn't exist, returns
-     * `NOT_FOUND`.
-     * </pre>
-     */
-    public void nackMessage(apache.rocketmq.v2.NackMessageRequest request,
-        io.grpc.stub.StreamObserver<apache.rocketmq.v2.NackMessageResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getNackMessageMethod(), responseObserver);
     }
 
     /**
@@ -674,13 +629,6 @@ public final class MessagingServiceGrpc {
                 apache.rocketmq.v2.AckMessageRequest,
                 apache.rocketmq.v2.AckMessageResponse>(
                   this, METHODID_ACK_MESSAGE)))
-          .addMethod(
-            getNackMessageMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                apache.rocketmq.v2.NackMessageRequest,
-                apache.rocketmq.v2.NackMessageResponse>(
-                  this, METHODID_NACK_MESSAGE)))
           .addMethod(
             getForwardMessageToDeadLetterQueueMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -815,8 +763,8 @@ public final class MessagingServiceGrpc {
     /**
      * <pre>
      * Receives messages from the server in batch manner, returns a set of
-     * messages if success. The received messages should be acked or nacked after
-     * processed.
+     * messages if success. The received messages should be acked or redelivered
+     * after processed.
      * If the pending concurrent receive requests exceed the quota of the given
      * consumer group, returns `UNAVAILABLE`. If the upstream store server hangs,
      * return `DEADLINE_EXCEEDED` in a timely manner. If the corresponding topic
@@ -848,21 +796,6 @@ public final class MessagingServiceGrpc {
         io.grpc.stub.StreamObserver<apache.rocketmq.v2.AckMessageResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getAckMessageMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Signals that the message has not been successfully processed. The message
-     * server should resend the message follow the retry policy defined at
-     * server-side.
-     * If the corresponding topic or consumer group doesn't exist, returns
-     * `NOT_FOUND`.
-     * </pre>
-     */
-    public void nackMessage(apache.rocketmq.v2.NackMessageRequest request,
-        io.grpc.stub.StreamObserver<apache.rocketmq.v2.NackMessageResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getNackMessageMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1022,8 +955,8 @@ public final class MessagingServiceGrpc {
     /**
      * <pre>
      * Receives messages from the server in batch manner, returns a set of
-     * messages if success. The received messages should be acked or nacked after
-     * processed.
+     * messages if success. The received messages should be acked or redelivered
+     * after processed.
      * If the pending concurrent receive requests exceed the quota of the given
      * consumer group, returns `UNAVAILABLE`. If the upstream store server hangs,
      * return `DEADLINE_EXCEEDED` in a timely manner. If the corresponding topic
@@ -1054,20 +987,6 @@ public final class MessagingServiceGrpc {
     public apache.rocketmq.v2.AckMessageResponse ackMessage(apache.rocketmq.v2.AckMessageRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getAckMessageMethod(), getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
-     * Signals that the message has not been successfully processed. The message
-     * server should resend the message follow the retry policy defined at
-     * server-side.
-     * If the corresponding topic or consumer group doesn't exist, returns
-     * `NOT_FOUND`.
-     * </pre>
-     */
-    public apache.rocketmq.v2.NackMessageResponse nackMessage(apache.rocketmq.v2.NackMessageRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getNackMessageMethod(), getCallOptions(), request);
     }
 
     /**
@@ -1227,21 +1146,6 @@ public final class MessagingServiceGrpc {
 
     /**
      * <pre>
-     * Signals that the message has not been successfully processed. The message
-     * server should resend the message follow the retry policy defined at
-     * server-side.
-     * If the corresponding topic or consumer group doesn't exist, returns
-     * `NOT_FOUND`.
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<apache.rocketmq.v2.NackMessageResponse> nackMessage(
-        apache.rocketmq.v2.NackMessageRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getNackMessageMethod(), getCallOptions()), request);
-    }
-
-    /**
-     * <pre>
      * Forwards one message to dead letter queue if the max delivery attempts is
      * exceeded by this message at client-side, return `OK` if success.
      * </pre>
@@ -1297,12 +1201,11 @@ public final class MessagingServiceGrpc {
   private static final int METHODID_QUERY_ASSIGNMENT = 3;
   private static final int METHODID_RECEIVE_MESSAGE = 4;
   private static final int METHODID_ACK_MESSAGE = 5;
-  private static final int METHODID_NACK_MESSAGE = 6;
-  private static final int METHODID_FORWARD_MESSAGE_TO_DEAD_LETTER_QUEUE = 7;
-  private static final int METHODID_END_TRANSACTION = 8;
-  private static final int METHODID_NOTIFY_CLIENT_TERMINATION = 9;
-  private static final int METHODID_CHANGE_INVISIBLE_DURATION = 10;
-  private static final int METHODID_TELEMETRY = 11;
+  private static final int METHODID_FORWARD_MESSAGE_TO_DEAD_LETTER_QUEUE = 6;
+  private static final int METHODID_END_TRANSACTION = 7;
+  private static final int METHODID_NOTIFY_CLIENT_TERMINATION = 8;
+  private static final int METHODID_CHANGE_INVISIBLE_DURATION = 9;
+  private static final int METHODID_TELEMETRY = 10;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1344,10 +1247,6 @@ public final class MessagingServiceGrpc {
         case METHODID_ACK_MESSAGE:
           serviceImpl.ackMessage((apache.rocketmq.v2.AckMessageRequest) request,
               (io.grpc.stub.StreamObserver<apache.rocketmq.v2.AckMessageResponse>) responseObserver);
-          break;
-        case METHODID_NACK_MESSAGE:
-          serviceImpl.nackMessage((apache.rocketmq.v2.NackMessageRequest) request,
-              (io.grpc.stub.StreamObserver<apache.rocketmq.v2.NackMessageResponse>) responseObserver);
           break;
         case METHODID_FORWARD_MESSAGE_TO_DEAD_LETTER_QUEUE:
           serviceImpl.forwardMessageToDeadLetterQueue((apache.rocketmq.v2.ForwardMessageToDeadLetterQueueRequest) request,
@@ -1435,7 +1334,6 @@ public final class MessagingServiceGrpc {
               .addMethod(getQueryAssignmentMethod())
               .addMethod(getReceiveMessageMethod())
               .addMethod(getAckMessageMethod())
-              .addMethod(getNackMessageMethod())
               .addMethod(getForwardMessageToDeadLetterQueueMethod())
               .addMethod(getEndTransactionMethod())
               .addMethod(getTelemetryMethod())

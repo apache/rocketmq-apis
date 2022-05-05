@@ -125,16 +125,6 @@ message AckMessageResponse {
   repeated AckMessageResultEntry entries = 2;
 }
 
-message NackMessageRequest {
-  Resource group = 1;
-  Resource topic = 2;
-  string receipt_handle = 3;
-  string message_id = 4;
-  int32 delivery_attempt = 5;
-}
-
-message NackMessageResponse { Status status = 1; }
-
 message ForwardMessageToDeadLetterQueueRequest {
   Resource group = 1;
   Resource topic = 2;
@@ -364,8 +354,8 @@ service MessagingService {
   }
 
   // Receives messages from the server in batch manner, returns a set of
-  // messages if success. The received messages should be acked or nacked after
-  // processed.
+  // messages if success. The received messages should be acked or redelivered
+  // after processed.
   //
   // If the pending concurrent receive requests exceed the quota of the given
   // consumer group, returns `UNAVAILABLE`. If the upstream store server hangs,
@@ -388,14 +378,6 @@ service MessagingService {
   // If the given receipt_handle is illegal or out of date, returns
   // `INVALID_ARGUMENT`.
   rpc AckMessage(AckMessageRequest) returns (AckMessageResponse) {}
-
-  // Signals that the message has not been successfully processed. The message
-  // server should resend the message follow the retry policy defined at
-  // server-side.
-  //
-  // If the corresponding topic or consumer group doesn't exist, returns
-  // `NOT_FOUND`.
-  rpc NackMessage(NackMessageRequest) returns (NackMessageResponse) {}
 
   // Forwards one message to dead letter queue if the max delivery attempts is
   // exceeded by this message at client-side, return `OK` if success.

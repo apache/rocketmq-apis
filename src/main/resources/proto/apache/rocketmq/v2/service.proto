@@ -180,8 +180,9 @@ message VerifyMessageResult {
 }
 
 message RecoverOrphanedTransactionCommand {
-  Message orphaned_transactional_message = 1;
-  string transaction_id = 2;
+  MessageQueue message_queue = 1;
+  Message orphaned_transactional_message = 2;
+  string transaction_id = 3;
 }
 
 message Publishing {

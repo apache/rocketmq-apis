@@ -72,13 +72,13 @@ message DescribeTopicSubscriptionResponse {
   repeated SubscriptionInfo subscriptionInfo = 2;
 }
 
-message DescribeConsumerAccumulateRequest {
+message DescribeGroupAccumulationRequest {
   optional string instance_id = 1;
   Resource group = 2;
   repeated Resource topics = 3;
 }
 
-message DescribeConsumerAccumulateResponse {
+message DescribeGroupAccumulationResponse {
   Status status = 1;
   int64 inflight_messages = 2;
   int64 ready_messages = 3;
@@ -103,14 +103,14 @@ message DescribeConsumerStatusResponse {
   ClientInfo client_info = 2;
 }
 
-message ResetConsumeOffsetRequest {
+message ResetGroupOffsetRequest {
   optional string instance_id = 1;
   Resource group = 2;
   Resource topic = 3;
   google.protobuf.Timestamp reset_timestamp = 4;
 }
 
-message ResetConsumeOffsetResponse {
+message ResetGroupOffsetResponse {
   Status status = 1;
 }
 
@@ -135,11 +135,11 @@ service Admin {
 
   rpc DescribeTopicSubscription(DescribeTopicSubscriptionRequest) returns (DescribeTopicSubscriptionResponse) {}
 
-  rpc DescribeConsumerAccumulate(DescribeConsumerAccumulateRequest) returns (DescribeConsumerAccumulateResponse) {}
+  rpc DescribeGroupAccumulation(DescribeGroupAccumulationRequest) returns (DescribeGroupAccumulationResponse) {}
 
   rpc DescribeConsumerStatus(DescribeConsumerStatusRequest) returns (DescribeConsumerStatusResponse) {}
 
-  rpc ResetConsumeOffset(ResetConsumeOffsetRequest) returns (ResetConsumeOffsetResponse) {}
+  rpc ResetGroupOffset(ResetGroupOffsetRequest) returns (ResetGroupOffsetResponse) {}
 
   rpc QueryMessageById(QueryMessageRequest) returns (QueryMessageResponse) {}
 

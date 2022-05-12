@@ -56,20 +56,24 @@ message DescribeTopicStatusResponse {
   map<string, string> tags = 5;
 }
 
-message DescribeTopicSubscriptionRequest {
+message DescribeSubscriptionRequest {
   optional string instance_id = 1;
-  Resource topic = 2;
+  oneof search_resource {
+    Resource topic = 2;
+    Resource group = 3;
+  }
 }
 
-message DescribeTopicSubscriptionResponse {
+message DescribeSubscriptionResponse {
   message SubscriptionInfo {
     Resource group = 1;
-    FilterExpression expression = 2;
-    bool online = 3;
-    google.protobuf.Timestamp last_update_timestamp = 4;
+    Resource topic = 2;
+    FilterExpression expression = 3;
+    bool online = 4;
+    google.protobuf.Timestamp last_update_timestamp = 5;
   }
   Status status = 1;
-  repeated SubscriptionInfo subscriptionInfo = 2;
+  repeated SubscriptionInfo subscription_info = 2;
 }
 
 message DescribeGroupAccumulationRequest {
@@ -125,7 +129,7 @@ message QueryMessageRequest {
 
 message QueryMessageResponse {
   Status status = 1;
-  repeated Message message = 2;
+  repeated Message messages = 2;
 }
 
 service Admin {
@@ -133,7 +137,7 @@ service Admin {
 
   rpc DescribeTopicStatus(DescribeTopicStatusRequest) returns (DescribeTopicStatusResponse) {}
 
-  rpc DescribeTopicSubscription(DescribeTopicSubscriptionRequest) returns (DescribeTopicSubscriptionResponse) {}
+  rpc DescribeSubscription(DescribeSubscriptionRequest) returns (DescribeSubscriptionResponse) {}
 
   rpc DescribeGroupAccumulation(DescribeGroupAccumulationRequest) returns (DescribeGroupAccumulationResponse) {}
 

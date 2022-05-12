@@ -136,7 +136,10 @@ message ForwardMessageToDeadLetterQueueRequest {
 
 message ForwardMessageToDeadLetterQueueResponse { Status status = 1; }
 
-message HeartbeatRequest { optional Resource group = 1; }
+message HeartbeatRequest {
+  optional Resource group = 1;
+  ClientType client_type = 2;
+}
 
 message HeartbeatResponse { Status status = 1; }
 

@@ -16,7 +16,6 @@
 syntax = "proto3";
 
 import "google/protobuf/duration.proto";
-import "google/protobuf/timestamp.proto";
 
 import "apache/rocketmq/v2/definition.proto";
 
@@ -252,6 +251,9 @@ message Settings {
 
     Subscription subscription = 6;
   }
+
+  // User agent details
+  UA user_agent = 7;
 }
 
 message TelemetryCommand {

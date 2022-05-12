@@ -420,3 +420,27 @@ message Status {
   Code code = 1;
   string message = 2;
 }
+
+enum Language {
+  LANGUAGE_UNSPECIFIED = 0;
+  JAVA = 1;
+  CPP = 2;
+  DOT_NET = 3;
+  GOLANG = 4;
+  RUST = 5;
+}
+
+// User Agent
+message UA {
+  // SDK language
+  Language language = 1;
+
+  // SDK version
+  string version = 2;
+
+  // Platform details, including OS name, version, arch etc.
+  string platform = 3;
+
+  // Hostname of the node
+  string hostname = 4;
+}

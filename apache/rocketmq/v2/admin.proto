@@ -15,6 +15,11 @@
 
 syntax = "proto3";
 
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+import "apache/rocketmq/v2/definition.proto";
+
 package apache.rocketmq.v2;
 
 option cc_enable_arenas = true;
@@ -38,6 +43,113 @@ message ChangeLogLevelRequest {
 
 message ChangeLogLevelResponse { string remark = 1; }
 
+message DescribeTopicStatusRequest {
+  optional string instance_id = 1;
+  Resource topic = 2;
+}
+
+message DescribeTopicStatusResponse {
+  Status status = 1;
+  MessageType topic_message_type = 2;
+  string description = 3;
+  google.protobuf.Timestamp create_timestamp = 4;
+  map<string, string> tags = 5;
+}
+
+message DescribeTopicSubscriptionRequest {
+  optional string instance_id = 1;
+  Resource topic = 2;
+}
+
+message DescribeTopicSubscriptionResponse {
+  message SubscriptionInfo {
+    Resource group = 1;
+    FilterExpression expression = 2;
+    bool online = 3;
+    google.protobuf.Timestamp last_update_timestamp = 4;
+  }
+  Status status = 1;
+  repeated SubscriptionInfo subscriptionInfo = 2;
+}
+
+message DescribeConsumerAccumulateRequest {
+  optional string instance_id = 1;
+  Resource group = 2;
+  repeated Resource topics = 3;
+}
+
+message DescribeConsumerAccumulateResponse {
+  Status status = 1;
+  int64 inflight_messages = 2;
+  int64 ready_messages = 3;
+  int64 accumulation = 4;
+  google.protobuf.Duration deliver_delay_time = 5;
+}
+
+message DescribeConsumerStatusRequest {
+  optional string instance_id = 1;
+  Resource group = 2;
+}
+
+message DescribeConsumerStatusResponse {
+  message ClientInfo {
+    string client_id = 1;
+    string version = 2;
+    string language = 3;
+    string hostname = 4;
+    string egress_ip = 5;
+  }
+  Status status = 1;
+  ClientInfo client_info = 2;
+}
+
+message ResetConsumeOffsetRequest {
+  optional string instance_id = 1;
+  Resource group = 2;
+  Resource topic = 3;
+  google.protobuf.Timestamp reset_timestamp = 4;
+}
+
+message ResetConsumeOffsetResponse {
+  Status status = 1;
+}
+
+message QueryMessageByIdRequest {
+  optional string instance_id = 1;
+  Resource topic = 2;
+  string message_id = 3;
+}
+
+message QueryMessageByIdResponse {
+  Status status = 1;
+  repeated Message message = 2;
+}
+
+message QueryMessageByKeyRequest {
+  optional string instance_id = 1;
+  Resource topic = 2;
+  string key = 3;
+}
+
+message QueryMessageByKeyResponse {
+  Status status = 1;
+  repeated Message message = 2;
+}
+
 service Admin {
   rpc ChangeLogLevel(ChangeLogLevelRequest) returns (ChangeLogLevelResponse) {}
+
+  rpc DescribeTopicStatus(DescribeTopicStatusRequest) returns (DescribeTopicStatusResponse) {}
+
+  rpc DescribeTopicSubscription(DescribeTopicSubscriptionRequest) returns (DescribeTopicSubscriptionResponse) {}
+
+  rpc DescribeConsumerAccumulate(DescribeConsumerAccumulateRequest) returns (DescribeConsumerAccumulateResponse) {}
+
+  rpc DescribeConsumerStatus(DescribeConsumerStatusRequest) returns (DescribeConsumerStatusResponse) {}
+
+  rpc ResetConsumeOffset(ResetConsumeOffsetRequest) returns (ResetConsumeOffsetResponse) {}
+
+  rpc QueryMessageById(QueryMessageByIdRequest) returns (QueryMessageByIdResponse) {}
+
+  rpc QueryMessageByKey(QueryMessageByKeyRequest) returns (QueryMessageByKeyResponse) {}
 }

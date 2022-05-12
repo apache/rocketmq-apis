@@ -114,24 +114,16 @@ message ResetConsumeOffsetResponse {
   Status status = 1;
 }
 
-message QueryMessageByIdRequest {
+message QueryMessageRequest {
   optional string instance_id = 1;
   Resource topic = 2;
-  string message_id = 3;
+  oneof search_key {
+    string message_id = 3;
+    string message_key = 4;
+  }
 }
 
-message QueryMessageByIdResponse {
-  Status status = 1;
-  repeated Message message = 2;
-}
-
-message QueryMessageByKeyRequest {
-  optional string instance_id = 1;
-  Resource topic = 2;
-  string key = 3;
-}
-
-message QueryMessageByKeyResponse {
+message QueryMessageResponse {
   Status status = 1;
   repeated Message message = 2;
 }
@@ -149,7 +141,7 @@ service Admin {
 
   rpc ResetConsumeOffset(ResetConsumeOffsetRequest) returns (ResetConsumeOffsetResponse) {}
 
-  rpc QueryMessageById(QueryMessageByIdRequest) returns (QueryMessageByIdResponse) {}
+  rpc QueryMessageById(QueryMessageRequest) returns (QueryMessageResponse) {}
 
-  rpc QueryMessageByKey(QueryMessageByKeyRequest) returns (QueryMessageByKeyResponse) {}
+  rpc QueryMessageByKey(QueryMessageRequest) returns (QueryMessageResponse) {}
 }

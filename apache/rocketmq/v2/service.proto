@@ -257,22 +257,30 @@ message Settings {
 }
 
 message TelemetryCommand {
+  Status status = 1;
+
   oneof command {
-    Settings settings = 1;
+    // Client settings
+    Settings settings = 2;
+
     // These messages are from client.
     //
     // Report thread stack trace to server.
-    ThreadStackTrace thread_stack_trace = 2;
+    ThreadStackTrace thread_stack_trace = 3;
+
     // Report message verify result to server.
-    VerifyMessageResult verify_message_result = 3;
+    VerifyMessageResult verify_message_result = 4;
+
     // There messages are from server.
     //
     // Request client to recover the orphaned transaction message.
-    RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 4;
+    RecoverOrphanedTransactionCommand recover_orphaned_transaction_command = 5;
+
     // Request client to print thread stack trace.
-    PrintThreadStackTraceCommand print_thread_stack_trace_command = 5;
+    PrintThreadStackTraceCommand print_thread_stack_trace_command = 6;
+
     // Request client to verify the consumption of the appointed message.
-    VerifyMessageCommand verify_message_command = 6;
+    VerifyMessageCommand verify_message_command = 7;
   }
 }
 

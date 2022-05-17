@@ -55,19 +55,6 @@ private static final long serialVersionUID = 0L;
             nonce_ = s;
             break;
           }
-          case 18: {
-            apache.rocketmq.v2.Status.Builder subBuilder = null;
-            if (status_ != null) {
-              subBuilder = status_.toBuilder();
-            }
-            status_ = input.readMessage(apache.rocketmq.v2.Status.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(status_);
-              status_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -138,32 +125,6 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int STATUS_FIELD_NUMBER = 2;
-  private apache.rocketmq.v2.Status status_;
-  /**
-   * <code>.apache.rocketmq.v2.Status status = 2;</code>
-   * @return Whether the status field is set.
-   */
-  @java.lang.Override
-  public boolean hasStatus() {
-    return status_ != null;
-  }
-  /**
-   * <code>.apache.rocketmq.v2.Status status = 2;</code>
-   * @return The status.
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.Status getStatus() {
-    return status_ == null ? apache.rocketmq.v2.Status.getDefaultInstance() : status_;
-  }
-  /**
-   * <code>.apache.rocketmq.v2.Status status = 2;</code>
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder() {
-    return getStatus();
-  }
-
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -181,9 +142,6 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nonce_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, nonce_);
     }
-    if (status_ != null) {
-      output.writeMessage(2, getStatus());
-    }
     unknownFields.writeTo(output);
   }
 
@@ -195,10 +153,6 @@ private static final long serialVersionUID = 0L;
     size = 0;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nonce_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, nonce_);
-    }
-    if (status_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, getStatus());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -217,11 +171,6 @@ private static final long serialVersionUID = 0L;
 
     if (!getNonce()
         .equals(other.getNonce())) return false;
-    if (hasStatus() != other.hasStatus()) return false;
-    if (hasStatus()) {
-      if (!getStatus()
-          .equals(other.getStatus())) return false;
-    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -235,10 +184,6 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NONCE_FIELD_NUMBER;
     hash = (53 * hash) + getNonce().hashCode();
-    if (hasStatus()) {
-      hash = (37 * hash) + STATUS_FIELD_NUMBER;
-      hash = (53 * hash) + getStatus().hashCode();
-    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -374,12 +319,6 @@ private static final long serialVersionUID = 0L;
       super.clear();
       nonce_ = "";
 
-      if (statusBuilder_ == null) {
-        status_ = null;
-      } else {
-        status_ = null;
-        statusBuilder_ = null;
-      }
       return this;
     }
 
@@ -407,11 +346,6 @@ private static final long serialVersionUID = 0L;
     public apache.rocketmq.v2.VerifyMessageResult buildPartial() {
       apache.rocketmq.v2.VerifyMessageResult result = new apache.rocketmq.v2.VerifyMessageResult(this);
       result.nonce_ = nonce_;
-      if (statusBuilder_ == null) {
-        result.status_ = status_;
-      } else {
-        result.status_ = statusBuilder_.build();
-      }
       onBuilt();
       return result;
     }
@@ -463,9 +397,6 @@ private static final long serialVersionUID = 0L;
       if (!other.getNonce().isEmpty()) {
         nonce_ = other.nonce_;
         onChanged();
-      }
-      if (other.hasStatus()) {
-        mergeStatus(other.getStatus());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -570,125 +501,6 @@ private static final long serialVersionUID = 0L;
       nonce_ = value;
       onChanged();
       return this;
-    }
-
-    private apache.rocketmq.v2.Status status_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder> statusBuilder_;
-    /**
-     * <code>.apache.rocketmq.v2.Status status = 2;</code>
-     * @return Whether the status field is set.
-     */
-    public boolean hasStatus() {
-      return statusBuilder_ != null || status_ != null;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Status status = 2;</code>
-     * @return The status.
-     */
-    public apache.rocketmq.v2.Status getStatus() {
-      if (statusBuilder_ == null) {
-        return status_ == null ? apache.rocketmq.v2.Status.getDefaultInstance() : status_;
-      } else {
-        return statusBuilder_.getMessage();
-      }
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Status status = 2;</code>
-     */
-    public Builder setStatus(apache.rocketmq.v2.Status value) {
-      if (statusBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        status_ = value;
-        onChanged();
-      } else {
-        statusBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Status status = 2;</code>
-     */
-    public Builder setStatus(
-        apache.rocketmq.v2.Status.Builder builderForValue) {
-      if (statusBuilder_ == null) {
-        status_ = builderForValue.build();
-        onChanged();
-      } else {
-        statusBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Status status = 2;</code>
-     */
-    public Builder mergeStatus(apache.rocketmq.v2.Status value) {
-      if (statusBuilder_ == null) {
-        if (status_ != null) {
-          status_ =
-            apache.rocketmq.v2.Status.newBuilder(status_).mergeFrom(value).buildPartial();
-        } else {
-          status_ = value;
-        }
-        onChanged();
-      } else {
-        statusBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Status status = 2;</code>
-     */
-    public Builder clearStatus() {
-      if (statusBuilder_ == null) {
-        status_ = null;
-        onChanged();
-      } else {
-        status_ = null;
-        statusBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Status status = 2;</code>
-     */
-    public apache.rocketmq.v2.Status.Builder getStatusBuilder() {
-      
-      onChanged();
-      return getStatusFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Status status = 2;</code>
-     */
-    public apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder() {
-      if (statusBuilder_ != null) {
-        return statusBuilder_.getMessageOrBuilder();
-      } else {
-        return status_ == null ?
-            apache.rocketmq.v2.Status.getDefaultInstance() : status_;
-      }
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Status status = 2;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder> 
-        getStatusFieldBuilder() {
-      if (statusBuilder_ == null) {
-        statusBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            apache.rocketmq.v2.Status, apache.rocketmq.v2.Status.Builder, apache.rocketmq.v2.StatusOrBuilder>(
-                getStatus(),
-                getParentForChildren(),
-                isClean());
-        status_ = null;
-      }
-      return statusBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

@@ -16,6 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private HeartbeatRequest() {
+    clientType_ = 0;
   }
 
   @java.lang.Override
@@ -60,6 +61,12 @@ private static final long serialVersionUID = 0L;
               group_ = subBuilder.buildPartial();
             }
             bitField0_ |= 0x00000001;
+            break;
+          }
+          case 16: {
+            int rawValue = input.readEnum();
+
+            clientType_ = rawValue;
             break;
           }
           default: {
@@ -121,6 +128,25 @@ private static final long serialVersionUID = 0L;
     return group_ == null ? apache.rocketmq.v2.Resource.getDefaultInstance() : group_;
   }
 
+  public static final int CLIENT_TYPE_FIELD_NUMBER = 2;
+  private int clientType_;
+  /**
+   * <code>.apache.rocketmq.v2.ClientType client_type = 2;</code>
+   * @return The enum numeric value on the wire for clientType.
+   */
+  @java.lang.Override public int getClientTypeValue() {
+    return clientType_;
+  }
+  /**
+   * <code>.apache.rocketmq.v2.ClientType client_type = 2;</code>
+   * @return The clientType.
+   */
+  @java.lang.Override public apache.rocketmq.v2.ClientType getClientType() {
+    @SuppressWarnings("deprecation")
+    apache.rocketmq.v2.ClientType result = apache.rocketmq.v2.ClientType.valueOf(clientType_);
+    return result == null ? apache.rocketmq.v2.ClientType.UNRECOGNIZED : result;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -138,6 +164,9 @@ private static final long serialVersionUID = 0L;
     if (((bitField0_ & 0x00000001) != 0)) {
       output.writeMessage(1, getGroup());
     }
+    if (clientType_ != apache.rocketmq.v2.ClientType.CLIENT_TYPE_UNSPECIFIED.getNumber()) {
+      output.writeEnum(2, clientType_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -150,6 +179,10 @@ private static final long serialVersionUID = 0L;
     if (((bitField0_ & 0x00000001) != 0)) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, getGroup());
+    }
+    if (clientType_ != apache.rocketmq.v2.ClientType.CLIENT_TYPE_UNSPECIFIED.getNumber()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeEnumSize(2, clientType_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -171,6 +204,7 @@ private static final long serialVersionUID = 0L;
       if (!getGroup()
           .equals(other.getGroup())) return false;
     }
+    if (clientType_ != other.clientType_) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -186,6 +220,8 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + GROUP_FIELD_NUMBER;
       hash = (53 * hash) + getGroup().hashCode();
     }
+    hash = (37 * hash) + CLIENT_TYPE_FIELD_NUMBER;
+    hash = (53 * hash) + clientType_;
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -326,6 +362,8 @@ private static final long serialVersionUID = 0L;
         groupBuilder_.clear();
       }
       bitField0_ = (bitField0_ & ~0x00000001);
+      clientType_ = 0;
+
       return this;
     }
 
@@ -362,6 +400,7 @@ private static final long serialVersionUID = 0L;
         }
         to_bitField0_ |= 0x00000001;
       }
+      result.clientType_ = clientType_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -413,6 +452,9 @@ private static final long serialVersionUID = 0L;
       if (other == apache.rocketmq.v2.HeartbeatRequest.getDefaultInstance()) return this;
       if (other.hasGroup()) {
         mergeGroup(other.getGroup());
+      }
+      if (other.clientType_ != 0) {
+        setClientTypeValue(other.getClientTypeValue());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -562,6 +604,60 @@ private static final long serialVersionUID = 0L;
         group_ = null;
       }
       return groupBuilder_;
+    }
+
+    private int clientType_ = 0;
+    /**
+     * <code>.apache.rocketmq.v2.ClientType client_type = 2;</code>
+     * @return The enum numeric value on the wire for clientType.
+     */
+    @java.lang.Override public int getClientTypeValue() {
+      return clientType_;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.ClientType client_type = 2;</code>
+     * @param value The enum numeric value on the wire for clientType to set.
+     * @return This builder for chaining.
+     */
+    public Builder setClientTypeValue(int value) {
+      
+      clientType_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.ClientType client_type = 2;</code>
+     * @return The clientType.
+     */
+    @java.lang.Override
+    public apache.rocketmq.v2.ClientType getClientType() {
+      @SuppressWarnings("deprecation")
+      apache.rocketmq.v2.ClientType result = apache.rocketmq.v2.ClientType.valueOf(clientType_);
+      return result == null ? apache.rocketmq.v2.ClientType.UNRECOGNIZED : result;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.ClientType client_type = 2;</code>
+     * @param value The clientType to set.
+     * @return This builder for chaining.
+     */
+    public Builder setClientType(apache.rocketmq.v2.ClientType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      clientType_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.ClientType client_type = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearClientType() {
+      
+      clientType_ = 0;
+      onChanged();
+      return this;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

@@ -155,5 +155,32 @@ public interface SettingsOrBuilder extends
    */
   apache.rocketmq.v2.SubscriptionOrBuilder getSubscriptionOrBuilder();
 
+  /**
+   * <pre>
+   * User agent details
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.UA user_agent = 7;</code>
+   * @return Whether the userAgent field is set.
+   */
+  boolean hasUserAgent();
+  /**
+   * <pre>
+   * User agent details
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.UA user_agent = 7;</code>
+   * @return The userAgent.
+   */
+  apache.rocketmq.v2.UA getUserAgent();
+  /**
+   * <pre>
+   * User agent details
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.UA user_agent = 7;</code>
+   */
+  apache.rocketmq.v2.UAOrBuilder getUserAgentOrBuilder();
+
   public apache.rocketmq.v2.Settings.PubSubCase getPubSubCase();
 }

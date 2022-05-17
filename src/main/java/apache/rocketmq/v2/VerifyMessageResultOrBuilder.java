@@ -18,19 +18,4 @@ public interface VerifyMessageResultOrBuilder extends
    */
   com.google.protobuf.ByteString
       getNonceBytes();
-
-  /**
-   * <code>.apache.rocketmq.v2.Status status = 2;</code>
-   * @return Whether the status field is set.
-   */
-  boolean hasStatus();
-  /**
-   * <code>.apache.rocketmq.v2.Status status = 2;</code>
-   * @return The status.
-   */
-  apache.rocketmq.v2.Status getStatus();
-  /**
-   * <code>.apache.rocketmq.v2.Status status = 2;</code>
-   */
-  apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder();
 }

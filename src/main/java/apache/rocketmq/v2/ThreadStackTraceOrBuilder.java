@@ -20,32 +20,17 @@ public interface ThreadStackTraceOrBuilder extends
       getNonceBytes();
 
   /**
-   * <code>.apache.rocketmq.v2.Status status = 2;</code>
-   * @return Whether the status field is set.
-   */
-  boolean hasStatus();
-  /**
-   * <code>.apache.rocketmq.v2.Status status = 2;</code>
-   * @return The status.
-   */
-  apache.rocketmq.v2.Status getStatus();
-  /**
-   * <code>.apache.rocketmq.v2.Status status = 2;</code>
-   */
-  apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder();
-
-  /**
-   * <code>optional string thread_stack_trace = 3;</code>
+   * <code>optional string thread_stack_trace = 2;</code>
    * @return Whether the threadStackTrace field is set.
    */
   boolean hasThreadStackTrace();
   /**
-   * <code>optional string thread_stack_trace = 3;</code>
+   * <code>optional string thread_stack_trace = 2;</code>
    * @return The threadStackTrace.
    */
   java.lang.String getThreadStackTrace();
   /**
-   * <code>optional string thread_stack_trace = 3;</code>
+   * <code>optional string thread_stack_trace = 2;</code>
    * @return The bytes for threadStackTrace.
    */
   com.google.protobuf.ByteString

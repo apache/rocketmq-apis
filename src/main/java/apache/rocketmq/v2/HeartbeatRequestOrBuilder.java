@@ -21,4 +21,15 @@ public interface HeartbeatRequestOrBuilder extends
    * <code>optional .apache.rocketmq.v2.Resource group = 1;</code>
    */
   apache.rocketmq.v2.ResourceOrBuilder getGroupOrBuilder();
+
+  /**
+   * <code>.apache.rocketmq.v2.ClientType client_type = 2;</code>
+   * @return The enum numeric value on the wire for clientType.
+   */
+  int getClientTypeValue();
+  /**
+   * <code>.apache.rocketmq.v2.ClientType client_type = 2;</code>
+   * @return The clientType.
+   */
+  apache.rocketmq.v2.ClientType getClientType();
 }

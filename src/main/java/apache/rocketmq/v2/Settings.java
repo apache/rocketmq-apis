@@ -123,6 +123,19 @@ private static final long serialVersionUID = 0L;
             pubSubCase_ = 6;
             break;
           }
+          case 58: {
+            apache.rocketmq.v2.UA.Builder subBuilder = null;
+            if (userAgent_ != null) {
+              subBuilder = userAgent_.toBuilder();
+            }
+            userAgent_ = input.readMessage(apache.rocketmq.v2.UA.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(userAgent_);
+              userAgent_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -420,6 +433,44 @@ private static final long serialVersionUID = 0L;
     return apache.rocketmq.v2.Subscription.getDefaultInstance();
   }
 
+  public static final int USER_AGENT_FIELD_NUMBER = 7;
+  private apache.rocketmq.v2.UA userAgent_;
+  /**
+   * <pre>
+   * User agent details
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.UA user_agent = 7;</code>
+   * @return Whether the userAgent field is set.
+   */
+  @java.lang.Override
+  public boolean hasUserAgent() {
+    return userAgent_ != null;
+  }
+  /**
+   * <pre>
+   * User agent details
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.UA user_agent = 7;</code>
+   * @return The userAgent.
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.UA getUserAgent() {
+    return userAgent_ == null ? apache.rocketmq.v2.UA.getDefaultInstance() : userAgent_;
+  }
+  /**
+   * <pre>
+   * User agent details
+   * </pre>
+   *
+   * <code>.apache.rocketmq.v2.UA user_agent = 7;</code>
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.UAOrBuilder getUserAgentOrBuilder() {
+    return getUserAgent();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -451,6 +502,9 @@ private static final long serialVersionUID = 0L;
     }
     if (pubSubCase_ == 6) {
       output.writeMessage(6, (apache.rocketmq.v2.Subscription) pubSub_);
+    }
+    if (userAgent_ != null) {
+      output.writeMessage(7, getUserAgent());
     }
     unknownFields.writeTo(output);
   }
@@ -485,6 +539,10 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(6, (apache.rocketmq.v2.Subscription) pubSub_);
     }
+    if (userAgent_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(7, getUserAgent());
+    }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
     return size;
@@ -518,6 +576,11 @@ private static final long serialVersionUID = 0L;
     if (hasRequestTimeout()) {
       if (!getRequestTimeout()
           .equals(other.getRequestTimeout())) return false;
+    }
+    if (hasUserAgent() != other.hasUserAgent()) return false;
+    if (hasUserAgent()) {
+      if (!getUserAgent()
+          .equals(other.getUserAgent())) return false;
     }
     if (!getPubSubCase().equals(other.getPubSubCase())) return false;
     switch (pubSubCase_) {
@@ -558,6 +621,10 @@ private static final long serialVersionUID = 0L;
     if (hasRequestTimeout()) {
       hash = (37 * hash) + REQUEST_TIMEOUT_FIELD_NUMBER;
       hash = (53 * hash) + getRequestTimeout().hashCode();
+    }
+    if (hasUserAgent()) {
+      hash = (37 * hash) + USER_AGENT_FIELD_NUMBER;
+      hash = (53 * hash) + getUserAgent().hashCode();
     }
     switch (pubSubCase_) {
       case 5:
@@ -727,6 +794,12 @@ private static final long serialVersionUID = 0L;
         requestTimeoutBuilder_.clear();
       }
       bitField0_ = (bitField0_ & ~0x00000008);
+      if (userAgentBuilder_ == null) {
+        userAgent_ = null;
+      } else {
+        userAgent_ = null;
+        userAgentBuilder_ = null;
+      }
       pubSubCase_ = 0;
       pubSub_ = null;
       return this;
@@ -799,6 +872,11 @@ private static final long serialVersionUID = 0L;
           result.pubSub_ = subscriptionBuilder_.build();
         }
       }
+      if (userAgentBuilder_ == null) {
+        result.userAgent_ = userAgent_;
+      } else {
+        result.userAgent_ = userAgentBuilder_.build();
+      }
       result.bitField0_ = to_bitField0_;
       result.pubSubCase_ = pubSubCase_;
       onBuilt();
@@ -860,6 +938,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasRequestTimeout()) {
         mergeRequestTimeout(other.getRequestTimeout());
+      }
+      if (other.hasUserAgent()) {
+        mergeUserAgent(other.getUserAgent());
       }
       switch (other.getPubSubCase()) {
         case PUBLISHING: {
@@ -1779,6 +1860,161 @@ private static final long serialVersionUID = 0L;
       pubSubCase_ = 6;
       onChanged();;
       return subscriptionBuilder_;
+    }
+
+    private apache.rocketmq.v2.UA userAgent_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.UA, apache.rocketmq.v2.UA.Builder, apache.rocketmq.v2.UAOrBuilder> userAgentBuilder_;
+    /**
+     * <pre>
+     * User agent details
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.UA user_agent = 7;</code>
+     * @return Whether the userAgent field is set.
+     */
+    public boolean hasUserAgent() {
+      return userAgentBuilder_ != null || userAgent_ != null;
+    }
+    /**
+     * <pre>
+     * User agent details
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.UA user_agent = 7;</code>
+     * @return The userAgent.
+     */
+    public apache.rocketmq.v2.UA getUserAgent() {
+      if (userAgentBuilder_ == null) {
+        return userAgent_ == null ? apache.rocketmq.v2.UA.getDefaultInstance() : userAgent_;
+      } else {
+        return userAgentBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * User agent details
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.UA user_agent = 7;</code>
+     */
+    public Builder setUserAgent(apache.rocketmq.v2.UA value) {
+      if (userAgentBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        userAgent_ = value;
+        onChanged();
+      } else {
+        userAgentBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * User agent details
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.UA user_agent = 7;</code>
+     */
+    public Builder setUserAgent(
+        apache.rocketmq.v2.UA.Builder builderForValue) {
+      if (userAgentBuilder_ == null) {
+        userAgent_ = builderForValue.build();
+        onChanged();
+      } else {
+        userAgentBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * User agent details
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.UA user_agent = 7;</code>
+     */
+    public Builder mergeUserAgent(apache.rocketmq.v2.UA value) {
+      if (userAgentBuilder_ == null) {
+        if (userAgent_ != null) {
+          userAgent_ =
+            apache.rocketmq.v2.UA.newBuilder(userAgent_).mergeFrom(value).buildPartial();
+        } else {
+          userAgent_ = value;
+        }
+        onChanged();
+      } else {
+        userAgentBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * User agent details
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.UA user_agent = 7;</code>
+     */
+    public Builder clearUserAgent() {
+      if (userAgentBuilder_ == null) {
+        userAgent_ = null;
+        onChanged();
+      } else {
+        userAgent_ = null;
+        userAgentBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * User agent details
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.UA user_agent = 7;</code>
+     */
+    public apache.rocketmq.v2.UA.Builder getUserAgentBuilder() {
+      
+      onChanged();
+      return getUserAgentFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * User agent details
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.UA user_agent = 7;</code>
+     */
+    public apache.rocketmq.v2.UAOrBuilder getUserAgentOrBuilder() {
+      if (userAgentBuilder_ != null) {
+        return userAgentBuilder_.getMessageOrBuilder();
+      } else {
+        return userAgent_ == null ?
+            apache.rocketmq.v2.UA.getDefaultInstance() : userAgent_;
+      }
+    }
+    /**
+     * <pre>
+     * User agent details
+     * </pre>
+     *
+     * <code>.apache.rocketmq.v2.UA user_agent = 7;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.UA, apache.rocketmq.v2.UA.Builder, apache.rocketmq.v2.UAOrBuilder> 
+        getUserAgentFieldBuilder() {
+      if (userAgentBuilder_ == null) {
+        userAgentBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            apache.rocketmq.v2.UA, apache.rocketmq.v2.UA.Builder, apache.rocketmq.v2.UAOrBuilder>(
+                getUserAgent(),
+                getParentForChildren(),
+                isClean());
+        userAgent_ = null;
+      }
+      return userAgentBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

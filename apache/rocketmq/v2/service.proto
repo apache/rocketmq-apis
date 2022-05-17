@@ -157,8 +157,7 @@ message PrintThreadStackTraceCommand { string nonce = 1; }
 
 message ThreadStackTrace {
   string nonce = 1;
-  Status status = 2;
-  optional string thread_stack_trace = 3;
+  optional string thread_stack_trace = 2;
 }
 
 message VerifyMessageCommand {
@@ -168,7 +167,6 @@ message VerifyMessageCommand {
 
 message VerifyMessageResult {
   string nonce = 1;
-  Status status = 2;
 }
 
 message RecoverOrphanedTransactionCommand {
@@ -257,7 +255,7 @@ message Settings {
 }
 
 message TelemetryCommand {
-  Status status = 1;
+  optional Status status = 1;
 
   oneof command {
     // Client settings

@@ -196,7 +196,7 @@ message Publishing {
 
   // When `check_message_type` flag set `false`, no need to check message's type
   // with messageQueue's `accept_message_types` before publising.
-  optional bool check_message_type = 4;
+  bool check_message_type = 4;
 }
 
 message Subscription {

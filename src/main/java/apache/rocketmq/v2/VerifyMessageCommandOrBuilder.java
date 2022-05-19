@@ -20,17 +20,32 @@ public interface VerifyMessageCommandOrBuilder extends
       getNonceBytes();
 
   /**
-   * <code>.apache.rocketmq.v2.Message message = 2;</code>
+   * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
+   * @return Whether the messageQueue field is set.
+   */
+  boolean hasMessageQueue();
+  /**
+   * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
+   * @return The messageQueue.
+   */
+  apache.rocketmq.v2.MessageQueue getMessageQueue();
+  /**
+   * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
+   */
+  apache.rocketmq.v2.MessageQueueOrBuilder getMessageQueueOrBuilder();
+
+  /**
+   * <code>.apache.rocketmq.v2.Message message = 3;</code>
    * @return Whether the message field is set.
    */
   boolean hasMessage();
   /**
-   * <code>.apache.rocketmq.v2.Message message = 2;</code>
+   * <code>.apache.rocketmq.v2.Message message = 3;</code>
    * @return The message.
    */
   apache.rocketmq.v2.Message getMessage();
   /**
-   * <code>.apache.rocketmq.v2.Message message = 2;</code>
+   * <code>.apache.rocketmq.v2.Message message = 3;</code>
    */
   apache.rocketmq.v2.MessageOrBuilder getMessageOrBuilder();
 }

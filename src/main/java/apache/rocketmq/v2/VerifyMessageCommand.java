@@ -56,6 +56,19 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 18: {
+            apache.rocketmq.v2.MessageQueue.Builder subBuilder = null;
+            if (messageQueue_ != null) {
+              subBuilder = messageQueue_.toBuilder();
+            }
+            messageQueue_ = input.readMessage(apache.rocketmq.v2.MessageQueue.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(messageQueue_);
+              messageQueue_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
+          case 26: {
             apache.rocketmq.v2.Message.Builder subBuilder = null;
             if (message_ != null) {
               subBuilder = message_.toBuilder();
@@ -138,10 +151,36 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int MESSAGE_FIELD_NUMBER = 2;
+  public static final int MESSAGE_QUEUE_FIELD_NUMBER = 2;
+  private apache.rocketmq.v2.MessageQueue messageQueue_;
+  /**
+   * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
+   * @return Whether the messageQueue field is set.
+   */
+  @java.lang.Override
+  public boolean hasMessageQueue() {
+    return messageQueue_ != null;
+  }
+  /**
+   * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
+   * @return The messageQueue.
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.MessageQueue getMessageQueue() {
+    return messageQueue_ == null ? apache.rocketmq.v2.MessageQueue.getDefaultInstance() : messageQueue_;
+  }
+  /**
+   * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.MessageQueueOrBuilder getMessageQueueOrBuilder() {
+    return getMessageQueue();
+  }
+
+  public static final int MESSAGE_FIELD_NUMBER = 3;
   private apache.rocketmq.v2.Message message_;
   /**
-   * <code>.apache.rocketmq.v2.Message message = 2;</code>
+   * <code>.apache.rocketmq.v2.Message message = 3;</code>
    * @return Whether the message field is set.
    */
   @java.lang.Override
@@ -149,7 +188,7 @@ private static final long serialVersionUID = 0L;
     return message_ != null;
   }
   /**
-   * <code>.apache.rocketmq.v2.Message message = 2;</code>
+   * <code>.apache.rocketmq.v2.Message message = 3;</code>
    * @return The message.
    */
   @java.lang.Override
@@ -157,7 +196,7 @@ private static final long serialVersionUID = 0L;
     return message_ == null ? apache.rocketmq.v2.Message.getDefaultInstance() : message_;
   }
   /**
-   * <code>.apache.rocketmq.v2.Message message = 2;</code>
+   * <code>.apache.rocketmq.v2.Message message = 3;</code>
    */
   @java.lang.Override
   public apache.rocketmq.v2.MessageOrBuilder getMessageOrBuilder() {
@@ -181,8 +220,11 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nonce_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, nonce_);
     }
+    if (messageQueue_ != null) {
+      output.writeMessage(2, getMessageQueue());
+    }
     if (message_ != null) {
-      output.writeMessage(2, getMessage());
+      output.writeMessage(3, getMessage());
     }
     unknownFields.writeTo(output);
   }
@@ -196,9 +238,13 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nonce_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, nonce_);
     }
+    if (messageQueue_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(2, getMessageQueue());
+    }
     if (message_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, getMessage());
+        .computeMessageSize(3, getMessage());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -217,6 +263,11 @@ private static final long serialVersionUID = 0L;
 
     if (!getNonce()
         .equals(other.getNonce())) return false;
+    if (hasMessageQueue() != other.hasMessageQueue()) return false;
+    if (hasMessageQueue()) {
+      if (!getMessageQueue()
+          .equals(other.getMessageQueue())) return false;
+    }
     if (hasMessage() != other.hasMessage()) return false;
     if (hasMessage()) {
       if (!getMessage()
@@ -235,6 +286,10 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NONCE_FIELD_NUMBER;
     hash = (53 * hash) + getNonce().hashCode();
+    if (hasMessageQueue()) {
+      hash = (37 * hash) + MESSAGE_QUEUE_FIELD_NUMBER;
+      hash = (53 * hash) + getMessageQueue().hashCode();
+    }
     if (hasMessage()) {
       hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
       hash = (53 * hash) + getMessage().hashCode();
@@ -374,6 +429,12 @@ private static final long serialVersionUID = 0L;
       super.clear();
       nonce_ = "";
 
+      if (messageQueueBuilder_ == null) {
+        messageQueue_ = null;
+      } else {
+        messageQueue_ = null;
+        messageQueueBuilder_ = null;
+      }
       if (messageBuilder_ == null) {
         message_ = null;
       } else {
@@ -407,6 +468,11 @@ private static final long serialVersionUID = 0L;
     public apache.rocketmq.v2.VerifyMessageCommand buildPartial() {
       apache.rocketmq.v2.VerifyMessageCommand result = new apache.rocketmq.v2.VerifyMessageCommand(this);
       result.nonce_ = nonce_;
+      if (messageQueueBuilder_ == null) {
+        result.messageQueue_ = messageQueue_;
+      } else {
+        result.messageQueue_ = messageQueueBuilder_.build();
+      }
       if (messageBuilder_ == null) {
         result.message_ = message_;
       } else {
@@ -463,6 +529,9 @@ private static final long serialVersionUID = 0L;
       if (!other.getNonce().isEmpty()) {
         nonce_ = other.nonce_;
         onChanged();
+      }
+      if (other.hasMessageQueue()) {
+        mergeMessageQueue(other.getMessageQueue());
       }
       if (other.hasMessage()) {
         mergeMessage(other.getMessage());
@@ -572,18 +641,137 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private apache.rocketmq.v2.MessageQueue messageQueue_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.MessageQueue, apache.rocketmq.v2.MessageQueue.Builder, apache.rocketmq.v2.MessageQueueOrBuilder> messageQueueBuilder_;
+    /**
+     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
+     * @return Whether the messageQueue field is set.
+     */
+    public boolean hasMessageQueue() {
+      return messageQueueBuilder_ != null || messageQueue_ != null;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
+     * @return The messageQueue.
+     */
+    public apache.rocketmq.v2.MessageQueue getMessageQueue() {
+      if (messageQueueBuilder_ == null) {
+        return messageQueue_ == null ? apache.rocketmq.v2.MessageQueue.getDefaultInstance() : messageQueue_;
+      } else {
+        return messageQueueBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
+     */
+    public Builder setMessageQueue(apache.rocketmq.v2.MessageQueue value) {
+      if (messageQueueBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        messageQueue_ = value;
+        onChanged();
+      } else {
+        messageQueueBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
+     */
+    public Builder setMessageQueue(
+        apache.rocketmq.v2.MessageQueue.Builder builderForValue) {
+      if (messageQueueBuilder_ == null) {
+        messageQueue_ = builderForValue.build();
+        onChanged();
+      } else {
+        messageQueueBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
+     */
+    public Builder mergeMessageQueue(apache.rocketmq.v2.MessageQueue value) {
+      if (messageQueueBuilder_ == null) {
+        if (messageQueue_ != null) {
+          messageQueue_ =
+            apache.rocketmq.v2.MessageQueue.newBuilder(messageQueue_).mergeFrom(value).buildPartial();
+        } else {
+          messageQueue_ = value;
+        }
+        onChanged();
+      } else {
+        messageQueueBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
+     */
+    public Builder clearMessageQueue() {
+      if (messageQueueBuilder_ == null) {
+        messageQueue_ = null;
+        onChanged();
+      } else {
+        messageQueue_ = null;
+        messageQueueBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
+     */
+    public apache.rocketmq.v2.MessageQueue.Builder getMessageQueueBuilder() {
+      
+      onChanged();
+      return getMessageQueueFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
+     */
+    public apache.rocketmq.v2.MessageQueueOrBuilder getMessageQueueOrBuilder() {
+      if (messageQueueBuilder_ != null) {
+        return messageQueueBuilder_.getMessageOrBuilder();
+      } else {
+        return messageQueue_ == null ?
+            apache.rocketmq.v2.MessageQueue.getDefaultInstance() : messageQueue_;
+      }
+    }
+    /**
+     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 2;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.MessageQueue, apache.rocketmq.v2.MessageQueue.Builder, apache.rocketmq.v2.MessageQueueOrBuilder> 
+        getMessageQueueFieldBuilder() {
+      if (messageQueueBuilder_ == null) {
+        messageQueueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            apache.rocketmq.v2.MessageQueue, apache.rocketmq.v2.MessageQueue.Builder, apache.rocketmq.v2.MessageQueueOrBuilder>(
+                getMessageQueue(),
+                getParentForChildren(),
+                isClean());
+        messageQueue_ = null;
+      }
+      return messageQueueBuilder_;
+    }
+
     private apache.rocketmq.v2.Message message_;
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Message, apache.rocketmq.v2.Message.Builder, apache.rocketmq.v2.MessageOrBuilder> messageBuilder_;
     /**
-     * <code>.apache.rocketmq.v2.Message message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message message = 3;</code>
      * @return Whether the message field is set.
      */
     public boolean hasMessage() {
       return messageBuilder_ != null || message_ != null;
     }
     /**
-     * <code>.apache.rocketmq.v2.Message message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message message = 3;</code>
      * @return The message.
      */
     public apache.rocketmq.v2.Message getMessage() {
@@ -594,7 +782,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Message message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message message = 3;</code>
      */
     public Builder setMessage(apache.rocketmq.v2.Message value) {
       if (messageBuilder_ == null) {
@@ -610,7 +798,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Message message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message message = 3;</code>
      */
     public Builder setMessage(
         apache.rocketmq.v2.Message.Builder builderForValue) {
@@ -624,7 +812,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Message message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message message = 3;</code>
      */
     public Builder mergeMessage(apache.rocketmq.v2.Message value) {
       if (messageBuilder_ == null) {
@@ -642,7 +830,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Message message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message message = 3;</code>
      */
     public Builder clearMessage() {
       if (messageBuilder_ == null) {
@@ -656,7 +844,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Message message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message message = 3;</code>
      */
     public apache.rocketmq.v2.Message.Builder getMessageBuilder() {
       
@@ -664,7 +852,7 @@ private static final long serialVersionUID = 0L;
       return getMessageFieldBuilder().getBuilder();
     }
     /**
-     * <code>.apache.rocketmq.v2.Message message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message message = 3;</code>
      */
     public apache.rocketmq.v2.MessageOrBuilder getMessageOrBuilder() {
       if (messageBuilder_ != null) {
@@ -675,7 +863,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Message message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message message = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Message, apache.rocketmq.v2.Message.Builder, apache.rocketmq.v2.MessageOrBuilder> 

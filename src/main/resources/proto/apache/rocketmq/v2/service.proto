@@ -162,7 +162,8 @@ message ThreadStackTrace {
 
 message VerifyMessageCommand {
   string nonce = 1;
-  Message message = 2;
+  MessageQueue message_queue = 2;
+  Message message = 3;
 }
 
 message VerifyMessageResult {

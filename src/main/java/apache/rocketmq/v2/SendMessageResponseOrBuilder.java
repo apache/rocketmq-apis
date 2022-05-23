@@ -23,26 +23,51 @@ public interface SendMessageResponseOrBuilder extends
   apache.rocketmq.v2.StatusOrBuilder getStatusOrBuilder();
 
   /**
-   * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+   * <pre>
+   * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+   * each entry for best certainty.
+   * </pre>
+   *
+   * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
    */
-  java.util.List<apache.rocketmq.v2.SendReceipt> 
-      getReceiptsList();
+  java.util.List<apache.rocketmq.v2.SendResultEntry> 
+      getEntriesList();
   /**
-   * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+   * <pre>
+   * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+   * each entry for best certainty.
+   * </pre>
+   *
+   * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
    */
-  apache.rocketmq.v2.SendReceipt getReceipts(int index);
+  apache.rocketmq.v2.SendResultEntry getEntries(int index);
   /**
-   * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+   * <pre>
+   * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+   * each entry for best certainty.
+   * </pre>
+   *
+   * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
    */
-  int getReceiptsCount();
+  int getEntriesCount();
   /**
-   * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+   * <pre>
+   * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+   * each entry for best certainty.
+   * </pre>
+   *
+   * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
    */
-  java.util.List<? extends apache.rocketmq.v2.SendReceiptOrBuilder> 
-      getReceiptsOrBuilderList();
+  java.util.List<? extends apache.rocketmq.v2.SendResultEntryOrBuilder> 
+      getEntriesOrBuilderList();
   /**
-   * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+   * <pre>
+   * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+   * each entry for best certainty.
+   * </pre>
+   *
+   * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
    */
-  apache.rocketmq.v2.SendReceiptOrBuilder getReceiptsOrBuilder(
+  apache.rocketmq.v2.SendResultEntryOrBuilder getEntriesOrBuilder(
       int index);
 }

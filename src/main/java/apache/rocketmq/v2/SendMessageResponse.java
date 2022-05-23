@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private SendMessageResponse() {
-    receipts_ = java.util.Collections.emptyList();
+    entries_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -65,11 +65,11 @@ private static final long serialVersionUID = 0L;
           }
           case 18: {
             if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-              receipts_ = new java.util.ArrayList<apache.rocketmq.v2.SendReceipt>();
+              entries_ = new java.util.ArrayList<apache.rocketmq.v2.SendResultEntry>();
               mutable_bitField0_ |= 0x00000001;
             }
-            receipts_.add(
-                input.readMessage(apache.rocketmq.v2.SendReceipt.parser(), extensionRegistry));
+            entries_.add(
+                input.readMessage(apache.rocketmq.v2.SendResultEntry.parser(), extensionRegistry));
             break;
           }
           default: {
@@ -88,7 +88,7 @@ private static final long serialVersionUID = 0L;
           e).setUnfinishedMessage(this);
     } finally {
       if (((mutable_bitField0_ & 0x00000001) != 0)) {
-        receipts_ = java.util.Collections.unmodifiableList(receipts_);
+        entries_ = java.util.Collections.unmodifiableList(entries_);
       }
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
@@ -133,44 +133,69 @@ private static final long serialVersionUID = 0L;
     return getStatus();
   }
 
-  public static final int RECEIPTS_FIELD_NUMBER = 2;
-  private java.util.List<apache.rocketmq.v2.SendReceipt> receipts_;
+  public static final int ENTRIES_FIELD_NUMBER = 2;
+  private java.util.List<apache.rocketmq.v2.SendResultEntry> entries_;
   /**
-   * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+   * <pre>
+   * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+   * each entry for best certainty.
+   * </pre>
+   *
+   * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
    */
   @java.lang.Override
-  public java.util.List<apache.rocketmq.v2.SendReceipt> getReceiptsList() {
-    return receipts_;
+  public java.util.List<apache.rocketmq.v2.SendResultEntry> getEntriesList() {
+    return entries_;
   }
   /**
-   * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+   * <pre>
+   * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+   * each entry for best certainty.
+   * </pre>
+   *
+   * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
    */
   @java.lang.Override
-  public java.util.List<? extends apache.rocketmq.v2.SendReceiptOrBuilder> 
-      getReceiptsOrBuilderList() {
-    return receipts_;
+  public java.util.List<? extends apache.rocketmq.v2.SendResultEntryOrBuilder> 
+      getEntriesOrBuilderList() {
+    return entries_;
   }
   /**
-   * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+   * <pre>
+   * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+   * each entry for best certainty.
+   * </pre>
+   *
+   * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
    */
   @java.lang.Override
-  public int getReceiptsCount() {
-    return receipts_.size();
+  public int getEntriesCount() {
+    return entries_.size();
   }
   /**
-   * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+   * <pre>
+   * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+   * each entry for best certainty.
+   * </pre>
+   *
+   * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
    */
   @java.lang.Override
-  public apache.rocketmq.v2.SendReceipt getReceipts(int index) {
-    return receipts_.get(index);
+  public apache.rocketmq.v2.SendResultEntry getEntries(int index) {
+    return entries_.get(index);
   }
   /**
-   * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+   * <pre>
+   * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+   * each entry for best certainty.
+   * </pre>
+   *
+   * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
    */
   @java.lang.Override
-  public apache.rocketmq.v2.SendReceiptOrBuilder getReceiptsOrBuilder(
+  public apache.rocketmq.v2.SendResultEntryOrBuilder getEntriesOrBuilder(
       int index) {
-    return receipts_.get(index);
+    return entries_.get(index);
   }
 
   private byte memoizedIsInitialized = -1;
@@ -190,8 +215,8 @@ private static final long serialVersionUID = 0L;
     if (status_ != null) {
       output.writeMessage(1, getStatus());
     }
-    for (int i = 0; i < receipts_.size(); i++) {
-      output.writeMessage(2, receipts_.get(i));
+    for (int i = 0; i < entries_.size(); i++) {
+      output.writeMessage(2, entries_.get(i));
     }
     unknownFields.writeTo(output);
   }
@@ -206,9 +231,9 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, getStatus());
     }
-    for (int i = 0; i < receipts_.size(); i++) {
+    for (int i = 0; i < entries_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, receipts_.get(i));
+        .computeMessageSize(2, entries_.get(i));
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -230,8 +255,8 @@ private static final long serialVersionUID = 0L;
       if (!getStatus()
           .equals(other.getStatus())) return false;
     }
-    if (!getReceiptsList()
-        .equals(other.getReceiptsList())) return false;
+    if (!getEntriesList()
+        .equals(other.getEntriesList())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -247,9 +272,9 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + STATUS_FIELD_NUMBER;
       hash = (53 * hash) + getStatus().hashCode();
     }
-    if (getReceiptsCount() > 0) {
-      hash = (37 * hash) + RECEIPTS_FIELD_NUMBER;
-      hash = (53 * hash) + getReceiptsList().hashCode();
+    if (getEntriesCount() > 0) {
+      hash = (37 * hash) + ENTRIES_FIELD_NUMBER;
+      hash = (53 * hash) + getEntriesList().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -379,7 +404,7 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
-        getReceiptsFieldBuilder();
+        getEntriesFieldBuilder();
       }
     }
     @java.lang.Override
@@ -391,11 +416,11 @@ private static final long serialVersionUID = 0L;
         status_ = null;
         statusBuilder_ = null;
       }
-      if (receiptsBuilder_ == null) {
-        receipts_ = java.util.Collections.emptyList();
+      if (entriesBuilder_ == null) {
+        entries_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000001);
       } else {
-        receiptsBuilder_.clear();
+        entriesBuilder_.clear();
       }
       return this;
     }
@@ -429,14 +454,14 @@ private static final long serialVersionUID = 0L;
       } else {
         result.status_ = statusBuilder_.build();
       }
-      if (receiptsBuilder_ == null) {
+      if (entriesBuilder_ == null) {
         if (((bitField0_ & 0x00000001) != 0)) {
-          receipts_ = java.util.Collections.unmodifiableList(receipts_);
+          entries_ = java.util.Collections.unmodifiableList(entries_);
           bitField0_ = (bitField0_ & ~0x00000001);
         }
-        result.receipts_ = receipts_;
+        result.entries_ = entries_;
       } else {
-        result.receipts_ = receiptsBuilder_.build();
+        result.entries_ = entriesBuilder_.build();
       }
       onBuilt();
       return result;
@@ -489,29 +514,29 @@ private static final long serialVersionUID = 0L;
       if (other.hasStatus()) {
         mergeStatus(other.getStatus());
       }
-      if (receiptsBuilder_ == null) {
-        if (!other.receipts_.isEmpty()) {
-          if (receipts_.isEmpty()) {
-            receipts_ = other.receipts_;
+      if (entriesBuilder_ == null) {
+        if (!other.entries_.isEmpty()) {
+          if (entries_.isEmpty()) {
+            entries_ = other.entries_;
             bitField0_ = (bitField0_ & ~0x00000001);
           } else {
-            ensureReceiptsIsMutable();
-            receipts_.addAll(other.receipts_);
+            ensureEntriesIsMutable();
+            entries_.addAll(other.entries_);
           }
           onChanged();
         }
       } else {
-        if (!other.receipts_.isEmpty()) {
-          if (receiptsBuilder_.isEmpty()) {
-            receiptsBuilder_.dispose();
-            receiptsBuilder_ = null;
-            receipts_ = other.receipts_;
+        if (!other.entries_.isEmpty()) {
+          if (entriesBuilder_.isEmpty()) {
+            entriesBuilder_.dispose();
+            entriesBuilder_ = null;
+            entries_ = other.entries_;
             bitField0_ = (bitField0_ & ~0x00000001);
-            receiptsBuilder_ = 
+            entriesBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getReceiptsFieldBuilder() : null;
+                 getEntriesFieldBuilder() : null;
           } else {
-            receiptsBuilder_.addAllMessages(other.receipts_);
+            entriesBuilder_.addAllMessages(other.entries_);
           }
         }
       }
@@ -664,244 +689,334 @@ private static final long serialVersionUID = 0L;
       return statusBuilder_;
     }
 
-    private java.util.List<apache.rocketmq.v2.SendReceipt> receipts_ =
+    private java.util.List<apache.rocketmq.v2.SendResultEntry> entries_ =
       java.util.Collections.emptyList();
-    private void ensureReceiptsIsMutable() {
+    private void ensureEntriesIsMutable() {
       if (!((bitField0_ & 0x00000001) != 0)) {
-        receipts_ = new java.util.ArrayList<apache.rocketmq.v2.SendReceipt>(receipts_);
+        entries_ = new java.util.ArrayList<apache.rocketmq.v2.SendResultEntry>(entries_);
         bitField0_ |= 0x00000001;
        }
     }
 
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        apache.rocketmq.v2.SendReceipt, apache.rocketmq.v2.SendReceipt.Builder, apache.rocketmq.v2.SendReceiptOrBuilder> receiptsBuilder_;
+        apache.rocketmq.v2.SendResultEntry, apache.rocketmq.v2.SendResultEntry.Builder, apache.rocketmq.v2.SendResultEntryOrBuilder> entriesBuilder_;
 
     /**
-     * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+     * <pre>
+     * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+     * each entry for best certainty.
+     * </pre>
+     *
+     * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
      */
-    public java.util.List<apache.rocketmq.v2.SendReceipt> getReceiptsList() {
-      if (receiptsBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(receipts_);
+    public java.util.List<apache.rocketmq.v2.SendResultEntry> getEntriesList() {
+      if (entriesBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(entries_);
       } else {
-        return receiptsBuilder_.getMessageList();
+        return entriesBuilder_.getMessageList();
       }
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+     * <pre>
+     * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+     * each entry for best certainty.
+     * </pre>
+     *
+     * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
      */
-    public int getReceiptsCount() {
-      if (receiptsBuilder_ == null) {
-        return receipts_.size();
+    public int getEntriesCount() {
+      if (entriesBuilder_ == null) {
+        return entries_.size();
       } else {
-        return receiptsBuilder_.getCount();
+        return entriesBuilder_.getCount();
       }
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+     * <pre>
+     * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+     * each entry for best certainty.
+     * </pre>
+     *
+     * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
      */
-    public apache.rocketmq.v2.SendReceipt getReceipts(int index) {
-      if (receiptsBuilder_ == null) {
-        return receipts_.get(index);
+    public apache.rocketmq.v2.SendResultEntry getEntries(int index) {
+      if (entriesBuilder_ == null) {
+        return entries_.get(index);
       } else {
-        return receiptsBuilder_.getMessage(index);
+        return entriesBuilder_.getMessage(index);
       }
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+     * <pre>
+     * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+     * each entry for best certainty.
+     * </pre>
+     *
+     * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
      */
-    public Builder setReceipts(
-        int index, apache.rocketmq.v2.SendReceipt value) {
-      if (receiptsBuilder_ == null) {
+    public Builder setEntries(
+        int index, apache.rocketmq.v2.SendResultEntry value) {
+      if (entriesBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        ensureReceiptsIsMutable();
-        receipts_.set(index, value);
+        ensureEntriesIsMutable();
+        entries_.set(index, value);
         onChanged();
       } else {
-        receiptsBuilder_.setMessage(index, value);
+        entriesBuilder_.setMessage(index, value);
       }
       return this;
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+     * <pre>
+     * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+     * each entry for best certainty.
+     * </pre>
+     *
+     * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
      */
-    public Builder setReceipts(
-        int index, apache.rocketmq.v2.SendReceipt.Builder builderForValue) {
-      if (receiptsBuilder_ == null) {
-        ensureReceiptsIsMutable();
-        receipts_.set(index, builderForValue.build());
+    public Builder setEntries(
+        int index, apache.rocketmq.v2.SendResultEntry.Builder builderForValue) {
+      if (entriesBuilder_ == null) {
+        ensureEntriesIsMutable();
+        entries_.set(index, builderForValue.build());
         onChanged();
       } else {
-        receiptsBuilder_.setMessage(index, builderForValue.build());
+        entriesBuilder_.setMessage(index, builderForValue.build());
       }
       return this;
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+     * <pre>
+     * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+     * each entry for best certainty.
+     * </pre>
+     *
+     * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
      */
-    public Builder addReceipts(apache.rocketmq.v2.SendReceipt value) {
-      if (receiptsBuilder_ == null) {
+    public Builder addEntries(apache.rocketmq.v2.SendResultEntry value) {
+      if (entriesBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        ensureReceiptsIsMutable();
-        receipts_.add(value);
+        ensureEntriesIsMutable();
+        entries_.add(value);
         onChanged();
       } else {
-        receiptsBuilder_.addMessage(value);
+        entriesBuilder_.addMessage(value);
       }
       return this;
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+     * <pre>
+     * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+     * each entry for best certainty.
+     * </pre>
+     *
+     * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
      */
-    public Builder addReceipts(
-        int index, apache.rocketmq.v2.SendReceipt value) {
-      if (receiptsBuilder_ == null) {
+    public Builder addEntries(
+        int index, apache.rocketmq.v2.SendResultEntry value) {
+      if (entriesBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        ensureReceiptsIsMutable();
-        receipts_.add(index, value);
+        ensureEntriesIsMutable();
+        entries_.add(index, value);
         onChanged();
       } else {
-        receiptsBuilder_.addMessage(index, value);
+        entriesBuilder_.addMessage(index, value);
       }
       return this;
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+     * <pre>
+     * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+     * each entry for best certainty.
+     * </pre>
+     *
+     * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
      */
-    public Builder addReceipts(
-        apache.rocketmq.v2.SendReceipt.Builder builderForValue) {
-      if (receiptsBuilder_ == null) {
-        ensureReceiptsIsMutable();
-        receipts_.add(builderForValue.build());
+    public Builder addEntries(
+        apache.rocketmq.v2.SendResultEntry.Builder builderForValue) {
+      if (entriesBuilder_ == null) {
+        ensureEntriesIsMutable();
+        entries_.add(builderForValue.build());
         onChanged();
       } else {
-        receiptsBuilder_.addMessage(builderForValue.build());
+        entriesBuilder_.addMessage(builderForValue.build());
       }
       return this;
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+     * <pre>
+     * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+     * each entry for best certainty.
+     * </pre>
+     *
+     * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
      */
-    public Builder addReceipts(
-        int index, apache.rocketmq.v2.SendReceipt.Builder builderForValue) {
-      if (receiptsBuilder_ == null) {
-        ensureReceiptsIsMutable();
-        receipts_.add(index, builderForValue.build());
+    public Builder addEntries(
+        int index, apache.rocketmq.v2.SendResultEntry.Builder builderForValue) {
+      if (entriesBuilder_ == null) {
+        ensureEntriesIsMutable();
+        entries_.add(index, builderForValue.build());
         onChanged();
       } else {
-        receiptsBuilder_.addMessage(index, builderForValue.build());
+        entriesBuilder_.addMessage(index, builderForValue.build());
       }
       return this;
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+     * <pre>
+     * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+     * each entry for best certainty.
+     * </pre>
+     *
+     * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
      */
-    public Builder addAllReceipts(
-        java.lang.Iterable<? extends apache.rocketmq.v2.SendReceipt> values) {
-      if (receiptsBuilder_ == null) {
-        ensureReceiptsIsMutable();
+    public Builder addAllEntries(
+        java.lang.Iterable<? extends apache.rocketmq.v2.SendResultEntry> values) {
+      if (entriesBuilder_ == null) {
+        ensureEntriesIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, receipts_);
+            values, entries_);
         onChanged();
       } else {
-        receiptsBuilder_.addAllMessages(values);
+        entriesBuilder_.addAllMessages(values);
       }
       return this;
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+     * <pre>
+     * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+     * each entry for best certainty.
+     * </pre>
+     *
+     * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
      */
-    public Builder clearReceipts() {
-      if (receiptsBuilder_ == null) {
-        receipts_ = java.util.Collections.emptyList();
+    public Builder clearEntries() {
+      if (entriesBuilder_ == null) {
+        entries_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
       } else {
-        receiptsBuilder_.clear();
+        entriesBuilder_.clear();
       }
       return this;
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+     * <pre>
+     * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+     * each entry for best certainty.
+     * </pre>
+     *
+     * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
      */
-    public Builder removeReceipts(int index) {
-      if (receiptsBuilder_ == null) {
-        ensureReceiptsIsMutable();
-        receipts_.remove(index);
+    public Builder removeEntries(int index) {
+      if (entriesBuilder_ == null) {
+        ensureEntriesIsMutable();
+        entries_.remove(index);
         onChanged();
       } else {
-        receiptsBuilder_.remove(index);
+        entriesBuilder_.remove(index);
       }
       return this;
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+     * <pre>
+     * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+     * each entry for best certainty.
+     * </pre>
+     *
+     * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
      */
-    public apache.rocketmq.v2.SendReceipt.Builder getReceiptsBuilder(
+    public apache.rocketmq.v2.SendResultEntry.Builder getEntriesBuilder(
         int index) {
-      return getReceiptsFieldBuilder().getBuilder(index);
+      return getEntriesFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+     * <pre>
+     * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+     * each entry for best certainty.
+     * </pre>
+     *
+     * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
      */
-    public apache.rocketmq.v2.SendReceiptOrBuilder getReceiptsOrBuilder(
+    public apache.rocketmq.v2.SendResultEntryOrBuilder getEntriesOrBuilder(
         int index) {
-      if (receiptsBuilder_ == null) {
-        return receipts_.get(index);  } else {
-        return receiptsBuilder_.getMessageOrBuilder(index);
+      if (entriesBuilder_ == null) {
+        return entries_.get(index);  } else {
+        return entriesBuilder_.getMessageOrBuilder(index);
       }
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+     * <pre>
+     * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+     * each entry for best certainty.
+     * </pre>
+     *
+     * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
      */
-    public java.util.List<? extends apache.rocketmq.v2.SendReceiptOrBuilder> 
-         getReceiptsOrBuilderList() {
-      if (receiptsBuilder_ != null) {
-        return receiptsBuilder_.getMessageOrBuilderList();
+    public java.util.List<? extends apache.rocketmq.v2.SendResultEntryOrBuilder> 
+         getEntriesOrBuilderList() {
+      if (entriesBuilder_ != null) {
+        return entriesBuilder_.getMessageOrBuilderList();
       } else {
-        return java.util.Collections.unmodifiableList(receipts_);
+        return java.util.Collections.unmodifiableList(entries_);
       }
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+     * <pre>
+     * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+     * each entry for best certainty.
+     * </pre>
+     *
+     * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
      */
-    public apache.rocketmq.v2.SendReceipt.Builder addReceiptsBuilder() {
-      return getReceiptsFieldBuilder().addBuilder(
-          apache.rocketmq.v2.SendReceipt.getDefaultInstance());
+    public apache.rocketmq.v2.SendResultEntry.Builder addEntriesBuilder() {
+      return getEntriesFieldBuilder().addBuilder(
+          apache.rocketmq.v2.SendResultEntry.getDefaultInstance());
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+     * <pre>
+     * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+     * each entry for best certainty.
+     * </pre>
+     *
+     * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
      */
-    public apache.rocketmq.v2.SendReceipt.Builder addReceiptsBuilder(
+    public apache.rocketmq.v2.SendResultEntry.Builder addEntriesBuilder(
         int index) {
-      return getReceiptsFieldBuilder().addBuilder(
-          index, apache.rocketmq.v2.SendReceipt.getDefaultInstance());
+      return getEntriesFieldBuilder().addBuilder(
+          index, apache.rocketmq.v2.SendResultEntry.getDefaultInstance());
     }
     /**
-     * <code>repeated .apache.rocketmq.v2.SendReceipt receipts = 2;</code>
+     * <pre>
+     * Some implementation may have partial failure issues. Client SDK developers are expected to inspect
+     * each entry for best certainty.
+     * </pre>
+     *
+     * <code>repeated .apache.rocketmq.v2.SendResultEntry entries = 2;</code>
      */
-    public java.util.List<apache.rocketmq.v2.SendReceipt.Builder> 
-         getReceiptsBuilderList() {
-      return getReceiptsFieldBuilder().getBuilderList();
+    public java.util.List<apache.rocketmq.v2.SendResultEntry.Builder> 
+         getEntriesBuilderList() {
+      return getEntriesFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        apache.rocketmq.v2.SendReceipt, apache.rocketmq.v2.SendReceipt.Builder, apache.rocketmq.v2.SendReceiptOrBuilder> 
-        getReceiptsFieldBuilder() {
-      if (receiptsBuilder_ == null) {
-        receiptsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            apache.rocketmq.v2.SendReceipt, apache.rocketmq.v2.SendReceipt.Builder, apache.rocketmq.v2.SendReceiptOrBuilder>(
-                receipts_,
+        apache.rocketmq.v2.SendResultEntry, apache.rocketmq.v2.SendResultEntry.Builder, apache.rocketmq.v2.SendResultEntryOrBuilder> 
+        getEntriesFieldBuilder() {
+      if (entriesBuilder_ == null) {
+        entriesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            apache.rocketmq.v2.SendResultEntry, apache.rocketmq.v2.SendResultEntry.Builder, apache.rocketmq.v2.SendResultEntryOrBuilder>(
+                entries_,
                 ((bitField0_ & 0x00000001) != 0),
                 getParentForChildren(),
                 isClean());
-        receipts_ = null;
+        entries_ = null;
       }
-      return receiptsBuilder_;
+      return entriesBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

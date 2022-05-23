@@ -282,6 +282,14 @@ public enum Code
   UNRECOGNIZED_CLIENT_TYPE(32),
   /**
    * <pre>
+   * Return different results for entries in composite request.
+   * </pre>
+   *
+   * <code>MULTIPLE_RESULTS = 33;</code>
+   */
+  MULTIPLE_RESULTS(33),
+  /**
+   * <pre>
    * Code indicates that the server encountered an unexpected condition
    * that prevented it from fulfilling the request.
    * This error response is a generic "catch-all" response.
@@ -592,6 +600,14 @@ public enum Code
   public static final int UNRECOGNIZED_CLIENT_TYPE_VALUE = 32;
   /**
    * <pre>
+   * Return different results for entries in composite request.
+   * </pre>
+   *
+   * <code>MULTIPLE_RESULTS = 33;</code>
+   */
+  public static final int MULTIPLE_RESULTS_VALUE = 33;
+  /**
+   * <pre>
    * Code indicates that the server encountered an unexpected condition
    * that prevented it from fulfilling the request.
    * This error response is a generic "catch-all" response.
@@ -684,6 +700,7 @@ public enum Code
       case 30: return ILLEGAL_MESSAGE_OFFSET;
       case 31: return ILLEGAL_MESSAGE;
       case 32: return UNRECOGNIZED_CLIENT_TYPE;
+      case 33: return MULTIPLE_RESULTS;
       case 500: return INTERNAL_SERVER_ERROR;
       case 501: return NOT_IMPLEMENTED;
       case 504: return GATEWAY_TIMEOUT;

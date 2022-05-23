@@ -290,12 +290,6 @@ message Message {
 
 message Assignment { MessageQueue message_queue = 1; }
 
-message SendReceipt {
-  string message_id = 1;
-  string transaction_id = 2;
-  int64 offset = 3;
-}
-
 enum Code {
   // Success.
   OK = 0;

@@ -182,5 +182,20 @@ public interface SettingsOrBuilder extends
    */
   apache.rocketmq.v2.UAOrBuilder getUserAgentOrBuilder();
 
+  /**
+   * <code>.apache.rocketmq.v2.Metric metric = 8;</code>
+   * @return Whether the metric field is set.
+   */
+  boolean hasMetric();
+  /**
+   * <code>.apache.rocketmq.v2.Metric metric = 8;</code>
+   * @return The metric.
+   */
+  apache.rocketmq.v2.Metric getMetric();
+  /**
+   * <code>.apache.rocketmq.v2.Metric metric = 8;</code>
+   */
+  apache.rocketmq.v2.MetricOrBuilder getMetricOrBuilder();
+
   public apache.rocketmq.v2.Settings.PubSubCase getPubSubCase();
 }

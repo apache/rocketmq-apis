@@ -136,6 +136,19 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
+          case 66: {
+            apache.rocketmq.v2.Metric.Builder subBuilder = null;
+            if (metric_ != null) {
+              subBuilder = metric_.toBuilder();
+            }
+            metric_ = input.readMessage(apache.rocketmq.v2.Metric.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(metric_);
+              metric_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -471,6 +484,32 @@ private static final long serialVersionUID = 0L;
     return getUserAgent();
   }
 
+  public static final int METRIC_FIELD_NUMBER = 8;
+  private apache.rocketmq.v2.Metric metric_;
+  /**
+   * <code>.apache.rocketmq.v2.Metric metric = 8;</code>
+   * @return Whether the metric field is set.
+   */
+  @java.lang.Override
+  public boolean hasMetric() {
+    return metric_ != null;
+  }
+  /**
+   * <code>.apache.rocketmq.v2.Metric metric = 8;</code>
+   * @return The metric.
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.Metric getMetric() {
+    return metric_ == null ? apache.rocketmq.v2.Metric.getDefaultInstance() : metric_;
+  }
+  /**
+   * <code>.apache.rocketmq.v2.Metric metric = 8;</code>
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.MetricOrBuilder getMetricOrBuilder() {
+    return getMetric();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -505,6 +544,9 @@ private static final long serialVersionUID = 0L;
     }
     if (userAgent_ != null) {
       output.writeMessage(7, getUserAgent());
+    }
+    if (metric_ != null) {
+      output.writeMessage(8, getMetric());
     }
     unknownFields.writeTo(output);
   }
@@ -542,6 +584,10 @@ private static final long serialVersionUID = 0L;
     if (userAgent_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(7, getUserAgent());
+    }
+    if (metric_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(8, getMetric());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -581,6 +627,11 @@ private static final long serialVersionUID = 0L;
     if (hasUserAgent()) {
       if (!getUserAgent()
           .equals(other.getUserAgent())) return false;
+    }
+    if (hasMetric() != other.hasMetric()) return false;
+    if (hasMetric()) {
+      if (!getMetric()
+          .equals(other.getMetric())) return false;
     }
     if (!getPubSubCase().equals(other.getPubSubCase())) return false;
     switch (pubSubCase_) {
@@ -625,6 +676,10 @@ private static final long serialVersionUID = 0L;
     if (hasUserAgent()) {
       hash = (37 * hash) + USER_AGENT_FIELD_NUMBER;
       hash = (53 * hash) + getUserAgent().hashCode();
+    }
+    if (hasMetric()) {
+      hash = (37 * hash) + METRIC_FIELD_NUMBER;
+      hash = (53 * hash) + getMetric().hashCode();
     }
     switch (pubSubCase_) {
       case 5:
@@ -800,6 +855,12 @@ private static final long serialVersionUID = 0L;
         userAgent_ = null;
         userAgentBuilder_ = null;
       }
+      if (metricBuilder_ == null) {
+        metric_ = null;
+      } else {
+        metric_ = null;
+        metricBuilder_ = null;
+      }
       pubSubCase_ = 0;
       pubSub_ = null;
       return this;
@@ -877,6 +938,11 @@ private static final long serialVersionUID = 0L;
       } else {
         result.userAgent_ = userAgentBuilder_.build();
       }
+      if (metricBuilder_ == null) {
+        result.metric_ = metric_;
+      } else {
+        result.metric_ = metricBuilder_.build();
+      }
       result.bitField0_ = to_bitField0_;
       result.pubSubCase_ = pubSubCase_;
       onBuilt();
@@ -941,6 +1007,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasUserAgent()) {
         mergeUserAgent(other.getUserAgent());
+      }
+      if (other.hasMetric()) {
+        mergeMetric(other.getMetric());
       }
       switch (other.getPubSubCase()) {
         case PUBLISHING: {
@@ -2015,6 +2084,125 @@ private static final long serialVersionUID = 0L;
         userAgent_ = null;
       }
       return userAgentBuilder_;
+    }
+
+    private apache.rocketmq.v2.Metric metric_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.Metric, apache.rocketmq.v2.Metric.Builder, apache.rocketmq.v2.MetricOrBuilder> metricBuilder_;
+    /**
+     * <code>.apache.rocketmq.v2.Metric metric = 8;</code>
+     * @return Whether the metric field is set.
+     */
+    public boolean hasMetric() {
+      return metricBuilder_ != null || metric_ != null;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Metric metric = 8;</code>
+     * @return The metric.
+     */
+    public apache.rocketmq.v2.Metric getMetric() {
+      if (metricBuilder_ == null) {
+        return metric_ == null ? apache.rocketmq.v2.Metric.getDefaultInstance() : metric_;
+      } else {
+        return metricBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Metric metric = 8;</code>
+     */
+    public Builder setMetric(apache.rocketmq.v2.Metric value) {
+      if (metricBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        metric_ = value;
+        onChanged();
+      } else {
+        metricBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Metric metric = 8;</code>
+     */
+    public Builder setMetric(
+        apache.rocketmq.v2.Metric.Builder builderForValue) {
+      if (metricBuilder_ == null) {
+        metric_ = builderForValue.build();
+        onChanged();
+      } else {
+        metricBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Metric metric = 8;</code>
+     */
+    public Builder mergeMetric(apache.rocketmq.v2.Metric value) {
+      if (metricBuilder_ == null) {
+        if (metric_ != null) {
+          metric_ =
+            apache.rocketmq.v2.Metric.newBuilder(metric_).mergeFrom(value).buildPartial();
+        } else {
+          metric_ = value;
+        }
+        onChanged();
+      } else {
+        metricBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Metric metric = 8;</code>
+     */
+    public Builder clearMetric() {
+      if (metricBuilder_ == null) {
+        metric_ = null;
+        onChanged();
+      } else {
+        metric_ = null;
+        metricBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Metric metric = 8;</code>
+     */
+    public apache.rocketmq.v2.Metric.Builder getMetricBuilder() {
+      
+      onChanged();
+      return getMetricFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Metric metric = 8;</code>
+     */
+    public apache.rocketmq.v2.MetricOrBuilder getMetricOrBuilder() {
+      if (metricBuilder_ != null) {
+        return metricBuilder_.getMessageOrBuilder();
+      } else {
+        return metric_ == null ?
+            apache.rocketmq.v2.Metric.getDefaultInstance() : metric_;
+      }
+    }
+    /**
+     * <code>.apache.rocketmq.v2.Metric metric = 8;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.Metric, apache.rocketmq.v2.Metric.Builder, apache.rocketmq.v2.MetricOrBuilder> 
+        getMetricFieldBuilder() {
+      if (metricBuilder_ == null) {
+        metricBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            apache.rocketmq.v2.Metric, apache.rocketmq.v2.Metric.Builder, apache.rocketmq.v2.MetricOrBuilder>(
+                getMetric(),
+                getParentForChildren(),
+                isClean());
+        metric_ = null;
+      }
+      return metricBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

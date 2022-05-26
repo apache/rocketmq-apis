@@ -237,8 +237,9 @@ message Subscription {
 message Metric {
   // Indicates that if client should export local metrics to server.
   bool on = 1;
+  
   // The endpoint that client metrics should be exported to, which is required if the switch is on.
-  optional Endpoints metric_endpoints = 2;
+  optional Endpoints endpoints = 2;
 }
 
 message Settings {

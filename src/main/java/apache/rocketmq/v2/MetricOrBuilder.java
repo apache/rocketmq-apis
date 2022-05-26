@@ -22,25 +22,25 @@ public interface MetricOrBuilder extends
    * The endpoint that client metrics should be exported to, which is required if the switch is on.
    * </pre>
    *
-   * <code>optional .apache.rocketmq.v2.Endpoints metric_endpoints = 2;</code>
-   * @return Whether the metricEndpoints field is set.
+   * <code>optional .apache.rocketmq.v2.Endpoints endpoints = 2;</code>
+   * @return Whether the endpoints field is set.
    */
-  boolean hasMetricEndpoints();
+  boolean hasEndpoints();
   /**
    * <pre>
    * The endpoint that client metrics should be exported to, which is required if the switch is on.
    * </pre>
    *
-   * <code>optional .apache.rocketmq.v2.Endpoints metric_endpoints = 2;</code>
-   * @return The metricEndpoints.
+   * <code>optional .apache.rocketmq.v2.Endpoints endpoints = 2;</code>
+   * @return The endpoints.
    */
-  apache.rocketmq.v2.Endpoints getMetricEndpoints();
+  apache.rocketmq.v2.Endpoints getEndpoints();
   /**
    * <pre>
    * The endpoint that client metrics should be exported to, which is required if the switch is on.
    * </pre>
    *
-   * <code>optional .apache.rocketmq.v2.Endpoints metric_endpoints = 2;</code>
+   * <code>optional .apache.rocketmq.v2.Endpoints endpoints = 2;</code>
    */
-  apache.rocketmq.v2.EndpointsOrBuilder getMetricEndpointsOrBuilder();
+  apache.rocketmq.v2.EndpointsOrBuilder getEndpointsOrBuilder();
 }

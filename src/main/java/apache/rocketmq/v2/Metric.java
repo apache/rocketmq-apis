@@ -57,12 +57,12 @@ private static final long serialVersionUID = 0L;
           case 18: {
             apache.rocketmq.v2.Endpoints.Builder subBuilder = null;
             if (((bitField0_ & 0x00000001) != 0)) {
-              subBuilder = metricEndpoints_.toBuilder();
+              subBuilder = endpoints_.toBuilder();
             }
-            metricEndpoints_ = input.readMessage(apache.rocketmq.v2.Endpoints.parser(), extensionRegistry);
+            endpoints_ = input.readMessage(apache.rocketmq.v2.Endpoints.parser(), extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom(metricEndpoints_);
-              metricEndpoints_ = subBuilder.buildPartial();
+              subBuilder.mergeFrom(endpoints_);
+              endpoints_ = subBuilder.buildPartial();
             }
             bitField0_ |= 0x00000001;
             break;
@@ -115,18 +115,18 @@ private static final long serialVersionUID = 0L;
     return on_;
   }
 
-  public static final int METRIC_ENDPOINTS_FIELD_NUMBER = 2;
-  private apache.rocketmq.v2.Endpoints metricEndpoints_;
+  public static final int ENDPOINTS_FIELD_NUMBER = 2;
+  private apache.rocketmq.v2.Endpoints endpoints_;
   /**
    * <pre>
    * The endpoint that client metrics should be exported to, which is required if the switch is on.
    * </pre>
    *
-   * <code>optional .apache.rocketmq.v2.Endpoints metric_endpoints = 2;</code>
-   * @return Whether the metricEndpoints field is set.
+   * <code>optional .apache.rocketmq.v2.Endpoints endpoints = 2;</code>
+   * @return Whether the endpoints field is set.
    */
   @java.lang.Override
-  public boolean hasMetricEndpoints() {
+  public boolean hasEndpoints() {
     return ((bitField0_ & 0x00000001) != 0);
   }
   /**
@@ -134,23 +134,23 @@ private static final long serialVersionUID = 0L;
    * The endpoint that client metrics should be exported to, which is required if the switch is on.
    * </pre>
    *
-   * <code>optional .apache.rocketmq.v2.Endpoints metric_endpoints = 2;</code>
-   * @return The metricEndpoints.
+   * <code>optional .apache.rocketmq.v2.Endpoints endpoints = 2;</code>
+   * @return The endpoints.
    */
   @java.lang.Override
-  public apache.rocketmq.v2.Endpoints getMetricEndpoints() {
-    return metricEndpoints_ == null ? apache.rocketmq.v2.Endpoints.getDefaultInstance() : metricEndpoints_;
+  public apache.rocketmq.v2.Endpoints getEndpoints() {
+    return endpoints_ == null ? apache.rocketmq.v2.Endpoints.getDefaultInstance() : endpoints_;
   }
   /**
    * <pre>
    * The endpoint that client metrics should be exported to, which is required if the switch is on.
    * </pre>
    *
-   * <code>optional .apache.rocketmq.v2.Endpoints metric_endpoints = 2;</code>
+   * <code>optional .apache.rocketmq.v2.Endpoints endpoints = 2;</code>
    */
   @java.lang.Override
-  public apache.rocketmq.v2.EndpointsOrBuilder getMetricEndpointsOrBuilder() {
-    return metricEndpoints_ == null ? apache.rocketmq.v2.Endpoints.getDefaultInstance() : metricEndpoints_;
+  public apache.rocketmq.v2.EndpointsOrBuilder getEndpointsOrBuilder() {
+    return endpoints_ == null ? apache.rocketmq.v2.Endpoints.getDefaultInstance() : endpoints_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -171,7 +171,7 @@ private static final long serialVersionUID = 0L;
       output.writeBool(1, on_);
     }
     if (((bitField0_ & 0x00000001) != 0)) {
-      output.writeMessage(2, getMetricEndpoints());
+      output.writeMessage(2, getEndpoints());
     }
     unknownFields.writeTo(output);
   }
@@ -188,7 +188,7 @@ private static final long serialVersionUID = 0L;
     }
     if (((bitField0_ & 0x00000001) != 0)) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, getMetricEndpoints());
+        .computeMessageSize(2, getEndpoints());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -207,10 +207,10 @@ private static final long serialVersionUID = 0L;
 
     if (getOn()
         != other.getOn()) return false;
-    if (hasMetricEndpoints() != other.hasMetricEndpoints()) return false;
-    if (hasMetricEndpoints()) {
-      if (!getMetricEndpoints()
-          .equals(other.getMetricEndpoints())) return false;
+    if (hasEndpoints() != other.hasEndpoints()) return false;
+    if (hasEndpoints()) {
+      if (!getEndpoints()
+          .equals(other.getEndpoints())) return false;
     }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
@@ -226,9 +226,9 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + ON_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getOn());
-    if (hasMetricEndpoints()) {
-      hash = (37 * hash) + METRIC_ENDPOINTS_FIELD_NUMBER;
-      hash = (53 * hash) + getMetricEndpoints().hashCode();
+    if (hasEndpoints()) {
+      hash = (37 * hash) + ENDPOINTS_FIELD_NUMBER;
+      hash = (53 * hash) + getEndpoints().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -358,7 +358,7 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
-        getMetricEndpointsFieldBuilder();
+        getEndpointsFieldBuilder();
       }
     }
     @java.lang.Override
@@ -366,10 +366,10 @@ private static final long serialVersionUID = 0L;
       super.clear();
       on_ = false;
 
-      if (metricEndpointsBuilder_ == null) {
-        metricEndpoints_ = null;
+      if (endpointsBuilder_ == null) {
+        endpoints_ = null;
       } else {
-        metricEndpointsBuilder_.clear();
+        endpointsBuilder_.clear();
       }
       bitField0_ = (bitField0_ & ~0x00000001);
       return this;
@@ -402,10 +402,10 @@ private static final long serialVersionUID = 0L;
       int to_bitField0_ = 0;
       result.on_ = on_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
-        if (metricEndpointsBuilder_ == null) {
-          result.metricEndpoints_ = metricEndpoints_;
+        if (endpointsBuilder_ == null) {
+          result.endpoints_ = endpoints_;
         } else {
-          result.metricEndpoints_ = metricEndpointsBuilder_.build();
+          result.endpoints_ = endpointsBuilder_.build();
         }
         to_bitField0_ |= 0x00000001;
       }
@@ -461,8 +461,8 @@ private static final long serialVersionUID = 0L;
       if (other.getOn() != false) {
         setOn(other.getOn());
       }
-      if (other.hasMetricEndpoints()) {
-        mergeMetricEndpoints(other.getMetricEndpoints());
+      if (other.hasEndpoints()) {
+        mergeEndpoints(other.getEndpoints());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -537,18 +537,18 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private apache.rocketmq.v2.Endpoints metricEndpoints_;
+    private apache.rocketmq.v2.Endpoints endpoints_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.Endpoints, apache.rocketmq.v2.Endpoints.Builder, apache.rocketmq.v2.EndpointsOrBuilder> metricEndpointsBuilder_;
+        apache.rocketmq.v2.Endpoints, apache.rocketmq.v2.Endpoints.Builder, apache.rocketmq.v2.EndpointsOrBuilder> endpointsBuilder_;
     /**
      * <pre>
      * The endpoint that client metrics should be exported to, which is required if the switch is on.
      * </pre>
      *
-     * <code>optional .apache.rocketmq.v2.Endpoints metric_endpoints = 2;</code>
-     * @return Whether the metricEndpoints field is set.
+     * <code>optional .apache.rocketmq.v2.Endpoints endpoints = 2;</code>
+     * @return Whether the endpoints field is set.
      */
-    public boolean hasMetricEndpoints() {
+    public boolean hasEndpoints() {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
@@ -556,14 +556,14 @@ private static final long serialVersionUID = 0L;
      * The endpoint that client metrics should be exported to, which is required if the switch is on.
      * </pre>
      *
-     * <code>optional .apache.rocketmq.v2.Endpoints metric_endpoints = 2;</code>
-     * @return The metricEndpoints.
+     * <code>optional .apache.rocketmq.v2.Endpoints endpoints = 2;</code>
+     * @return The endpoints.
      */
-    public apache.rocketmq.v2.Endpoints getMetricEndpoints() {
-      if (metricEndpointsBuilder_ == null) {
-        return metricEndpoints_ == null ? apache.rocketmq.v2.Endpoints.getDefaultInstance() : metricEndpoints_;
+    public apache.rocketmq.v2.Endpoints getEndpoints() {
+      if (endpointsBuilder_ == null) {
+        return endpoints_ == null ? apache.rocketmq.v2.Endpoints.getDefaultInstance() : endpoints_;
       } else {
-        return metricEndpointsBuilder_.getMessage();
+        return endpointsBuilder_.getMessage();
       }
     }
     /**
@@ -571,17 +571,17 @@ private static final long serialVersionUID = 0L;
      * The endpoint that client metrics should be exported to, which is required if the switch is on.
      * </pre>
      *
-     * <code>optional .apache.rocketmq.v2.Endpoints metric_endpoints = 2;</code>
+     * <code>optional .apache.rocketmq.v2.Endpoints endpoints = 2;</code>
      */
-    public Builder setMetricEndpoints(apache.rocketmq.v2.Endpoints value) {
-      if (metricEndpointsBuilder_ == null) {
+    public Builder setEndpoints(apache.rocketmq.v2.Endpoints value) {
+      if (endpointsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        metricEndpoints_ = value;
+        endpoints_ = value;
         onChanged();
       } else {
-        metricEndpointsBuilder_.setMessage(value);
+        endpointsBuilder_.setMessage(value);
       }
       bitField0_ |= 0x00000001;
       return this;
@@ -591,15 +591,15 @@ private static final long serialVersionUID = 0L;
      * The endpoint that client metrics should be exported to, which is required if the switch is on.
      * </pre>
      *
-     * <code>optional .apache.rocketmq.v2.Endpoints metric_endpoints = 2;</code>
+     * <code>optional .apache.rocketmq.v2.Endpoints endpoints = 2;</code>
      */
-    public Builder setMetricEndpoints(
+    public Builder setEndpoints(
         apache.rocketmq.v2.Endpoints.Builder builderForValue) {
-      if (metricEndpointsBuilder_ == null) {
-        metricEndpoints_ = builderForValue.build();
+      if (endpointsBuilder_ == null) {
+        endpoints_ = builderForValue.build();
         onChanged();
       } else {
-        metricEndpointsBuilder_.setMessage(builderForValue.build());
+        endpointsBuilder_.setMessage(builderForValue.build());
       }
       bitField0_ |= 0x00000001;
       return this;
@@ -609,21 +609,21 @@ private static final long serialVersionUID = 0L;
      * The endpoint that client metrics should be exported to, which is required if the switch is on.
      * </pre>
      *
-     * <code>optional .apache.rocketmq.v2.Endpoints metric_endpoints = 2;</code>
+     * <code>optional .apache.rocketmq.v2.Endpoints endpoints = 2;</code>
      */
-    public Builder mergeMetricEndpoints(apache.rocketmq.v2.Endpoints value) {
-      if (metricEndpointsBuilder_ == null) {
+    public Builder mergeEndpoints(apache.rocketmq.v2.Endpoints value) {
+      if (endpointsBuilder_ == null) {
         if (((bitField0_ & 0x00000001) != 0) &&
-            metricEndpoints_ != null &&
-            metricEndpoints_ != apache.rocketmq.v2.Endpoints.getDefaultInstance()) {
-          metricEndpoints_ =
-            apache.rocketmq.v2.Endpoints.newBuilder(metricEndpoints_).mergeFrom(value).buildPartial();
+            endpoints_ != null &&
+            endpoints_ != apache.rocketmq.v2.Endpoints.getDefaultInstance()) {
+          endpoints_ =
+            apache.rocketmq.v2.Endpoints.newBuilder(endpoints_).mergeFrom(value).buildPartial();
         } else {
-          metricEndpoints_ = value;
+          endpoints_ = value;
         }
         onChanged();
       } else {
-        metricEndpointsBuilder_.mergeFrom(value);
+        endpointsBuilder_.mergeFrom(value);
       }
       bitField0_ |= 0x00000001;
       return this;
@@ -633,14 +633,14 @@ private static final long serialVersionUID = 0L;
      * The endpoint that client metrics should be exported to, which is required if the switch is on.
      * </pre>
      *
-     * <code>optional .apache.rocketmq.v2.Endpoints metric_endpoints = 2;</code>
+     * <code>optional .apache.rocketmq.v2.Endpoints endpoints = 2;</code>
      */
-    public Builder clearMetricEndpoints() {
-      if (metricEndpointsBuilder_ == null) {
-        metricEndpoints_ = null;
+    public Builder clearEndpoints() {
+      if (endpointsBuilder_ == null) {
+        endpoints_ = null;
         onChanged();
       } else {
-        metricEndpointsBuilder_.clear();
+        endpointsBuilder_.clear();
       }
       bitField0_ = (bitField0_ & ~0x00000001);
       return this;
@@ -650,26 +650,26 @@ private static final long serialVersionUID = 0L;
      * The endpoint that client metrics should be exported to, which is required if the switch is on.
      * </pre>
      *
-     * <code>optional .apache.rocketmq.v2.Endpoints metric_endpoints = 2;</code>
+     * <code>optional .apache.rocketmq.v2.Endpoints endpoints = 2;</code>
      */
-    public apache.rocketmq.v2.Endpoints.Builder getMetricEndpointsBuilder() {
+    public apache.rocketmq.v2.Endpoints.Builder getEndpointsBuilder() {
       bitField0_ |= 0x00000001;
       onChanged();
-      return getMetricEndpointsFieldBuilder().getBuilder();
+      return getEndpointsFieldBuilder().getBuilder();
     }
     /**
      * <pre>
      * The endpoint that client metrics should be exported to, which is required if the switch is on.
      * </pre>
      *
-     * <code>optional .apache.rocketmq.v2.Endpoints metric_endpoints = 2;</code>
+     * <code>optional .apache.rocketmq.v2.Endpoints endpoints = 2;</code>
      */
-    public apache.rocketmq.v2.EndpointsOrBuilder getMetricEndpointsOrBuilder() {
-      if (metricEndpointsBuilder_ != null) {
-        return metricEndpointsBuilder_.getMessageOrBuilder();
+    public apache.rocketmq.v2.EndpointsOrBuilder getEndpointsOrBuilder() {
+      if (endpointsBuilder_ != null) {
+        return endpointsBuilder_.getMessageOrBuilder();
       } else {
-        return metricEndpoints_ == null ?
-            apache.rocketmq.v2.Endpoints.getDefaultInstance() : metricEndpoints_;
+        return endpoints_ == null ?
+            apache.rocketmq.v2.Endpoints.getDefaultInstance() : endpoints_;
       }
     }
     /**
@@ -677,20 +677,20 @@ private static final long serialVersionUID = 0L;
      * The endpoint that client metrics should be exported to, which is required if the switch is on.
      * </pre>
      *
-     * <code>optional .apache.rocketmq.v2.Endpoints metric_endpoints = 2;</code>
+     * <code>optional .apache.rocketmq.v2.Endpoints endpoints = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Endpoints, apache.rocketmq.v2.Endpoints.Builder, apache.rocketmq.v2.EndpointsOrBuilder> 
-        getMetricEndpointsFieldBuilder() {
-      if (metricEndpointsBuilder_ == null) {
-        metricEndpointsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+        getEndpointsFieldBuilder() {
+      if (endpointsBuilder_ == null) {
+        endpointsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             apache.rocketmq.v2.Endpoints, apache.rocketmq.v2.Endpoints.Builder, apache.rocketmq.v2.EndpointsOrBuilder>(
-                getMetricEndpoints(),
+                getEndpoints(),
                 getParentForChildren(),
                 isClean());
-        metricEndpoints_ = null;
+        endpoints_ = null;
       }
-      return metricEndpointsBuilder_;
+      return endpointsBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

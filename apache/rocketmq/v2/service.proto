@@ -101,6 +101,8 @@ message ReceiveMessageResponse {
   oneof content {
     Status status = 1;
     Message message = 2;
+    // Time that prepare to delivery status and all messages.
+    google.protobuf.Timestamp delivery_time = 3;
   }
 }
 

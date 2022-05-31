@@ -76,6 +76,20 @@ private static final long serialVersionUID = 0L;
             contentCase_ = 2;
             break;
           }
+          case 26: {
+            com.google.protobuf.Timestamp.Builder subBuilder = null;
+            if (contentCase_ == 3) {
+              subBuilder = ((com.google.protobuf.Timestamp) content_).toBuilder();
+            }
+            content_ =
+                input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom((com.google.protobuf.Timestamp) content_);
+              content_ = subBuilder.buildPartial();
+            }
+            contentCase_ = 3;
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -115,6 +129,7 @@ private static final long serialVersionUID = 0L;
           com.google.protobuf.AbstractMessage.InternalOneOfEnum {
     STATUS(1),
     MESSAGE(2),
+    DELIVERY_TIMESTAMP(3),
     CONTENT_NOT_SET(0);
     private final int value;
     private ContentCase(int value) {
@@ -134,6 +149,7 @@ private static final long serialVersionUID = 0L;
       switch (value) {
         case 1: return STATUS;
         case 2: return MESSAGE;
+        case 3: return DELIVERY_TIMESTAMP;
         case 0: return CONTENT_NOT_SET;
         default: return null;
       }
@@ -211,6 +227,49 @@ private static final long serialVersionUID = 0L;
     return apache.rocketmq.v2.Message.getDefaultInstance();
   }
 
+  public static final int DELIVERY_TIMESTAMP_FIELD_NUMBER = 3;
+  /**
+   * <pre>
+   * The timestamp that brokers start to deliver status line or message.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
+   * @return Whether the deliveryTimestamp field is set.
+   */
+  @java.lang.Override
+  public boolean hasDeliveryTimestamp() {
+    return contentCase_ == 3;
+  }
+  /**
+   * <pre>
+   * The timestamp that brokers start to deliver status line or message.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
+   * @return The deliveryTimestamp.
+   */
+  @java.lang.Override
+  public com.google.protobuf.Timestamp getDeliveryTimestamp() {
+    if (contentCase_ == 3) {
+       return (com.google.protobuf.Timestamp) content_;
+    }
+    return com.google.protobuf.Timestamp.getDefaultInstance();
+  }
+  /**
+   * <pre>
+   * The timestamp that brokers start to deliver status line or message.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
+   */
+  @java.lang.Override
+  public com.google.protobuf.TimestampOrBuilder getDeliveryTimestampOrBuilder() {
+    if (contentCase_ == 3) {
+       return (com.google.protobuf.Timestamp) content_;
+    }
+    return com.google.protobuf.Timestamp.getDefaultInstance();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -231,6 +290,9 @@ private static final long serialVersionUID = 0L;
     if (contentCase_ == 2) {
       output.writeMessage(2, (apache.rocketmq.v2.Message) content_);
     }
+    if (contentCase_ == 3) {
+      output.writeMessage(3, (com.google.protobuf.Timestamp) content_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -247,6 +309,10 @@ private static final long serialVersionUID = 0L;
     if (contentCase_ == 2) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, (apache.rocketmq.v2.Message) content_);
+    }
+    if (contentCase_ == 3) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(3, (com.google.protobuf.Timestamp) content_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -273,6 +339,10 @@ private static final long serialVersionUID = 0L;
         if (!getMessage()
             .equals(other.getMessage())) return false;
         break;
+      case 3:
+        if (!getDeliveryTimestamp()
+            .equals(other.getDeliveryTimestamp())) return false;
+        break;
       case 0:
       default:
     }
@@ -295,6 +365,10 @@ private static final long serialVersionUID = 0L;
       case 2:
         hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
         hash = (53 * hash) + getMessage().hashCode();
+        break;
+      case 3:
+        hash = (37 * hash) + DELIVERY_TIMESTAMP_FIELD_NUMBER;
+        hash = (53 * hash) + getDeliveryTimestamp().hashCode();
         break;
       case 0:
       default:
@@ -474,6 +548,13 @@ private static final long serialVersionUID = 0L;
           result.content_ = messageBuilder_.build();
         }
       }
+      if (contentCase_ == 3) {
+        if (deliveryTimestampBuilder_ == null) {
+          result.content_ = content_;
+        } else {
+          result.content_ = deliveryTimestampBuilder_.build();
+        }
+      }
       result.contentCase_ = contentCase_;
       onBuilt();
       return result;
@@ -530,6 +611,10 @@ private static final long serialVersionUID = 0L;
         }
         case MESSAGE: {
           mergeMessage(other.getMessage());
+          break;
+        }
+        case DELIVERY_TIMESTAMP: {
+          mergeDeliveryTimestamp(other.getDeliveryTimestamp());
           break;
         }
         case CONTENT_NOT_SET: {
@@ -860,6 +945,183 @@ private static final long serialVersionUID = 0L;
       contentCase_ = 2;
       onChanged();;
       return messageBuilder_;
+    }
+
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> deliveryTimestampBuilder_;
+    /**
+     * <pre>
+     * The timestamp that brokers start to deliver status line or message.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
+     * @return Whether the deliveryTimestamp field is set.
+     */
+    @java.lang.Override
+    public boolean hasDeliveryTimestamp() {
+      return contentCase_ == 3;
+    }
+    /**
+     * <pre>
+     * The timestamp that brokers start to deliver status line or message.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
+     * @return The deliveryTimestamp.
+     */
+    @java.lang.Override
+    public com.google.protobuf.Timestamp getDeliveryTimestamp() {
+      if (deliveryTimestampBuilder_ == null) {
+        if (contentCase_ == 3) {
+          return (com.google.protobuf.Timestamp) content_;
+        }
+        return com.google.protobuf.Timestamp.getDefaultInstance();
+      } else {
+        if (contentCase_ == 3) {
+          return deliveryTimestampBuilder_.getMessage();
+        }
+        return com.google.protobuf.Timestamp.getDefaultInstance();
+      }
+    }
+    /**
+     * <pre>
+     * The timestamp that brokers start to deliver status line or message.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
+     */
+    public Builder setDeliveryTimestamp(com.google.protobuf.Timestamp value) {
+      if (deliveryTimestampBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        content_ = value;
+        onChanged();
+      } else {
+        deliveryTimestampBuilder_.setMessage(value);
+      }
+      contentCase_ = 3;
+      return this;
+    }
+    /**
+     * <pre>
+     * The timestamp that brokers start to deliver status line or message.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
+     */
+    public Builder setDeliveryTimestamp(
+        com.google.protobuf.Timestamp.Builder builderForValue) {
+      if (deliveryTimestampBuilder_ == null) {
+        content_ = builderForValue.build();
+        onChanged();
+      } else {
+        deliveryTimestampBuilder_.setMessage(builderForValue.build());
+      }
+      contentCase_ = 3;
+      return this;
+    }
+    /**
+     * <pre>
+     * The timestamp that brokers start to deliver status line or message.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
+     */
+    public Builder mergeDeliveryTimestamp(com.google.protobuf.Timestamp value) {
+      if (deliveryTimestampBuilder_ == null) {
+        if (contentCase_ == 3 &&
+            content_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
+          content_ = com.google.protobuf.Timestamp.newBuilder((com.google.protobuf.Timestamp) content_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          content_ = value;
+        }
+        onChanged();
+      } else {
+        if (contentCase_ == 3) {
+          deliveryTimestampBuilder_.mergeFrom(value);
+        }
+        deliveryTimestampBuilder_.setMessage(value);
+      }
+      contentCase_ = 3;
+      return this;
+    }
+    /**
+     * <pre>
+     * The timestamp that brokers start to deliver status line or message.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
+     */
+    public Builder clearDeliveryTimestamp() {
+      if (deliveryTimestampBuilder_ == null) {
+        if (contentCase_ == 3) {
+          contentCase_ = 0;
+          content_ = null;
+          onChanged();
+        }
+      } else {
+        if (contentCase_ == 3) {
+          contentCase_ = 0;
+          content_ = null;
+        }
+        deliveryTimestampBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * The timestamp that brokers start to deliver status line or message.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
+     */
+    public com.google.protobuf.Timestamp.Builder getDeliveryTimestampBuilder() {
+      return getDeliveryTimestampFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * The timestamp that brokers start to deliver status line or message.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
+     */
+    @java.lang.Override
+    public com.google.protobuf.TimestampOrBuilder getDeliveryTimestampOrBuilder() {
+      if ((contentCase_ == 3) && (deliveryTimestampBuilder_ != null)) {
+        return deliveryTimestampBuilder_.getMessageOrBuilder();
+      } else {
+        if (contentCase_ == 3) {
+          return (com.google.protobuf.Timestamp) content_;
+        }
+        return com.google.protobuf.Timestamp.getDefaultInstance();
+      }
+    }
+    /**
+     * <pre>
+     * The timestamp that brokers start to deliver status line or message.
+     * </pre>
+     *
+     * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
+        getDeliveryTimestampFieldBuilder() {
+      if (deliveryTimestampBuilder_ == null) {
+        if (!(contentCase_ == 3)) {
+          content_ = com.google.protobuf.Timestamp.getDefaultInstance();
+        }
+        deliveryTimestampBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
+                (com.google.protobuf.Timestamp) content_,
+                getParentForChildren(),
+                isClean());
+        content_ = null;
+      }
+      contentCase_ = 3;
+      onChanged();;
+      return deliveryTimestampBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

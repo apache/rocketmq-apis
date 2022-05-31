@@ -37,5 +37,32 @@ public interface ReceiveMessageResponseOrBuilder extends
    */
   apache.rocketmq.v2.MessageOrBuilder getMessageOrBuilder();
 
+  /**
+   * <pre>
+   * The timestamp that brokers start to deliver status line or message.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
+   * @return Whether the deliveryTimestamp field is set.
+   */
+  boolean hasDeliveryTimestamp();
+  /**
+   * <pre>
+   * The timestamp that brokers start to deliver status line or message.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
+   * @return The deliveryTimestamp.
+   */
+  com.google.protobuf.Timestamp getDeliveryTimestamp();
+  /**
+   * <pre>
+   * The timestamp that brokers start to deliver status line or message.
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp delivery_timestamp = 3;</code>
+   */
+  com.google.protobuf.TimestampOrBuilder getDeliveryTimestampOrBuilder();
+
   public apache.rocketmq.v2.ReceiveMessageResponse.ContentCase getContentCase();
 }

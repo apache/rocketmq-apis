@@ -16,6 +16,7 @@
 syntax = "proto3";
 
 import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
 
 import "apache/rocketmq/v2/definition.proto";
 
@@ -101,7 +102,7 @@ message ReceiveMessageResponse {
   oneof content {
     Status status = 1;
     Message message = 2;
-    // Timestamp that prepare to deliver status and all messages.
+    // The timestamp that brokers start to deliver status line or message.
     google.protobuf.Timestamp delivery_timestamp = 3;
   }
 }

@@ -1,0 +1,5 @@
+Language: Proto
+ColumnLimit: 120
+SpacesInContainerLiterals: false
+AllowShortFunctionsOnASingleLine: None
+ReflowComments: false

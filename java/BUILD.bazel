@@ -20,7 +20,7 @@ proto_plugin(
 java_grpc_compile(
     name = "rocketmq_proto_src",
     deps = [
-        "//:rocketmq_v1_proto",
+        "//:rocketmq_v2_proto",
     ]
 )
 

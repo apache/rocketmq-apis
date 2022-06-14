@@ -207,6 +207,10 @@ message Publishing {
   // reject the request. As a result, it is advisable that Producer performs
   // client-side check validation.
   int32 max_body_size = 3;
+
+  // When `validate_message_type` flag set `false`, no need to validate message's type
+  // with messageQueue's `accept_message_types` before publising.
+  bool validate_message_type = 4;
 }
 
 message Subscription {

@@ -194,9 +194,9 @@ message Publishing {
   // client-side check validation.
   int32 max_body_size = 3;
 
-  // When `check_message_type` flag set `false`, no need to check message's type
+  // When `validate_message_type` flag set `false`, no need to validate message's type
   // with messageQueue's `accept_message_types` before publising.
-  bool check_message_type = 4;
+  bool validate_message_type = 4;
 }
 
 message Subscription {

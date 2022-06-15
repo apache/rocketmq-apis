@@ -85,4 +85,15 @@ public interface PublishingOrBuilder extends
    * @return The maxBodySize.
    */
   int getMaxBodySize();
+
+  /**
+   * <pre>
+   * When `validate_message_type` flag set `false`, no need to validate message's type
+   * with messageQueue's `accept_message_types` before publising.
+   * </pre>
+   *
+   * <code>bool validate_message_type = 4;</code>
+   * @return The validateMessageType.
+   */
+  boolean getValidateMessageType();
 }

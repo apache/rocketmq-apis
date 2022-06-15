@@ -391,6 +391,12 @@ enum Code {
   // Return different results for entries in composite request.
   MULTIPLE_RESULTS = 33;
 
+  // Generic code for bad request, indicating that required fields or headers are missing.
+  BAD_REQUEST = 400;
+
+  // Request is rejected due to missing of x-mq-client-id header.
+  BAD_REQUEST_CLIENT_ID = 400001;
+
   // Code indicates that the server encountered an unexpected condition
   // that prevented it from fulfilling the request.
   // This error response is a generic "catch-all" response.

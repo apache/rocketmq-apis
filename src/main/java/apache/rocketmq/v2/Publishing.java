@@ -69,6 +69,11 @@ private static final long serialVersionUID = 0L;
             maxBodySize_ = input.readInt32();
             break;
           }
+          case 32: {
+
+            validateMessageType_ = input.readBool();
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -209,6 +214,22 @@ private static final long serialVersionUID = 0L;
     return maxBodySize_;
   }
 
+  public static final int VALIDATE_MESSAGE_TYPE_FIELD_NUMBER = 4;
+  private boolean validateMessageType_;
+  /**
+   * <pre>
+   * When `validate_message_type` flag set `false`, no need to validate message's type
+   * with messageQueue's `accept_message_types` before publising.
+   * </pre>
+   *
+   * <code>bool validate_message_type = 4;</code>
+   * @return The validateMessageType.
+   */
+  @java.lang.Override
+  public boolean getValidateMessageType() {
+    return validateMessageType_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -232,6 +253,9 @@ private static final long serialVersionUID = 0L;
     if (maxBodySize_ != 0) {
       output.writeInt32(3, maxBodySize_);
     }
+    if (validateMessageType_ != false) {
+      output.writeBool(4, validateMessageType_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -252,6 +276,10 @@ private static final long serialVersionUID = 0L;
     if (maxBodySize_ != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(3, maxBodySize_);
+    }
+    if (validateMessageType_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(4, validateMessageType_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -274,6 +302,8 @@ private static final long serialVersionUID = 0L;
         != other.getCompressBodyThreshold()) return false;
     if (getMaxBodySize()
         != other.getMaxBodySize()) return false;
+    if (getValidateMessageType()
+        != other.getValidateMessageType()) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -293,6 +323,9 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getCompressBodyThreshold();
     hash = (37 * hash) + MAX_BODY_SIZE_FIELD_NUMBER;
     hash = (53 * hash) + getMaxBodySize();
+    hash = (37 * hash) + VALIDATE_MESSAGE_TYPE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getValidateMessageType());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -437,6 +470,8 @@ private static final long serialVersionUID = 0L;
 
       maxBodySize_ = 0;
 
+      validateMessageType_ = false;
+
       return this;
     }
 
@@ -475,6 +510,7 @@ private static final long serialVersionUID = 0L;
       }
       result.compressBodyThreshold_ = compressBodyThreshold_;
       result.maxBodySize_ = maxBodySize_;
+      result.validateMessageType_ = validateMessageType_;
       onBuilt();
       return result;
     }
@@ -554,6 +590,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getMaxBodySize() != 0) {
         setMaxBodySize(other.getMaxBodySize());
+      }
+      if (other.getValidateMessageType() != false) {
+        setValidateMessageType(other.getValidateMessageType());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1030,6 +1069,52 @@ private static final long serialVersionUID = 0L;
     public Builder clearMaxBodySize() {
       
       maxBodySize_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private boolean validateMessageType_ ;
+    /**
+     * <pre>
+     * When `validate_message_type` flag set `false`, no need to validate message's type
+     * with messageQueue's `accept_message_types` before publising.
+     * </pre>
+     *
+     * <code>bool validate_message_type = 4;</code>
+     * @return The validateMessageType.
+     */
+    @java.lang.Override
+    public boolean getValidateMessageType() {
+      return validateMessageType_;
+    }
+    /**
+     * <pre>
+     * When `validate_message_type` flag set `false`, no need to validate message's type
+     * with messageQueue's `accept_message_types` before publising.
+     * </pre>
+     *
+     * <code>bool validate_message_type = 4;</code>
+     * @param value The validateMessageType to set.
+     * @return This builder for chaining.
+     */
+    public Builder setValidateMessageType(boolean value) {
+      
+      validateMessageType_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * When `validate_message_type` flag set `false`, no need to validate message's type
+     * with messageQueue's `accept_message_types` before publising.
+     * </pre>
+     *
+     * <code>bool validate_message_type = 4;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearValidateMessageType() {
+      
+      validateMessageType_ = false;
       onChanged();
       return this;
     }

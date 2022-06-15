@@ -290,6 +290,22 @@ public enum Code
   MULTIPLE_RESULTS(33),
   /**
    * <pre>
+   * Generic code for bad request, indicating that required fields or headers are missing.
+   * </pre>
+   *
+   * <code>BAD_REQUEST = 400;</code>
+   */
+  BAD_REQUEST(400),
+  /**
+   * <pre>
+   * Request is rejected due to missing of x-mq-client-id header.
+   * </pre>
+   *
+   * <code>BAD_REQUEST_CLIENT_ID = 400001;</code>
+   */
+  BAD_REQUEST_CLIENT_ID(400001),
+  /**
+   * <pre>
    * Code indicates that the server encountered an unexpected condition
    * that prevented it from fulfilling the request.
    * This error response is a generic "catch-all" response.
@@ -608,6 +624,22 @@ public enum Code
   public static final int MULTIPLE_RESULTS_VALUE = 33;
   /**
    * <pre>
+   * Generic code for bad request, indicating that required fields or headers are missing.
+   * </pre>
+   *
+   * <code>BAD_REQUEST = 400;</code>
+   */
+  public static final int BAD_REQUEST_VALUE = 400;
+  /**
+   * <pre>
+   * Request is rejected due to missing of x-mq-client-id header.
+   * </pre>
+   *
+   * <code>BAD_REQUEST_CLIENT_ID = 400001;</code>
+   */
+  public static final int BAD_REQUEST_CLIENT_ID_VALUE = 400001;
+  /**
+   * <pre>
    * Code indicates that the server encountered an unexpected condition
    * that prevented it from fulfilling the request.
    * This error response is a generic "catch-all" response.
@@ -701,6 +733,8 @@ public enum Code
       case 31: return ILLEGAL_MESSAGE;
       case 32: return UNRECOGNIZED_CLIENT_TYPE;
       case 33: return MULTIPLE_RESULTS;
+      case 400: return BAD_REQUEST;
+      case 400001: return BAD_REQUEST_CLIENT_ID;
       case 500: return INTERNAL_SERVER_ERROR;
       case 501: return NOT_IMPLEMENTED;
       case 504: return GATEWAY_TIMEOUT;

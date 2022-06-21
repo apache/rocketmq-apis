@@ -329,6 +329,8 @@ message ChangeInvisibleDurationRequest {
 
   // For message tracing
   string message_id = 5;
+  // For message tracing
+  int32 delivery_attempt = 6;
 }
 
 message ChangeInvisibleDurationResponse {

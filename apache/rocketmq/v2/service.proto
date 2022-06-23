@@ -239,6 +239,10 @@ message Subscription {
   // Long-polling timeout for `ReceiveMessageRequest`, which is essential for
   // push consumer.
   optional google.protobuf.Duration long_polling_timeout = 5;
+
+  // Consume timeout for one message, which is essential for
+  // push consumer.
+  optional google.protobuf.Duration consume_timeout = 6;
 }
 
 message Metric {

@@ -1,6 +1,7 @@
-## Status Code
+# Status Code
 
-### Non-Telemetry RPC Status Code Mapping Table
+## Non-Telemetry RPC Status Code Mapping Table
+
 |                                              | Queryroute | Heartbeat | SendMessage | QueryAssignment | ReceiveMessage | AckMessage | ForwardMessageToDeadLetterQueue | EndTransaction | NotifyClientTermination | ChangeInvisibleDuration |
 | :------------------------------------------: | :--------: | :-------: | :---------: | :-------------: | :------------: | :--------: | :-----------------------------: | :------------: | :---------------------: | :---------------------: |
 |                      OK                      |     ✅      |     ❌     |      ✅      |        ❌        |       ✅        |     ❌      |                ✅                |       ❌        |            ✅            |            ❌            |
@@ -44,3 +45,4 @@
 |               NOT_IMPLEMENTED                |     ✅      |     ❌     |      ✅      |        ❌        |       ✅        |     ❌      |                ✅                |       ❌        |            ✅            |            ❌            |
 |               GATEWAY_TIMEOUT                |     ✅      |     ❌     |      ✅      |        ❌        |       ✅        |     ❌      |                ✅                |       ❌        |            ✅            |            ❌            |
 
+## Telemetry RPC Status Code Mapping Table

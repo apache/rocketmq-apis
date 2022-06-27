@@ -2,7 +2,7 @@
 
 ## Non-Telemetry RPC Status Code Mapping Table
 
-|                                              | Queryroute | Heartbeat | SendMessage | QueryAssignment | ReceiveMessage | AckMessage | ForwardMessageToDeadLetterQueue | EndTransaction | NotifyClientTermination | ChangeInvisibleDuration |
+|                                              | QueryRoute | Heartbeat | SendMessage | QueryAssignment | ReceiveMessage | AckMessage | ForwardMessageToDeadLetterQueue | EndTransaction | NotifyClientTermination | ChangeInvisibleDuration |
 | :------------------------------------------: | :--------: | :-------: | :---------: | :-------------: | :------------: | :--------: | :-----------------------------: | :------------: | :---------------------: | :---------------------: |
 |                      OK                      |     ✅      |     ❌     |      ✅      |        ❌        |       ✅        |     ❌      |                ✅                |       ❌        |            ✅            |            ❌            |
 |             ILLEGA_ACCESS_POINT              |     ✅      |     ❌     |      ✅      |        ❌        |       ✅        |     ❌      |                ✅                |       ❌        |            ✅            |            ❌            |

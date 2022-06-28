@@ -405,7 +405,7 @@ enum Code {
   // did not get a response in time from the upstream server that
   // it needed in order to complete the request.
   // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
-  GATEWAY_TIMEOUT = 504;
+  PROXY_TIMEOUT = 504;
 }
 
 message Status {

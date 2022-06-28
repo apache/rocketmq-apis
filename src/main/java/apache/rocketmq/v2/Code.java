@@ -168,126 +168,100 @@ public enum Code
   TOO_MANY_REQUESTS(18),
   /**
    * <pre>
-   * Expired receipt-handle is used when trying to acknowledge or change
-   * invisible duration of a message
-   * </pre>
-   *
-   * <code>RECEIPT_HANDLE_EXPIRED = 19;</code>
-   */
-  RECEIPT_HANDLE_EXPIRED(19),
-  /**
-   * <pre>
    * Message property is not match the message type.
    * </pre>
    *
-   * <code>MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE = 20;</code>
+   * <code>MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE = 19;</code>
    */
-  MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE(20),
+  MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE(19),
   /**
    * <pre>
    * Format of message id is illegal.
    * </pre>
    *
-   * <code>ILLEGAL_MESSAGE_ID = 21;</code>
+   * <code>ILLEGAL_MESSAGE_ID = 20;</code>
    */
-  ILLEGAL_MESSAGE_ID(21),
+  ILLEGAL_MESSAGE_ID(20),
   /**
    * <pre>
    * Transaction id is invalid.
    * </pre>
    *
-   * <code>INVALID_TRANSACTION_ID = 22;</code>
+   * <code>INVALID_TRANSACTION_ID = 21;</code>
    */
-  INVALID_TRANSACTION_ID(22),
+  INVALID_TRANSACTION_ID(21),
   /**
    * <pre>
    * Format of filter expression is illegal.
    * </pre>
    *
-   * <code>ILLEGAL_FILTER_EXPRESSION = 23;</code>
+   * <code>ILLEGAL_FILTER_EXPRESSION = 22;</code>
    */
-  ILLEGAL_FILTER_EXPRESSION(23),
+  ILLEGAL_FILTER_EXPRESSION(22),
   /**
    * <pre>
    * Receipt handle of message is invalid.
    * </pre>
    *
-   * <code>INVALID_RECEIPT_HANDLE = 24;</code>
+   * <code>INVALID_RECEIPT_HANDLE = 23;</code>
    */
-  INVALID_RECEIPT_HANDLE(24),
+  INVALID_RECEIPT_HANDLE(23),
   /**
    * <pre>
    * Message persistence timeout.
    * </pre>
    *
-   * <code>MASTER_PERSISTENCE_TIMEOUT = 25;</code>
+   * <code>MASTER_PERSISTENCE_TIMEOUT = 24;</code>
    */
-  MASTER_PERSISTENCE_TIMEOUT(25),
+  MASTER_PERSISTENCE_TIMEOUT(24),
   /**
    * <pre>
    * Slave persistence timeout.
    * </pre>
    *
-   * <code>SLAVE_PERSISTENCE_TIMEOUT = 26;</code>
+   * <code>SLAVE_PERSISTENCE_TIMEOUT = 25;</code>
    */
-  SLAVE_PERSISTENCE_TIMEOUT(26),
+  SLAVE_PERSISTENCE_TIMEOUT(25),
   /**
    * <pre>
    * The HA-mechanism is not working now.
    * </pre>
    *
-   * <code>HA_NOT_AVAILABLE = 27;</code>
+   * <code>HA_NOT_AVAILABLE = 26;</code>
    */
-  HA_NOT_AVAILABLE(27),
+  HA_NOT_AVAILABLE(26),
   /**
    * <pre>
    * Operation is not allowed in current version.
    * </pre>
    *
-   * <code>VERSION_UNSUPPORTED = 28;</code>
+   * <code>VERSION_UNSUPPORTED = 27;</code>
    */
-  VERSION_UNSUPPORTED(28),
+  VERSION_UNSUPPORTED(27),
   /**
    * <pre>
    * Message not found from server.
    * </pre>
    *
-   * <code>MESSAGE_NOT_FOUND = 29;</code>
+   * <code>MESSAGE_NOT_FOUND = 28;</code>
    */
-  MESSAGE_NOT_FOUND(29),
-  /**
-   * <pre>
-   * Message offset is illegal.
-   * </pre>
-   *
-   * <code>ILLEGAL_MESSAGE_OFFSET = 30;</code>
-   */
-  ILLEGAL_MESSAGE_OFFSET(30),
-  /**
-   * <pre>
-   * Illegal message is for the sake of backward compatibility. In most case,
-   * more definitive code is better, e.g. `ILLEGAL_MESSAGE_TAG`.
-   * </pre>
-   *
-   * <code>ILLEGAL_MESSAGE = 31;</code>
-   */
-  ILLEGAL_MESSAGE(31),
+  MESSAGE_NOT_FOUND(28),
   /**
    * <pre>
    * Client type could not be recognized.
    * </pre>
    *
-   * <code>UNRECOGNIZED_CLIENT_TYPE = 32;</code>
+   * <code>UNRECOGNIZED_CLIENT_TYPE = 29;</code>
    */
-  UNRECOGNIZED_CLIENT_TYPE(32),
+  UNRECOGNIZED_CLIENT_TYPE(29),
   /**
    * <pre>
    * Return different results for entries in composite request.
    * </pre>
    *
-   * <code>MULTIPLE_RESULTS = 33;</code>
+   * <code>MULTIPLE_RESULTS = 30;</code>
    */
-  MULTIPLE_RESULTS(33),
+  MULTIPLE_RESULTS(30),
   /**
    * <pre>
    * Generic code for bad request, indicating that required fields or headers are missing.
@@ -336,9 +310,9 @@ public enum Code
    * See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
    * </pre>
    *
-   * <code>GATEWAY_TIMEOUT = 504;</code>
+   * <code>PROXY_TIMEOUT = 504;</code>
    */
-  GATEWAY_TIMEOUT(504),
+  PROXY_TIMEOUT(504),
   UNRECOGNIZED(-1),
   ;
 
@@ -502,126 +476,100 @@ public enum Code
   public static final int TOO_MANY_REQUESTS_VALUE = 18;
   /**
    * <pre>
-   * Expired receipt-handle is used when trying to acknowledge or change
-   * invisible duration of a message
-   * </pre>
-   *
-   * <code>RECEIPT_HANDLE_EXPIRED = 19;</code>
-   */
-  public static final int RECEIPT_HANDLE_EXPIRED_VALUE = 19;
-  /**
-   * <pre>
    * Message property is not match the message type.
    * </pre>
    *
-   * <code>MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE = 20;</code>
+   * <code>MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE = 19;</code>
    */
-  public static final int MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE_VALUE = 20;
+  public static final int MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE_VALUE = 19;
   /**
    * <pre>
    * Format of message id is illegal.
    * </pre>
    *
-   * <code>ILLEGAL_MESSAGE_ID = 21;</code>
+   * <code>ILLEGAL_MESSAGE_ID = 20;</code>
    */
-  public static final int ILLEGAL_MESSAGE_ID_VALUE = 21;
+  public static final int ILLEGAL_MESSAGE_ID_VALUE = 20;
   /**
    * <pre>
    * Transaction id is invalid.
    * </pre>
    *
-   * <code>INVALID_TRANSACTION_ID = 22;</code>
+   * <code>INVALID_TRANSACTION_ID = 21;</code>
    */
-  public static final int INVALID_TRANSACTION_ID_VALUE = 22;
+  public static final int INVALID_TRANSACTION_ID_VALUE = 21;
   /**
    * <pre>
    * Format of filter expression is illegal.
    * </pre>
    *
-   * <code>ILLEGAL_FILTER_EXPRESSION = 23;</code>
+   * <code>ILLEGAL_FILTER_EXPRESSION = 22;</code>
    */
-  public static final int ILLEGAL_FILTER_EXPRESSION_VALUE = 23;
+  public static final int ILLEGAL_FILTER_EXPRESSION_VALUE = 22;
   /**
    * <pre>
    * Receipt handle of message is invalid.
    * </pre>
    *
-   * <code>INVALID_RECEIPT_HANDLE = 24;</code>
+   * <code>INVALID_RECEIPT_HANDLE = 23;</code>
    */
-  public static final int INVALID_RECEIPT_HANDLE_VALUE = 24;
+  public static final int INVALID_RECEIPT_HANDLE_VALUE = 23;
   /**
    * <pre>
    * Message persistence timeout.
    * </pre>
    *
-   * <code>MASTER_PERSISTENCE_TIMEOUT = 25;</code>
+   * <code>MASTER_PERSISTENCE_TIMEOUT = 24;</code>
    */
-  public static final int MASTER_PERSISTENCE_TIMEOUT_VALUE = 25;
+  public static final int MASTER_PERSISTENCE_TIMEOUT_VALUE = 24;
   /**
    * <pre>
    * Slave persistence timeout.
    * </pre>
    *
-   * <code>SLAVE_PERSISTENCE_TIMEOUT = 26;</code>
+   * <code>SLAVE_PERSISTENCE_TIMEOUT = 25;</code>
    */
-  public static final int SLAVE_PERSISTENCE_TIMEOUT_VALUE = 26;
+  public static final int SLAVE_PERSISTENCE_TIMEOUT_VALUE = 25;
   /**
    * <pre>
    * The HA-mechanism is not working now.
    * </pre>
    *
-   * <code>HA_NOT_AVAILABLE = 27;</code>
+   * <code>HA_NOT_AVAILABLE = 26;</code>
    */
-  public static final int HA_NOT_AVAILABLE_VALUE = 27;
+  public static final int HA_NOT_AVAILABLE_VALUE = 26;
   /**
    * <pre>
    * Operation is not allowed in current version.
    * </pre>
    *
-   * <code>VERSION_UNSUPPORTED = 28;</code>
+   * <code>VERSION_UNSUPPORTED = 27;</code>
    */
-  public static final int VERSION_UNSUPPORTED_VALUE = 28;
+  public static final int VERSION_UNSUPPORTED_VALUE = 27;
   /**
    * <pre>
    * Message not found from server.
    * </pre>
    *
-   * <code>MESSAGE_NOT_FOUND = 29;</code>
+   * <code>MESSAGE_NOT_FOUND = 28;</code>
    */
-  public static final int MESSAGE_NOT_FOUND_VALUE = 29;
-  /**
-   * <pre>
-   * Message offset is illegal.
-   * </pre>
-   *
-   * <code>ILLEGAL_MESSAGE_OFFSET = 30;</code>
-   */
-  public static final int ILLEGAL_MESSAGE_OFFSET_VALUE = 30;
-  /**
-   * <pre>
-   * Illegal message is for the sake of backward compatibility. In most case,
-   * more definitive code is better, e.g. `ILLEGAL_MESSAGE_TAG`.
-   * </pre>
-   *
-   * <code>ILLEGAL_MESSAGE = 31;</code>
-   */
-  public static final int ILLEGAL_MESSAGE_VALUE = 31;
+  public static final int MESSAGE_NOT_FOUND_VALUE = 28;
   /**
    * <pre>
    * Client type could not be recognized.
    * </pre>
    *
-   * <code>UNRECOGNIZED_CLIENT_TYPE = 32;</code>
+   * <code>UNRECOGNIZED_CLIENT_TYPE = 29;</code>
    */
-  public static final int UNRECOGNIZED_CLIENT_TYPE_VALUE = 32;
+  public static final int UNRECOGNIZED_CLIENT_TYPE_VALUE = 29;
   /**
    * <pre>
    * Return different results for entries in composite request.
    * </pre>
    *
-   * <code>MULTIPLE_RESULTS = 33;</code>
+   * <code>MULTIPLE_RESULTS = 30;</code>
    */
-  public static final int MULTIPLE_RESULTS_VALUE = 33;
+  public static final int MULTIPLE_RESULTS_VALUE = 30;
   /**
    * <pre>
    * Generic code for bad request, indicating that required fields or headers are missing.
@@ -670,9 +618,9 @@ public enum Code
    * See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
    * </pre>
    *
-   * <code>GATEWAY_TIMEOUT = 504;</code>
+   * <code>PROXY_TIMEOUT = 504;</code>
    */
-  public static final int GATEWAY_TIMEOUT_VALUE = 504;
+  public static final int PROXY_TIMEOUT_VALUE = 504;
 
 
   public final int getNumber() {
@@ -718,26 +666,23 @@ public enum Code
       case 16: return FAILED_TO_CONSUME_MESSAGE;
       case 17: return MESSAGE_CORRUPTED;
       case 18: return TOO_MANY_REQUESTS;
-      case 19: return RECEIPT_HANDLE_EXPIRED;
-      case 20: return MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE;
-      case 21: return ILLEGAL_MESSAGE_ID;
-      case 22: return INVALID_TRANSACTION_ID;
-      case 23: return ILLEGAL_FILTER_EXPRESSION;
-      case 24: return INVALID_RECEIPT_HANDLE;
-      case 25: return MASTER_PERSISTENCE_TIMEOUT;
-      case 26: return SLAVE_PERSISTENCE_TIMEOUT;
-      case 27: return HA_NOT_AVAILABLE;
-      case 28: return VERSION_UNSUPPORTED;
-      case 29: return MESSAGE_NOT_FOUND;
-      case 30: return ILLEGAL_MESSAGE_OFFSET;
-      case 31: return ILLEGAL_MESSAGE;
-      case 32: return UNRECOGNIZED_CLIENT_TYPE;
-      case 33: return MULTIPLE_RESULTS;
+      case 19: return MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE;
+      case 20: return ILLEGAL_MESSAGE_ID;
+      case 21: return INVALID_TRANSACTION_ID;
+      case 22: return ILLEGAL_FILTER_EXPRESSION;
+      case 23: return INVALID_RECEIPT_HANDLE;
+      case 24: return MASTER_PERSISTENCE_TIMEOUT;
+      case 25: return SLAVE_PERSISTENCE_TIMEOUT;
+      case 26: return HA_NOT_AVAILABLE;
+      case 27: return VERSION_UNSUPPORTED;
+      case 28: return MESSAGE_NOT_FOUND;
+      case 29: return UNRECOGNIZED_CLIENT_TYPE;
+      case 30: return MULTIPLE_RESULTS;
       case 400: return BAD_REQUEST;
       case 400001: return BAD_REQUEST_CLIENT_ID;
       case 500: return INTERNAL_SERVER_ERROR;
       case 501: return NOT_IMPLEMENTED;
-      case 504: return GATEWAY_TIMEOUT;
+      case 504: return PROXY_TIMEOUT;
       default: return null;
     }
   }

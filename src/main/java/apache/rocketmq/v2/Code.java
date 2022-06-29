@@ -9,275 +9,236 @@ package apache.rocketmq.v2;
 public enum Code
     implements com.google.protobuf.ProtocolMessageEnum {
   /**
-   * <pre>
-   * Success.
-   * </pre>
-   *
-   * <code>OK = 0;</code>
+   * <code>CODE_UNSPECIFIED = 0;</code>
    */
-  OK(0),
+  CODE_UNSPECIFIED(0),
   /**
    * <pre>
-   * Format of access point is illegal.
+   * Generic code for success.
    * </pre>
    *
-   * <code>ILLEGAL_ACCESS_POINT = 1;</code>
+   * <code>OK = 20000;</code>
    */
-  ILLEGAL_ACCESS_POINT(1),
+  OK(20000),
   /**
    * <pre>
-   * Format of topic is illegal.
+   * Generic code for multiple return results.
    * </pre>
    *
-   * <code>ILLEGAL_TOPIC = 2;</code>
+   * <code>MULTIPLE_RESULTS = 30000;</code>
    */
-  ILLEGAL_TOPIC(2),
-  /**
-   * <pre>
-   * Format of consumer group is illegal.
-   * </pre>
-   *
-   * <code>ILLEGAL_CONSUMER_GROUP = 3;</code>
-   */
-  ILLEGAL_CONSUMER_GROUP(3),
-  /**
-   * <pre>
-   * Format of message tag is illegal.
-   * </pre>
-   *
-   * <code>ILLEGAL_MESSAGE_TAG = 4;</code>
-   */
-  ILLEGAL_MESSAGE_TAG(4),
-  /**
-   * <pre>
-   * Format of message key is illegal.
-   * </pre>
-   *
-   * <code>ILLEGAL_MESSAGE_KEY = 5;</code>
-   */
-  ILLEGAL_MESSAGE_KEY(5),
-  /**
-   * <pre>
-   * Size of message keys exceeds the threshold.
-   * </pre>
-   *
-   * <code>MESSAGE_KEYS_TOO_LARGE = 6;</code>
-   */
-  MESSAGE_KEYS_TOO_LARGE(6),
-  /**
-   * <pre>
-   * Format of message group is illegal.
-   * </pre>
-   *
-   * <code>ILLEGAL_MESSAGE_GROUP = 7;</code>
-   */
-  ILLEGAL_MESSAGE_GROUP(7),
-  /**
-   * <pre>
-   * Format of message property key is illegal.
-   * </pre>
-   *
-   * <code>ILLEGAL_MESSAGE_PROPERTY_KEY = 8;</code>
-   */
-  ILLEGAL_MESSAGE_PROPERTY_KEY(8),
-  /**
-   * <pre>
-   * Message properties total size exceeds the threshold.
-   * </pre>
-   *
-   * <code>MESSAGE_PROPERTIES_TOO_LARGE = 9;</code>
-   */
-  MESSAGE_PROPERTIES_TOO_LARGE(9),
-  /**
-   * <pre>
-   * Message body size exceeds the threshold.
-   * </pre>
-   *
-   * <code>MESSAGE_BODY_TOO_LARGE = 10;</code>
-   */
-  MESSAGE_BODY_TOO_LARGE(10),
-  /**
-   * <pre>
-   * User does not have the permission to operate.
-   * See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
-   * </pre>
-   *
-   * <code>FORBIDDEN = 403;</code>
-   */
-  FORBIDDEN(403),
-  /**
-   * <pre>
-   * Code indicates that the client request has not been completed
-   * because it lacks valid authentication credentials for the
-   * requested resource.
-   * See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
-   * </pre>
-   *
-   * <code>UNAUTHORIZED = 401;</code>
-   */
-  UNAUTHORIZED(401),
-  /**
-   * <pre>
-   * Topic resource does not exist.
-   * </pre>
-   *
-   * <code>TOPIC_NOT_FOUND = 13;</code>
-   */
-  TOPIC_NOT_FOUND(13),
-  /**
-   * <pre>
-   * Consumer group resource does not exist.
-   * </pre>
-   *
-   * <code>CONSUMER_GROUP_NOT_FOUND = 14;</code>
-   */
-  CONSUMER_GROUP_NOT_FOUND(14),
-  /**
-   * <pre>
-   * Not allowed to verify message. Chances are that you are verifying
-   * a FIFO message, as is violating FIFO semantics.
-   * </pre>
-   *
-   * <code>VERIFY_MESSAGE_FORBIDDEN = 15;</code>
-   */
-  VERIFY_MESSAGE_FORBIDDEN(15),
-  /**
-   * <pre>
-   * Failed to consume message.
-   * </pre>
-   *
-   * <code>FAILED_TO_CONSUME_MESSAGE = 16;</code>
-   */
-  FAILED_TO_CONSUME_MESSAGE(16),
-  /**
-   * <pre>
-   * Message is corrupted.
-   * </pre>
-   *
-   * <code>MESSAGE_CORRUPTED = 17;</code>
-   */
-  MESSAGE_CORRUPTED(17),
-  /**
-   * <pre>
-   * Too many requests are made in short period of duration.
-   * Requests are throttled.
-   * </pre>
-   *
-   * <code>TOO_MANY_REQUESTS = 18;</code>
-   */
-  TOO_MANY_REQUESTS(18),
-  /**
-   * <pre>
-   * Message property is not match the message type.
-   * </pre>
-   *
-   * <code>MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE = 19;</code>
-   */
-  MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE(19),
-  /**
-   * <pre>
-   * Format of message id is illegal.
-   * </pre>
-   *
-   * <code>ILLEGAL_MESSAGE_ID = 20;</code>
-   */
-  ILLEGAL_MESSAGE_ID(20),
-  /**
-   * <pre>
-   * Transaction id is invalid.
-   * </pre>
-   *
-   * <code>INVALID_TRANSACTION_ID = 21;</code>
-   */
-  INVALID_TRANSACTION_ID(21),
-  /**
-   * <pre>
-   * Format of filter expression is illegal.
-   * </pre>
-   *
-   * <code>ILLEGAL_FILTER_EXPRESSION = 22;</code>
-   */
-  ILLEGAL_FILTER_EXPRESSION(22),
-  /**
-   * <pre>
-   * Receipt handle of message is invalid.
-   * </pre>
-   *
-   * <code>INVALID_RECEIPT_HANDLE = 23;</code>
-   */
-  INVALID_RECEIPT_HANDLE(23),
-  /**
-   * <pre>
-   * Message persistence timeout.
-   * </pre>
-   *
-   * <code>MASTER_PERSISTENCE_TIMEOUT = 24;</code>
-   */
-  MASTER_PERSISTENCE_TIMEOUT(24),
-  /**
-   * <pre>
-   * Slave persistence timeout.
-   * </pre>
-   *
-   * <code>SLAVE_PERSISTENCE_TIMEOUT = 25;</code>
-   */
-  SLAVE_PERSISTENCE_TIMEOUT(25),
-  /**
-   * <pre>
-   * The HA-mechanism is not working now.
-   * </pre>
-   *
-   * <code>HA_NOT_AVAILABLE = 26;</code>
-   */
-  HA_NOT_AVAILABLE(26),
-  /**
-   * <pre>
-   * Operation is not allowed in current version.
-   * </pre>
-   *
-   * <code>VERSION_UNSUPPORTED = 27;</code>
-   */
-  VERSION_UNSUPPORTED(27),
-  /**
-   * <pre>
-   * Message not found from server.
-   * </pre>
-   *
-   * <code>MESSAGE_NOT_FOUND = 28;</code>
-   */
-  MESSAGE_NOT_FOUND(28),
-  /**
-   * <pre>
-   * Client type could not be recognized.
-   * </pre>
-   *
-   * <code>UNRECOGNIZED_CLIENT_TYPE = 29;</code>
-   */
-  UNRECOGNIZED_CLIENT_TYPE(29),
-  /**
-   * <pre>
-   * Return different results for entries in composite request.
-   * </pre>
-   *
-   * <code>MULTIPLE_RESULTS = 30;</code>
-   */
-  MULTIPLE_RESULTS(30),
+  MULTIPLE_RESULTS(30000),
   /**
    * <pre>
    * Generic code for bad request, indicating that required fields or headers are missing.
    * </pre>
    *
-   * <code>BAD_REQUEST = 400;</code>
+   * <code>BAD_REQUEST = 40000;</code>
    */
-  BAD_REQUEST(400),
+  BAD_REQUEST(40000),
+  /**
+   * <pre>
+   * Format of access point is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_ACCESS_POINT = 40001;</code>
+   */
+  ILLEGAL_ACCESS_POINT(40001),
+  /**
+   * <pre>
+   * Format of topic is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_TOPIC = 40002;</code>
+   */
+  ILLEGAL_TOPIC(40002),
+  /**
+   * <pre>
+   * Format of consumer group is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_CONSUMER_GROUP = 40003;</code>
+   */
+  ILLEGAL_CONSUMER_GROUP(40003),
+  /**
+   * <pre>
+   * Format of message tag is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_MESSAGE_TAG = 40004;</code>
+   */
+  ILLEGAL_MESSAGE_TAG(40004),
+  /**
+   * <pre>
+   * Format of message key is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_MESSAGE_KEY = 40005;</code>
+   */
+  ILLEGAL_MESSAGE_KEY(40005),
+  /**
+   * <pre>
+   * Format of message group is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_MESSAGE_GROUP = 40006;</code>
+   */
+  ILLEGAL_MESSAGE_GROUP(40006),
+  /**
+   * <pre>
+   * Format of message property key is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_MESSAGE_PROPERTY_KEY = 40007;</code>
+   */
+  ILLEGAL_MESSAGE_PROPERTY_KEY(40007),
+  /**
+   * <pre>
+   * Message properties total size exceeds the threshold.
+   * </pre>
+   *
+   * <code>MESSAGE_PROPERTIES_TOO_LARGE = 40008;</code>
+   */
+  MESSAGE_PROPERTIES_TOO_LARGE(40008),
+  /**
+   * <pre>
+   * Message body size exceeds the threshold.
+   * </pre>
+   *
+   * <code>MESSAGE_BODY_TOO_LARGE = 40009;</code>
+   */
+  MESSAGE_BODY_TOO_LARGE(40009),
+  /**
+   * <pre>
+   * Transaction id is invalid.
+   * </pre>
+   *
+   * <code>INVALID_TRANSACTION_ID = 40010;</code>
+   */
+  INVALID_TRANSACTION_ID(40010),
+  /**
+   * <pre>
+   * Format of message id is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_MESSAGE_ID = 40011;</code>
+   */
+  ILLEGAL_MESSAGE_ID(40011),
+  /**
+   * <pre>
+   * Format of filter expression is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_FILTER_EXPRESSION = 40012;</code>
+   */
+  ILLEGAL_FILTER_EXPRESSION(40012),
+  /**
+   * <pre>
+   * Receipt handle of message is invalid.
+   * </pre>
+   *
+   * <code>INVALID_RECEIPT_HANDLE = 40013;</code>
+   */
+  INVALID_RECEIPT_HANDLE(40013),
+  /**
+   * <pre>
+   * Message property is not match the message type.
+   * </pre>
+   *
+   * <code>MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE = 40014;</code>
+   */
+  MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE(40014),
+  /**
+   * <pre>
+   * Client type could not be recognized.
+   * </pre>
+   *
+   * <code>UNRECOGNIZED_CLIENT_TYPE = 40015;</code>
+   */
+  UNRECOGNIZED_CLIENT_TYPE(40015),
+  /**
+   * <pre>
+   * Message is corrupted.
+   * </pre>
+   *
+   * <code>MESSAGE_CORRUPTED = 40016;</code>
+   */
+  MESSAGE_CORRUPTED(40016),
   /**
    * <pre>
    * Request is rejected due to missing of x-mq-client-id header.
    * </pre>
    *
-   * <code>BAD_REQUEST_CLIENT_ID = 400001;</code>
+   * <code>CLIENT_ID_REQUIRED = 40017;</code>
    */
-  BAD_REQUEST_CLIENT_ID(400001),
+  CLIENT_ID_REQUIRED(40017),
+  /**
+   * <pre>
+   * Generic code indicates that the client request lacks valid authentication
+   * credentials for the requested resource.
+   * </pre>
+   *
+   * <code>UNAUTHORIZED = 40100;</code>
+   */
+  UNAUTHORIZED(40100),
+  /**
+   * <pre>
+   * Generic code for the case that user does not have the permission to operate.
+   * </pre>
+   *
+   * <code>FORBIDDEN = 40300;</code>
+   */
+  FORBIDDEN(40300),
+  /**
+   * <pre>
+   * Generic code for resource not found.
+   * </pre>
+   *
+   * <code>NOT_FOUND = 40400;</code>
+   */
+  NOT_FOUND(40400),
+  /**
+   * <pre>
+   * Message not found from server.
+   * </pre>
+   *
+   * <code>MESSAGE_NOT_FOUND = 40401;</code>
+   */
+  MESSAGE_NOT_FOUND(40401),
+  /**
+   * <pre>
+   * Topic resource does not exist.
+   * </pre>
+   *
+   * <code>TOPIC_NOT_FOUND = 40402;</code>
+   */
+  TOPIC_NOT_FOUND(40402),
+  /**
+   * <pre>
+   * Consumer group resource does not exist.
+   * </pre>
+   *
+   * <code>CONSUMER_GROUP_NOT_FOUND = 40403;</code>
+   */
+  CONSUMER_GROUP_NOT_FOUND(40403),
+  /**
+   * <pre>
+   * Generic code indicates that too many requests are made in short period of duration.
+   * Requests are throttled.
+   * </pre>
+   *
+   * <code>TOO_MANY_REQUESTS = 42900;</code>
+   */
+  TOO_MANY_REQUESTS(42900),
+  /**
+   * <pre>
+   * Generic code indicates that server/client encountered an unexpected
+   * condition that prevented it from fulfilling the request.
+   * </pre>
+   *
+   * <code>INTERNAL_ERROR = 50000;</code>
+   */
+  INTERNAL_ERROR(50000),
   /**
    * <pre>
    * Code indicates that the server encountered an unexpected condition
@@ -290,302 +251,323 @@ public enum Code
    * See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
    * </pre>
    *
-   * <code>INTERNAL_SERVER_ERROR = 500;</code>
+   * <code>INTERNAL_SERVER_ERROR = 50001;</code>
    */
-  INTERNAL_SERVER_ERROR(500),
+  INTERNAL_SERVER_ERROR(50001),
   /**
    * <pre>
-   * Code means that the server or client does not support the functionality
-   * required to fulfill the request.
+   * The HA-mechanism is not working now.
    * </pre>
    *
-   * <code>NOT_IMPLEMENTED = 501;</code>
+   * <code>HA_NOT_AVAILABLE = 50002;</code>
    */
-  NOT_IMPLEMENTED(501),
+  HA_NOT_AVAILABLE(50002),
+  /**
+   * <pre>
+   * Generic code means that the server or client does not support the
+   * functionality required to fulfill the request.
+   * </pre>
+   *
+   * <code>NOT_IMPLEMENTED = 50100;</code>
+   */
+  NOT_IMPLEMENTED(50100),
+  /**
+   * <pre>
+   * Generic code for timeout.
+   * </pre>
+   *
+   * <code>TIMEOUT = 50400;</code>
+   */
+  TIMEOUT(50400),
+  /**
+   * <pre>
+   * Message persistence timeout.
+   * </pre>
+   *
+   * <code>MASTER_PERSISTENCE_TIMEOUT = 50401;</code>
+   */
+  MASTER_PERSISTENCE_TIMEOUT(50401),
+  /**
+   * <pre>
+   * Slave persistence timeout.
+   * </pre>
+   *
+   * <code>SLAVE_PERSISTENCE_TIMEOUT = 50402;</code>
+   */
+  SLAVE_PERSISTENCE_TIMEOUT(50402),
   /**
    * <pre>
    * Code indicates that the server, while acting as a gateway or proxy,
    * did not get a response in time from the upstream server that
    * it needed in order to complete the request.
-   * See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
    * </pre>
    *
-   * <code>PROXY_TIMEOUT = 504;</code>
+   * <code>PROXY_TIMEOUT = 50403;</code>
    */
-  PROXY_TIMEOUT(504),
+  PROXY_TIMEOUT(50403),
+  /**
+   * <code>UNSUPPORTED = 50500;</code>
+   */
+  UNSUPPORTED(50500),
+  /**
+   * <pre>
+   * Operation is not allowed in current version.
+   * </pre>
+   *
+   * <code>VERSION_UNSUPPORTED = 50501;</code>
+   */
+  VERSION_UNSUPPORTED(50501),
+  /**
+   * <pre>
+   * Not allowed to verify message. Chances are that you are verifying
+   * a FIFO message, as is violating FIFO semantics.
+   * </pre>
+   *
+   * <code>VERIFY_FIFO_MESSAGE_UNSUPPORTED = 50502;</code>
+   */
+  VERIFY_FIFO_MESSAGE_UNSUPPORTED(50502),
+  /**
+   * <pre>
+   * Generic code for failed message consumption.
+   * </pre>
+   *
+   * <code>FAILED_TO_CONSUME_MESSAGE = 60000;</code>
+   */
+  FAILED_TO_CONSUME_MESSAGE(60000),
   UNRECOGNIZED(-1),
   ;
 
   /**
-   * <pre>
-   * Success.
-   * </pre>
-   *
-   * <code>OK = 0;</code>
+   * <code>CODE_UNSPECIFIED = 0;</code>
    */
-  public static final int OK_VALUE = 0;
+  public static final int CODE_UNSPECIFIED_VALUE = 0;
   /**
    * <pre>
-   * Format of access point is illegal.
+   * Generic code for success.
    * </pre>
    *
-   * <code>ILLEGAL_ACCESS_POINT = 1;</code>
+   * <code>OK = 20000;</code>
    */
-  public static final int ILLEGAL_ACCESS_POINT_VALUE = 1;
+  public static final int OK_VALUE = 20000;
   /**
    * <pre>
-   * Format of topic is illegal.
+   * Generic code for multiple return results.
    * </pre>
    *
-   * <code>ILLEGAL_TOPIC = 2;</code>
+   * <code>MULTIPLE_RESULTS = 30000;</code>
    */
-  public static final int ILLEGAL_TOPIC_VALUE = 2;
-  /**
-   * <pre>
-   * Format of consumer group is illegal.
-   * </pre>
-   *
-   * <code>ILLEGAL_CONSUMER_GROUP = 3;</code>
-   */
-  public static final int ILLEGAL_CONSUMER_GROUP_VALUE = 3;
-  /**
-   * <pre>
-   * Format of message tag is illegal.
-   * </pre>
-   *
-   * <code>ILLEGAL_MESSAGE_TAG = 4;</code>
-   */
-  public static final int ILLEGAL_MESSAGE_TAG_VALUE = 4;
-  /**
-   * <pre>
-   * Format of message key is illegal.
-   * </pre>
-   *
-   * <code>ILLEGAL_MESSAGE_KEY = 5;</code>
-   */
-  public static final int ILLEGAL_MESSAGE_KEY_VALUE = 5;
-  /**
-   * <pre>
-   * Size of message keys exceeds the threshold.
-   * </pre>
-   *
-   * <code>MESSAGE_KEYS_TOO_LARGE = 6;</code>
-   */
-  public static final int MESSAGE_KEYS_TOO_LARGE_VALUE = 6;
-  /**
-   * <pre>
-   * Format of message group is illegal.
-   * </pre>
-   *
-   * <code>ILLEGAL_MESSAGE_GROUP = 7;</code>
-   */
-  public static final int ILLEGAL_MESSAGE_GROUP_VALUE = 7;
-  /**
-   * <pre>
-   * Format of message property key is illegal.
-   * </pre>
-   *
-   * <code>ILLEGAL_MESSAGE_PROPERTY_KEY = 8;</code>
-   */
-  public static final int ILLEGAL_MESSAGE_PROPERTY_KEY_VALUE = 8;
-  /**
-   * <pre>
-   * Message properties total size exceeds the threshold.
-   * </pre>
-   *
-   * <code>MESSAGE_PROPERTIES_TOO_LARGE = 9;</code>
-   */
-  public static final int MESSAGE_PROPERTIES_TOO_LARGE_VALUE = 9;
-  /**
-   * <pre>
-   * Message body size exceeds the threshold.
-   * </pre>
-   *
-   * <code>MESSAGE_BODY_TOO_LARGE = 10;</code>
-   */
-  public static final int MESSAGE_BODY_TOO_LARGE_VALUE = 10;
-  /**
-   * <pre>
-   * User does not have the permission to operate.
-   * See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
-   * </pre>
-   *
-   * <code>FORBIDDEN = 403;</code>
-   */
-  public static final int FORBIDDEN_VALUE = 403;
-  /**
-   * <pre>
-   * Code indicates that the client request has not been completed
-   * because it lacks valid authentication credentials for the
-   * requested resource.
-   * See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
-   * </pre>
-   *
-   * <code>UNAUTHORIZED = 401;</code>
-   */
-  public static final int UNAUTHORIZED_VALUE = 401;
-  /**
-   * <pre>
-   * Topic resource does not exist.
-   * </pre>
-   *
-   * <code>TOPIC_NOT_FOUND = 13;</code>
-   */
-  public static final int TOPIC_NOT_FOUND_VALUE = 13;
-  /**
-   * <pre>
-   * Consumer group resource does not exist.
-   * </pre>
-   *
-   * <code>CONSUMER_GROUP_NOT_FOUND = 14;</code>
-   */
-  public static final int CONSUMER_GROUP_NOT_FOUND_VALUE = 14;
-  /**
-   * <pre>
-   * Not allowed to verify message. Chances are that you are verifying
-   * a FIFO message, as is violating FIFO semantics.
-   * </pre>
-   *
-   * <code>VERIFY_MESSAGE_FORBIDDEN = 15;</code>
-   */
-  public static final int VERIFY_MESSAGE_FORBIDDEN_VALUE = 15;
-  /**
-   * <pre>
-   * Failed to consume message.
-   * </pre>
-   *
-   * <code>FAILED_TO_CONSUME_MESSAGE = 16;</code>
-   */
-  public static final int FAILED_TO_CONSUME_MESSAGE_VALUE = 16;
-  /**
-   * <pre>
-   * Message is corrupted.
-   * </pre>
-   *
-   * <code>MESSAGE_CORRUPTED = 17;</code>
-   */
-  public static final int MESSAGE_CORRUPTED_VALUE = 17;
-  /**
-   * <pre>
-   * Too many requests are made in short period of duration.
-   * Requests are throttled.
-   * </pre>
-   *
-   * <code>TOO_MANY_REQUESTS = 18;</code>
-   */
-  public static final int TOO_MANY_REQUESTS_VALUE = 18;
-  /**
-   * <pre>
-   * Message property is not match the message type.
-   * </pre>
-   *
-   * <code>MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE = 19;</code>
-   */
-  public static final int MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE_VALUE = 19;
-  /**
-   * <pre>
-   * Format of message id is illegal.
-   * </pre>
-   *
-   * <code>ILLEGAL_MESSAGE_ID = 20;</code>
-   */
-  public static final int ILLEGAL_MESSAGE_ID_VALUE = 20;
-  /**
-   * <pre>
-   * Transaction id is invalid.
-   * </pre>
-   *
-   * <code>INVALID_TRANSACTION_ID = 21;</code>
-   */
-  public static final int INVALID_TRANSACTION_ID_VALUE = 21;
-  /**
-   * <pre>
-   * Format of filter expression is illegal.
-   * </pre>
-   *
-   * <code>ILLEGAL_FILTER_EXPRESSION = 22;</code>
-   */
-  public static final int ILLEGAL_FILTER_EXPRESSION_VALUE = 22;
-  /**
-   * <pre>
-   * Receipt handle of message is invalid.
-   * </pre>
-   *
-   * <code>INVALID_RECEIPT_HANDLE = 23;</code>
-   */
-  public static final int INVALID_RECEIPT_HANDLE_VALUE = 23;
-  /**
-   * <pre>
-   * Message persistence timeout.
-   * </pre>
-   *
-   * <code>MASTER_PERSISTENCE_TIMEOUT = 24;</code>
-   */
-  public static final int MASTER_PERSISTENCE_TIMEOUT_VALUE = 24;
-  /**
-   * <pre>
-   * Slave persistence timeout.
-   * </pre>
-   *
-   * <code>SLAVE_PERSISTENCE_TIMEOUT = 25;</code>
-   */
-  public static final int SLAVE_PERSISTENCE_TIMEOUT_VALUE = 25;
-  /**
-   * <pre>
-   * The HA-mechanism is not working now.
-   * </pre>
-   *
-   * <code>HA_NOT_AVAILABLE = 26;</code>
-   */
-  public static final int HA_NOT_AVAILABLE_VALUE = 26;
-  /**
-   * <pre>
-   * Operation is not allowed in current version.
-   * </pre>
-   *
-   * <code>VERSION_UNSUPPORTED = 27;</code>
-   */
-  public static final int VERSION_UNSUPPORTED_VALUE = 27;
-  /**
-   * <pre>
-   * Message not found from server.
-   * </pre>
-   *
-   * <code>MESSAGE_NOT_FOUND = 28;</code>
-   */
-  public static final int MESSAGE_NOT_FOUND_VALUE = 28;
-  /**
-   * <pre>
-   * Client type could not be recognized.
-   * </pre>
-   *
-   * <code>UNRECOGNIZED_CLIENT_TYPE = 29;</code>
-   */
-  public static final int UNRECOGNIZED_CLIENT_TYPE_VALUE = 29;
-  /**
-   * <pre>
-   * Return different results for entries in composite request.
-   * </pre>
-   *
-   * <code>MULTIPLE_RESULTS = 30;</code>
-   */
-  public static final int MULTIPLE_RESULTS_VALUE = 30;
+  public static final int MULTIPLE_RESULTS_VALUE = 30000;
   /**
    * <pre>
    * Generic code for bad request, indicating that required fields or headers are missing.
    * </pre>
    *
-   * <code>BAD_REQUEST = 400;</code>
+   * <code>BAD_REQUEST = 40000;</code>
    */
-  public static final int BAD_REQUEST_VALUE = 400;
+  public static final int BAD_REQUEST_VALUE = 40000;
+  /**
+   * <pre>
+   * Format of access point is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_ACCESS_POINT = 40001;</code>
+   */
+  public static final int ILLEGAL_ACCESS_POINT_VALUE = 40001;
+  /**
+   * <pre>
+   * Format of topic is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_TOPIC = 40002;</code>
+   */
+  public static final int ILLEGAL_TOPIC_VALUE = 40002;
+  /**
+   * <pre>
+   * Format of consumer group is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_CONSUMER_GROUP = 40003;</code>
+   */
+  public static final int ILLEGAL_CONSUMER_GROUP_VALUE = 40003;
+  /**
+   * <pre>
+   * Format of message tag is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_MESSAGE_TAG = 40004;</code>
+   */
+  public static final int ILLEGAL_MESSAGE_TAG_VALUE = 40004;
+  /**
+   * <pre>
+   * Format of message key is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_MESSAGE_KEY = 40005;</code>
+   */
+  public static final int ILLEGAL_MESSAGE_KEY_VALUE = 40005;
+  /**
+   * <pre>
+   * Format of message group is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_MESSAGE_GROUP = 40006;</code>
+   */
+  public static final int ILLEGAL_MESSAGE_GROUP_VALUE = 40006;
+  /**
+   * <pre>
+   * Format of message property key is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_MESSAGE_PROPERTY_KEY = 40007;</code>
+   */
+  public static final int ILLEGAL_MESSAGE_PROPERTY_KEY_VALUE = 40007;
+  /**
+   * <pre>
+   * Message properties total size exceeds the threshold.
+   * </pre>
+   *
+   * <code>MESSAGE_PROPERTIES_TOO_LARGE = 40008;</code>
+   */
+  public static final int MESSAGE_PROPERTIES_TOO_LARGE_VALUE = 40008;
+  /**
+   * <pre>
+   * Message body size exceeds the threshold.
+   * </pre>
+   *
+   * <code>MESSAGE_BODY_TOO_LARGE = 40009;</code>
+   */
+  public static final int MESSAGE_BODY_TOO_LARGE_VALUE = 40009;
+  /**
+   * <pre>
+   * Transaction id is invalid.
+   * </pre>
+   *
+   * <code>INVALID_TRANSACTION_ID = 40010;</code>
+   */
+  public static final int INVALID_TRANSACTION_ID_VALUE = 40010;
+  /**
+   * <pre>
+   * Format of message id is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_MESSAGE_ID = 40011;</code>
+   */
+  public static final int ILLEGAL_MESSAGE_ID_VALUE = 40011;
+  /**
+   * <pre>
+   * Format of filter expression is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_FILTER_EXPRESSION = 40012;</code>
+   */
+  public static final int ILLEGAL_FILTER_EXPRESSION_VALUE = 40012;
+  /**
+   * <pre>
+   * Receipt handle of message is invalid.
+   * </pre>
+   *
+   * <code>INVALID_RECEIPT_HANDLE = 40013;</code>
+   */
+  public static final int INVALID_RECEIPT_HANDLE_VALUE = 40013;
+  /**
+   * <pre>
+   * Message property is not match the message type.
+   * </pre>
+   *
+   * <code>MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE = 40014;</code>
+   */
+  public static final int MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE_VALUE = 40014;
+  /**
+   * <pre>
+   * Client type could not be recognized.
+   * </pre>
+   *
+   * <code>UNRECOGNIZED_CLIENT_TYPE = 40015;</code>
+   */
+  public static final int UNRECOGNIZED_CLIENT_TYPE_VALUE = 40015;
+  /**
+   * <pre>
+   * Message is corrupted.
+   * </pre>
+   *
+   * <code>MESSAGE_CORRUPTED = 40016;</code>
+   */
+  public static final int MESSAGE_CORRUPTED_VALUE = 40016;
   /**
    * <pre>
    * Request is rejected due to missing of x-mq-client-id header.
    * </pre>
    *
-   * <code>BAD_REQUEST_CLIENT_ID = 400001;</code>
+   * <code>CLIENT_ID_REQUIRED = 40017;</code>
    */
-  public static final int BAD_REQUEST_CLIENT_ID_VALUE = 400001;
+  public static final int CLIENT_ID_REQUIRED_VALUE = 40017;
+  /**
+   * <pre>
+   * Generic code indicates that the client request lacks valid authentication
+   * credentials for the requested resource.
+   * </pre>
+   *
+   * <code>UNAUTHORIZED = 40100;</code>
+   */
+  public static final int UNAUTHORIZED_VALUE = 40100;
+  /**
+   * <pre>
+   * Generic code for the case that user does not have the permission to operate.
+   * </pre>
+   *
+   * <code>FORBIDDEN = 40300;</code>
+   */
+  public static final int FORBIDDEN_VALUE = 40300;
+  /**
+   * <pre>
+   * Generic code for resource not found.
+   * </pre>
+   *
+   * <code>NOT_FOUND = 40400;</code>
+   */
+  public static final int NOT_FOUND_VALUE = 40400;
+  /**
+   * <pre>
+   * Message not found from server.
+   * </pre>
+   *
+   * <code>MESSAGE_NOT_FOUND = 40401;</code>
+   */
+  public static final int MESSAGE_NOT_FOUND_VALUE = 40401;
+  /**
+   * <pre>
+   * Topic resource does not exist.
+   * </pre>
+   *
+   * <code>TOPIC_NOT_FOUND = 40402;</code>
+   */
+  public static final int TOPIC_NOT_FOUND_VALUE = 40402;
+  /**
+   * <pre>
+   * Consumer group resource does not exist.
+   * </pre>
+   *
+   * <code>CONSUMER_GROUP_NOT_FOUND = 40403;</code>
+   */
+  public static final int CONSUMER_GROUP_NOT_FOUND_VALUE = 40403;
+  /**
+   * <pre>
+   * Generic code indicates that too many requests are made in short period of duration.
+   * Requests are throttled.
+   * </pre>
+   *
+   * <code>TOO_MANY_REQUESTS = 42900;</code>
+   */
+  public static final int TOO_MANY_REQUESTS_VALUE = 42900;
+  /**
+   * <pre>
+   * Generic code indicates that server/client encountered an unexpected
+   * condition that prevented it from fulfilling the request.
+   * </pre>
+   *
+   * <code>INTERNAL_ERROR = 50000;</code>
+   */
+  public static final int INTERNAL_ERROR_VALUE = 50000;
   /**
    * <pre>
    * Code indicates that the server encountered an unexpected condition
@@ -598,29 +580,89 @@ public enum Code
    * See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
    * </pre>
    *
-   * <code>INTERNAL_SERVER_ERROR = 500;</code>
+   * <code>INTERNAL_SERVER_ERROR = 50001;</code>
    */
-  public static final int INTERNAL_SERVER_ERROR_VALUE = 500;
+  public static final int INTERNAL_SERVER_ERROR_VALUE = 50001;
   /**
    * <pre>
-   * Code means that the server or client does not support the functionality
-   * required to fulfill the request.
+   * The HA-mechanism is not working now.
    * </pre>
    *
-   * <code>NOT_IMPLEMENTED = 501;</code>
+   * <code>HA_NOT_AVAILABLE = 50002;</code>
    */
-  public static final int NOT_IMPLEMENTED_VALUE = 501;
+  public static final int HA_NOT_AVAILABLE_VALUE = 50002;
+  /**
+   * <pre>
+   * Generic code means that the server or client does not support the
+   * functionality required to fulfill the request.
+   * </pre>
+   *
+   * <code>NOT_IMPLEMENTED = 50100;</code>
+   */
+  public static final int NOT_IMPLEMENTED_VALUE = 50100;
+  /**
+   * <pre>
+   * Generic code for timeout.
+   * </pre>
+   *
+   * <code>TIMEOUT = 50400;</code>
+   */
+  public static final int TIMEOUT_VALUE = 50400;
+  /**
+   * <pre>
+   * Message persistence timeout.
+   * </pre>
+   *
+   * <code>MASTER_PERSISTENCE_TIMEOUT = 50401;</code>
+   */
+  public static final int MASTER_PERSISTENCE_TIMEOUT_VALUE = 50401;
+  /**
+   * <pre>
+   * Slave persistence timeout.
+   * </pre>
+   *
+   * <code>SLAVE_PERSISTENCE_TIMEOUT = 50402;</code>
+   */
+  public static final int SLAVE_PERSISTENCE_TIMEOUT_VALUE = 50402;
   /**
    * <pre>
    * Code indicates that the server, while acting as a gateway or proxy,
    * did not get a response in time from the upstream server that
    * it needed in order to complete the request.
-   * See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
    * </pre>
    *
-   * <code>PROXY_TIMEOUT = 504;</code>
+   * <code>PROXY_TIMEOUT = 50403;</code>
    */
-  public static final int PROXY_TIMEOUT_VALUE = 504;
+  public static final int PROXY_TIMEOUT_VALUE = 50403;
+  /**
+   * <code>UNSUPPORTED = 50500;</code>
+   */
+  public static final int UNSUPPORTED_VALUE = 50500;
+  /**
+   * <pre>
+   * Operation is not allowed in current version.
+   * </pre>
+   *
+   * <code>VERSION_UNSUPPORTED = 50501;</code>
+   */
+  public static final int VERSION_UNSUPPORTED_VALUE = 50501;
+  /**
+   * <pre>
+   * Not allowed to verify message. Chances are that you are verifying
+   * a FIFO message, as is violating FIFO semantics.
+   * </pre>
+   *
+   * <code>VERIFY_FIFO_MESSAGE_UNSUPPORTED = 50502;</code>
+   */
+  public static final int VERIFY_FIFO_MESSAGE_UNSUPPORTED_VALUE = 50502;
+  /**
+   * <pre>
+   * Generic code for failed message consumption.
+   * </pre>
+   *
+   * <code>FAILED_TO_CONSUME_MESSAGE = 60000;</code>
+   */
+  public static final int FAILED_TO_CONSUME_MESSAGE_VALUE = 60000;
 
 
   public final int getNumber() {
@@ -647,42 +689,46 @@ public enum Code
    */
   public static Code forNumber(int value) {
     switch (value) {
-      case 0: return OK;
-      case 1: return ILLEGAL_ACCESS_POINT;
-      case 2: return ILLEGAL_TOPIC;
-      case 3: return ILLEGAL_CONSUMER_GROUP;
-      case 4: return ILLEGAL_MESSAGE_TAG;
-      case 5: return ILLEGAL_MESSAGE_KEY;
-      case 6: return MESSAGE_KEYS_TOO_LARGE;
-      case 7: return ILLEGAL_MESSAGE_GROUP;
-      case 8: return ILLEGAL_MESSAGE_PROPERTY_KEY;
-      case 9: return MESSAGE_PROPERTIES_TOO_LARGE;
-      case 10: return MESSAGE_BODY_TOO_LARGE;
-      case 403: return FORBIDDEN;
-      case 401: return UNAUTHORIZED;
-      case 13: return TOPIC_NOT_FOUND;
-      case 14: return CONSUMER_GROUP_NOT_FOUND;
-      case 15: return VERIFY_MESSAGE_FORBIDDEN;
-      case 16: return FAILED_TO_CONSUME_MESSAGE;
-      case 17: return MESSAGE_CORRUPTED;
-      case 18: return TOO_MANY_REQUESTS;
-      case 19: return MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE;
-      case 20: return ILLEGAL_MESSAGE_ID;
-      case 21: return INVALID_TRANSACTION_ID;
-      case 22: return ILLEGAL_FILTER_EXPRESSION;
-      case 23: return INVALID_RECEIPT_HANDLE;
-      case 24: return MASTER_PERSISTENCE_TIMEOUT;
-      case 25: return SLAVE_PERSISTENCE_TIMEOUT;
-      case 26: return HA_NOT_AVAILABLE;
-      case 27: return VERSION_UNSUPPORTED;
-      case 28: return MESSAGE_NOT_FOUND;
-      case 29: return UNRECOGNIZED_CLIENT_TYPE;
-      case 30: return MULTIPLE_RESULTS;
-      case 400: return BAD_REQUEST;
-      case 400001: return BAD_REQUEST_CLIENT_ID;
-      case 500: return INTERNAL_SERVER_ERROR;
-      case 501: return NOT_IMPLEMENTED;
-      case 504: return PROXY_TIMEOUT;
+      case 0: return CODE_UNSPECIFIED;
+      case 20000: return OK;
+      case 30000: return MULTIPLE_RESULTS;
+      case 40000: return BAD_REQUEST;
+      case 40001: return ILLEGAL_ACCESS_POINT;
+      case 40002: return ILLEGAL_TOPIC;
+      case 40003: return ILLEGAL_CONSUMER_GROUP;
+      case 40004: return ILLEGAL_MESSAGE_TAG;
+      case 40005: return ILLEGAL_MESSAGE_KEY;
+      case 40006: return ILLEGAL_MESSAGE_GROUP;
+      case 40007: return ILLEGAL_MESSAGE_PROPERTY_KEY;
+      case 40008: return MESSAGE_PROPERTIES_TOO_LARGE;
+      case 40009: return MESSAGE_BODY_TOO_LARGE;
+      case 40010: return INVALID_TRANSACTION_ID;
+      case 40011: return ILLEGAL_MESSAGE_ID;
+      case 40012: return ILLEGAL_FILTER_EXPRESSION;
+      case 40013: return INVALID_RECEIPT_HANDLE;
+      case 40014: return MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE;
+      case 40015: return UNRECOGNIZED_CLIENT_TYPE;
+      case 40016: return MESSAGE_CORRUPTED;
+      case 40017: return CLIENT_ID_REQUIRED;
+      case 40100: return UNAUTHORIZED;
+      case 40300: return FORBIDDEN;
+      case 40400: return NOT_FOUND;
+      case 40401: return MESSAGE_NOT_FOUND;
+      case 40402: return TOPIC_NOT_FOUND;
+      case 40403: return CONSUMER_GROUP_NOT_FOUND;
+      case 42900: return TOO_MANY_REQUESTS;
+      case 50000: return INTERNAL_ERROR;
+      case 50001: return INTERNAL_SERVER_ERROR;
+      case 50002: return HA_NOT_AVAILABLE;
+      case 50100: return NOT_IMPLEMENTED;
+      case 50400: return TIMEOUT;
+      case 50401: return MASTER_PERSISTENCE_TIMEOUT;
+      case 50402: return SLAVE_PERSISTENCE_TIMEOUT;
+      case 50403: return PROXY_TIMEOUT;
+      case 50500: return UNSUPPORTED;
+      case 50501: return VERSION_UNSUPPORTED;
+      case 50502: return VERIFY_FIFO_MESSAGE_UNSUPPORTED;
+      case 60000: return FAILED_TO_CONSUME_MESSAGE;
       default: return null;
     }
   }

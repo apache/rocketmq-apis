@@ -165,7 +165,7 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (code_ != apache.rocketmq.v2.Code.OK.getNumber()) {
+    if (code_ != apache.rocketmq.v2.Code.CODE_UNSPECIFIED.getNumber()) {
       output.writeEnum(1, code_);
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(message_)) {
@@ -180,7 +180,7 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (code_ != apache.rocketmq.v2.Code.OK.getNumber()) {
+    if (code_ != apache.rocketmq.v2.Code.CODE_UNSPECIFIED.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(1, code_);
     }

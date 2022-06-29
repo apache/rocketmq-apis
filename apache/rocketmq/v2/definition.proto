@@ -336,7 +336,7 @@ enum Code {
   // Message is corrupted.
   MESSAGE_CORRUPTED = 40016;
   // Request is rejected due to missing of x-mq-client-id header.
-  CLIENT_ID_MISSING = 40017;
+  CLIENT_ID_REQUIRED = 40017;
 
   // Generic code indicates that the client request lacks valid authentication
   // credentials for the requested resource.

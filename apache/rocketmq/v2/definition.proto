@@ -303,16 +303,14 @@ enum Code {
   ILLEGAL_MESSAGE_TAG = 4;
   // Format of message key is illegal.
   ILLEGAL_MESSAGE_KEY = 5;
-  // Size of message keys exceeds the threshold.
-  MESSAGE_KEYS_TOO_LARGE = 6;
   // Format of message group is illegal.
-  ILLEGAL_MESSAGE_GROUP = 7;
+  ILLEGAL_MESSAGE_GROUP = 6;
   // Format of message property key is illegal.
-  ILLEGAL_MESSAGE_PROPERTY_KEY = 8;
+  ILLEGAL_MESSAGE_PROPERTY_KEY = 7;
   // Message properties total size exceeds the threshold.
-  MESSAGE_PROPERTIES_TOO_LARGE = 9;
+  MESSAGE_PROPERTIES_TOO_LARGE = 8;
   // Message body size exceeds the threshold.
-  MESSAGE_BODY_TOO_LARGE = 10;
+  MESSAGE_BODY_TOO_LARGE = 9;
 
   // User does not have the permission to operate.
   // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403

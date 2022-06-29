@@ -18,7 +18,7 @@
 |                 UNAUTHORIZED                 |     ❌      |     ✅     |      ✅      |        ❌        |       ✅        |     ✅      |                ✅                |       ✅        |            ✅            |            ✅            |
 |               TOPIC_NOT_FOUND                |     ✅      |     ❌     |      ✅      |        ✅        |       ✅        |     ✅      |                ✅                |       ❌        |            ❌            |            ✅            |
 |           CONSUMER_GROUP_NOT_FOUND           |     ❌      |     ❌     |      ❌      |        ❌        |       ✅        |     ❌      |                ❌                |       ❌        |            ❌            |            ❌            |
-|           VERIFY_MESSAGE_FORBIDDEN           |     ❌      |     ❌     |      ❌      |        ❌        |       ❌        |     ❌      |                ❌                |       ❌        |            ❌            |            ❌            |
+|       VERIFY_FIFO_MESSAGE_UNSUPPORTED        |     ❌      |     ❌     |      ❌      |        ❌        |       ❌        |     ❌      |                ❌                |       ❌        |            ❌            |            ❌            |
 |          FAILED_TO_CONSUME_MESSAGE           |     ❌      |     ❌     |      ❌      |        ❌        |       ❌        |     ❌      |                ❌                |       ❌        |            ❌            |            ❌            |
 |              MESSAGE_CORRUPTED               |     ❌      |     ❌     |      ✅      |        ❌        |       ❌        |     ❌      |                ❌                |       ❌        |            ❌            |            ❌            |
 |              TOO_MANY_REQUESTS               |     ✅      |     ✅     |      ✅      |        ✅        |       ✅        |     ✅      |                ✅                |       ✅        |            ✅            |            ✅            |
@@ -35,16 +35,17 @@
 |           UNRECOGNIZED_CLIENT_TYPE           |     ❌      |     ✅     |      ❌      |        ❌        |       ❌        |     ❌      |                ❌                |       ❌        |            ✅            |            ❌            |
 |               MULTIPLE_RESULTS               |     ❌      |     ❌     |      ✅      |        ❌        |       ❌        |     ✅      |                ❌                |       ❌        |            ❌            |            ❌            |
 |                 BAD_REQUEST                  |     ❌      |     ❌     |      ❌      |        ❌        |       ❌        |     ❌      |                ❌                |       ❌        |            ❌            |            ❌            |
-|            BAD_REQUEST_CLIENT_ID             |     ✅      |     ✅     |      ✅      |        ✅        |       ✅        |     ✅      |                ✅                |       ✅        |            ✅            |            ✅            |
+|              CLIENT_ID_MISSING               |     ✅      |     ✅     |      ✅      |        ✅        |       ✅        |     ✅      |                ✅                |       ✅        |            ✅            |            ✅            |
 |            INTERNAL_SERVER_ERROR             |     ✅      |     ✅     |      ✅      |        ✅        |       ✅        |     ✅      |                ✅                |       ✅        |            ✅            |            ✅            |
 |               NOT_IMPLEMENTED                |     ❌      |     ❌     |      ❌      |        ❌        |       ❌        |     ❌      |                ❌                |       ❌        |            ❌            |            ❌            |
 |                PROXY_TIMEOUT                 |     ✅      |     ❌     |      ✅      |        ✅        |       ✅        |     ✅      |                ✅                |       ✅        |            ❌            |            ✅            |
 
 ## Server-Client Telemetry RPC Status Code Mapping Table
 
-|                           | ThreadStackTrace | VerifyMessageResult |
-| :-----------------------: | :--------------: | :-----------------: |
-|            OK             |        ✅         |          ✅          |
-|      NOT_IMPLEMENTED      |        ✅         |          ❌          |
-| FAILED_TO_CONSUME_MESSAGE |        ❌         |          ✅          |
-| VERIFY_MESSAGE_FORBIDDEN  |        ❌         |          ✅          |
+|                                 | ThreadStackTrace | VerifyMessageResult |
+| :-----------------------------: | :--------------: | :-----------------: |
+|               OK                |        ✅         |          ✅          |
+|         NOT_IMPLEMENTED         |        ✅         |          ❌          |
+|    FAILED_TO_CONSUME_MESSAGE    |        ❌         |          ✅          |
+| VERIFY_FIFO_MESSAGE_UNSUPPORTED |        ❌         |          ✅          |
+|        MESSAGE_CORRUPTED        |        ❌         |          ✅          |

@@ -397,16 +397,13 @@ enum Code {
   // functionality required to fulfill the request.
   NOT_IMPLEMENTED = 50100;
 
-  // Generic code for timeout.
-  TIMEOUT = 50400;
+  // Generic code represents that the server, which acts as a gateway or proxy,
+  // does not get an satisfied response in time from its upstream servers.
+  PROXY_TIMEOUT = 50400;
   // Message persistence timeout.
   MASTER_PERSISTENCE_TIMEOUT = 50401;
   // Slave persistence timeout.
   SLAVE_PERSISTENCE_TIMEOUT = 50402;
-  // Code indicates that the server, while acting as a gateway or proxy,
-  // did not get a response in time from the upstream server that
-  // it needed in order to complete the request.
-  PROXY_TIMEOUT = 50403;
 
   // Generic code for unsupported operation.
   UNSUPPORTED = 50500;

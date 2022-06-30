@@ -353,8 +353,12 @@ enum Code {
   // Consumer group resource does not exist.
   CONSUMER_GROUP_NOT_FOUND = 40403;
 
-  // Generic code represents that the request entity is larger than limits defined by server.
+  // Generic code representing client side timeout when connecting to, reading data from, or write data to server.
+  REQUEST_TIMEOUT = 40800;
+
+  // Generic code represents that the request entity is larger than limits defined by server. 
   PAYLOAD_TOO_LARGE = 41300;
+
   // Message body size exceeds the threshold.
   MESSAGE_BODY_TOO_LARGE = 41301;
 

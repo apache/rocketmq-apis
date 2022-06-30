@@ -325,10 +325,13 @@ enum Code {
   ILLEGAL_FILTER_EXPRESSION = 40010;
   // Receipt handle of message is invalid.
   INVALID_RECEIPT_HANDLE = 40011;
-  // Message property is not match the message type.
-  MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE = 40012;
+
+  // Message property conflicts with its type.
+  MESSAGE_PROPERTY_CONFLICT_WITH_TYPE = 40012;
+  
   // Client type could not be recognized.
   UNRECOGNIZED_CLIENT_TYPE = 40013;
+  
   // Message is corrupted.
   MESSAGE_CORRUPTED = 40014;
   // Request is rejected due to missing of x-mq-client-id header.

@@ -399,6 +399,7 @@ enum Code {
 
   // Generic code represents that the server, which acts as a gateway or proxy,
   // does not get an satisfied response in time from its upstream servers.
+  // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
   PROXY_TIMEOUT = 50400;
   // Message persistence timeout.
   MASTER_PERSISTENCE_TIMEOUT = 50401;

@@ -358,7 +358,6 @@ enum Code {
 
   // Generic code represents that the request entity is larger than limits defined by server. 
   PAYLOAD_TOO_LARGE = 41300;
-
   // Message body size exceeds the threshold.
   MESSAGE_BODY_TOO_LARGE = 41301;
 

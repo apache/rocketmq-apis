@@ -94,84 +94,68 @@ public enum Code
   ILLEGAL_MESSAGE_PROPERTY_KEY(40007),
   /**
    * <pre>
-   * Message properties total size exceeds the threshold.
-   * </pre>
-   *
-   * <code>MESSAGE_PROPERTIES_TOO_LARGE = 40008;</code>
-   */
-  MESSAGE_PROPERTIES_TOO_LARGE(40008),
-  /**
-   * <pre>
-   * Message body size exceeds the threshold.
-   * </pre>
-   *
-   * <code>MESSAGE_BODY_TOO_LARGE = 40009;</code>
-   */
-  MESSAGE_BODY_TOO_LARGE(40009),
-  /**
-   * <pre>
    * Transaction id is invalid.
    * </pre>
    *
-   * <code>INVALID_TRANSACTION_ID = 40010;</code>
+   * <code>INVALID_TRANSACTION_ID = 40008;</code>
    */
-  INVALID_TRANSACTION_ID(40010),
+  INVALID_TRANSACTION_ID(40008),
   /**
    * <pre>
    * Format of message id is illegal.
    * </pre>
    *
-   * <code>ILLEGAL_MESSAGE_ID = 40011;</code>
+   * <code>ILLEGAL_MESSAGE_ID = 40009;</code>
    */
-  ILLEGAL_MESSAGE_ID(40011),
+  ILLEGAL_MESSAGE_ID(40009),
   /**
    * <pre>
    * Format of filter expression is illegal.
    * </pre>
    *
-   * <code>ILLEGAL_FILTER_EXPRESSION = 40012;</code>
+   * <code>ILLEGAL_FILTER_EXPRESSION = 40010;</code>
    */
-  ILLEGAL_FILTER_EXPRESSION(40012),
+  ILLEGAL_FILTER_EXPRESSION(40010),
   /**
    * <pre>
    * Receipt handle of message is invalid.
    * </pre>
    *
-   * <code>INVALID_RECEIPT_HANDLE = 40013;</code>
+   * <code>INVALID_RECEIPT_HANDLE = 40011;</code>
    */
-  INVALID_RECEIPT_HANDLE(40013),
+  INVALID_RECEIPT_HANDLE(40011),
   /**
    * <pre>
-   * Message property is not match the message type.
+   * Message property conflicts with its type.
    * </pre>
    *
-   * <code>MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE = 40014;</code>
+   * <code>MESSAGE_PROPERTY_CONFLICT_WITH_TYPE = 40012;</code>
    */
-  MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE(40014),
+  MESSAGE_PROPERTY_CONFLICT_WITH_TYPE(40012),
   /**
    * <pre>
    * Client type could not be recognized.
    * </pre>
    *
-   * <code>UNRECOGNIZED_CLIENT_TYPE = 40015;</code>
+   * <code>UNRECOGNIZED_CLIENT_TYPE = 40013;</code>
    */
-  UNRECOGNIZED_CLIENT_TYPE(40015),
+  UNRECOGNIZED_CLIENT_TYPE(40013),
   /**
    * <pre>
    * Message is corrupted.
    * </pre>
    *
-   * <code>MESSAGE_CORRUPTED = 40016;</code>
+   * <code>MESSAGE_CORRUPTED = 40014;</code>
    */
-  MESSAGE_CORRUPTED(40016),
+  MESSAGE_CORRUPTED(40014),
   /**
    * <pre>
    * Request is rejected due to missing of x-mq-client-id header.
    * </pre>
    *
-   * <code>CLIENT_ID_REQUIRED = 40017;</code>
+   * <code>CLIENT_ID_REQUIRED = 40015;</code>
    */
-  CLIENT_ID_REQUIRED(40017),
+  CLIENT_ID_REQUIRED(40015),
   /**
    * <pre>
    * Generic code indicates that the client request lacks valid authentication
@@ -181,6 +165,14 @@ public enum Code
    * <code>UNAUTHORIZED = 40100;</code>
    */
   UNAUTHORIZED(40100),
+  /**
+   * <pre>
+   * Generic code indicates that the account is suspended due to overdue of payment.
+   * </pre>
+   *
+   * <code>PAYMENT_REQUIRED = 40200;</code>
+   */
+  PAYMENT_REQUIRED(40200),
   /**
    * <pre>
    * Generic code for the case that user does not have the permission to operate.
@@ -223,6 +215,40 @@ public enum Code
   CONSUMER_GROUP_NOT_FOUND(40403),
   /**
    * <pre>
+   * Generic code representing client side timeout when connecting to, reading data from, or write data to server.
+   * </pre>
+   *
+   * <code>REQUEST_TIMEOUT = 40800;</code>
+   */
+  REQUEST_TIMEOUT(40800),
+  /**
+   * <pre>
+   * Generic code represents that the request entity is larger than limits defined by server.
+   * </pre>
+   *
+   * <code>PAYLOAD_TOO_LARGE = 41300;</code>
+   */
+  PAYLOAD_TOO_LARGE(41300),
+  /**
+   * <pre>
+   * Message body size exceeds the threshold.
+   * </pre>
+   *
+   * <code>MESSAGE_BODY_TOO_LARGE = 41301;</code>
+   */
+  MESSAGE_BODY_TOO_LARGE(41301),
+  /**
+   * <pre>
+   * Generic code for use cases where pre-conditions are not met.
+   * For example, if a producer instance is used to publish messages without prior start() invocation,
+   * this error code will be raised.
+   * </pre>
+   *
+   * <code>PRECONDITION_FAILED = 42800;</code>
+   */
+  PRECONDITION_FAILED(42800),
+  /**
+   * <pre>
    * Generic code indicates that too many requests are made in short period of duration.
    * Requests are throttled.
    * </pre>
@@ -230,6 +256,23 @@ public enum Code
    * <code>TOO_MANY_REQUESTS = 42900;</code>
    */
   TOO_MANY_REQUESTS(42900),
+  /**
+   * <pre>
+   * Generic code for the case that the server is unwilling to process the request because its header fields are too large.
+   * The request may be resubmitted after reducing the size of the request header fields.
+   * </pre>
+   *
+   * <code>REQUEST_HEADER_FIELDS_TOO_LARGE = 43100;</code>
+   */
+  REQUEST_HEADER_FIELDS_TOO_LARGE(43100),
+  /**
+   * <pre>
+   * Message properties total size exceeds the threshold.
+   * </pre>
+   *
+   * <code>MESSAGE_PROPERTIES_TOO_LARGE = 43101;</code>
+   */
+  MESSAGE_PROPERTIES_TOO_LARGE(43101),
   /**
    * <pre>
    * Generic code indicates that server/client encountered an unexpected
@@ -273,12 +316,13 @@ public enum Code
   NOT_IMPLEMENTED(50100),
   /**
    * <pre>
-   * Generic code for timeout.
+   * Generic code represents that the server, which acts as a gateway or proxy,
+   * does not get an satisfied response in time from its upstream servers.
    * </pre>
    *
-   * <code>TIMEOUT = 50400;</code>
+   * <code>PROXY_TIMEOUT = 50400;</code>
    */
-  TIMEOUT(50400),
+  PROXY_TIMEOUT(50400),
   /**
    * <pre>
    * Message persistence timeout.
@@ -297,15 +341,9 @@ public enum Code
   SLAVE_PERSISTENCE_TIMEOUT(50402),
   /**
    * <pre>
-   * Code indicates that the server, while acting as a gateway or proxy,
-   * did not get a response in time from the upstream server that
-   * it needed in order to complete the request.
+   * Generic code for unsupported operation.
    * </pre>
    *
-   * <code>PROXY_TIMEOUT = 50403;</code>
-   */
-  PROXY_TIMEOUT(50403),
-  /**
    * <code>UNSUPPORTED = 50500;</code>
    */
   UNSUPPORTED(50500),
@@ -423,84 +461,68 @@ public enum Code
   public static final int ILLEGAL_MESSAGE_PROPERTY_KEY_VALUE = 40007;
   /**
    * <pre>
-   * Message properties total size exceeds the threshold.
-   * </pre>
-   *
-   * <code>MESSAGE_PROPERTIES_TOO_LARGE = 40008;</code>
-   */
-  public static final int MESSAGE_PROPERTIES_TOO_LARGE_VALUE = 40008;
-  /**
-   * <pre>
-   * Message body size exceeds the threshold.
-   * </pre>
-   *
-   * <code>MESSAGE_BODY_TOO_LARGE = 40009;</code>
-   */
-  public static final int MESSAGE_BODY_TOO_LARGE_VALUE = 40009;
-  /**
-   * <pre>
    * Transaction id is invalid.
    * </pre>
    *
-   * <code>INVALID_TRANSACTION_ID = 40010;</code>
+   * <code>INVALID_TRANSACTION_ID = 40008;</code>
    */
-  public static final int INVALID_TRANSACTION_ID_VALUE = 40010;
+  public static final int INVALID_TRANSACTION_ID_VALUE = 40008;
   /**
    * <pre>
    * Format of message id is illegal.
    * </pre>
    *
-   * <code>ILLEGAL_MESSAGE_ID = 40011;</code>
+   * <code>ILLEGAL_MESSAGE_ID = 40009;</code>
    */
-  public static final int ILLEGAL_MESSAGE_ID_VALUE = 40011;
+  public static final int ILLEGAL_MESSAGE_ID_VALUE = 40009;
   /**
    * <pre>
    * Format of filter expression is illegal.
    * </pre>
    *
-   * <code>ILLEGAL_FILTER_EXPRESSION = 40012;</code>
+   * <code>ILLEGAL_FILTER_EXPRESSION = 40010;</code>
    */
-  public static final int ILLEGAL_FILTER_EXPRESSION_VALUE = 40012;
+  public static final int ILLEGAL_FILTER_EXPRESSION_VALUE = 40010;
   /**
    * <pre>
    * Receipt handle of message is invalid.
    * </pre>
    *
-   * <code>INVALID_RECEIPT_HANDLE = 40013;</code>
+   * <code>INVALID_RECEIPT_HANDLE = 40011;</code>
    */
-  public static final int INVALID_RECEIPT_HANDLE_VALUE = 40013;
+  public static final int INVALID_RECEIPT_HANDLE_VALUE = 40011;
   /**
    * <pre>
-   * Message property is not match the message type.
+   * Message property conflicts with its type.
    * </pre>
    *
-   * <code>MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE = 40014;</code>
+   * <code>MESSAGE_PROPERTY_CONFLICT_WITH_TYPE = 40012;</code>
    */
-  public static final int MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE_VALUE = 40014;
+  public static final int MESSAGE_PROPERTY_CONFLICT_WITH_TYPE_VALUE = 40012;
   /**
    * <pre>
    * Client type could not be recognized.
    * </pre>
    *
-   * <code>UNRECOGNIZED_CLIENT_TYPE = 40015;</code>
+   * <code>UNRECOGNIZED_CLIENT_TYPE = 40013;</code>
    */
-  public static final int UNRECOGNIZED_CLIENT_TYPE_VALUE = 40015;
+  public static final int UNRECOGNIZED_CLIENT_TYPE_VALUE = 40013;
   /**
    * <pre>
    * Message is corrupted.
    * </pre>
    *
-   * <code>MESSAGE_CORRUPTED = 40016;</code>
+   * <code>MESSAGE_CORRUPTED = 40014;</code>
    */
-  public static final int MESSAGE_CORRUPTED_VALUE = 40016;
+  public static final int MESSAGE_CORRUPTED_VALUE = 40014;
   /**
    * <pre>
    * Request is rejected due to missing of x-mq-client-id header.
    * </pre>
    *
-   * <code>CLIENT_ID_REQUIRED = 40017;</code>
+   * <code>CLIENT_ID_REQUIRED = 40015;</code>
    */
-  public static final int CLIENT_ID_REQUIRED_VALUE = 40017;
+  public static final int CLIENT_ID_REQUIRED_VALUE = 40015;
   /**
    * <pre>
    * Generic code indicates that the client request lacks valid authentication
@@ -510,6 +532,14 @@ public enum Code
    * <code>UNAUTHORIZED = 40100;</code>
    */
   public static final int UNAUTHORIZED_VALUE = 40100;
+  /**
+   * <pre>
+   * Generic code indicates that the account is suspended due to overdue of payment.
+   * </pre>
+   *
+   * <code>PAYMENT_REQUIRED = 40200;</code>
+   */
+  public static final int PAYMENT_REQUIRED_VALUE = 40200;
   /**
    * <pre>
    * Generic code for the case that user does not have the permission to operate.
@@ -552,6 +582,40 @@ public enum Code
   public static final int CONSUMER_GROUP_NOT_FOUND_VALUE = 40403;
   /**
    * <pre>
+   * Generic code representing client side timeout when connecting to, reading data from, or write data to server.
+   * </pre>
+   *
+   * <code>REQUEST_TIMEOUT = 40800;</code>
+   */
+  public static final int REQUEST_TIMEOUT_VALUE = 40800;
+  /**
+   * <pre>
+   * Generic code represents that the request entity is larger than limits defined by server.
+   * </pre>
+   *
+   * <code>PAYLOAD_TOO_LARGE = 41300;</code>
+   */
+  public static final int PAYLOAD_TOO_LARGE_VALUE = 41300;
+  /**
+   * <pre>
+   * Message body size exceeds the threshold.
+   * </pre>
+   *
+   * <code>MESSAGE_BODY_TOO_LARGE = 41301;</code>
+   */
+  public static final int MESSAGE_BODY_TOO_LARGE_VALUE = 41301;
+  /**
+   * <pre>
+   * Generic code for use cases where pre-conditions are not met.
+   * For example, if a producer instance is used to publish messages without prior start() invocation,
+   * this error code will be raised.
+   * </pre>
+   *
+   * <code>PRECONDITION_FAILED = 42800;</code>
+   */
+  public static final int PRECONDITION_FAILED_VALUE = 42800;
+  /**
+   * <pre>
    * Generic code indicates that too many requests are made in short period of duration.
    * Requests are throttled.
    * </pre>
@@ -559,6 +623,23 @@ public enum Code
    * <code>TOO_MANY_REQUESTS = 42900;</code>
    */
   public static final int TOO_MANY_REQUESTS_VALUE = 42900;
+  /**
+   * <pre>
+   * Generic code for the case that the server is unwilling to process the request because its header fields are too large.
+   * The request may be resubmitted after reducing the size of the request header fields.
+   * </pre>
+   *
+   * <code>REQUEST_HEADER_FIELDS_TOO_LARGE = 43100;</code>
+   */
+  public static final int REQUEST_HEADER_FIELDS_TOO_LARGE_VALUE = 43100;
+  /**
+   * <pre>
+   * Message properties total size exceeds the threshold.
+   * </pre>
+   *
+   * <code>MESSAGE_PROPERTIES_TOO_LARGE = 43101;</code>
+   */
+  public static final int MESSAGE_PROPERTIES_TOO_LARGE_VALUE = 43101;
   /**
    * <pre>
    * Generic code indicates that server/client encountered an unexpected
@@ -602,12 +683,13 @@ public enum Code
   public static final int NOT_IMPLEMENTED_VALUE = 50100;
   /**
    * <pre>
-   * Generic code for timeout.
+   * Generic code represents that the server, which acts as a gateway or proxy,
+   * does not get an satisfied response in time from its upstream servers.
    * </pre>
    *
-   * <code>TIMEOUT = 50400;</code>
+   * <code>PROXY_TIMEOUT = 50400;</code>
    */
-  public static final int TIMEOUT_VALUE = 50400;
+  public static final int PROXY_TIMEOUT_VALUE = 50400;
   /**
    * <pre>
    * Message persistence timeout.
@@ -626,15 +708,9 @@ public enum Code
   public static final int SLAVE_PERSISTENCE_TIMEOUT_VALUE = 50402;
   /**
    * <pre>
-   * Code indicates that the server, while acting as a gateway or proxy,
-   * did not get a response in time from the upstream server that
-   * it needed in order to complete the request.
+   * Generic code for unsupported operation.
    * </pre>
    *
-   * <code>PROXY_TIMEOUT = 50403;</code>
-   */
-  public static final int PROXY_TIMEOUT_VALUE = 50403;
-  /**
    * <code>UNSUPPORTED = 50500;</code>
    */
   public static final int UNSUPPORTED_VALUE = 50500;
@@ -700,31 +776,35 @@ public enum Code
       case 40005: return ILLEGAL_MESSAGE_KEY;
       case 40006: return ILLEGAL_MESSAGE_GROUP;
       case 40007: return ILLEGAL_MESSAGE_PROPERTY_KEY;
-      case 40008: return MESSAGE_PROPERTIES_TOO_LARGE;
-      case 40009: return MESSAGE_BODY_TOO_LARGE;
-      case 40010: return INVALID_TRANSACTION_ID;
-      case 40011: return ILLEGAL_MESSAGE_ID;
-      case 40012: return ILLEGAL_FILTER_EXPRESSION;
-      case 40013: return INVALID_RECEIPT_HANDLE;
-      case 40014: return MESSAGE_PROPERTY_DOES_NOT_MATCH_MESSAGE_TYPE;
-      case 40015: return UNRECOGNIZED_CLIENT_TYPE;
-      case 40016: return MESSAGE_CORRUPTED;
-      case 40017: return CLIENT_ID_REQUIRED;
+      case 40008: return INVALID_TRANSACTION_ID;
+      case 40009: return ILLEGAL_MESSAGE_ID;
+      case 40010: return ILLEGAL_FILTER_EXPRESSION;
+      case 40011: return INVALID_RECEIPT_HANDLE;
+      case 40012: return MESSAGE_PROPERTY_CONFLICT_WITH_TYPE;
+      case 40013: return UNRECOGNIZED_CLIENT_TYPE;
+      case 40014: return MESSAGE_CORRUPTED;
+      case 40015: return CLIENT_ID_REQUIRED;
       case 40100: return UNAUTHORIZED;
+      case 40200: return PAYMENT_REQUIRED;
       case 40300: return FORBIDDEN;
       case 40400: return NOT_FOUND;
       case 40401: return MESSAGE_NOT_FOUND;
       case 40402: return TOPIC_NOT_FOUND;
       case 40403: return CONSUMER_GROUP_NOT_FOUND;
+      case 40800: return REQUEST_TIMEOUT;
+      case 41300: return PAYLOAD_TOO_LARGE;
+      case 41301: return MESSAGE_BODY_TOO_LARGE;
+      case 42800: return PRECONDITION_FAILED;
       case 42900: return TOO_MANY_REQUESTS;
+      case 43100: return REQUEST_HEADER_FIELDS_TOO_LARGE;
+      case 43101: return MESSAGE_PROPERTIES_TOO_LARGE;
       case 50000: return INTERNAL_ERROR;
       case 50001: return INTERNAL_SERVER_ERROR;
       case 50002: return HA_NOT_AVAILABLE;
       case 50100: return NOT_IMPLEMENTED;
-      case 50400: return TIMEOUT;
+      case 50400: return PROXY_TIMEOUT;
       case 50401: return MASTER_PERSISTENCE_TIMEOUT;
       case 50402: return SLAVE_PERSISTENCE_TIMEOUT;
-      case 50403: return PROXY_TIMEOUT;
       case 50500: return UNSUPPORTED;
       case 50501: return VERSION_UNSUPPORTED;
       case 50502: return VERIFY_FIFO_MESSAGE_UNSUPPORTED;

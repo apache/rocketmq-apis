@@ -325,13 +325,10 @@ enum Code {
   ILLEGAL_FILTER_EXPRESSION = 40010;
   // Receipt handle of message is invalid.
   INVALID_RECEIPT_HANDLE = 40011;
-
   // Message property conflicts with its type.
   MESSAGE_PROPERTY_CONFLICT_WITH_TYPE = 40012;
-  
   // Client type could not be recognized.
   UNRECOGNIZED_CLIENT_TYPE = 40013;
-  
   // Message is corrupted.
   MESSAGE_CORRUPTED = 40014;
   // Request is rejected due to missing of x-mq-client-id header.
@@ -341,7 +338,7 @@ enum Code {
   // credentials for the requested resource.
   UNAUTHORIZED = 40100;
 
-  // The account is suspended due to overdue of payment.
+  // Generic code indicates that the account is suspended due to overdue of payment.
   PAYMENT_REQUIRED = 40200;
 
   // Generic code for the case that user does not have the permission to operate.
@@ -356,14 +353,13 @@ enum Code {
   // Consumer group resource does not exist.
   CONSUMER_GROUP_NOT_FOUND = 40403;
 
-  // Generic code represents that the request entity is larger than limits defined by server. 
+  // Generic code represents that the request entity is larger than limits defined by server.
   PAYLOAD_TOO_LARGE = 41300;
-
   // Message body size exceeds the threshold.
-  MESSAGE_BODY_TOO_LARGE = 41301; 
+  MESSAGE_BODY_TOO_LARGE = 41301;
 
-  // Generic code for use cases where pre-conditions are not met. 
-  // For example, if a producer instance is used to publish messages without prior start() invocation, 
+  // Generic code for use cases where pre-conditions are not met.
+  // For example, if a producer instance is used to publish messages without prior start() invocation,
   // this error code will be raised.
   PRECONDITION_FAILED = 42800;
 
@@ -371,17 +367,15 @@ enum Code {
   // Requests are throttled.
   TOO_MANY_REQUESTS = 42900;
 
-  // The server is unwilling to process the request because its header fields are too large. 
+  // Generic code for the case that the server is unwilling to process the request because its header fields are too large.
   // The request may be resubmitted after reducing the size of the request header fields.
   REQUEST_HEADER_FIELDS_TOO_LARGE = 43100;
-
   // Message properties total size exceeds the threshold.
   MESSAGE_PROPERTIES_TOO_LARGE = 43101;
 
   // Generic code indicates that server/client encountered an unexpected
   // condition that prevented it from fulfilling the request.
   INTERNAL_ERROR = 50000;
-
   // Code indicates that the server encountered an unexpected condition
   // that prevented it from fulfilling the request.
   // This error response is a generic "catch-all" response.
@@ -392,7 +386,6 @@ enum Code {
   //
   // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
   INTERNAL_SERVER_ERROR = 50001;
-
   // The HA-mechanism is not working now.
   HA_NOT_AVAILABLE = 50002;
 
@@ -411,6 +404,7 @@ enum Code {
   // it needed in order to complete the request.
   PROXY_TIMEOUT = 50403;
 
+  // Generic code for unsupported operation.
   UNSUPPORTED = 50500;
   // Operation is not allowed in current version.
   VERSION_UNSUPPORTED = 50501;

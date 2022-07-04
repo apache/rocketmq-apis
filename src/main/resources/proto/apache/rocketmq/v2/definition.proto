@@ -358,7 +358,6 @@ enum Code {
 
   // Generic code represents that the request entity is larger than limits defined by server.
   PAYLOAD_TOO_LARGE = 41300;
-
   // Message body size exceeds the threshold.
   MESSAGE_BODY_TOO_LARGE = 41301;
 
@@ -399,6 +398,7 @@ enum Code {
 
   // Generic code represents that the server, which acts as a gateway or proxy,
   // does not get an satisfied response in time from its upstream servers.
+  // See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
   PROXY_TIMEOUT = 50400;
   // Message persistence timeout.
   MASTER_PERSISTENCE_TIMEOUT = 50401;

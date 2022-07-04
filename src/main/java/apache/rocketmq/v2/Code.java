@@ -318,6 +318,7 @@ public enum Code
    * <pre>
    * Generic code represents that the server, which acts as a gateway or proxy,
    * does not get an satisfied response in time from its upstream servers.
+   * See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
    * </pre>
    *
    * <code>PROXY_TIMEOUT = 50400;</code>
@@ -685,6 +686,7 @@ public enum Code
    * <pre>
    * Generic code represents that the server, which acts as a gateway or proxy,
    * does not get an satisfied response in time from its upstream servers.
+   * See https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
    * </pre>
    *
    * <code>PROXY_TIMEOUT = 50400;</code>

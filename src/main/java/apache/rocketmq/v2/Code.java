@@ -118,44 +118,60 @@ public enum Code
   ILLEGAL_FILTER_EXPRESSION(40010),
   /**
    * <pre>
+   * The invisible time of request is invalid.
+   * </pre>
+   *
+   * <code>ILLEGAL_INVISIBLE_TIME = 40011;</code>
+   */
+  ILLEGAL_INVISIBLE_TIME(40011),
+  /**
+   * <pre>
+   * The delivery timestamp of message is invalid.
+   * </pre>
+   *
+   * <code>ILLEGAL_DELIVERY_TIME = 40012;</code>
+   */
+  ILLEGAL_DELIVERY_TIME(40012),
+  /**
+   * <pre>
    * Receipt handle of message is invalid.
    * </pre>
    *
-   * <code>INVALID_RECEIPT_HANDLE = 40011;</code>
+   * <code>INVALID_RECEIPT_HANDLE = 40013;</code>
    */
-  INVALID_RECEIPT_HANDLE(40011),
+  INVALID_RECEIPT_HANDLE(40013),
   /**
    * <pre>
    * Message property conflicts with its type.
    * </pre>
    *
-   * <code>MESSAGE_PROPERTY_CONFLICT_WITH_TYPE = 40012;</code>
+   * <code>MESSAGE_PROPERTY_CONFLICT_WITH_TYPE = 40014;</code>
    */
-  MESSAGE_PROPERTY_CONFLICT_WITH_TYPE(40012),
+  MESSAGE_PROPERTY_CONFLICT_WITH_TYPE(40014),
   /**
    * <pre>
    * Client type could not be recognized.
    * </pre>
    *
-   * <code>UNRECOGNIZED_CLIENT_TYPE = 40013;</code>
+   * <code>UNRECOGNIZED_CLIENT_TYPE = 40015;</code>
    */
-  UNRECOGNIZED_CLIENT_TYPE(40013),
+  UNRECOGNIZED_CLIENT_TYPE(40015),
   /**
    * <pre>
    * Message is corrupted.
    * </pre>
    *
-   * <code>MESSAGE_CORRUPTED = 40014;</code>
+   * <code>MESSAGE_CORRUPTED = 40016;</code>
    */
-  MESSAGE_CORRUPTED(40014),
+  MESSAGE_CORRUPTED(40016),
   /**
    * <pre>
    * Request is rejected due to missing of x-mq-client-id header.
    * </pre>
    *
-   * <code>CLIENT_ID_REQUIRED = 40015;</code>
+   * <code>CLIENT_ID_REQUIRED = 40017;</code>
    */
-  CLIENT_ID_REQUIRED(40015),
+  CLIENT_ID_REQUIRED(40017),
   /**
    * <pre>
    * Generic code indicates that the client request lacks valid authentication
@@ -486,44 +502,60 @@ public enum Code
   public static final int ILLEGAL_FILTER_EXPRESSION_VALUE = 40010;
   /**
    * <pre>
+   * The invisible time of request is invalid.
+   * </pre>
+   *
+   * <code>ILLEGAL_INVISIBLE_TIME = 40011;</code>
+   */
+  public static final int ILLEGAL_INVISIBLE_TIME_VALUE = 40011;
+  /**
+   * <pre>
+   * The delivery timestamp of message is invalid.
+   * </pre>
+   *
+   * <code>ILLEGAL_DELIVERY_TIME = 40012;</code>
+   */
+  public static final int ILLEGAL_DELIVERY_TIME_VALUE = 40012;
+  /**
+   * <pre>
    * Receipt handle of message is invalid.
    * </pre>
    *
-   * <code>INVALID_RECEIPT_HANDLE = 40011;</code>
+   * <code>INVALID_RECEIPT_HANDLE = 40013;</code>
    */
-  public static final int INVALID_RECEIPT_HANDLE_VALUE = 40011;
+  public static final int INVALID_RECEIPT_HANDLE_VALUE = 40013;
   /**
    * <pre>
    * Message property conflicts with its type.
    * </pre>
    *
-   * <code>MESSAGE_PROPERTY_CONFLICT_WITH_TYPE = 40012;</code>
+   * <code>MESSAGE_PROPERTY_CONFLICT_WITH_TYPE = 40014;</code>
    */
-  public static final int MESSAGE_PROPERTY_CONFLICT_WITH_TYPE_VALUE = 40012;
+  public static final int MESSAGE_PROPERTY_CONFLICT_WITH_TYPE_VALUE = 40014;
   /**
    * <pre>
    * Client type could not be recognized.
    * </pre>
    *
-   * <code>UNRECOGNIZED_CLIENT_TYPE = 40013;</code>
+   * <code>UNRECOGNIZED_CLIENT_TYPE = 40015;</code>
    */
-  public static final int UNRECOGNIZED_CLIENT_TYPE_VALUE = 40013;
+  public static final int UNRECOGNIZED_CLIENT_TYPE_VALUE = 40015;
   /**
    * <pre>
    * Message is corrupted.
    * </pre>
    *
-   * <code>MESSAGE_CORRUPTED = 40014;</code>
+   * <code>MESSAGE_CORRUPTED = 40016;</code>
    */
-  public static final int MESSAGE_CORRUPTED_VALUE = 40014;
+  public static final int MESSAGE_CORRUPTED_VALUE = 40016;
   /**
    * <pre>
    * Request is rejected due to missing of x-mq-client-id header.
    * </pre>
    *
-   * <code>CLIENT_ID_REQUIRED = 40015;</code>
+   * <code>CLIENT_ID_REQUIRED = 40017;</code>
    */
-  public static final int CLIENT_ID_REQUIRED_VALUE = 40015;
+  public static final int CLIENT_ID_REQUIRED_VALUE = 40017;
   /**
    * <pre>
    * Generic code indicates that the client request lacks valid authentication
@@ -781,11 +813,13 @@ public enum Code
       case 40008: return INVALID_TRANSACTION_ID;
       case 40009: return ILLEGAL_MESSAGE_ID;
       case 40010: return ILLEGAL_FILTER_EXPRESSION;
-      case 40011: return INVALID_RECEIPT_HANDLE;
-      case 40012: return MESSAGE_PROPERTY_CONFLICT_WITH_TYPE;
-      case 40013: return UNRECOGNIZED_CLIENT_TYPE;
-      case 40014: return MESSAGE_CORRUPTED;
-      case 40015: return CLIENT_ID_REQUIRED;
+      case 40011: return ILLEGAL_INVISIBLE_TIME;
+      case 40012: return ILLEGAL_DELIVERY_TIME;
+      case 40013: return INVALID_RECEIPT_HANDLE;
+      case 40014: return MESSAGE_PROPERTY_CONFLICT_WITH_TYPE;
+      case 40015: return UNRECOGNIZED_CLIENT_TYPE;
+      case 40016: return MESSAGE_CORRUPTED;
+      case 40017: return CLIENT_ID_REQUIRED;
       case 40100: return UNAUTHORIZED;
       case 40200: return PAYMENT_REQUIRED;
       case 40300: return FORBIDDEN;

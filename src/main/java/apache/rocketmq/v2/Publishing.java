@@ -61,15 +61,10 @@ private static final long serialVersionUID = 0L;
           }
           case 16: {
 
-            compressBodyThreshold_ = input.readInt32();
-            break;
-          }
-          case 24: {
-
             maxBodySize_ = input.readInt32();
             break;
           }
-          case 32: {
+          case 24: {
 
             validateMessageType_ = input.readBool();
             break;
@@ -179,25 +174,7 @@ private static final long serialVersionUID = 0L;
     return topics_.get(index);
   }
 
-  public static final int COMPRESS_BODY_THRESHOLD_FIELD_NUMBER = 2;
-  private int compressBodyThreshold_;
-  /**
-   * <pre>
-   * Publishing settings below here are from server, it is essential for
-   * server to push.
-   * Body of message will be deflated if its size in bytes exceeds the
-   * threshold.
-   * </pre>
-   *
-   * <code>int32 compress_body_threshold = 2;</code>
-   * @return The compressBodyThreshold.
-   */
-  @java.lang.Override
-  public int getCompressBodyThreshold() {
-    return compressBodyThreshold_;
-  }
-
-  public static final int MAX_BODY_SIZE_FIELD_NUMBER = 3;
+  public static final int MAX_BODY_SIZE_FIELD_NUMBER = 2;
   private int maxBodySize_;
   /**
    * <pre>
@@ -206,7 +183,7 @@ private static final long serialVersionUID = 0L;
    * client-side check validation.
    * </pre>
    *
-   * <code>int32 max_body_size = 3;</code>
+   * <code>int32 max_body_size = 2;</code>
    * @return The maxBodySize.
    */
   @java.lang.Override
@@ -214,7 +191,7 @@ private static final long serialVersionUID = 0L;
     return maxBodySize_;
   }
 
-  public static final int VALIDATE_MESSAGE_TYPE_FIELD_NUMBER = 4;
+  public static final int VALIDATE_MESSAGE_TYPE_FIELD_NUMBER = 3;
   private boolean validateMessageType_;
   /**
    * <pre>
@@ -222,7 +199,7 @@ private static final long serialVersionUID = 0L;
    * with messageQueue's `accept_message_types` before publising.
    * </pre>
    *
-   * <code>bool validate_message_type = 4;</code>
+   * <code>bool validate_message_type = 3;</code>
    * @return The validateMessageType.
    */
   @java.lang.Override
@@ -247,14 +224,11 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < topics_.size(); i++) {
       output.writeMessage(1, topics_.get(i));
     }
-    if (compressBodyThreshold_ != 0) {
-      output.writeInt32(2, compressBodyThreshold_);
-    }
     if (maxBodySize_ != 0) {
-      output.writeInt32(3, maxBodySize_);
+      output.writeInt32(2, maxBodySize_);
     }
     if (validateMessageType_ != false) {
-      output.writeBool(4, validateMessageType_);
+      output.writeBool(3, validateMessageType_);
     }
     unknownFields.writeTo(output);
   }
@@ -269,17 +243,13 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, topics_.get(i));
     }
-    if (compressBodyThreshold_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(2, compressBodyThreshold_);
-    }
     if (maxBodySize_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(3, maxBodySize_);
+        .computeInt32Size(2, maxBodySize_);
     }
     if (validateMessageType_ != false) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(4, validateMessageType_);
+        .computeBoolSize(3, validateMessageType_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -298,8 +268,6 @@ private static final long serialVersionUID = 0L;
 
     if (!getTopicsList()
         .equals(other.getTopicsList())) return false;
-    if (getCompressBodyThreshold()
-        != other.getCompressBodyThreshold()) return false;
     if (getMaxBodySize()
         != other.getMaxBodySize()) return false;
     if (getValidateMessageType()
@@ -319,8 +287,6 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + TOPICS_FIELD_NUMBER;
       hash = (53 * hash) + getTopicsList().hashCode();
     }
-    hash = (37 * hash) + COMPRESS_BODY_THRESHOLD_FIELD_NUMBER;
-    hash = (53 * hash) + getCompressBodyThreshold();
     hash = (37 * hash) + MAX_BODY_SIZE_FIELD_NUMBER;
     hash = (53 * hash) + getMaxBodySize();
     hash = (37 * hash) + VALIDATE_MESSAGE_TYPE_FIELD_NUMBER;
@@ -466,8 +432,6 @@ private static final long serialVersionUID = 0L;
       } else {
         topicsBuilder_.clear();
       }
-      compressBodyThreshold_ = 0;
-
       maxBodySize_ = 0;
 
       validateMessageType_ = false;
@@ -508,7 +472,6 @@ private static final long serialVersionUID = 0L;
       } else {
         result.topics_ = topicsBuilder_.build();
       }
-      result.compressBodyThreshold_ = compressBodyThreshold_;
       result.maxBodySize_ = maxBodySize_;
       result.validateMessageType_ = validateMessageType_;
       onBuilt();
@@ -584,9 +547,6 @@ private static final long serialVersionUID = 0L;
             topicsBuilder_.addAllMessages(other.topics_);
           }
         }
-      }
-      if (other.getCompressBodyThreshold() != 0) {
-        setCompressBodyThreshold(other.getCompressBodyThreshold());
       }
       if (other.getMaxBodySize() != 0) {
         setMaxBodySize(other.getMaxBodySize());
@@ -972,58 +932,6 @@ private static final long serialVersionUID = 0L;
       return topicsBuilder_;
     }
 
-    private int compressBodyThreshold_ ;
-    /**
-     * <pre>
-     * Publishing settings below here are from server, it is essential for
-     * server to push.
-     * Body of message will be deflated if its size in bytes exceeds the
-     * threshold.
-     * </pre>
-     *
-     * <code>int32 compress_body_threshold = 2;</code>
-     * @return The compressBodyThreshold.
-     */
-    @java.lang.Override
-    public int getCompressBodyThreshold() {
-      return compressBodyThreshold_;
-    }
-    /**
-     * <pre>
-     * Publishing settings below here are from server, it is essential for
-     * server to push.
-     * Body of message will be deflated if its size in bytes exceeds the
-     * threshold.
-     * </pre>
-     *
-     * <code>int32 compress_body_threshold = 2;</code>
-     * @param value The compressBodyThreshold to set.
-     * @return This builder for chaining.
-     */
-    public Builder setCompressBodyThreshold(int value) {
-      
-      compressBodyThreshold_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Publishing settings below here are from server, it is essential for
-     * server to push.
-     * Body of message will be deflated if its size in bytes exceeds the
-     * threshold.
-     * </pre>
-     *
-     * <code>int32 compress_body_threshold = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearCompressBodyThreshold() {
-      
-      compressBodyThreshold_ = 0;
-      onChanged();
-      return this;
-    }
-
     private int maxBodySize_ ;
     /**
      * <pre>
@@ -1032,7 +940,7 @@ private static final long serialVersionUID = 0L;
      * client-side check validation.
      * </pre>
      *
-     * <code>int32 max_body_size = 3;</code>
+     * <code>int32 max_body_size = 2;</code>
      * @return The maxBodySize.
      */
     @java.lang.Override
@@ -1046,7 +954,7 @@ private static final long serialVersionUID = 0L;
      * client-side check validation.
      * </pre>
      *
-     * <code>int32 max_body_size = 3;</code>
+     * <code>int32 max_body_size = 2;</code>
      * @param value The maxBodySize to set.
      * @return This builder for chaining.
      */
@@ -1063,7 +971,7 @@ private static final long serialVersionUID = 0L;
      * client-side check validation.
      * </pre>
      *
-     * <code>int32 max_body_size = 3;</code>
+     * <code>int32 max_body_size = 2;</code>
      * @return This builder for chaining.
      */
     public Builder clearMaxBodySize() {
@@ -1080,7 +988,7 @@ private static final long serialVersionUID = 0L;
      * with messageQueue's `accept_message_types` before publising.
      * </pre>
      *
-     * <code>bool validate_message_type = 4;</code>
+     * <code>bool validate_message_type = 3;</code>
      * @return The validateMessageType.
      */
     @java.lang.Override
@@ -1093,7 +1001,7 @@ private static final long serialVersionUID = 0L;
      * with messageQueue's `accept_message_types` before publising.
      * </pre>
      *
-     * <code>bool validate_message_type = 4;</code>
+     * <code>bool validate_message_type = 3;</code>
      * @param value The validateMessageType to set.
      * @return This builder for chaining.
      */
@@ -1109,7 +1017,7 @@ private static final long serialVersionUID = 0L;
      * with messageQueue's `accept_message_types` before publising.
      * </pre>
      *
-     * <code>bool validate_message_type = 4;</code>
+     * <code>bool validate_message_type = 3;</code>
      * @return This builder for chaining.
      */
     public Builder clearValidateMessageType() {

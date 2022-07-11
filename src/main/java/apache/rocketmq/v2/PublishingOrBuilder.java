@@ -63,25 +63,12 @@ public interface PublishingOrBuilder extends
 
   /**
    * <pre>
-   * Publishing settings below here are from server, it is essential for
-   * server to push.
-   * Body of message will be deflated if its size in bytes exceeds the
-   * threshold.
-   * </pre>
-   *
-   * <code>int32 compress_body_threshold = 2;</code>
-   * @return The compressBodyThreshold.
-   */
-  int getCompressBodyThreshold();
-
-  /**
-   * <pre>
    * If the message body size exceeds `max_body_size`, broker servers would
    * reject the request. As a result, it is advisable that Producer performs
    * client-side check validation.
    * </pre>
    *
-   * <code>int32 max_body_size = 3;</code>
+   * <code>int32 max_body_size = 2;</code>
    * @return The maxBodySize.
    */
   int getMaxBodySize();
@@ -92,7 +79,7 @@ public interface PublishingOrBuilder extends
    * with messageQueue's `accept_message_types` before publising.
    * </pre>
    *
-   * <code>bool validate_message_type = 4;</code>
+   * <code>bool validate_message_type = 3;</code>
    * @return The validateMessageType.
    */
   boolean getValidateMessageType();

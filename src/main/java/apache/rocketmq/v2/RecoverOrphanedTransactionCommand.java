@@ -50,32 +50,19 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 10: {
-            apache.rocketmq.v2.MessageQueue.Builder subBuilder = null;
-            if (messageQueue_ != null) {
-              subBuilder = messageQueue_.toBuilder();
+            apache.rocketmq.v2.Message.Builder subBuilder = null;
+            if (message_ != null) {
+              subBuilder = message_.toBuilder();
             }
-            messageQueue_ = input.readMessage(apache.rocketmq.v2.MessageQueue.parser(), extensionRegistry);
+            message_ = input.readMessage(apache.rocketmq.v2.Message.parser(), extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom(messageQueue_);
-              messageQueue_ = subBuilder.buildPartial();
+              subBuilder.mergeFrom(message_);
+              message_ = subBuilder.buildPartial();
             }
 
             break;
           }
           case 18: {
-            apache.rocketmq.v2.Message.Builder subBuilder = null;
-            if (orphanedTransactionalMessage_ != null) {
-              subBuilder = orphanedTransactionalMessage_.toBuilder();
-            }
-            orphanedTransactionalMessage_ = input.readMessage(apache.rocketmq.v2.Message.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(orphanedTransactionalMessage_);
-              orphanedTransactionalMessage_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 26: {
             java.lang.String s = input.readStringRequireUtf8();
 
             transactionId_ = s;
@@ -113,62 +100,36 @@ private static final long serialVersionUID = 0L;
             apache.rocketmq.v2.RecoverOrphanedTransactionCommand.class, apache.rocketmq.v2.RecoverOrphanedTransactionCommand.Builder.class);
   }
 
-  public static final int MESSAGE_QUEUE_FIELD_NUMBER = 1;
-  private apache.rocketmq.v2.MessageQueue messageQueue_;
+  public static final int MESSAGE_FIELD_NUMBER = 1;
+  private apache.rocketmq.v2.Message message_;
   /**
-   * <code>.apache.rocketmq.v2.MessageQueue message_queue = 1;</code>
-   * @return Whether the messageQueue field is set.
+   * <code>.apache.rocketmq.v2.Message message = 1;</code>
+   * @return Whether the message field is set.
    */
   @java.lang.Override
-  public boolean hasMessageQueue() {
-    return messageQueue_ != null;
+  public boolean hasMessage() {
+    return message_ != null;
   }
   /**
-   * <code>.apache.rocketmq.v2.MessageQueue message_queue = 1;</code>
-   * @return The messageQueue.
+   * <code>.apache.rocketmq.v2.Message message = 1;</code>
+   * @return The message.
    */
   @java.lang.Override
-  public apache.rocketmq.v2.MessageQueue getMessageQueue() {
-    return messageQueue_ == null ? apache.rocketmq.v2.MessageQueue.getDefaultInstance() : messageQueue_;
+  public apache.rocketmq.v2.Message getMessage() {
+    return message_ == null ? apache.rocketmq.v2.Message.getDefaultInstance() : message_;
   }
   /**
-   * <code>.apache.rocketmq.v2.MessageQueue message_queue = 1;</code>
+   * <code>.apache.rocketmq.v2.Message message = 1;</code>
    */
   @java.lang.Override
-  public apache.rocketmq.v2.MessageQueueOrBuilder getMessageQueueOrBuilder() {
-    return getMessageQueue();
-  }
-
-  public static final int ORPHANED_TRANSACTIONAL_MESSAGE_FIELD_NUMBER = 2;
-  private apache.rocketmq.v2.Message orphanedTransactionalMessage_;
-  /**
-   * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
-   * @return Whether the orphanedTransactionalMessage field is set.
-   */
-  @java.lang.Override
-  public boolean hasOrphanedTransactionalMessage() {
-    return orphanedTransactionalMessage_ != null;
-  }
-  /**
-   * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
-   * @return The orphanedTransactionalMessage.
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.Message getOrphanedTransactionalMessage() {
-    return orphanedTransactionalMessage_ == null ? apache.rocketmq.v2.Message.getDefaultInstance() : orphanedTransactionalMessage_;
-  }
-  /**
-   * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
-   */
-  @java.lang.Override
-  public apache.rocketmq.v2.MessageOrBuilder getOrphanedTransactionalMessageOrBuilder() {
-    return getOrphanedTransactionalMessage();
+  public apache.rocketmq.v2.MessageOrBuilder getMessageOrBuilder() {
+    return getMessage();
   }
 
-  public static final int TRANSACTION_ID_FIELD_NUMBER = 3;
+  public static final int TRANSACTION_ID_FIELD_NUMBER = 2;
   private volatile java.lang.Object transactionId_;
   /**
-   * <code>string transaction_id = 3;</code>
+   * <code>string transaction_id = 2;</code>
    * @return The transactionId.
    */
   @java.lang.Override
@@ -185,7 +146,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string transaction_id = 3;</code>
+   * <code>string transaction_id = 2;</code>
    * @return The bytes for transactionId.
    */
   @java.lang.Override
@@ -217,14 +178,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (messageQueue_ != null) {
-      output.writeMessage(1, getMessageQueue());
-    }
-    if (orphanedTransactionalMessage_ != null) {
-      output.writeMessage(2, getOrphanedTransactionalMessage());
+    if (message_ != null) {
+      output.writeMessage(1, getMessage());
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transactionId_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, transactionId_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, transactionId_);
     }
     unknownFields.writeTo(output);
   }
@@ -235,16 +193,12 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (messageQueue_ != null) {
+    if (message_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, getMessageQueue());
-    }
-    if (orphanedTransactionalMessage_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, getOrphanedTransactionalMessage());
+        .computeMessageSize(1, getMessage());
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(transactionId_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, transactionId_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, transactionId_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -261,15 +215,10 @@ private static final long serialVersionUID = 0L;
     }
     apache.rocketmq.v2.RecoverOrphanedTransactionCommand other = (apache.rocketmq.v2.RecoverOrphanedTransactionCommand) obj;
 
-    if (hasMessageQueue() != other.hasMessageQueue()) return false;
-    if (hasMessageQueue()) {
-      if (!getMessageQueue()
-          .equals(other.getMessageQueue())) return false;
-    }
-    if (hasOrphanedTransactionalMessage() != other.hasOrphanedTransactionalMessage()) return false;
-    if (hasOrphanedTransactionalMessage()) {
-      if (!getOrphanedTransactionalMessage()
-          .equals(other.getOrphanedTransactionalMessage())) return false;
+    if (hasMessage() != other.hasMessage()) return false;
+    if (hasMessage()) {
+      if (!getMessage()
+          .equals(other.getMessage())) return false;
     }
     if (!getTransactionId()
         .equals(other.getTransactionId())) return false;
@@ -284,13 +233,9 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasMessageQueue()) {
-      hash = (37 * hash) + MESSAGE_QUEUE_FIELD_NUMBER;
-      hash = (53 * hash) + getMessageQueue().hashCode();
-    }
-    if (hasOrphanedTransactionalMessage()) {
-      hash = (37 * hash) + ORPHANED_TRANSACTIONAL_MESSAGE_FIELD_NUMBER;
-      hash = (53 * hash) + getOrphanedTransactionalMessage().hashCode();
+    if (hasMessage()) {
+      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
+      hash = (53 * hash) + getMessage().hashCode();
     }
     hash = (37 * hash) + TRANSACTION_ID_FIELD_NUMBER;
     hash = (53 * hash) + getTransactionId().hashCode();
@@ -427,17 +372,11 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      if (messageQueueBuilder_ == null) {
-        messageQueue_ = null;
+      if (messageBuilder_ == null) {
+        message_ = null;
       } else {
-        messageQueue_ = null;
-        messageQueueBuilder_ = null;
-      }
-      if (orphanedTransactionalMessageBuilder_ == null) {
-        orphanedTransactionalMessage_ = null;
-      } else {
-        orphanedTransactionalMessage_ = null;
-        orphanedTransactionalMessageBuilder_ = null;
+        message_ = null;
+        messageBuilder_ = null;
       }
       transactionId_ = "";
 
@@ -467,15 +406,10 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public apache.rocketmq.v2.RecoverOrphanedTransactionCommand buildPartial() {
       apache.rocketmq.v2.RecoverOrphanedTransactionCommand result = new apache.rocketmq.v2.RecoverOrphanedTransactionCommand(this);
-      if (messageQueueBuilder_ == null) {
-        result.messageQueue_ = messageQueue_;
+      if (messageBuilder_ == null) {
+        result.message_ = message_;
       } else {
-        result.messageQueue_ = messageQueueBuilder_.build();
-      }
-      if (orphanedTransactionalMessageBuilder_ == null) {
-        result.orphanedTransactionalMessage_ = orphanedTransactionalMessage_;
-      } else {
-        result.orphanedTransactionalMessage_ = orphanedTransactionalMessageBuilder_.build();
+        result.message_ = messageBuilder_.build();
       }
       result.transactionId_ = transactionId_;
       onBuilt();
@@ -526,11 +460,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(apache.rocketmq.v2.RecoverOrphanedTransactionCommand other) {
       if (other == apache.rocketmq.v2.RecoverOrphanedTransactionCommand.getDefaultInstance()) return this;
-      if (other.hasMessageQueue()) {
-        mergeMessageQueue(other.getMessageQueue());
-      }
-      if (other.hasOrphanedTransactionalMessage()) {
-        mergeOrphanedTransactionalMessage(other.getOrphanedTransactionalMessage());
+      if (other.hasMessage()) {
+        mergeMessage(other.getMessage());
       }
       if (!other.getTransactionId().isEmpty()) {
         transactionId_ = other.transactionId_;
@@ -565,247 +496,128 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private apache.rocketmq.v2.MessageQueue messageQueue_;
+    private apache.rocketmq.v2.Message message_;
     private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.MessageQueue, apache.rocketmq.v2.MessageQueue.Builder, apache.rocketmq.v2.MessageQueueOrBuilder> messageQueueBuilder_;
+        apache.rocketmq.v2.Message, apache.rocketmq.v2.Message.Builder, apache.rocketmq.v2.MessageOrBuilder> messageBuilder_;
     /**
-     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 1;</code>
-     * @return Whether the messageQueue field is set.
+     * <code>.apache.rocketmq.v2.Message message = 1;</code>
+     * @return Whether the message field is set.
      */
-    public boolean hasMessageQueue() {
-      return messageQueueBuilder_ != null || messageQueue_ != null;
+    public boolean hasMessage() {
+      return messageBuilder_ != null || message_ != null;
     }
     /**
-     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 1;</code>
-     * @return The messageQueue.
+     * <code>.apache.rocketmq.v2.Message message = 1;</code>
+     * @return The message.
      */
-    public apache.rocketmq.v2.MessageQueue getMessageQueue() {
-      if (messageQueueBuilder_ == null) {
-        return messageQueue_ == null ? apache.rocketmq.v2.MessageQueue.getDefaultInstance() : messageQueue_;
+    public apache.rocketmq.v2.Message getMessage() {
+      if (messageBuilder_ == null) {
+        return message_ == null ? apache.rocketmq.v2.Message.getDefaultInstance() : message_;
       } else {
-        return messageQueueBuilder_.getMessage();
+        return messageBuilder_.getMessage();
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 1;</code>
+     * <code>.apache.rocketmq.v2.Message message = 1;</code>
      */
-    public Builder setMessageQueue(apache.rocketmq.v2.MessageQueue value) {
-      if (messageQueueBuilder_ == null) {
+    public Builder setMessage(apache.rocketmq.v2.Message value) {
+      if (messageBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        messageQueue_ = value;
+        message_ = value;
         onChanged();
       } else {
-        messageQueueBuilder_.setMessage(value);
+        messageBuilder_.setMessage(value);
       }
 
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 1;</code>
+     * <code>.apache.rocketmq.v2.Message message = 1;</code>
      */
-    public Builder setMessageQueue(
-        apache.rocketmq.v2.MessageQueue.Builder builderForValue) {
-      if (messageQueueBuilder_ == null) {
-        messageQueue_ = builderForValue.build();
-        onChanged();
-      } else {
-        messageQueueBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 1;</code>
-     */
-    public Builder mergeMessageQueue(apache.rocketmq.v2.MessageQueue value) {
-      if (messageQueueBuilder_ == null) {
-        if (messageQueue_ != null) {
-          messageQueue_ =
-            apache.rocketmq.v2.MessageQueue.newBuilder(messageQueue_).mergeFrom(value).buildPartial();
-        } else {
-          messageQueue_ = value;
-        }
-        onChanged();
-      } else {
-        messageQueueBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 1;</code>
-     */
-    public Builder clearMessageQueue() {
-      if (messageQueueBuilder_ == null) {
-        messageQueue_ = null;
-        onChanged();
-      } else {
-        messageQueue_ = null;
-        messageQueueBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 1;</code>
-     */
-    public apache.rocketmq.v2.MessageQueue.Builder getMessageQueueBuilder() {
-      
-      onChanged();
-      return getMessageQueueFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 1;</code>
-     */
-    public apache.rocketmq.v2.MessageQueueOrBuilder getMessageQueueOrBuilder() {
-      if (messageQueueBuilder_ != null) {
-        return messageQueueBuilder_.getMessageOrBuilder();
-      } else {
-        return messageQueue_ == null ?
-            apache.rocketmq.v2.MessageQueue.getDefaultInstance() : messageQueue_;
-      }
-    }
-    /**
-     * <code>.apache.rocketmq.v2.MessageQueue message_queue = 1;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.MessageQueue, apache.rocketmq.v2.MessageQueue.Builder, apache.rocketmq.v2.MessageQueueOrBuilder> 
-        getMessageQueueFieldBuilder() {
-      if (messageQueueBuilder_ == null) {
-        messageQueueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            apache.rocketmq.v2.MessageQueue, apache.rocketmq.v2.MessageQueue.Builder, apache.rocketmq.v2.MessageQueueOrBuilder>(
-                getMessageQueue(),
-                getParentForChildren(),
-                isClean());
-        messageQueue_ = null;
-      }
-      return messageQueueBuilder_;
-    }
-
-    private apache.rocketmq.v2.Message orphanedTransactionalMessage_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        apache.rocketmq.v2.Message, apache.rocketmq.v2.Message.Builder, apache.rocketmq.v2.MessageOrBuilder> orphanedTransactionalMessageBuilder_;
-    /**
-     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
-     * @return Whether the orphanedTransactionalMessage field is set.
-     */
-    public boolean hasOrphanedTransactionalMessage() {
-      return orphanedTransactionalMessageBuilder_ != null || orphanedTransactionalMessage_ != null;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
-     * @return The orphanedTransactionalMessage.
-     */
-    public apache.rocketmq.v2.Message getOrphanedTransactionalMessage() {
-      if (orphanedTransactionalMessageBuilder_ == null) {
-        return orphanedTransactionalMessage_ == null ? apache.rocketmq.v2.Message.getDefaultInstance() : orphanedTransactionalMessage_;
-      } else {
-        return orphanedTransactionalMessageBuilder_.getMessage();
-      }
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
-     */
-    public Builder setOrphanedTransactionalMessage(apache.rocketmq.v2.Message value) {
-      if (orphanedTransactionalMessageBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        orphanedTransactionalMessage_ = value;
-        onChanged();
-      } else {
-        orphanedTransactionalMessageBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
-     */
-    public Builder setOrphanedTransactionalMessage(
+    public Builder setMessage(
         apache.rocketmq.v2.Message.Builder builderForValue) {
-      if (orphanedTransactionalMessageBuilder_ == null) {
-        orphanedTransactionalMessage_ = builderForValue.build();
+      if (messageBuilder_ == null) {
+        message_ = builderForValue.build();
         onChanged();
       } else {
-        orphanedTransactionalMessageBuilder_.setMessage(builderForValue.build());
+        messageBuilder_.setMessage(builderForValue.build());
       }
 
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message message = 1;</code>
      */
-    public Builder mergeOrphanedTransactionalMessage(apache.rocketmq.v2.Message value) {
-      if (orphanedTransactionalMessageBuilder_ == null) {
-        if (orphanedTransactionalMessage_ != null) {
-          orphanedTransactionalMessage_ =
-            apache.rocketmq.v2.Message.newBuilder(orphanedTransactionalMessage_).mergeFrom(value).buildPartial();
+    public Builder mergeMessage(apache.rocketmq.v2.Message value) {
+      if (messageBuilder_ == null) {
+        if (message_ != null) {
+          message_ =
+            apache.rocketmq.v2.Message.newBuilder(message_).mergeFrom(value).buildPartial();
         } else {
-          orphanedTransactionalMessage_ = value;
+          message_ = value;
         }
         onChanged();
       } else {
-        orphanedTransactionalMessageBuilder_.mergeFrom(value);
+        messageBuilder_.mergeFrom(value);
       }
 
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message message = 1;</code>
      */
-    public Builder clearOrphanedTransactionalMessage() {
-      if (orphanedTransactionalMessageBuilder_ == null) {
-        orphanedTransactionalMessage_ = null;
+    public Builder clearMessage() {
+      if (messageBuilder_ == null) {
+        message_ = null;
         onChanged();
       } else {
-        orphanedTransactionalMessage_ = null;
-        orphanedTransactionalMessageBuilder_ = null;
+        message_ = null;
+        messageBuilder_ = null;
       }
 
       return this;
     }
     /**
-     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message message = 1;</code>
      */
-    public apache.rocketmq.v2.Message.Builder getOrphanedTransactionalMessageBuilder() {
+    public apache.rocketmq.v2.Message.Builder getMessageBuilder() {
       
       onChanged();
-      return getOrphanedTransactionalMessageFieldBuilder().getBuilder();
+      return getMessageFieldBuilder().getBuilder();
     }
     /**
-     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message message = 1;</code>
      */
-    public apache.rocketmq.v2.MessageOrBuilder getOrphanedTransactionalMessageOrBuilder() {
-      if (orphanedTransactionalMessageBuilder_ != null) {
-        return orphanedTransactionalMessageBuilder_.getMessageOrBuilder();
+    public apache.rocketmq.v2.MessageOrBuilder getMessageOrBuilder() {
+      if (messageBuilder_ != null) {
+        return messageBuilder_.getMessageOrBuilder();
       } else {
-        return orphanedTransactionalMessage_ == null ?
-            apache.rocketmq.v2.Message.getDefaultInstance() : orphanedTransactionalMessage_;
+        return message_ == null ?
+            apache.rocketmq.v2.Message.getDefaultInstance() : message_;
       }
     }
     /**
-     * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
+     * <code>.apache.rocketmq.v2.Message message = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         apache.rocketmq.v2.Message, apache.rocketmq.v2.Message.Builder, apache.rocketmq.v2.MessageOrBuilder> 
-        getOrphanedTransactionalMessageFieldBuilder() {
-      if (orphanedTransactionalMessageBuilder_ == null) {
-        orphanedTransactionalMessageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+        getMessageFieldBuilder() {
+      if (messageBuilder_ == null) {
+        messageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             apache.rocketmq.v2.Message, apache.rocketmq.v2.Message.Builder, apache.rocketmq.v2.MessageOrBuilder>(
-                getOrphanedTransactionalMessage(),
+                getMessage(),
                 getParentForChildren(),
                 isClean());
-        orphanedTransactionalMessage_ = null;
+        message_ = null;
       }
-      return orphanedTransactionalMessageBuilder_;
+      return messageBuilder_;
     }
 
     private java.lang.Object transactionId_ = "";
     /**
-     * <code>string transaction_id = 3;</code>
+     * <code>string transaction_id = 2;</code>
      * @return The transactionId.
      */
     public java.lang.String getTransactionId() {
@@ -821,7 +633,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string transaction_id = 3;</code>
+     * <code>string transaction_id = 2;</code>
      * @return The bytes for transactionId.
      */
     public com.google.protobuf.ByteString
@@ -838,7 +650,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string transaction_id = 3;</code>
+     * <code>string transaction_id = 2;</code>
      * @param value The transactionId to set.
      * @return This builder for chaining.
      */
@@ -853,7 +665,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string transaction_id = 3;</code>
+     * <code>string transaction_id = 2;</code>
      * @return This builder for chaining.
      */
     public Builder clearTransactionId() {
@@ -863,7 +675,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string transaction_id = 3;</code>
+     * <code>string transaction_id = 2;</code>
      * @param value The bytes for transactionId to set.
      * @return This builder for chaining.
      */

@@ -8,42 +8,27 @@ public interface RecoverOrphanedTransactionCommandOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.apache.rocketmq.v2.MessageQueue message_queue = 1;</code>
-   * @return Whether the messageQueue field is set.
+   * <code>.apache.rocketmq.v2.Message message = 1;</code>
+   * @return Whether the message field is set.
    */
-  boolean hasMessageQueue();
+  boolean hasMessage();
   /**
-   * <code>.apache.rocketmq.v2.MessageQueue message_queue = 1;</code>
-   * @return The messageQueue.
+   * <code>.apache.rocketmq.v2.Message message = 1;</code>
+   * @return The message.
    */
-  apache.rocketmq.v2.MessageQueue getMessageQueue();
+  apache.rocketmq.v2.Message getMessage();
   /**
-   * <code>.apache.rocketmq.v2.MessageQueue message_queue = 1;</code>
+   * <code>.apache.rocketmq.v2.Message message = 1;</code>
    */
-  apache.rocketmq.v2.MessageQueueOrBuilder getMessageQueueOrBuilder();
+  apache.rocketmq.v2.MessageOrBuilder getMessageOrBuilder();
 
   /**
-   * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
-   * @return Whether the orphanedTransactionalMessage field is set.
-   */
-  boolean hasOrphanedTransactionalMessage();
-  /**
-   * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
-   * @return The orphanedTransactionalMessage.
-   */
-  apache.rocketmq.v2.Message getOrphanedTransactionalMessage();
-  /**
-   * <code>.apache.rocketmq.v2.Message orphaned_transactional_message = 2;</code>
-   */
-  apache.rocketmq.v2.MessageOrBuilder getOrphanedTransactionalMessageOrBuilder();
-
-  /**
-   * <code>string transaction_id = 3;</code>
+   * <code>string transaction_id = 2;</code>
    * @return The transactionId.
    */
   java.lang.String getTransactionId();
   /**
-   * <code>string transaction_id = 3;</code>
+   * <code>string transaction_id = 2;</code>
    * @return The bytes for transactionId.
    */
   com.google.protobuf.ByteString

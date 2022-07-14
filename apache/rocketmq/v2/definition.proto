@@ -433,6 +433,13 @@ enum Language {
   DOT_NET = 3;
   GOLANG = 4;
   RUST = 5;
+  PYTHON = 6;
+  PHP = 7;
+  NODE_JS = 8;
+  RUBY = 9;
+  OBJECTIVE_C = 10;
+  DART = 11;
+  KOTLIN = 12;
 }
 
 // User Agent

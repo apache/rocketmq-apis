@@ -99,6 +99,26 @@ public final class MQDomain {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_apache_rocketmq_v2_UA_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_apache_rocketmq_v2_Settings_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_apache_rocketmq_v2_Settings_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_apache_rocketmq_v2_Publishing_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_apache_rocketmq_v2_Publishing_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_apache_rocketmq_v2_Subscription_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_apache_rocketmq_v2_Subscription_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_apache_rocketmq_v2_Metric_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_apache_rocketmq_v2_Metric_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -177,61 +197,89 @@ public final class MQDomain {
       ".Code\022\017\n\007message\030\002 \001(\t\"i\n\002UA\022.\n\010language" +
       "\030\001 \001(\0162\034.apache.rocketmq.v2.Language\022\017\n\007" +
       "version\030\002 \001(\t\022\020\n\010platform\030\003 \001(\t\022\020\n\010hostn" +
-      "ame\030\004 \001(\t*Y\n\025TransactionResolution\022&\n\"TR" +
-      "ANSACTION_RESOLUTION_UNSPECIFIED\020\000\022\n\n\006CO" +
-      "MMIT\020\001\022\014\n\010ROLLBACK\020\002*W\n\021TransactionSourc" +
-      "e\022\026\n\022SOURCE_UNSPECIFIED\020\000\022\021\n\rSOURCE_CLIE" +
-      "NT\020\001\022\027\n\023SOURCE_SERVER_CHECK\020\002*W\n\nPermiss" +
-      "ion\022\032\n\026PERMISSION_UNSPECIFIED\020\000\022\010\n\004NONE\020" +
-      "\001\022\010\n\004READ\020\002\022\t\n\005WRITE\020\003\022\016\n\nREAD_WRITE\020\004*;" +
-      "\n\nFilterType\022\033\n\027FILTER_TYPE_UNSPECIFIED\020" +
-      "\000\022\007\n\003TAG\020\001\022\007\n\003SQL\020\002*T\n\rAddressScheme\022\036\n\032" +
-      "ADDRESS_SCHEME_UNSPECIFIED\020\000\022\010\n\004IPv4\020\001\022\010" +
-      "\n\004IPv6\020\002\022\017\n\013DOMAIN_NAME\020\003*]\n\013MessageType" +
-      "\022\034\n\030MESSAGE_TYPE_UNSPECIFIED\020\000\022\n\n\006NORMAL" +
-      "\020\001\022\010\n\004FIFO\020\002\022\t\n\005DELAY\020\003\022\017\n\013TRANSACTION\020\004" +
-      "*G\n\nDigestType\022\033\n\027DIGEST_TYPE_UNSPECIFIE" +
-      "D\020\000\022\t\n\005CRC32\020\001\022\007\n\003MD5\020\002\022\010\n\004SHA1\020\003*_\n\nCli" +
-      "entType\022\033\n\027CLIENT_TYPE_UNSPECIFIED\020\000\022\014\n\010" +
-      "PRODUCER\020\001\022\021\n\rPUSH_CONSUMER\020\002\022\023\n\017SIMPLE_" +
-      "CONSUMER\020\003*<\n\010Encoding\022\030\n\024ENCODING_UNSPE" +
-      "CIFIED\020\000\022\014\n\010IDENTITY\020\001\022\010\n\004GZIP\020\002*\342\t\n\004Cod" +
-      "e\022\024\n\020CODE_UNSPECIFIED\020\000\022\010\n\002OK\020\240\234\001\022\026\n\020MUL" +
-      "TIPLE_RESULTS\020\260\352\001\022\021\n\013BAD_REQUEST\020\300\270\002\022\032\n\024" +
-      "ILLEGAL_ACCESS_POINT\020\301\270\002\022\023\n\rILLEGAL_TOPI" +
-      "C\020\302\270\002\022\034\n\026ILLEGAL_CONSUMER_GROUP\020\303\270\002\022\031\n\023I" +
-      "LLEGAL_MESSAGE_TAG\020\304\270\002\022\031\n\023ILLEGAL_MESSAG" +
-      "E_KEY\020\305\270\002\022\033\n\025ILLEGAL_MESSAGE_GROUP\020\306\270\002\022\"" +
-      "\n\034ILLEGAL_MESSAGE_PROPERTY_KEY\020\307\270\002\022\034\n\026IN" +
-      "VALID_TRANSACTION_ID\020\310\270\002\022\030\n\022ILLEGAL_MESS" +
-      "AGE_ID\020\311\270\002\022\037\n\031ILLEGAL_FILTER_EXPRESSION\020" +
-      "\312\270\002\022\034\n\026ILLEGAL_INVISIBLE_TIME\020\313\270\002\022\033\n\025ILL" +
-      "EGAL_DELIVERY_TIME\020\314\270\002\022\034\n\026INVALID_RECEIP" +
-      "T_HANDLE\020\315\270\002\022)\n#MESSAGE_PROPERTY_CONFLIC" +
-      "T_WITH_TYPE\020\316\270\002\022\036\n\030UNRECOGNIZED_CLIENT_T" +
-      "YPE\020\317\270\002\022\027\n\021MESSAGE_CORRUPTED\020\320\270\002\022\030\n\022CLIE" +
-      "NT_ID_REQUIRED\020\321\270\002\022\022\n\014UNAUTHORIZED\020\244\271\002\022\026" +
-      "\n\020PAYMENT_REQUIRED\020\210\272\002\022\017\n\tFORBIDDEN\020\354\272\002\022" +
-      "\017\n\tNOT_FOUND\020\320\273\002\022\027\n\021MESSAGE_NOT_FOUND\020\321\273" +
-      "\002\022\025\n\017TOPIC_NOT_FOUND\020\322\273\002\022\036\n\030CONSUMER_GRO" +
-      "UP_NOT_FOUND\020\323\273\002\022\025\n\017REQUEST_TIMEOUT\020\340\276\002\022" +
-      "\027\n\021PAYLOAD_TOO_LARGE\020\324\302\002\022\034\n\026MESSAGE_BODY" +
-      "_TOO_LARGE\020\325\302\002\022\031\n\023PRECONDITION_FAILED\020\260\316" +
-      "\002\022\027\n\021TOO_MANY_REQUESTS\020\224\317\002\022%\n\037REQUEST_HE" +
-      "ADER_FIELDS_TOO_LARGE\020\334\320\002\022\"\n\034MESSAGE_PRO" +
-      "PERTIES_TOO_LARGE\020\335\320\002\022\024\n\016INTERNAL_ERROR\020" +
-      "\320\206\003\022\033\n\025INTERNAL_SERVER_ERROR\020\321\206\003\022\026\n\020HA_N" +
-      "OT_AVAILABLE\020\322\206\003\022\025\n\017NOT_IMPLEMENTED\020\264\207\003\022" +
-      "\023\n\rPROXY_TIMEOUT\020\340\211\003\022 \n\032MASTER_PERSISTEN" +
-      "CE_TIMEOUT\020\341\211\003\022\037\n\031SLAVE_PERSISTENCE_TIME" +
-      "OUT\020\342\211\003\022\021\n\013UNSUPPORTED\020\304\212\003\022\031\n\023VERSION_UN" +
-      "SUPPORTED\020\305\212\003\022%\n\037VERIFY_FIFO_MESSAGE_UNS" +
-      "UPPORTED\020\306\212\003\022\037\n\031FAILED_TO_CONSUME_MESSAG" +
-      "E\020\340\324\003*Z\n\010Language\022\030\n\024LANGUAGE_UNSPECIFIE" +
-      "D\020\000\022\010\n\004JAVA\020\001\022\007\n\003CPP\020\002\022\013\n\007DOT_NET\020\003\022\n\n\006G" +
-      "OLANG\020\004\022\010\n\004RUST\020\005B;\n\022apache.rocketmq.v2B" +
-      "\010MQDomainP\001\240\001\001\330\001\001\252\002\022Apache.Rocketmq.V2b\006" +
-      "proto3"
+      "ame\030\004 \001(\t\"\220\004\n\010Settings\0228\n\013client_type\030\001 " +
+      "\001(\0162\036.apache.rocketmq.v2.ClientTypeH\001\210\001\001" +
+      "\0228\n\014access_point\030\002 \001(\0132\035.apache.rocketmq" +
+      ".v2.EndpointsH\002\210\001\001\022<\n\016backoff_policy\030\003 \001" +
+      "(\0132\037.apache.rocketmq.v2.RetryPolicyH\003\210\001\001" +
+      "\0227\n\017request_timeout\030\004 \001(\0132\031.google.proto" +
+      "buf.DurationH\004\210\001\001\0224\n\npublishing\030\005 \001(\0132\036." +
+      "apache.rocketmq.v2.PublishingH\000\0228\n\014subsc" +
+      "ription\030\006 \001(\0132 .apache.rocketmq.v2.Subsc" +
+      "riptionH\000\022*\n\nuser_agent\030\007 \001(\0132\026.apache.r" +
+      "ocketmq.v2.UA\022*\n\006metric\030\010 \001(\0132\032.apache.r" +
+      "ocketmq.v2.MetricB\t\n\007pub_subB\016\n\014_client_" +
+      "typeB\017\n\r_access_pointB\021\n\017_backoff_policy" +
+      "B\022\n\020_request_timeout\"p\n\nPublishing\022,\n\006to" +
+      "pics\030\001 \003(\0132\034.apache.rocketmq.v2.Resource" +
+      "\022\025\n\rmax_body_size\030\002 \001(\005\022\035\n\025validate_mess" +
+      "age_type\030\003 \001(\010\"\263\002\n\014Subscription\0220\n\005group" +
+      "\030\001 \001(\0132\034.apache.rocketmq.v2.ResourceH\000\210\001" +
+      "\001\022<\n\rsubscriptions\030\002 \003(\0132%.apache.rocket" +
+      "mq.v2.SubscriptionEntry\022\021\n\004fifo\030\003 \001(\010H\001\210" +
+      "\001\001\022\037\n\022receive_batch_size\030\004 \001(\005H\002\210\001\001\022<\n\024l" +
+      "ong_polling_timeout\030\005 \001(\0132\031.google.proto" +
+      "buf.DurationH\003\210\001\001B\010\n\006_groupB\007\n\005_fifoB\025\n\023" +
+      "_receive_batch_sizeB\027\n\025_long_polling_tim" +
+      "eout\"Y\n\006Metric\022\n\n\002on\030\001 \001(\010\0225\n\tendpoints\030" +
+      "\002 \001(\0132\035.apache.rocketmq.v2.EndpointsH\000\210\001" +
+      "\001B\014\n\n_endpoints*Y\n\025TransactionResolution" +
+      "\022&\n\"TRANSACTION_RESOLUTION_UNSPECIFIED\020\000" +
+      "\022\n\n\006COMMIT\020\001\022\014\n\010ROLLBACK\020\002*W\n\021Transactio" +
+      "nSource\022\026\n\022SOURCE_UNSPECIFIED\020\000\022\021\n\rSOURC" +
+      "E_CLIENT\020\001\022\027\n\023SOURCE_SERVER_CHECK\020\002*W\n\nP" +
+      "ermission\022\032\n\026PERMISSION_UNSPECIFIED\020\000\022\010\n" +
+      "\004NONE\020\001\022\010\n\004READ\020\002\022\t\n\005WRITE\020\003\022\016\n\nREAD_WRI" +
+      "TE\020\004*;\n\nFilterType\022\033\n\027FILTER_TYPE_UNSPEC" +
+      "IFIED\020\000\022\007\n\003TAG\020\001\022\007\n\003SQL\020\002*T\n\rAddressSche" +
+      "me\022\036\n\032ADDRESS_SCHEME_UNSPECIFIED\020\000\022\010\n\004IP" +
+      "v4\020\001\022\010\n\004IPv6\020\002\022\017\n\013DOMAIN_NAME\020\003*]\n\013Messa" +
+      "geType\022\034\n\030MESSAGE_TYPE_UNSPECIFIED\020\000\022\n\n\006" +
+      "NORMAL\020\001\022\010\n\004FIFO\020\002\022\t\n\005DELAY\020\003\022\017\n\013TRANSAC" +
+      "TION\020\004*G\n\nDigestType\022\033\n\027DIGEST_TYPE_UNSP" +
+      "ECIFIED\020\000\022\t\n\005CRC32\020\001\022\007\n\003MD5\020\002\022\010\n\004SHA1\020\003*" +
+      "_\n\nClientType\022\033\n\027CLIENT_TYPE_UNSPECIFIED" +
+      "\020\000\022\014\n\010PRODUCER\020\001\022\021\n\rPUSH_CONSUMER\020\002\022\023\n\017S" +
+      "IMPLE_CONSUMER\020\003*<\n\010Encoding\022\030\n\024ENCODING" +
+      "_UNSPECIFIED\020\000\022\014\n\010IDENTITY\020\001\022\010\n\004GZIP\020\002*\342" +
+      "\t\n\004Code\022\024\n\020CODE_UNSPECIFIED\020\000\022\010\n\002OK\020\240\234\001\022" +
+      "\026\n\020MULTIPLE_RESULTS\020\260\352\001\022\021\n\013BAD_REQUEST\020\300" +
+      "\270\002\022\032\n\024ILLEGAL_ACCESS_POINT\020\301\270\002\022\023\n\rILLEGA" +
+      "L_TOPIC\020\302\270\002\022\034\n\026ILLEGAL_CONSUMER_GROUP\020\303\270" +
+      "\002\022\031\n\023ILLEGAL_MESSAGE_TAG\020\304\270\002\022\031\n\023ILLEGAL_" +
+      "MESSAGE_KEY\020\305\270\002\022\033\n\025ILLEGAL_MESSAGE_GROUP" +
+      "\020\306\270\002\022\"\n\034ILLEGAL_MESSAGE_PROPERTY_KEY\020\307\270\002" +
+      "\022\034\n\026INVALID_TRANSACTION_ID\020\310\270\002\022\030\n\022ILLEGA" +
+      "L_MESSAGE_ID\020\311\270\002\022\037\n\031ILLEGAL_FILTER_EXPRE" +
+      "SSION\020\312\270\002\022\034\n\026ILLEGAL_INVISIBLE_TIME\020\313\270\002\022" +
+      "\033\n\025ILLEGAL_DELIVERY_TIME\020\314\270\002\022\034\n\026INVALID_" +
+      "RECEIPT_HANDLE\020\315\270\002\022)\n#MESSAGE_PROPERTY_C" +
+      "ONFLICT_WITH_TYPE\020\316\270\002\022\036\n\030UNRECOGNIZED_CL" +
+      "IENT_TYPE\020\317\270\002\022\027\n\021MESSAGE_CORRUPTED\020\320\270\002\022\030" +
+      "\n\022CLIENT_ID_REQUIRED\020\321\270\002\022\022\n\014UNAUTHORIZED" +
+      "\020\244\271\002\022\026\n\020PAYMENT_REQUIRED\020\210\272\002\022\017\n\tFORBIDDE" +
+      "N\020\354\272\002\022\017\n\tNOT_FOUND\020\320\273\002\022\027\n\021MESSAGE_NOT_FO" +
+      "UND\020\321\273\002\022\025\n\017TOPIC_NOT_FOUND\020\322\273\002\022\036\n\030CONSUM" +
+      "ER_GROUP_NOT_FOUND\020\323\273\002\022\025\n\017REQUEST_TIMEOU" +
+      "T\020\340\276\002\022\027\n\021PAYLOAD_TOO_LARGE\020\324\302\002\022\034\n\026MESSAG" +
+      "E_BODY_TOO_LARGE\020\325\302\002\022\031\n\023PRECONDITION_FAI" +
+      "LED\020\260\316\002\022\027\n\021TOO_MANY_REQUESTS\020\224\317\002\022%\n\037REQU" +
+      "EST_HEADER_FIELDS_TOO_LARGE\020\334\320\002\022\"\n\034MESSA" +
+      "GE_PROPERTIES_TOO_LARGE\020\335\320\002\022\024\n\016INTERNAL_" +
+      "ERROR\020\320\206\003\022\033\n\025INTERNAL_SERVER_ERROR\020\321\206\003\022\026" +
+      "\n\020HA_NOT_AVAILABLE\020\322\206\003\022\025\n\017NOT_IMPLEMENTE" +
+      "D\020\264\207\003\022\023\n\rPROXY_TIMEOUT\020\340\211\003\022 \n\032MASTER_PER" +
+      "SISTENCE_TIMEOUT\020\341\211\003\022\037\n\031SLAVE_PERSISTENC" +
+      "E_TIMEOUT\020\342\211\003\022\021\n\013UNSUPPORTED\020\304\212\003\022\031\n\023VERS" +
+      "ION_UNSUPPORTED\020\305\212\003\022%\n\037VERIFY_FIFO_MESSA" +
+      "GE_UNSUPPORTED\020\306\212\003\022\037\n\031FAILED_TO_CONSUME_" +
+      "MESSAGE\020\340\324\003*\255\001\n\010Language\022\030\n\024LANGUAGE_UNS" +
+      "PECIFIED\020\000\022\010\n\004JAVA\020\001\022\007\n\003CPP\020\002\022\013\n\007DOT_NET" +
+      "\020\003\022\n\n\006GOLANG\020\004\022\010\n\004RUST\020\005\022\n\n\006PYTHON\020\006\022\007\n\003" +
+      "PHP\020\007\022\013\n\007NODE_JS\020\010\022\010\n\004RUBY\020\t\022\017\n\013OBJECTIV" +
+      "E_C\020\n\022\010\n\004DART\020\013\022\n\n\006KOTLIN\020\014B;\n\022apache.ro" +
+      "cketmq.v2B\010MQDomainP\001\240\001\001\330\001\001\252\002\022Apache.Roc" +
+      "ketmq.V2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -341,6 +389,30 @@ public final class MQDomain {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_UA_descriptor,
         new java.lang.String[] { "Language", "Version", "Platform", "Hostname", });
+    internal_static_apache_rocketmq_v2_Settings_descriptor =
+      getDescriptor().getMessageTypes().get(16);
+    internal_static_apache_rocketmq_v2_Settings_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_apache_rocketmq_v2_Settings_descriptor,
+        new java.lang.String[] { "ClientType", "AccessPoint", "BackoffPolicy", "RequestTimeout", "Publishing", "Subscription", "UserAgent", "Metric", "PubSub", "ClientType", "AccessPoint", "BackoffPolicy", "RequestTimeout", });
+    internal_static_apache_rocketmq_v2_Publishing_descriptor =
+      getDescriptor().getMessageTypes().get(17);
+    internal_static_apache_rocketmq_v2_Publishing_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_apache_rocketmq_v2_Publishing_descriptor,
+        new java.lang.String[] { "Topics", "MaxBodySize", "ValidateMessageType", });
+    internal_static_apache_rocketmq_v2_Subscription_descriptor =
+      getDescriptor().getMessageTypes().get(18);
+    internal_static_apache_rocketmq_v2_Subscription_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_apache_rocketmq_v2_Subscription_descriptor,
+        new java.lang.String[] { "Group", "Subscriptions", "Fifo", "ReceiveBatchSize", "LongPollingTimeout", "Group", "Fifo", "ReceiveBatchSize", "LongPollingTimeout", });
+    internal_static_apache_rocketmq_v2_Metric_descriptor =
+      getDescriptor().getMessageTypes().get(19);
+    internal_static_apache_rocketmq_v2_Metric_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_apache_rocketmq_v2_Metric_descriptor,
+        new java.lang.String[] { "On", "Endpoints", "Endpoints", });
     com.google.protobuf.TimestampProto.getDescriptor();
     com.google.protobuf.DurationProto.getDescriptor();
   }

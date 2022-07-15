@@ -32,6 +32,34 @@ public enum Language
    * <code>RUST = 5;</code>
    */
   RUST(5),
+  /**
+   * <code>PYTHON = 6;</code>
+   */
+  PYTHON(6),
+  /**
+   * <code>PHP = 7;</code>
+   */
+  PHP(7),
+  /**
+   * <code>NODE_JS = 8;</code>
+   */
+  NODE_JS(8),
+  /**
+   * <code>RUBY = 9;</code>
+   */
+  RUBY(9),
+  /**
+   * <code>OBJECTIVE_C = 10;</code>
+   */
+  OBJECTIVE_C(10),
+  /**
+   * <code>DART = 11;</code>
+   */
+  DART(11),
+  /**
+   * <code>KOTLIN = 12;</code>
+   */
+  KOTLIN(12),
   UNRECOGNIZED(-1),
   ;
 
@@ -59,6 +87,34 @@ public enum Language
    * <code>RUST = 5;</code>
    */
   public static final int RUST_VALUE = 5;
+  /**
+   * <code>PYTHON = 6;</code>
+   */
+  public static final int PYTHON_VALUE = 6;
+  /**
+   * <code>PHP = 7;</code>
+   */
+  public static final int PHP_VALUE = 7;
+  /**
+   * <code>NODE_JS = 8;</code>
+   */
+  public static final int NODE_JS_VALUE = 8;
+  /**
+   * <code>RUBY = 9;</code>
+   */
+  public static final int RUBY_VALUE = 9;
+  /**
+   * <code>OBJECTIVE_C = 10;</code>
+   */
+  public static final int OBJECTIVE_C_VALUE = 10;
+  /**
+   * <code>DART = 11;</code>
+   */
+  public static final int DART_VALUE = 11;
+  /**
+   * <code>KOTLIN = 12;</code>
+   */
+  public static final int KOTLIN_VALUE = 12;
 
 
   public final int getNumber() {
@@ -91,6 +147,13 @@ public enum Language
       case 3: return DOT_NET;
       case 4: return GOLANG;
       case 5: return RUST;
+      case 6: return PYTHON;
+      case 7: return PHP;
+      case 8: return NODE_JS;
+      case 9: return RUBY;
+      case 10: return OBJECTIVE_C;
+      case 11: return DART;
+      case 12: return KOTLIN;
       default: return null;
     }
   }

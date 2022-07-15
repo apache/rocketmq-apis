@@ -1,4 +1,5 @@
 github:
+  description: "RocketMQ APIs - Protobuf definition for Apache RocketMQ"
   features:
     # Enable wiki for documentation
     wiki: true
@@ -6,4 +7,6 @@ github:
     issues: true
     # Enable projects for project management boards
     projects: true
+  protected_branches:
+    master: {}
 

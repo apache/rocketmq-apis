@@ -14,9 +14,6 @@ package apache.rocketmq.v2;
  * 1) Standard messages should be negatively acknowledged instantly, causing
  * immediate re-delivery; 2) FIFO messages require special RPC, to re-fetch
  * previously acquired messages batch;
- * Message consumption model also affects how invalid digest are handled. When
- * messages are consumed in broadcasting way,
- * TODO: define semantics of invalid-digest-when-broadcasting.
  * </pre>
  *
  * Protobuf type {@code apache.rocketmq.v2.Digest}
@@ -343,9 +340,6 @@ private static final long serialVersionUID = 0L;
    * 1) Standard messages should be negatively acknowledged instantly, causing
    * immediate re-delivery; 2) FIFO messages require special RPC, to re-fetch
    * previously acquired messages batch;
-   * Message consumption model also affects how invalid digest are handled. When
-   * messages are consumed in broadcasting way,
-   * TODO: define semantics of invalid-digest-when-broadcasting.
    * </pre>
    *
    * Protobuf type {@code apache.rocketmq.v2.Digest}

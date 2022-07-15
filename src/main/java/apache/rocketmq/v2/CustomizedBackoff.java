@@ -100,7 +100,7 @@ private static final long serialVersionUID = 0L;
   private java.util.List<com.google.protobuf.Duration> next_;
   /**
    * <pre>
-   * To support classic backoff strategy which is arbitary defined by end users.
+   * To support classic backoff strategy which is arbitrary defined by end users.
    * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
    * </pre>
    *
@@ -112,7 +112,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * To support classic backoff strategy which is arbitary defined by end users.
+   * To support classic backoff strategy which is arbitrary defined by end users.
    * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
    * </pre>
    *
@@ -125,7 +125,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * To support classic backoff strategy which is arbitary defined by end users.
+   * To support classic backoff strategy which is arbitrary defined by end users.
    * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
    * </pre>
    *
@@ -137,7 +137,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * To support classic backoff strategy which is arbitary defined by end users.
+   * To support classic backoff strategy which is arbitrary defined by end users.
    * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
    * </pre>
    *
@@ -149,7 +149,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * To support classic backoff strategy which is arbitary defined by end users.
+   * To support classic backoff strategy which is arbitrary defined by end users.
    * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
    * </pre>
    *
@@ -517,7 +517,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * To support classic backoff strategy which is arbitary defined by end users.
+     * To support classic backoff strategy which is arbitrary defined by end users.
      * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
      * </pre>
      *
@@ -532,7 +532,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * To support classic backoff strategy which is arbitary defined by end users.
+     * To support classic backoff strategy which is arbitrary defined by end users.
      * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
      * </pre>
      *
@@ -547,7 +547,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * To support classic backoff strategy which is arbitary defined by end users.
+     * To support classic backoff strategy which is arbitrary defined by end users.
      * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
      * </pre>
      *
@@ -562,7 +562,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * To support classic backoff strategy which is arbitary defined by end users.
+     * To support classic backoff strategy which is arbitrary defined by end users.
      * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
      * </pre>
      *
@@ -584,7 +584,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * To support classic backoff strategy which is arbitary defined by end users.
+     * To support classic backoff strategy which is arbitrary defined by end users.
      * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
      * </pre>
      *
@@ -603,7 +603,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * To support classic backoff strategy which is arbitary defined by end users.
+     * To support classic backoff strategy which is arbitrary defined by end users.
      * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
      * </pre>
      *
@@ -624,7 +624,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * To support classic backoff strategy which is arbitary defined by end users.
+     * To support classic backoff strategy which is arbitrary defined by end users.
      * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
      * </pre>
      *
@@ -646,7 +646,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * To support classic backoff strategy which is arbitary defined by end users.
+     * To support classic backoff strategy which is arbitrary defined by end users.
      * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
      * </pre>
      *
@@ -665,7 +665,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * To support classic backoff strategy which is arbitary defined by end users.
+     * To support classic backoff strategy which is arbitrary defined by end users.
      * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
      * </pre>
      *
@@ -684,7 +684,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * To support classic backoff strategy which is arbitary defined by end users.
+     * To support classic backoff strategy which is arbitrary defined by end users.
      * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
      * </pre>
      *
@@ -704,7 +704,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * To support classic backoff strategy which is arbitary defined by end users.
+     * To support classic backoff strategy which is arbitrary defined by end users.
      * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
      * </pre>
      *
@@ -722,7 +722,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * To support classic backoff strategy which is arbitary defined by end users.
+     * To support classic backoff strategy which is arbitrary defined by end users.
      * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
      * </pre>
      *
@@ -740,7 +740,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * To support classic backoff strategy which is arbitary defined by end users.
+     * To support classic backoff strategy which is arbitrary defined by end users.
      * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
      * </pre>
      *
@@ -752,7 +752,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * To support classic backoff strategy which is arbitary defined by end users.
+     * To support classic backoff strategy which is arbitrary defined by end users.
      * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
      * </pre>
      *
@@ -767,7 +767,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * To support classic backoff strategy which is arbitary defined by end users.
+     * To support classic backoff strategy which is arbitrary defined by end users.
      * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
      * </pre>
      *
@@ -783,7 +783,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * To support classic backoff strategy which is arbitary defined by end users.
+     * To support classic backoff strategy which is arbitrary defined by end users.
      * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
      * </pre>
      *
@@ -795,7 +795,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * To support classic backoff strategy which is arbitary defined by end users.
+     * To support classic backoff strategy which is arbitrary defined by end users.
      * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
      * </pre>
      *
@@ -808,7 +808,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * To support classic backoff strategy which is arbitary defined by end users.
+     * To support classic backoff strategy which is arbitrary defined by end users.
      * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
      * </pre>
      *

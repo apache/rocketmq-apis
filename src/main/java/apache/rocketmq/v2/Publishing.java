@@ -198,7 +198,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * When `validate_message_type` flag set `false`, no need to validate message's type
-   * with messageQueue's `accept_message_types` before publising.
+   * with messageQueue's `accept_message_types` before publishing.
    * </pre>
    *
    * <code>bool validate_message_type = 3;</code>
@@ -987,7 +987,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * When `validate_message_type` flag set `false`, no need to validate message's type
-     * with messageQueue's `accept_message_types` before publising.
+     * with messageQueue's `accept_message_types` before publishing.
      * </pre>
      *
      * <code>bool validate_message_type = 3;</code>
@@ -1000,7 +1000,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * When `validate_message_type` flag set `false`, no need to validate message's type
-     * with messageQueue's `accept_message_types` before publising.
+     * with messageQueue's `accept_message_types` before publishing.
      * </pre>
      *
      * <code>bool validate_message_type = 3;</code>
@@ -1016,7 +1016,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * When `validate_message_type` flag set `false`, no need to validate message's type
-     * with messageQueue's `accept_message_types` before publising.
+     * with messageQueue's `accept_message_types` before publishing.
      * </pre>
      *
      * <code>bool validate_message_type = 3;</code>

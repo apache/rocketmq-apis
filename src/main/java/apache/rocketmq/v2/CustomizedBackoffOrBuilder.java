@@ -9,7 +9,7 @@ public interface CustomizedBackoffOrBuilder extends
 
   /**
    * <pre>
-   * To support classic backoff strategy which is arbitary defined by end users.
+   * To support classic backoff strategy which is arbitrary defined by end users.
    * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
    * </pre>
    *
@@ -19,7 +19,7 @@ public interface CustomizedBackoffOrBuilder extends
       getNextList();
   /**
    * <pre>
-   * To support classic backoff strategy which is arbitary defined by end users.
+   * To support classic backoff strategy which is arbitrary defined by end users.
    * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
    * </pre>
    *
@@ -28,7 +28,7 @@ public interface CustomizedBackoffOrBuilder extends
   com.google.protobuf.Duration getNext(int index);
   /**
    * <pre>
-   * To support classic backoff strategy which is arbitary defined by end users.
+   * To support classic backoff strategy which is arbitrary defined by end users.
    * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
    * </pre>
    *
@@ -37,7 +37,7 @@ public interface CustomizedBackoffOrBuilder extends
   int getNextCount();
   /**
    * <pre>
-   * To support classic backoff strategy which is arbitary defined by end users.
+   * To support classic backoff strategy which is arbitrary defined by end users.
    * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
    * </pre>
    *
@@ -47,7 +47,7 @@ public interface CustomizedBackoffOrBuilder extends
       getNextOrBuilderList();
   /**
    * <pre>
-   * To support classic backoff strategy which is arbitary defined by end users.
+   * To support classic backoff strategy which is arbitrary defined by end users.
    * Typical values are: `1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h`
    * </pre>
    *

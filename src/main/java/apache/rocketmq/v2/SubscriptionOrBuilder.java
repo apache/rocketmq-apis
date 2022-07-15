@@ -90,7 +90,7 @@ public interface SubscriptionOrBuilder extends
    * server to push.
    * When FIFO flag is `true`, messages of the same message group are processed
    * in first-in-first-out manner.
-   * Brokers will not deliver further messages of the same group utill prior
+   * Brokers will not deliver further messages of the same group until prior
    * ones are completely acknowledged.
    * </pre>
    *
@@ -104,7 +104,7 @@ public interface SubscriptionOrBuilder extends
    * server to push.
    * When FIFO flag is `true`, messages of the same message group are processed
    * in first-in-first-out manner.
-   * Brokers will not deliver further messages of the same group utill prior
+   * Brokers will not deliver further messages of the same group until prior
    * ones are completely acknowledged.
    * </pre>
    *

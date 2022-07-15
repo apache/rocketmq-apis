@@ -78,9 +78,11 @@ public interface MessageOrBuilder extends
    * <code>map&lt;string, string&gt; user_attribute = 2;</code>
    */
 
-  java.lang.String getUserAttributeOrDefault(
+  /* nullable */
+java.lang.String getUserAttributeOrDefault(
       java.lang.String key,
-      java.lang.String defaultValue);
+      /* nullable */
+java.lang.String defaultValue);
   /**
    * <pre>
    * User defined key-value pairs.

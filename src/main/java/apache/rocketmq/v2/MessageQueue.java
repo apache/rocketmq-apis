@@ -122,6 +122,8 @@ private static final long serialVersionUID = 0L;
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
       throw e.setUnfinishedMessage(this);
+    } catch (com.google.protobuf.UninitializedMessageException e) {
+      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
     } catch (java.io.IOException e) {
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
@@ -1134,8 +1136,8 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <code>repeated .apache.rocketmq.v2.MessageType accept_message_types = 5;</code>
-     * @param index The index of the value to return.
-     * @return The enum numeric value on the wire of acceptMessageTypes at the given index.
+     * @param index The index to set the value at.
+     * @param value The enum numeric value on the wire for acceptMessageTypes to set.
      * @return This builder for chaining.
      */
     public Builder setAcceptMessageTypesValue(

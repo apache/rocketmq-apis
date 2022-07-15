@@ -157,6 +157,8 @@ private static final long serialVersionUID = 0L;
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
       throw e.setUnfinishedMessage(this);
+    } catch (com.google.protobuf.UninitializedMessageException e) {
+      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
     } catch (java.io.IOException e) {
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
@@ -1243,8 +1245,9 @@ private static final long serialVersionUID = 0L;
       } else {
         if (commandCase_ == 2) {
           settingsBuilder_.mergeFrom(value);
+        } else {
+          settingsBuilder_.setMessage(value);
         }
-        settingsBuilder_.setMessage(value);
       }
       commandCase_ = 2;
       return this;
@@ -1425,8 +1428,9 @@ private static final long serialVersionUID = 0L;
       } else {
         if (commandCase_ == 3) {
           threadStackTraceBuilder_.mergeFrom(value);
+        } else {
+          threadStackTraceBuilder_.setMessage(value);
         }
-        threadStackTraceBuilder_.setMessage(value);
       }
       commandCase_ = 3;
       return this;
@@ -1606,8 +1610,9 @@ private static final long serialVersionUID = 0L;
       } else {
         if (commandCase_ == 4) {
           verifyMessageResultBuilder_.mergeFrom(value);
+        } else {
+          verifyMessageResultBuilder_.setMessage(value);
         }
-        verifyMessageResultBuilder_.setMessage(value);
       }
       commandCase_ = 4;
       return this;
@@ -1788,8 +1793,9 @@ private static final long serialVersionUID = 0L;
       } else {
         if (commandCase_ == 5) {
           recoverOrphanedTransactionCommandBuilder_.mergeFrom(value);
+        } else {
+          recoverOrphanedTransactionCommandBuilder_.setMessage(value);
         }
-        recoverOrphanedTransactionCommandBuilder_.setMessage(value);
       }
       commandCase_ = 5;
       return this;
@@ -1969,8 +1975,9 @@ private static final long serialVersionUID = 0L;
       } else {
         if (commandCase_ == 6) {
           printThreadStackTraceCommandBuilder_.mergeFrom(value);
+        } else {
+          printThreadStackTraceCommandBuilder_.setMessage(value);
         }
-        printThreadStackTraceCommandBuilder_.setMessage(value);
       }
       commandCase_ = 6;
       return this;
@@ -2146,8 +2153,9 @@ private static final long serialVersionUID = 0L;
       } else {
         if (commandCase_ == 7) {
           verifyMessageCommandBuilder_.mergeFrom(value);
+        } else {
+          verifyMessageCommandBuilder_.setMessage(value);
         }
-        verifyMessageCommandBuilder_.setMessage(value);
       }
       commandCase_ = 7;
       return this;

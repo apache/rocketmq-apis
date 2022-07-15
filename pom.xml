@@ -122,15 +122,5 @@
                 <version>${os-maven-plugin.version}</version>
             </extension>
         </extensions>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>${maven-jar-plugin.version}</version>
-                <configuration>
-                    <classifier>compatible</classifier>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 </project>

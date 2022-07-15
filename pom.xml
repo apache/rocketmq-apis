@@ -114,4 +114,10 @@
             </extension>
         </extensions>
     </build>
+
+    <scm>
+        <url>git@github.com:apache/rocketmq-apis.git</url>
+        <connection>scm:git:git@github.com:apache/rocketmq-apis.git</connection>
+        <developerConnection>scm:git:git@github.com:apache/rocketmq-apis.git</developerConnection>
+    </scm>
 </project>

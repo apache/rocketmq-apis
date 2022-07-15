@@ -8,5 +8,5 @@ github:
     # Enable projects for project management boards
     projects: true
   protected_branches:
-    master: {}
+    main: {}
 

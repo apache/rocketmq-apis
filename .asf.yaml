@@ -9,4 +9,3 @@ github:
     projects: true
   protected_branches:
     main: {}
-

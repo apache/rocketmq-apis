@@ -333,6 +333,8 @@ enum Code {
   MESSAGE_CORRUPTED = 40016;
   // Request is rejected due to missing of x-mq-client-id header.
   CLIENT_ID_REQUIRED = 40017;
+  // Polling time is illegal.
+  ILLEGAL_POLLING_TIME = 40018;
 
   // Generic code indicates that the client request lacks valid authentication
   // credentials for the requested resource.

@@ -268,10 +268,10 @@ message SystemProperties {
   optional google.protobuf.Duration orphaned_transaction_recovery_duration = 19;
 
   // Infomation to identify whether this message is from dead letter queue.
-  optional DlqInfo dlq_info = 20;
+  optional Dlq dlq = 20;
 }
 
-message DlqInfo {
+message Dlq {
   // Original topic for this DLQ message.
   string origin_topic = 1;
   // Original message id for this DLQ message.

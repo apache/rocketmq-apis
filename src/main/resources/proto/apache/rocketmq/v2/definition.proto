@@ -266,6 +266,16 @@ message SystemProperties {
   // orphan. Servers that manages orphan messages would pick up
   // a capable publisher to resolve
   optional google.protobuf.Duration orphaned_transaction_recovery_duration = 19;
+
+  // Information to identify whether this message is from dead letter queue.
+  optional DeadLetterQueue dead_letter_queue = 20;
+}
+
+message DeadLetterQueue {
+  // Original topic for this DLQ message.
+  string topic = 1;
+  // Original message id for this DLQ message.
+  string message_id = 2;
 }
 
 message Message {
@@ -333,6 +343,8 @@ enum Code {
   MESSAGE_CORRUPTED = 40016;
   // Request is rejected due to missing of x-mq-client-id header.
   CLIENT_ID_REQUIRED = 40017;
+  // Polling time is illegal.
+  ILLEGAL_POLLING_TIME = 40018;
 
   // Generic code indicates that the client request lacks valid authentication
   // credentials for the requested resource.

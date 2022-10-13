@@ -174,6 +174,14 @@ public enum Code
   CLIENT_ID_REQUIRED(40017),
   /**
    * <pre>
+   * Polling time is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_POLLING_TIME = 40018;</code>
+   */
+  ILLEGAL_POLLING_TIME(40018),
+  /**
+   * <pre>
    * Generic code indicates that the client request lacks valid authentication
    * credentials for the requested resource.
    * </pre>
@@ -558,6 +566,14 @@ public enum Code
   public static final int CLIENT_ID_REQUIRED_VALUE = 40017;
   /**
    * <pre>
+   * Polling time is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_POLLING_TIME = 40018;</code>
+   */
+  public static final int ILLEGAL_POLLING_TIME_VALUE = 40018;
+  /**
+   * <pre>
    * Generic code indicates that the client request lacks valid authentication
    * credentials for the requested resource.
    * </pre>
@@ -820,6 +836,7 @@ public enum Code
       case 40015: return UNRECOGNIZED_CLIENT_TYPE;
       case 40016: return MESSAGE_CORRUPTED;
       case 40017: return CLIENT_ID_REQUIRED;
+      case 40018: return ILLEGAL_POLLING_TIME;
       case 40100: return UNAUTHORIZED;
       case 40200: return PAYMENT_REQUIRED;
       case 40300: return FORBIDDEN;

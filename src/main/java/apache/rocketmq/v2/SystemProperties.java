@@ -215,6 +215,19 @@ private static final long serialVersionUID = 0L;
             bitField0_ |= 0x00000200;
             break;
           }
+          case 162: {
+            apache.rocketmq.v2.DeadLetterQueue.Builder subBuilder = null;
+            if (((bitField0_ & 0x00000400) != 0)) {
+              subBuilder = deadLetterQueue_.toBuilder();
+            }
+            deadLetterQueue_ = input.readMessage(apache.rocketmq.v2.DeadLetterQueue.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(deadLetterQueue_);
+              deadLetterQueue_ = subBuilder.buildPartial();
+            }
+            bitField0_ |= 0x00000400;
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -1060,6 +1073,44 @@ private static final long serialVersionUID = 0L;
     return orphanedTransactionRecoveryDuration_ == null ? com.google.protobuf.Duration.getDefaultInstance() : orphanedTransactionRecoveryDuration_;
   }
 
+  public static final int DEAD_LETTER_QUEUE_FIELD_NUMBER = 20;
+  private apache.rocketmq.v2.DeadLetterQueue deadLetterQueue_;
+  /**
+   * <pre>
+   * Information to identify whether this message is from dead letter queue.
+   * </pre>
+   *
+   * <code>optional .apache.rocketmq.v2.DeadLetterQueue dead_letter_queue = 20;</code>
+   * @return Whether the deadLetterQueue field is set.
+   */
+  @java.lang.Override
+  public boolean hasDeadLetterQueue() {
+    return ((bitField0_ & 0x00000400) != 0);
+  }
+  /**
+   * <pre>
+   * Information to identify whether this message is from dead letter queue.
+   * </pre>
+   *
+   * <code>optional .apache.rocketmq.v2.DeadLetterQueue dead_letter_queue = 20;</code>
+   * @return The deadLetterQueue.
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.DeadLetterQueue getDeadLetterQueue() {
+    return deadLetterQueue_ == null ? apache.rocketmq.v2.DeadLetterQueue.getDefaultInstance() : deadLetterQueue_;
+  }
+  /**
+   * <pre>
+   * Information to identify whether this message is from dead letter queue.
+   * </pre>
+   *
+   * <code>optional .apache.rocketmq.v2.DeadLetterQueue dead_letter_queue = 20;</code>
+   */
+  @java.lang.Override
+  public apache.rocketmq.v2.DeadLetterQueueOrBuilder getDeadLetterQueueOrBuilder() {
+    return deadLetterQueue_ == null ? apache.rocketmq.v2.DeadLetterQueue.getDefaultInstance() : deadLetterQueue_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -1130,6 +1181,9 @@ private static final long serialVersionUID = 0L;
     }
     if (((bitField0_ & 0x00000200) != 0)) {
       output.writeMessage(19, getOrphanedTransactionRecoveryDuration());
+    }
+    if (((bitField0_ & 0x00000400) != 0)) {
+      output.writeMessage(20, getDeadLetterQueue());
     }
     unknownFields.writeTo(output);
   }
@@ -1212,6 +1266,10 @@ private static final long serialVersionUID = 0L;
     if (((bitField0_ & 0x00000200) != 0)) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(19, getOrphanedTransactionRecoveryDuration());
+    }
+    if (((bitField0_ & 0x00000400) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(20, getDeadLetterQueue());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -1300,6 +1358,11 @@ private static final long serialVersionUID = 0L;
       if (!getOrphanedTransactionRecoveryDuration()
           .equals(other.getOrphanedTransactionRecoveryDuration())) return false;
     }
+    if (hasDeadLetterQueue() != other.hasDeadLetterQueue()) return false;
+    if (hasDeadLetterQueue()) {
+      if (!getDeadLetterQueue()
+          .equals(other.getDeadLetterQueue())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -1375,6 +1438,10 @@ private static final long serialVersionUID = 0L;
     if (hasOrphanedTransactionRecoveryDuration()) {
       hash = (37 * hash) + ORPHANED_TRANSACTION_RECOVERY_DURATION_FIELD_NUMBER;
       hash = (53 * hash) + getOrphanedTransactionRecoveryDuration().hashCode();
+    }
+    if (hasDeadLetterQueue()) {
+      hash = (37 * hash) + DEAD_LETTER_QUEUE_FIELD_NUMBER;
+      hash = (53 * hash) + getDeadLetterQueue().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -1508,6 +1575,7 @@ private static final long serialVersionUID = 0L;
         getDeliveryTimestampFieldBuilder();
         getInvisibleDurationFieldBuilder();
         getOrphanedTransactionRecoveryDurationFieldBuilder();
+        getDeadLetterQueueFieldBuilder();
       }
     }
     @java.lang.Override
@@ -1575,6 +1643,12 @@ private static final long serialVersionUID = 0L;
         orphanedTransactionRecoveryDurationBuilder_.clear();
       }
       bitField0_ = (bitField0_ & ~0x00000400);
+      if (deadLetterQueueBuilder_ == null) {
+        deadLetterQueue_ = null;
+      } else {
+        deadLetterQueueBuilder_.clear();
+      }
+      bitField0_ = (bitField0_ & ~0x00000800);
       return this;
     }
 
@@ -1679,6 +1753,14 @@ private static final long serialVersionUID = 0L;
           result.orphanedTransactionRecoveryDuration_ = orphanedTransactionRecoveryDurationBuilder_.build();
         }
         to_bitField0_ |= 0x00000200;
+      }
+      if (((from_bitField0_ & 0x00000800) != 0)) {
+        if (deadLetterQueueBuilder_ == null) {
+          result.deadLetterQueue_ = deadLetterQueue_;
+        } else {
+          result.deadLetterQueue_ = deadLetterQueueBuilder_.build();
+        }
+        to_bitField0_ |= 0x00000400;
       }
       result.bitField0_ = to_bitField0_;
       onBuilt();
@@ -1803,6 +1885,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasOrphanedTransactionRecoveryDuration()) {
         mergeOrphanedTransactionRecoveryDuration(other.getOrphanedTransactionRecoveryDuration());
+      }
+      if (other.hasDeadLetterQueue()) {
+        mergeDeadLetterQueue(other.getDeadLetterQueue());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -4014,6 +4099,162 @@ private static final long serialVersionUID = 0L;
         orphanedTransactionRecoveryDuration_ = null;
       }
       return orphanedTransactionRecoveryDurationBuilder_;
+    }
+
+    private apache.rocketmq.v2.DeadLetterQueue deadLetterQueue_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.DeadLetterQueue, apache.rocketmq.v2.DeadLetterQueue.Builder, apache.rocketmq.v2.DeadLetterQueueOrBuilder> deadLetterQueueBuilder_;
+    /**
+     * <pre>
+     * Information to identify whether this message is from dead letter queue.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.DeadLetterQueue dead_letter_queue = 20;</code>
+     * @return Whether the deadLetterQueue field is set.
+     */
+    public boolean hasDeadLetterQueue() {
+      return ((bitField0_ & 0x00000800) != 0);
+    }
+    /**
+     * <pre>
+     * Information to identify whether this message is from dead letter queue.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.DeadLetterQueue dead_letter_queue = 20;</code>
+     * @return The deadLetterQueue.
+     */
+    public apache.rocketmq.v2.DeadLetterQueue getDeadLetterQueue() {
+      if (deadLetterQueueBuilder_ == null) {
+        return deadLetterQueue_ == null ? apache.rocketmq.v2.DeadLetterQueue.getDefaultInstance() : deadLetterQueue_;
+      } else {
+        return deadLetterQueueBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * Information to identify whether this message is from dead letter queue.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.DeadLetterQueue dead_letter_queue = 20;</code>
+     */
+    public Builder setDeadLetterQueue(apache.rocketmq.v2.DeadLetterQueue value) {
+      if (deadLetterQueueBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        deadLetterQueue_ = value;
+        onChanged();
+      } else {
+        deadLetterQueueBuilder_.setMessage(value);
+      }
+      bitField0_ |= 0x00000800;
+      return this;
+    }
+    /**
+     * <pre>
+     * Information to identify whether this message is from dead letter queue.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.DeadLetterQueue dead_letter_queue = 20;</code>
+     */
+    public Builder setDeadLetterQueue(
+        apache.rocketmq.v2.DeadLetterQueue.Builder builderForValue) {
+      if (deadLetterQueueBuilder_ == null) {
+        deadLetterQueue_ = builderForValue.build();
+        onChanged();
+      } else {
+        deadLetterQueueBuilder_.setMessage(builderForValue.build());
+      }
+      bitField0_ |= 0x00000800;
+      return this;
+    }
+    /**
+     * <pre>
+     * Information to identify whether this message is from dead letter queue.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.DeadLetterQueue dead_letter_queue = 20;</code>
+     */
+    public Builder mergeDeadLetterQueue(apache.rocketmq.v2.DeadLetterQueue value) {
+      if (deadLetterQueueBuilder_ == null) {
+        if (((bitField0_ & 0x00000800) != 0) &&
+            deadLetterQueue_ != null &&
+            deadLetterQueue_ != apache.rocketmq.v2.DeadLetterQueue.getDefaultInstance()) {
+          deadLetterQueue_ =
+            apache.rocketmq.v2.DeadLetterQueue.newBuilder(deadLetterQueue_).mergeFrom(value).buildPartial();
+        } else {
+          deadLetterQueue_ = value;
+        }
+        onChanged();
+      } else {
+        deadLetterQueueBuilder_.mergeFrom(value);
+      }
+      bitField0_ |= 0x00000800;
+      return this;
+    }
+    /**
+     * <pre>
+     * Information to identify whether this message is from dead letter queue.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.DeadLetterQueue dead_letter_queue = 20;</code>
+     */
+    public Builder clearDeadLetterQueue() {
+      if (deadLetterQueueBuilder_ == null) {
+        deadLetterQueue_ = null;
+        onChanged();
+      } else {
+        deadLetterQueueBuilder_.clear();
+      }
+      bitField0_ = (bitField0_ & ~0x00000800);
+      return this;
+    }
+    /**
+     * <pre>
+     * Information to identify whether this message is from dead letter queue.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.DeadLetterQueue dead_letter_queue = 20;</code>
+     */
+    public apache.rocketmq.v2.DeadLetterQueue.Builder getDeadLetterQueueBuilder() {
+      bitField0_ |= 0x00000800;
+      onChanged();
+      return getDeadLetterQueueFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * Information to identify whether this message is from dead letter queue.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.DeadLetterQueue dead_letter_queue = 20;</code>
+     */
+    public apache.rocketmq.v2.DeadLetterQueueOrBuilder getDeadLetterQueueOrBuilder() {
+      if (deadLetterQueueBuilder_ != null) {
+        return deadLetterQueueBuilder_.getMessageOrBuilder();
+      } else {
+        return deadLetterQueue_ == null ?
+            apache.rocketmq.v2.DeadLetterQueue.getDefaultInstance() : deadLetterQueue_;
+      }
+    }
+    /**
+     * <pre>
+     * Information to identify whether this message is from dead letter queue.
+     * </pre>
+     *
+     * <code>optional .apache.rocketmq.v2.DeadLetterQueue dead_letter_queue = 20;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        apache.rocketmq.v2.DeadLetterQueue, apache.rocketmq.v2.DeadLetterQueue.Builder, apache.rocketmq.v2.DeadLetterQueueOrBuilder> 
+        getDeadLetterQueueFieldBuilder() {
+      if (deadLetterQueueBuilder_ == null) {
+        deadLetterQueueBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            apache.rocketmq.v2.DeadLetterQueue, apache.rocketmq.v2.DeadLetterQueue.Builder, apache.rocketmq.v2.DeadLetterQueueOrBuilder>(
+                getDeadLetterQueue(),
+                getParentForChildren(),
+                isClean());
+        deadLetterQueue_ = null;
+      }
+      return deadLetterQueueBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

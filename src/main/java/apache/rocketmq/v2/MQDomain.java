@@ -75,6 +75,11 @@ public final class MQDomain {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_apache_rocketmq_v2_SystemProperties_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_apache_rocketmq_v2_DeadLetterQueue_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_apache_rocketmq_v2_DeadLetterQueue_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_apache_rocketmq_v2_Message_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -160,7 +165,7 @@ public final class MQDomain {
       "q.v2.Broker\022=\n\024accept_message_types\030\005 \003(" +
       "\0162\037.apache.rocketmq.v2.MessageType\"H\n\006Di" +
       "gest\022,\n\004type\030\001 \001(\0162\036.apache.rocketmq.v2." +
-      "DigestType\022\020\n\010checksum\030\002 \001(\t\"\264\007\n\020SystemP" +
+      "DigestType\022\020\n\010checksum\030\002 \001(\t\"\217\010\n\020SystemP" +
       "roperties\022\020\n\003tag\030\001 \001(\tH\000\210\001\001\022\014\n\004keys\030\002 \003(" +
       "\t\022\022\n\nmessage_id\030\003 \001(\t\022/\n\013body_digest\030\004 \001" +
       "(\0132\032.apache.rocketmq.v2.Digest\0223\n\rbody_e" +
@@ -179,107 +184,111 @@ public final class MQDomain {
       "sage_group\030\021 \001(\tH\007\210\001\001\022\032\n\rtrace_context\030\022" +
       " \001(\tH\010\210\001\001\022N\n&orphaned_transaction_recove" +
       "ry_duration\030\023 \001(\0132\031.google.protobuf.Dura" +
-      "tionH\t\210\001\001B\006\n\004_tagB\022\n\020_store_timestampB\025\n" +
-      "\023_delivery_timestampB\021\n\017_receipt_handleB" +
-      "\017\n\r_queue_offsetB\025\n\023_invisible_durationB" +
-      "\023\n\021_delivery_attemptB\020\n\016_message_groupB\020" +
-      "\n\016_trace_contextB)\n\'_orphaned_transactio" +
-      "n_recovery_duration\"\206\002\n\007Message\022+\n\005topic" +
-      "\030\001 \001(\0132\034.apache.rocketmq.v2.Resource\022H\n\017" +
-      "user_properties\030\002 \003(\0132/.apache.rocketmq." +
-      "v2.Message.UserPropertiesEntry\022?\n\021system" +
-      "_properties\030\003 \001(\0132$.apache.rocketmq.v2.S" +
-      "ystemProperties\022\014\n\004body\030\004 \001(\014\0325\n\023UserPro" +
-      "pertiesEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t" +
-      ":\0028\001\"E\n\nAssignment\0227\n\rmessage_queue\030\001 \001(" +
-      "\0132 .apache.rocketmq.v2.MessageQueue\"A\n\006S" +
-      "tatus\022&\n\004code\030\001 \001(\0162\030.apache.rocketmq.v2" +
-      ".Code\022\017\n\007message\030\002 \001(\t\"i\n\002UA\022.\n\010language" +
-      "\030\001 \001(\0162\034.apache.rocketmq.v2.Language\022\017\n\007" +
-      "version\030\002 \001(\t\022\020\n\010platform\030\003 \001(\t\022\020\n\010hostn" +
-      "ame\030\004 \001(\t\"\220\004\n\010Settings\0228\n\013client_type\030\001 " +
-      "\001(\0162\036.apache.rocketmq.v2.ClientTypeH\001\210\001\001" +
-      "\0228\n\014access_point\030\002 \001(\0132\035.apache.rocketmq" +
-      ".v2.EndpointsH\002\210\001\001\022<\n\016backoff_policy\030\003 \001" +
-      "(\0132\037.apache.rocketmq.v2.RetryPolicyH\003\210\001\001" +
-      "\0227\n\017request_timeout\030\004 \001(\0132\031.google.proto" +
-      "buf.DurationH\004\210\001\001\0224\n\npublishing\030\005 \001(\0132\036." +
-      "apache.rocketmq.v2.PublishingH\000\0228\n\014subsc" +
-      "ription\030\006 \001(\0132 .apache.rocketmq.v2.Subsc" +
-      "riptionH\000\022*\n\nuser_agent\030\007 \001(\0132\026.apache.r" +
-      "ocketmq.v2.UA\022*\n\006metric\030\010 \001(\0132\032.apache.r" +
-      "ocketmq.v2.MetricB\t\n\007pub_subB\016\n\014_client_" +
-      "typeB\017\n\r_access_pointB\021\n\017_backoff_policy" +
-      "B\022\n\020_request_timeout\"p\n\nPublishing\022,\n\006to" +
-      "pics\030\001 \003(\0132\034.apache.rocketmq.v2.Resource" +
-      "\022\025\n\rmax_body_size\030\002 \001(\005\022\035\n\025validate_mess" +
-      "age_type\030\003 \001(\010\"\263\002\n\014Subscription\0220\n\005group" +
-      "\030\001 \001(\0132\034.apache.rocketmq.v2.ResourceH\000\210\001" +
-      "\001\022<\n\rsubscriptions\030\002 \003(\0132%.apache.rocket" +
-      "mq.v2.SubscriptionEntry\022\021\n\004fifo\030\003 \001(\010H\001\210" +
-      "\001\001\022\037\n\022receive_batch_size\030\004 \001(\005H\002\210\001\001\022<\n\024l" +
-      "ong_polling_timeout\030\005 \001(\0132\031.google.proto" +
-      "buf.DurationH\003\210\001\001B\010\n\006_groupB\007\n\005_fifoB\025\n\023" +
-      "_receive_batch_sizeB\027\n\025_long_polling_tim" +
-      "eout\"Y\n\006Metric\022\n\n\002on\030\001 \001(\010\0225\n\tendpoints\030" +
-      "\002 \001(\0132\035.apache.rocketmq.v2.EndpointsH\000\210\001" +
-      "\001B\014\n\n_endpoints*Y\n\025TransactionResolution" +
-      "\022&\n\"TRANSACTION_RESOLUTION_UNSPECIFIED\020\000" +
-      "\022\n\n\006COMMIT\020\001\022\014\n\010ROLLBACK\020\002*W\n\021Transactio" +
-      "nSource\022\026\n\022SOURCE_UNSPECIFIED\020\000\022\021\n\rSOURC" +
-      "E_CLIENT\020\001\022\027\n\023SOURCE_SERVER_CHECK\020\002*W\n\nP" +
-      "ermission\022\032\n\026PERMISSION_UNSPECIFIED\020\000\022\010\n" +
-      "\004NONE\020\001\022\010\n\004READ\020\002\022\t\n\005WRITE\020\003\022\016\n\nREAD_WRI" +
-      "TE\020\004*;\n\nFilterType\022\033\n\027FILTER_TYPE_UNSPEC" +
-      "IFIED\020\000\022\007\n\003TAG\020\001\022\007\n\003SQL\020\002*T\n\rAddressSche" +
-      "me\022\036\n\032ADDRESS_SCHEME_UNSPECIFIED\020\000\022\010\n\004IP" +
-      "v4\020\001\022\010\n\004IPv6\020\002\022\017\n\013DOMAIN_NAME\020\003*]\n\013Messa" +
-      "geType\022\034\n\030MESSAGE_TYPE_UNSPECIFIED\020\000\022\n\n\006" +
-      "NORMAL\020\001\022\010\n\004FIFO\020\002\022\t\n\005DELAY\020\003\022\017\n\013TRANSAC" +
-      "TION\020\004*G\n\nDigestType\022\033\n\027DIGEST_TYPE_UNSP" +
-      "ECIFIED\020\000\022\t\n\005CRC32\020\001\022\007\n\003MD5\020\002\022\010\n\004SHA1\020\003*" +
-      "_\n\nClientType\022\033\n\027CLIENT_TYPE_UNSPECIFIED" +
-      "\020\000\022\014\n\010PRODUCER\020\001\022\021\n\rPUSH_CONSUMER\020\002\022\023\n\017S" +
-      "IMPLE_CONSUMER\020\003*<\n\010Encoding\022\030\n\024ENCODING" +
-      "_UNSPECIFIED\020\000\022\014\n\010IDENTITY\020\001\022\010\n\004GZIP\020\002*\342" +
-      "\t\n\004Code\022\024\n\020CODE_UNSPECIFIED\020\000\022\010\n\002OK\020\240\234\001\022" +
-      "\026\n\020MULTIPLE_RESULTS\020\260\352\001\022\021\n\013BAD_REQUEST\020\300" +
-      "\270\002\022\032\n\024ILLEGAL_ACCESS_POINT\020\301\270\002\022\023\n\rILLEGA" +
-      "L_TOPIC\020\302\270\002\022\034\n\026ILLEGAL_CONSUMER_GROUP\020\303\270" +
-      "\002\022\031\n\023ILLEGAL_MESSAGE_TAG\020\304\270\002\022\031\n\023ILLEGAL_" +
-      "MESSAGE_KEY\020\305\270\002\022\033\n\025ILLEGAL_MESSAGE_GROUP" +
-      "\020\306\270\002\022\"\n\034ILLEGAL_MESSAGE_PROPERTY_KEY\020\307\270\002" +
-      "\022\034\n\026INVALID_TRANSACTION_ID\020\310\270\002\022\030\n\022ILLEGA" +
-      "L_MESSAGE_ID\020\311\270\002\022\037\n\031ILLEGAL_FILTER_EXPRE" +
-      "SSION\020\312\270\002\022\034\n\026ILLEGAL_INVISIBLE_TIME\020\313\270\002\022" +
-      "\033\n\025ILLEGAL_DELIVERY_TIME\020\314\270\002\022\034\n\026INVALID_" +
-      "RECEIPT_HANDLE\020\315\270\002\022)\n#MESSAGE_PROPERTY_C" +
-      "ONFLICT_WITH_TYPE\020\316\270\002\022\036\n\030UNRECOGNIZED_CL" +
-      "IENT_TYPE\020\317\270\002\022\027\n\021MESSAGE_CORRUPTED\020\320\270\002\022\030" +
-      "\n\022CLIENT_ID_REQUIRED\020\321\270\002\022\022\n\014UNAUTHORIZED" +
-      "\020\244\271\002\022\026\n\020PAYMENT_REQUIRED\020\210\272\002\022\017\n\tFORBIDDE" +
-      "N\020\354\272\002\022\017\n\tNOT_FOUND\020\320\273\002\022\027\n\021MESSAGE_NOT_FO" +
-      "UND\020\321\273\002\022\025\n\017TOPIC_NOT_FOUND\020\322\273\002\022\036\n\030CONSUM" +
-      "ER_GROUP_NOT_FOUND\020\323\273\002\022\025\n\017REQUEST_TIMEOU" +
-      "T\020\340\276\002\022\027\n\021PAYLOAD_TOO_LARGE\020\324\302\002\022\034\n\026MESSAG" +
-      "E_BODY_TOO_LARGE\020\325\302\002\022\031\n\023PRECONDITION_FAI" +
-      "LED\020\260\316\002\022\027\n\021TOO_MANY_REQUESTS\020\224\317\002\022%\n\037REQU" +
-      "EST_HEADER_FIELDS_TOO_LARGE\020\334\320\002\022\"\n\034MESSA" +
-      "GE_PROPERTIES_TOO_LARGE\020\335\320\002\022\024\n\016INTERNAL_" +
-      "ERROR\020\320\206\003\022\033\n\025INTERNAL_SERVER_ERROR\020\321\206\003\022\026" +
-      "\n\020HA_NOT_AVAILABLE\020\322\206\003\022\025\n\017NOT_IMPLEMENTE" +
-      "D\020\264\207\003\022\023\n\rPROXY_TIMEOUT\020\340\211\003\022 \n\032MASTER_PER" +
-      "SISTENCE_TIMEOUT\020\341\211\003\022\037\n\031SLAVE_PERSISTENC" +
-      "E_TIMEOUT\020\342\211\003\022\021\n\013UNSUPPORTED\020\304\212\003\022\031\n\023VERS" +
-      "ION_UNSUPPORTED\020\305\212\003\022%\n\037VERIFY_FIFO_MESSA" +
-      "GE_UNSUPPORTED\020\306\212\003\022\037\n\031FAILED_TO_CONSUME_" +
-      "MESSAGE\020\340\324\003*\255\001\n\010Language\022\030\n\024LANGUAGE_UNS" +
-      "PECIFIED\020\000\022\010\n\004JAVA\020\001\022\007\n\003CPP\020\002\022\013\n\007DOT_NET" +
-      "\020\003\022\n\n\006GOLANG\020\004\022\010\n\004RUST\020\005\022\n\n\006PYTHON\020\006\022\007\n\003" +
-      "PHP\020\007\022\013\n\007NODE_JS\020\010\022\010\n\004RUBY\020\t\022\017\n\013OBJECTIV" +
-      "E_C\020\n\022\010\n\004DART\020\013\022\n\n\006KOTLIN\020\014B;\n\022apache.ro" +
-      "cketmq.v2B\010MQDomainP\001\240\001\001\330\001\001\252\002\022Apache.Roc" +
-      "ketmq.V2b\006proto3"
+      "tionH\t\210\001\001\022C\n\021dead_letter_queue\030\024 \001(\0132#.a" +
+      "pache.rocketmq.v2.DeadLetterQueueH\n\210\001\001B\006" +
+      "\n\004_tagB\022\n\020_store_timestampB\025\n\023_delivery_" +
+      "timestampB\021\n\017_receipt_handleB\017\n\r_queue_o" +
+      "ffsetB\025\n\023_invisible_durationB\023\n\021_deliver" +
+      "y_attemptB\020\n\016_message_groupB\020\n\016_trace_co" +
+      "ntextB)\n\'_orphaned_transaction_recovery_" +
+      "durationB\024\n\022_dead_letter_queue\"4\n\017DeadLe" +
+      "tterQueue\022\r\n\005topic\030\001 \001(\t\022\022\n\nmessage_id\030\002" +
+      " \001(\t\"\206\002\n\007Message\022+\n\005topic\030\001 \001(\0132\034.apache" +
+      ".rocketmq.v2.Resource\022H\n\017user_properties" +
+      "\030\002 \003(\0132/.apache.rocketmq.v2.Message.User" +
+      "PropertiesEntry\022?\n\021system_properties\030\003 \001" +
+      "(\0132$.apache.rocketmq.v2.SystemProperties" +
+      "\022\014\n\004body\030\004 \001(\014\0325\n\023UserPropertiesEntry\022\013\n" +
+      "\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"E\n\nAssignm" +
+      "ent\0227\n\rmessage_queue\030\001 \001(\0132 .apache.rock" +
+      "etmq.v2.MessageQueue\"A\n\006Status\022&\n\004code\030\001" +
+      " \001(\0162\030.apache.rocketmq.v2.Code\022\017\n\007messag" +
+      "e\030\002 \001(\t\"i\n\002UA\022.\n\010language\030\001 \001(\0162\034.apache" +
+      ".rocketmq.v2.Language\022\017\n\007version\030\002 \001(\t\022\020" +
+      "\n\010platform\030\003 \001(\t\022\020\n\010hostname\030\004 \001(\t\"\220\004\n\010S" +
+      "ettings\0228\n\013client_type\030\001 \001(\0162\036.apache.ro" +
+      "cketmq.v2.ClientTypeH\001\210\001\001\0228\n\014access_poin" +
+      "t\030\002 \001(\0132\035.apache.rocketmq.v2.EndpointsH\002" +
+      "\210\001\001\022<\n\016backoff_policy\030\003 \001(\0132\037.apache.roc" +
+      "ketmq.v2.RetryPolicyH\003\210\001\001\0227\n\017request_tim" +
+      "eout\030\004 \001(\0132\031.google.protobuf.DurationH\004\210" +
+      "\001\001\0224\n\npublishing\030\005 \001(\0132\036.apache.rocketmq" +
+      ".v2.PublishingH\000\0228\n\014subscription\030\006 \001(\0132 " +
+      ".apache.rocketmq.v2.SubscriptionH\000\022*\n\nus" +
+      "er_agent\030\007 \001(\0132\026.apache.rocketmq.v2.UA\022*" +
+      "\n\006metric\030\010 \001(\0132\032.apache.rocketmq.v2.Metr" +
+      "icB\t\n\007pub_subB\016\n\014_client_typeB\017\n\r_access" +
+      "_pointB\021\n\017_backoff_policyB\022\n\020_request_ti" +
+      "meout\"p\n\nPublishing\022,\n\006topics\030\001 \003(\0132\034.ap" +
+      "ache.rocketmq.v2.Resource\022\025\n\rmax_body_si" +
+      "ze\030\002 \001(\005\022\035\n\025validate_message_type\030\003 \001(\010\"" +
+      "\263\002\n\014Subscription\0220\n\005group\030\001 \001(\0132\034.apache" +
+      ".rocketmq.v2.ResourceH\000\210\001\001\022<\n\rsubscripti" +
+      "ons\030\002 \003(\0132%.apache.rocketmq.v2.Subscript" +
+      "ionEntry\022\021\n\004fifo\030\003 \001(\010H\001\210\001\001\022\037\n\022receive_b" +
+      "atch_size\030\004 \001(\005H\002\210\001\001\022<\n\024long_polling_tim" +
+      "eout\030\005 \001(\0132\031.google.protobuf.DurationH\003\210" +
+      "\001\001B\010\n\006_groupB\007\n\005_fifoB\025\n\023_receive_batch_" +
+      "sizeB\027\n\025_long_polling_timeout\"Y\n\006Metric\022" +
+      "\n\n\002on\030\001 \001(\010\0225\n\tendpoints\030\002 \001(\0132\035.apache." +
+      "rocketmq.v2.EndpointsH\000\210\001\001B\014\n\n_endpoints" +
+      "*Y\n\025TransactionResolution\022&\n\"TRANSACTION" +
+      "_RESOLUTION_UNSPECIFIED\020\000\022\n\n\006COMMIT\020\001\022\014\n" +
+      "\010ROLLBACK\020\002*W\n\021TransactionSource\022\026\n\022SOUR" +
+      "CE_UNSPECIFIED\020\000\022\021\n\rSOURCE_CLIENT\020\001\022\027\n\023S" +
+      "OURCE_SERVER_CHECK\020\002*W\n\nPermission\022\032\n\026PE" +
+      "RMISSION_UNSPECIFIED\020\000\022\010\n\004NONE\020\001\022\010\n\004READ" +
+      "\020\002\022\t\n\005WRITE\020\003\022\016\n\nREAD_WRITE\020\004*;\n\nFilterT" +
+      "ype\022\033\n\027FILTER_TYPE_UNSPECIFIED\020\000\022\007\n\003TAG\020" +
+      "\001\022\007\n\003SQL\020\002*T\n\rAddressScheme\022\036\n\032ADDRESS_S" +
+      "CHEME_UNSPECIFIED\020\000\022\010\n\004IPv4\020\001\022\010\n\004IPv6\020\002\022" +
+      "\017\n\013DOMAIN_NAME\020\003*]\n\013MessageType\022\034\n\030MESSA" +
+      "GE_TYPE_UNSPECIFIED\020\000\022\n\n\006NORMAL\020\001\022\010\n\004FIF" +
+      "O\020\002\022\t\n\005DELAY\020\003\022\017\n\013TRANSACTION\020\004*G\n\nDiges" +
+      "tType\022\033\n\027DIGEST_TYPE_UNSPECIFIED\020\000\022\t\n\005CR" +
+      "C32\020\001\022\007\n\003MD5\020\002\022\010\n\004SHA1\020\003*_\n\nClientType\022\033" +
+      "\n\027CLIENT_TYPE_UNSPECIFIED\020\000\022\014\n\010PRODUCER\020" +
+      "\001\022\021\n\rPUSH_CONSUMER\020\002\022\023\n\017SIMPLE_CONSUMER\020" +
+      "\003*<\n\010Encoding\022\030\n\024ENCODING_UNSPECIFIED\020\000\022" +
+      "\014\n\010IDENTITY\020\001\022\010\n\004GZIP\020\002*\376\t\n\004Code\022\024\n\020CODE" +
+      "_UNSPECIFIED\020\000\022\010\n\002OK\020\240\234\001\022\026\n\020MULTIPLE_RES" +
+      "ULTS\020\260\352\001\022\021\n\013BAD_REQUEST\020\300\270\002\022\032\n\024ILLEGAL_A" +
+      "CCESS_POINT\020\301\270\002\022\023\n\rILLEGAL_TOPIC\020\302\270\002\022\034\n\026" +
+      "ILLEGAL_CONSUMER_GROUP\020\303\270\002\022\031\n\023ILLEGAL_ME" +
+      "SSAGE_TAG\020\304\270\002\022\031\n\023ILLEGAL_MESSAGE_KEY\020\305\270\002" +
+      "\022\033\n\025ILLEGAL_MESSAGE_GROUP\020\306\270\002\022\"\n\034ILLEGAL" +
+      "_MESSAGE_PROPERTY_KEY\020\307\270\002\022\034\n\026INVALID_TRA" +
+      "NSACTION_ID\020\310\270\002\022\030\n\022ILLEGAL_MESSAGE_ID\020\311\270" +
+      "\002\022\037\n\031ILLEGAL_FILTER_EXPRESSION\020\312\270\002\022\034\n\026IL" +
+      "LEGAL_INVISIBLE_TIME\020\313\270\002\022\033\n\025ILLEGAL_DELI" +
+      "VERY_TIME\020\314\270\002\022\034\n\026INVALID_RECEIPT_HANDLE\020" +
+      "\315\270\002\022)\n#MESSAGE_PROPERTY_CONFLICT_WITH_TY" +
+      "PE\020\316\270\002\022\036\n\030UNRECOGNIZED_CLIENT_TYPE\020\317\270\002\022\027" +
+      "\n\021MESSAGE_CORRUPTED\020\320\270\002\022\030\n\022CLIENT_ID_REQ" +
+      "UIRED\020\321\270\002\022\032\n\024ILLEGAL_POLLING_TIME\020\322\270\002\022\022\n" +
+      "\014UNAUTHORIZED\020\244\271\002\022\026\n\020PAYMENT_REQUIRED\020\210\272" +
+      "\002\022\017\n\tFORBIDDEN\020\354\272\002\022\017\n\tNOT_FOUND\020\320\273\002\022\027\n\021M" +
+      "ESSAGE_NOT_FOUND\020\321\273\002\022\025\n\017TOPIC_NOT_FOUND\020" +
+      "\322\273\002\022\036\n\030CONSUMER_GROUP_NOT_FOUND\020\323\273\002\022\025\n\017R" +
+      "EQUEST_TIMEOUT\020\340\276\002\022\027\n\021PAYLOAD_TOO_LARGE\020" +
+      "\324\302\002\022\034\n\026MESSAGE_BODY_TOO_LARGE\020\325\302\002\022\031\n\023PRE" +
+      "CONDITION_FAILED\020\260\316\002\022\027\n\021TOO_MANY_REQUEST" +
+      "S\020\224\317\002\022%\n\037REQUEST_HEADER_FIELDS_TOO_LARGE" +
+      "\020\334\320\002\022\"\n\034MESSAGE_PROPERTIES_TOO_LARGE\020\335\320\002" +
+      "\022\024\n\016INTERNAL_ERROR\020\320\206\003\022\033\n\025INTERNAL_SERVE" +
+      "R_ERROR\020\321\206\003\022\026\n\020HA_NOT_AVAILABLE\020\322\206\003\022\025\n\017N" +
+      "OT_IMPLEMENTED\020\264\207\003\022\023\n\rPROXY_TIMEOUT\020\340\211\003\022" +
+      " \n\032MASTER_PERSISTENCE_TIMEOUT\020\341\211\003\022\037\n\031SLA" +
+      "VE_PERSISTENCE_TIMEOUT\020\342\211\003\022\021\n\013UNSUPPORTE" +
+      "D\020\304\212\003\022\031\n\023VERSION_UNSUPPORTED\020\305\212\003\022%\n\037VERI" +
+      "FY_FIFO_MESSAGE_UNSUPPORTED\020\306\212\003\022\037\n\031FAILE" +
+      "D_TO_CONSUME_MESSAGE\020\340\324\003*\255\001\n\010Language\022\030\n" +
+      "\024LANGUAGE_UNSPECIFIED\020\000\022\010\n\004JAVA\020\001\022\007\n\003CPP" +
+      "\020\002\022\013\n\007DOT_NET\020\003\022\n\n\006GOLANG\020\004\022\010\n\004RUST\020\005\022\n\n" +
+      "\006PYTHON\020\006\022\007\n\003PHP\020\007\022\013\n\007NODE_JS\020\010\022\010\n\004RUBY\020" +
+      "\t\022\017\n\013OBJECTIVE_C\020\n\022\010\n\004DART\020\013\022\n\n\006KOTLIN\020\014" +
+      "B;\n\022apache.rocketmq.v2B\010MQDomainP\001\240\001\001\330\001\001" +
+      "\252\002\022Apache.Rocketmq.V2b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -358,9 +367,15 @@ public final class MQDomain {
     internal_static_apache_rocketmq_v2_SystemProperties_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_SystemProperties_descriptor,
-        new java.lang.String[] { "Tag", "Keys", "MessageId", "BodyDigest", "BodyEncoding", "MessageType", "BornTimestamp", "BornHost", "StoreTimestamp", "StoreHost", "DeliveryTimestamp", "ReceiptHandle", "QueueId", "QueueOffset", "InvisibleDuration", "DeliveryAttempt", "MessageGroup", "TraceContext", "OrphanedTransactionRecoveryDuration", "Tag", "StoreTimestamp", "DeliveryTimestamp", "ReceiptHandle", "QueueOffset", "InvisibleDuration", "DeliveryAttempt", "MessageGroup", "TraceContext", "OrphanedTransactionRecoveryDuration", });
-    internal_static_apache_rocketmq_v2_Message_descriptor =
+        new java.lang.String[] { "Tag", "Keys", "MessageId", "BodyDigest", "BodyEncoding", "MessageType", "BornTimestamp", "BornHost", "StoreTimestamp", "StoreHost", "DeliveryTimestamp", "ReceiptHandle", "QueueId", "QueueOffset", "InvisibleDuration", "DeliveryAttempt", "MessageGroup", "TraceContext", "OrphanedTransactionRecoveryDuration", "DeadLetterQueue", "Tag", "StoreTimestamp", "DeliveryTimestamp", "ReceiptHandle", "QueueOffset", "InvisibleDuration", "DeliveryAttempt", "MessageGroup", "TraceContext", "OrphanedTransactionRecoveryDuration", "DeadLetterQueue", });
+    internal_static_apache_rocketmq_v2_DeadLetterQueue_descriptor =
       getDescriptor().getMessageTypes().get(12);
+    internal_static_apache_rocketmq_v2_DeadLetterQueue_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_apache_rocketmq_v2_DeadLetterQueue_descriptor,
+        new java.lang.String[] { "Topic", "MessageId", });
+    internal_static_apache_rocketmq_v2_Message_descriptor =
+      getDescriptor().getMessageTypes().get(13);
     internal_static_apache_rocketmq_v2_Message_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_Message_descriptor,
@@ -372,43 +387,43 @@ public final class MQDomain {
         internal_static_apache_rocketmq_v2_Message_UserPropertiesEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_apache_rocketmq_v2_Assignment_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_apache_rocketmq_v2_Assignment_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_Assignment_descriptor,
         new java.lang.String[] { "MessageQueue", });
     internal_static_apache_rocketmq_v2_Status_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_apache_rocketmq_v2_Status_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_Status_descriptor,
         new java.lang.String[] { "Code", "Message", });
     internal_static_apache_rocketmq_v2_UA_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_apache_rocketmq_v2_UA_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_UA_descriptor,
         new java.lang.String[] { "Language", "Version", "Platform", "Hostname", });
     internal_static_apache_rocketmq_v2_Settings_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_apache_rocketmq_v2_Settings_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_Settings_descriptor,
         new java.lang.String[] { "ClientType", "AccessPoint", "BackoffPolicy", "RequestTimeout", "Publishing", "Subscription", "UserAgent", "Metric", "PubSub", "ClientType", "AccessPoint", "BackoffPolicy", "RequestTimeout", });
     internal_static_apache_rocketmq_v2_Publishing_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(18);
     internal_static_apache_rocketmq_v2_Publishing_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_Publishing_descriptor,
         new java.lang.String[] { "Topics", "MaxBodySize", "ValidateMessageType", });
     internal_static_apache_rocketmq_v2_Subscription_descriptor =
-      getDescriptor().getMessageTypes().get(18);
+      getDescriptor().getMessageTypes().get(19);
     internal_static_apache_rocketmq_v2_Subscription_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_Subscription_descriptor,
         new java.lang.String[] { "Group", "Subscriptions", "Fifo", "ReceiveBatchSize", "LongPollingTimeout", "Group", "Fifo", "ReceiveBatchSize", "LongPollingTimeout", });
     internal_static_apache_rocketmq_v2_Metric_descriptor =
-      getDescriptor().getMessageTypes().get(19);
+      getDescriptor().getMessageTypes().get(20);
     internal_static_apache_rocketmq_v2_Metric_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_apache_rocketmq_v2_Metric_descriptor,

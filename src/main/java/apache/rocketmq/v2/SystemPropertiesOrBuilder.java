@@ -506,4 +506,31 @@ public interface SystemPropertiesOrBuilder extends
    * <code>optional .google.protobuf.Duration orphaned_transaction_recovery_duration = 19;</code>
    */
   com.google.protobuf.DurationOrBuilder getOrphanedTransactionRecoveryDurationOrBuilder();
+
+  /**
+   * <pre>
+   * Information to identify whether this message is from dead letter queue.
+   * </pre>
+   *
+   * <code>optional .apache.rocketmq.v2.DeadLetterQueue dead_letter_queue = 20;</code>
+   * @return Whether the deadLetterQueue field is set.
+   */
+  boolean hasDeadLetterQueue();
+  /**
+   * <pre>
+   * Information to identify whether this message is from dead letter queue.
+   * </pre>
+   *
+   * <code>optional .apache.rocketmq.v2.DeadLetterQueue dead_letter_queue = 20;</code>
+   * @return The deadLetterQueue.
+   */
+  apache.rocketmq.v2.DeadLetterQueue getDeadLetterQueue();
+  /**
+   * <pre>
+   * Information to identify whether this message is from dead letter queue.
+   * </pre>
+   *
+   * <code>optional .apache.rocketmq.v2.DeadLetterQueue dead_letter_queue = 20;</code>
+   */
+  apache.rocketmq.v2.DeadLetterQueueOrBuilder getDeadLetterQueueOrBuilder();
 }

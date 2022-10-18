@@ -9,3 +9,9 @@ github:
     projects: true
   protected_branches:
     main: {}
+notifications:
+  commits:      commits@rocketmq.apache.org
+  issues:       commits@rocketmq.apache.org
+  pullrequests: commits@rocketmq.apache.org
+  jobs:         commits@rocketmq.apache.org
+  discussions:  dev@rocketmq.apache.org

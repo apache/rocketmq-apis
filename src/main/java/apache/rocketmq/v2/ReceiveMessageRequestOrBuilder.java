@@ -94,4 +94,19 @@ public interface ReceiveMessageRequestOrBuilder extends
    * @return The autoRenew.
    */
   boolean getAutoRenew();
+
+  /**
+   * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+   * @return Whether the longPollingTimeout field is set.
+   */
+  boolean hasLongPollingTimeout();
+  /**
+   * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+   * @return The longPollingTimeout.
+   */
+  com.google.protobuf.Duration getLongPollingTimeout();
+  /**
+   * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+   */
+  com.google.protobuf.DurationOrBuilder getLongPollingTimeoutOrBuilder();
 }

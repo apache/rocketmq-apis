@@ -111,6 +111,19 @@ private static final long serialVersionUID = 0L;
             autoRenew_ = input.readBool();
             break;
           }
+          case 58: {
+            com.google.protobuf.Duration.Builder subBuilder = null;
+            if (((bitField0_ & 0x00000002) != 0)) {
+              subBuilder = longPollingTimeout_.toBuilder();
+            }
+            longPollingTimeout_ = input.readMessage(com.google.protobuf.Duration.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(longPollingTimeout_);
+              longPollingTimeout_ = subBuilder.buildPartial();
+            }
+            bitField0_ |= 0x00000002;
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -288,6 +301,32 @@ private static final long serialVersionUID = 0L;
     return autoRenew_;
   }
 
+  public static final int LONG_POLLING_TIMEOUT_FIELD_NUMBER = 7;
+  private com.google.protobuf.Duration longPollingTimeout_;
+  /**
+   * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+   * @return Whether the longPollingTimeout field is set.
+   */
+  @java.lang.Override
+  public boolean hasLongPollingTimeout() {
+    return ((bitField0_ & 0x00000002) != 0);
+  }
+  /**
+   * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+   * @return The longPollingTimeout.
+   */
+  @java.lang.Override
+  public com.google.protobuf.Duration getLongPollingTimeout() {
+    return longPollingTimeout_ == null ? com.google.protobuf.Duration.getDefaultInstance() : longPollingTimeout_;
+  }
+  /**
+   * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+   */
+  @java.lang.Override
+  public com.google.protobuf.DurationOrBuilder getLongPollingTimeoutOrBuilder() {
+    return longPollingTimeout_ == null ? com.google.protobuf.Duration.getDefaultInstance() : longPollingTimeout_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -319,6 +358,9 @@ private static final long serialVersionUID = 0L;
     }
     if (autoRenew_ != false) {
       output.writeBool(6, autoRenew_);
+    }
+    if (((bitField0_ & 0x00000002) != 0)) {
+      output.writeMessage(7, getLongPollingTimeout());
     }
     unknownFields.writeTo(output);
   }
@@ -352,6 +394,10 @@ private static final long serialVersionUID = 0L;
     if (autoRenew_ != false) {
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(6, autoRenew_);
+    }
+    if (((bitField0_ & 0x00000002) != 0)) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(7, getLongPollingTimeout());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -392,6 +438,11 @@ private static final long serialVersionUID = 0L;
     }
     if (getAutoRenew()
         != other.getAutoRenew()) return false;
+    if (hasLongPollingTimeout() != other.hasLongPollingTimeout()) return false;
+    if (hasLongPollingTimeout()) {
+      if (!getLongPollingTimeout()
+          .equals(other.getLongPollingTimeout())) return false;
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -424,6 +475,10 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + AUTO_RENEW_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getAutoRenew());
+    if (hasLongPollingTimeout()) {
+      hash = (37 * hash) + LONG_POLLING_TIMEOUT_FIELD_NUMBER;
+      hash = (53 * hash) + getLongPollingTimeout().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -553,6 +608,7 @@ private static final long serialVersionUID = 0L;
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
         getInvisibleDurationFieldBuilder();
+        getLongPollingTimeoutFieldBuilder();
       }
     }
     @java.lang.Override
@@ -586,6 +642,12 @@ private static final long serialVersionUID = 0L;
       bitField0_ = (bitField0_ & ~0x00000001);
       autoRenew_ = false;
 
+      if (longPollingTimeoutBuilder_ == null) {
+        longPollingTimeout_ = null;
+      } else {
+        longPollingTimeoutBuilder_.clear();
+      }
+      bitField0_ = (bitField0_ & ~0x00000002);
       return this;
     }
 
@@ -639,6 +701,14 @@ private static final long serialVersionUID = 0L;
         to_bitField0_ |= 0x00000001;
       }
       result.autoRenew_ = autoRenew_;
+      if (((from_bitField0_ & 0x00000002) != 0)) {
+        if (longPollingTimeoutBuilder_ == null) {
+          result.longPollingTimeout_ = longPollingTimeout_;
+        } else {
+          result.longPollingTimeout_ = longPollingTimeoutBuilder_.build();
+        }
+        to_bitField0_ |= 0x00000002;
+      }
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -705,6 +775,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getAutoRenew() != false) {
         setAutoRenew(other.getAutoRenew());
+      }
+      if (other.hasLongPollingTimeout()) {
+        mergeLongPollingTimeout(other.getLongPollingTimeout());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1321,6 +1394,126 @@ private static final long serialVersionUID = 0L;
       autoRenew_ = false;
       onChanged();
       return this;
+    }
+
+    private com.google.protobuf.Duration longPollingTimeout_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> longPollingTimeoutBuilder_;
+    /**
+     * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+     * @return Whether the longPollingTimeout field is set.
+     */
+    public boolean hasLongPollingTimeout() {
+      return ((bitField0_ & 0x00000002) != 0);
+    }
+    /**
+     * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+     * @return The longPollingTimeout.
+     */
+    public com.google.protobuf.Duration getLongPollingTimeout() {
+      if (longPollingTimeoutBuilder_ == null) {
+        return longPollingTimeout_ == null ? com.google.protobuf.Duration.getDefaultInstance() : longPollingTimeout_;
+      } else {
+        return longPollingTimeoutBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+     */
+    public Builder setLongPollingTimeout(com.google.protobuf.Duration value) {
+      if (longPollingTimeoutBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        longPollingTimeout_ = value;
+        onChanged();
+      } else {
+        longPollingTimeoutBuilder_.setMessage(value);
+      }
+      bitField0_ |= 0x00000002;
+      return this;
+    }
+    /**
+     * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+     */
+    public Builder setLongPollingTimeout(
+        com.google.protobuf.Duration.Builder builderForValue) {
+      if (longPollingTimeoutBuilder_ == null) {
+        longPollingTimeout_ = builderForValue.build();
+        onChanged();
+      } else {
+        longPollingTimeoutBuilder_.setMessage(builderForValue.build());
+      }
+      bitField0_ |= 0x00000002;
+      return this;
+    }
+    /**
+     * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+     */
+    public Builder mergeLongPollingTimeout(com.google.protobuf.Duration value) {
+      if (longPollingTimeoutBuilder_ == null) {
+        if (((bitField0_ & 0x00000002) != 0) &&
+            longPollingTimeout_ != null &&
+            longPollingTimeout_ != com.google.protobuf.Duration.getDefaultInstance()) {
+          longPollingTimeout_ =
+            com.google.protobuf.Duration.newBuilder(longPollingTimeout_).mergeFrom(value).buildPartial();
+        } else {
+          longPollingTimeout_ = value;
+        }
+        onChanged();
+      } else {
+        longPollingTimeoutBuilder_.mergeFrom(value);
+      }
+      bitField0_ |= 0x00000002;
+      return this;
+    }
+    /**
+     * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+     */
+    public Builder clearLongPollingTimeout() {
+      if (longPollingTimeoutBuilder_ == null) {
+        longPollingTimeout_ = null;
+        onChanged();
+      } else {
+        longPollingTimeoutBuilder_.clear();
+      }
+      bitField0_ = (bitField0_ & ~0x00000002);
+      return this;
+    }
+    /**
+     * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+     */
+    public com.google.protobuf.Duration.Builder getLongPollingTimeoutBuilder() {
+      bitField0_ |= 0x00000002;
+      onChanged();
+      return getLongPollingTimeoutFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+     */
+    public com.google.protobuf.DurationOrBuilder getLongPollingTimeoutOrBuilder() {
+      if (longPollingTimeoutBuilder_ != null) {
+        return longPollingTimeoutBuilder_.getMessageOrBuilder();
+      } else {
+        return longPollingTimeout_ == null ?
+            com.google.protobuf.Duration.getDefaultInstance() : longPollingTimeout_;
+      }
+    }
+    /**
+     * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
+        getLongPollingTimeoutFieldBuilder() {
+      if (longPollingTimeoutBuilder_ == null) {
+        longPollingTimeoutBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder>(
+                getLongPollingTimeout(),
+                getParentForChildren(),
+                isClean());
+        longPollingTimeout_ = null;
+      }
+      return longPollingTimeoutBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

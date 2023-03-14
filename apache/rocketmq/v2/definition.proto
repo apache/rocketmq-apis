@@ -550,3 +550,14 @@ message Metric {
   // The endpoint that client metrics should be exported to, which is required if the switch is on.
   optional Endpoints endpoints = 2;
 }
+
+enum QueryOffsetPolicy {
+  // Use this option if client wishes to playback all existing messages.
+  BEGINNING = 0;
+
+  // Use this option if client wishes to skip all existing messages.
+  END = 1;
+
+  // Use this option if time-based seek is targeted.
+  TIMESTAMP = 2;
+}

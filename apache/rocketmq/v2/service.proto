@@ -281,22 +281,13 @@ message GetOffsetResponse {
   int64 offset = 2;
 }
 
-message QueryOffsetByTimestampRequest {
+message QueryOffsetRequest {
   MessageQueue message_queue = 1;
-  google.protobuf.Timestamp timestamp = 2;
+  QueryOffsetPolicy query_offset_policy = 2;
+  optional google.protobuf.Timestamp timestamp = 3;
 }
 
-message QueryOffsetByTimestampResponse {
-  Status status = 1;
-  int64 offset = 2;
-}
-
-message QueryOffsetByGroupRequest {
-  MessageQueue message_queue = 1;
-  Resource group = 2;
-}
-
-message QueryOffsetByGroupResponse {
+message QueryOffsetResponse {
   Status status = 1;
   int64 offset = 2;
 }
@@ -392,9 +383,7 @@ service MessagingService {
 
   rpc GetOffset(GetOffsetRequest) returns (GetOffsetResponse) {}
 
-  rpc QueryOffsetByTimestamp(QueryOffsetByTimestampRequest) returns (QueryOffsetByTimestampResponse) {}
-
-  rpc QueryOffsetByGroup(QueryOffsetByGroupRequest) returns (QueryOffsetByGroupResponse) {}
+  rpc QueryOffset(QueryOffsetRequest) returns (QueryOffsetResponse) {}
 
   // Commits or rollback one transactional message.
   rpc EndTransaction(EndTransactionRequest) returns (EndTransactionResponse) {}

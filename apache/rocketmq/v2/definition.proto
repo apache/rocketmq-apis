@@ -185,6 +185,7 @@ enum ClientType {
   PRODUCER = 1;
   PUSH_CONSUMER = 2;
   SIMPLE_CONSUMER = 3;
+  PULL_CONSUMER = 4;
 }
 
 enum Encoding {

@@ -59,6 +59,7 @@ message QueryRouteResponse {
 
 message SendMessageRequest {
   repeated Message messages = 1;
+  optional MessageQueue message_queue = 2;
 }
 
 message SendResultEntry {

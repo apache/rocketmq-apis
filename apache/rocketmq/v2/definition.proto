@@ -367,6 +367,8 @@ enum Code {
   TOPIC_NOT_FOUND = 40402;
   // Consumer group resource does not exist.
   CONSUMER_GROUP_NOT_FOUND = 40403;
+  // Offset not found from server.
+  OFFSET_NOT_FOUND = 40404;
 
   // Generic code representing client side timeout when connecting to, reading data from, or write data to server.
   REQUEST_TIMEOUT = 40800;

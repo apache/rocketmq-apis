@@ -378,12 +378,19 @@ service MessagingService {
   rpc ForwardMessageToDeadLetterQueue(ForwardMessageToDeadLetterQueueRequest)
       returns (ForwardMessageToDeadLetterQueueResponse) {}
 
+  // PullMessage and ReceiveMessage RPCs serve a similar purpose,
+  // which is to attempt to get messages from the server, but with different semantics.
   rpc PullMessage(PullMessageRequest) returns (stream PullMessageResponse) {}
 
+  // Update the consumption progress of the designated queue of the
+  // consumer group to the remote.
   rpc UpdateOffset(UpdateOffsetRequest) returns (UpdateOffsetResponse) {}
 
+  // Query the consumption progress of the designated queue of the
+  // consumer group to the remote.
   rpc GetOffset(GetOffsetRequest) returns (GetOffsetResponse) {}
 
+  // Query the offset of the designated queue by the query offset policy.
   rpc QueryOffset(QueryOffsetRequest) returns (QueryOffsetResponse) {}
 
   // Commits or rollback one transactional message.

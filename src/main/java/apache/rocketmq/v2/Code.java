@@ -182,6 +182,14 @@ public enum Code
   ILLEGAL_POLLING_TIME(40018),
   /**
    * <pre>
+   * Offset is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_OFFSET = 40019;</code>
+   */
+  ILLEGAL_OFFSET(40019),
+  /**
+   * <pre>
    * Generic code indicates that the client request lacks valid authentication
    * credentials for the requested resource.
    * </pre>
@@ -237,6 +245,14 @@ public enum Code
    * <code>CONSUMER_GROUP_NOT_FOUND = 40403;</code>
    */
   CONSUMER_GROUP_NOT_FOUND(40403),
+  /**
+   * <pre>
+   * Offset not found from server.
+   * </pre>
+   *
+   * <code>OFFSET_NOT_FOUND = 40404;</code>
+   */
+  OFFSET_NOT_FOUND(40404),
   /**
    * <pre>
    * Generic code representing client side timeout when connecting to, reading data from, or write data to server.
@@ -574,6 +590,14 @@ public enum Code
   public static final int ILLEGAL_POLLING_TIME_VALUE = 40018;
   /**
    * <pre>
+   * Offset is illegal.
+   * </pre>
+   *
+   * <code>ILLEGAL_OFFSET = 40019;</code>
+   */
+  public static final int ILLEGAL_OFFSET_VALUE = 40019;
+  /**
+   * <pre>
    * Generic code indicates that the client request lacks valid authentication
    * credentials for the requested resource.
    * </pre>
@@ -629,6 +653,14 @@ public enum Code
    * <code>CONSUMER_GROUP_NOT_FOUND = 40403;</code>
    */
   public static final int CONSUMER_GROUP_NOT_FOUND_VALUE = 40403;
+  /**
+   * <pre>
+   * Offset not found from server.
+   * </pre>
+   *
+   * <code>OFFSET_NOT_FOUND = 40404;</code>
+   */
+  public static final int OFFSET_NOT_FOUND_VALUE = 40404;
   /**
    * <pre>
    * Generic code representing client side timeout when connecting to, reading data from, or write data to server.
@@ -837,6 +869,7 @@ public enum Code
       case 40016: return MESSAGE_CORRUPTED;
       case 40017: return CLIENT_ID_REQUIRED;
       case 40018: return ILLEGAL_POLLING_TIME;
+      case 40019: return ILLEGAL_OFFSET;
       case 40100: return UNAUTHORIZED;
       case 40200: return PAYMENT_REQUIRED;
       case 40300: return FORBIDDEN;
@@ -844,6 +877,7 @@ public enum Code
       case 40401: return MESSAGE_NOT_FOUND;
       case 40402: return TOPIC_NOT_FOUND;
       case 40403: return CONSUMER_GROUP_NOT_FOUND;
+      case 40404: return OFFSET_NOT_FOUND;
       case 40800: return REQUEST_TIMEOUT;
       case 41300: return PAYLOAD_TOO_LARGE;
       case 41301: return MESSAGE_BODY_TOO_LARGE;

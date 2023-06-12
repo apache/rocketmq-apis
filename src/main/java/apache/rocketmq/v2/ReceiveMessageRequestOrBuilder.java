@@ -109,4 +109,21 @@ public interface ReceiveMessageRequestOrBuilder extends
    * <code>optional .google.protobuf.Duration long_polling_timeout = 7;</code>
    */
   com.google.protobuf.DurationOrBuilder getLongPollingTimeoutOrBuilder();
+
+  /**
+   * <code>optional string attempt_id = 8;</code>
+   * @return Whether the attemptId field is set.
+   */
+  boolean hasAttemptId();
+  /**
+   * <code>optional string attempt_id = 8;</code>
+   * @return The attemptId.
+   */
+  java.lang.String getAttemptId();
+  /**
+   * <code>optional string attempt_id = 8;</code>
+   * @return The bytes for attemptId.
+   */
+  com.google.protobuf.ByteString
+      getAttemptIdBytes();
 }

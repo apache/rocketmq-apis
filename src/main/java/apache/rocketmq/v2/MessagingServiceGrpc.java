@@ -243,6 +243,130 @@ public final class MessagingServiceGrpc {
     return getForwardMessageToDeadLetterQueueMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<apache.rocketmq.v2.PullMessageRequest,
+      apache.rocketmq.v2.PullMessageResponse> getPullMessageMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "PullMessage",
+      requestType = apache.rocketmq.v2.PullMessageRequest.class,
+      responseType = apache.rocketmq.v2.PullMessageResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+  public static io.grpc.MethodDescriptor<apache.rocketmq.v2.PullMessageRequest,
+      apache.rocketmq.v2.PullMessageResponse> getPullMessageMethod() {
+    io.grpc.MethodDescriptor<apache.rocketmq.v2.PullMessageRequest, apache.rocketmq.v2.PullMessageResponse> getPullMessageMethod;
+    if ((getPullMessageMethod = MessagingServiceGrpc.getPullMessageMethod) == null) {
+      synchronized (MessagingServiceGrpc.class) {
+        if ((getPullMessageMethod = MessagingServiceGrpc.getPullMessageMethod) == null) {
+          MessagingServiceGrpc.getPullMessageMethod = getPullMessageMethod =
+              io.grpc.MethodDescriptor.<apache.rocketmq.v2.PullMessageRequest, apache.rocketmq.v2.PullMessageResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "PullMessage"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  apache.rocketmq.v2.PullMessageRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  apache.rocketmq.v2.PullMessageResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new MessagingServiceMethodDescriptorSupplier("PullMessage"))
+              .build();
+        }
+      }
+    }
+    return getPullMessageMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<apache.rocketmq.v2.UpdateOffsetRequest,
+      apache.rocketmq.v2.UpdateOffsetResponse> getUpdateOffsetMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "UpdateOffset",
+      requestType = apache.rocketmq.v2.UpdateOffsetRequest.class,
+      responseType = apache.rocketmq.v2.UpdateOffsetResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<apache.rocketmq.v2.UpdateOffsetRequest,
+      apache.rocketmq.v2.UpdateOffsetResponse> getUpdateOffsetMethod() {
+    io.grpc.MethodDescriptor<apache.rocketmq.v2.UpdateOffsetRequest, apache.rocketmq.v2.UpdateOffsetResponse> getUpdateOffsetMethod;
+    if ((getUpdateOffsetMethod = MessagingServiceGrpc.getUpdateOffsetMethod) == null) {
+      synchronized (MessagingServiceGrpc.class) {
+        if ((getUpdateOffsetMethod = MessagingServiceGrpc.getUpdateOffsetMethod) == null) {
+          MessagingServiceGrpc.getUpdateOffsetMethod = getUpdateOffsetMethod =
+              io.grpc.MethodDescriptor.<apache.rocketmq.v2.UpdateOffsetRequest, apache.rocketmq.v2.UpdateOffsetResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "UpdateOffset"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  apache.rocketmq.v2.UpdateOffsetRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  apache.rocketmq.v2.UpdateOffsetResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new MessagingServiceMethodDescriptorSupplier("UpdateOffset"))
+              .build();
+        }
+      }
+    }
+    return getUpdateOffsetMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<apache.rocketmq.v2.GetOffsetRequest,
+      apache.rocketmq.v2.GetOffsetResponse> getGetOffsetMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GetOffset",
+      requestType = apache.rocketmq.v2.GetOffsetRequest.class,
+      responseType = apache.rocketmq.v2.GetOffsetResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<apache.rocketmq.v2.GetOffsetRequest,
+      apache.rocketmq.v2.GetOffsetResponse> getGetOffsetMethod() {
+    io.grpc.MethodDescriptor<apache.rocketmq.v2.GetOffsetRequest, apache.rocketmq.v2.GetOffsetResponse> getGetOffsetMethod;
+    if ((getGetOffsetMethod = MessagingServiceGrpc.getGetOffsetMethod) == null) {
+      synchronized (MessagingServiceGrpc.class) {
+        if ((getGetOffsetMethod = MessagingServiceGrpc.getGetOffsetMethod) == null) {
+          MessagingServiceGrpc.getGetOffsetMethod = getGetOffsetMethod =
+              io.grpc.MethodDescriptor.<apache.rocketmq.v2.GetOffsetRequest, apache.rocketmq.v2.GetOffsetResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetOffset"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  apache.rocketmq.v2.GetOffsetRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  apache.rocketmq.v2.GetOffsetResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new MessagingServiceMethodDescriptorSupplier("GetOffset"))
+              .build();
+        }
+      }
+    }
+    return getGetOffsetMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<apache.rocketmq.v2.QueryOffsetRequest,
+      apache.rocketmq.v2.QueryOffsetResponse> getQueryOffsetMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "QueryOffset",
+      requestType = apache.rocketmq.v2.QueryOffsetRequest.class,
+      responseType = apache.rocketmq.v2.QueryOffsetResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<apache.rocketmq.v2.QueryOffsetRequest,
+      apache.rocketmq.v2.QueryOffsetResponse> getQueryOffsetMethod() {
+    io.grpc.MethodDescriptor<apache.rocketmq.v2.QueryOffsetRequest, apache.rocketmq.v2.QueryOffsetResponse> getQueryOffsetMethod;
+    if ((getQueryOffsetMethod = MessagingServiceGrpc.getQueryOffsetMethod) == null) {
+      synchronized (MessagingServiceGrpc.class) {
+        if ((getQueryOffsetMethod = MessagingServiceGrpc.getQueryOffsetMethod) == null) {
+          MessagingServiceGrpc.getQueryOffsetMethod = getQueryOffsetMethod =
+              io.grpc.MethodDescriptor.<apache.rocketmq.v2.QueryOffsetRequest, apache.rocketmq.v2.QueryOffsetResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "QueryOffset"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  apache.rocketmq.v2.QueryOffsetRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  apache.rocketmq.v2.QueryOffsetResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new MessagingServiceMethodDescriptorSupplier("QueryOffset"))
+              .build();
+        }
+      }
+    }
+    return getQueryOffsetMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<apache.rocketmq.v2.EndTransactionRequest,
       apache.rocketmq.v2.EndTransactionResponse> getEndTransactionMethod;
 
@@ -538,6 +662,49 @@ public final class MessagingServiceGrpc {
 
     /**
      * <pre>
+     * PullMessage and ReceiveMessage RPCs serve a similar purpose,
+     * which is to attempt to get messages from the server, but with different semantics.
+     * </pre>
+     */
+    public void pullMessage(apache.rocketmq.v2.PullMessageRequest request,
+        io.grpc.stub.StreamObserver<apache.rocketmq.v2.PullMessageResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getPullMessageMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Update the consumption progress of the designated queue of the
+     * consumer group to the remote.
+     * </pre>
+     */
+    public void updateOffset(apache.rocketmq.v2.UpdateOffsetRequest request,
+        io.grpc.stub.StreamObserver<apache.rocketmq.v2.UpdateOffsetResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdateOffsetMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Query the consumption progress of the designated queue of the
+     * consumer group to the remote.
+     * </pre>
+     */
+    public void getOffset(apache.rocketmq.v2.GetOffsetRequest request,
+        io.grpc.stub.StreamObserver<apache.rocketmq.v2.GetOffsetResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetOffsetMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Query the offset of the designated queue by the query offset policy.
+     * </pre>
+     */
+    public void queryOffset(apache.rocketmq.v2.QueryOffsetRequest request,
+        io.grpc.stub.StreamObserver<apache.rocketmq.v2.QueryOffsetResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getQueryOffsetMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
      * Commits or rollback one transactional message.
      * </pre>
      */
@@ -636,6 +803,34 @@ public final class MessagingServiceGrpc {
                 apache.rocketmq.v2.ForwardMessageToDeadLetterQueueRequest,
                 apache.rocketmq.v2.ForwardMessageToDeadLetterQueueResponse>(
                   this, METHODID_FORWARD_MESSAGE_TO_DEAD_LETTER_QUEUE)))
+          .addMethod(
+            getPullMessageMethod(),
+            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
+              new MethodHandlers<
+                apache.rocketmq.v2.PullMessageRequest,
+                apache.rocketmq.v2.PullMessageResponse>(
+                  this, METHODID_PULL_MESSAGE)))
+          .addMethod(
+            getUpdateOffsetMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                apache.rocketmq.v2.UpdateOffsetRequest,
+                apache.rocketmq.v2.UpdateOffsetResponse>(
+                  this, METHODID_UPDATE_OFFSET)))
+          .addMethod(
+            getGetOffsetMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                apache.rocketmq.v2.GetOffsetRequest,
+                apache.rocketmq.v2.GetOffsetResponse>(
+                  this, METHODID_GET_OFFSET)))
+          .addMethod(
+            getQueryOffsetMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                apache.rocketmq.v2.QueryOffsetRequest,
+                apache.rocketmq.v2.QueryOffsetResponse>(
+                  this, METHODID_QUERY_OFFSET)))
           .addMethod(
             getEndTransactionMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -808,6 +1003,53 @@ public final class MessagingServiceGrpc {
         io.grpc.stub.StreamObserver<apache.rocketmq.v2.ForwardMessageToDeadLetterQueueResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getForwardMessageToDeadLetterQueueMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * PullMessage and ReceiveMessage RPCs serve a similar purpose,
+     * which is to attempt to get messages from the server, but with different semantics.
+     * </pre>
+     */
+    public void pullMessage(apache.rocketmq.v2.PullMessageRequest request,
+        io.grpc.stub.StreamObserver<apache.rocketmq.v2.PullMessageResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
+          getChannel().newCall(getPullMessageMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Update the consumption progress of the designated queue of the
+     * consumer group to the remote.
+     * </pre>
+     */
+    public void updateOffset(apache.rocketmq.v2.UpdateOffsetRequest request,
+        io.grpc.stub.StreamObserver<apache.rocketmq.v2.UpdateOffsetResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getUpdateOffsetMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Query the consumption progress of the designated queue of the
+     * consumer group to the remote.
+     * </pre>
+     */
+    public void getOffset(apache.rocketmq.v2.GetOffsetRequest request,
+        io.grpc.stub.StreamObserver<apache.rocketmq.v2.GetOffsetResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getGetOffsetMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Query the offset of the designated queue by the query offset policy.
+     * </pre>
+     */
+    public void queryOffset(apache.rocketmq.v2.QueryOffsetRequest request,
+        io.grpc.stub.StreamObserver<apache.rocketmq.v2.QueryOffsetResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getQueryOffsetMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1002,6 +1244,50 @@ public final class MessagingServiceGrpc {
 
     /**
      * <pre>
+     * PullMessage and ReceiveMessage RPCs serve a similar purpose,
+     * which is to attempt to get messages from the server, but with different semantics.
+     * </pre>
+     */
+    public java.util.Iterator<apache.rocketmq.v2.PullMessageResponse> pullMessage(
+        apache.rocketmq.v2.PullMessageRequest request) {
+      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
+          getChannel(), getPullMessageMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Update the consumption progress of the designated queue of the
+     * consumer group to the remote.
+     * </pre>
+     */
+    public apache.rocketmq.v2.UpdateOffsetResponse updateOffset(apache.rocketmq.v2.UpdateOffsetRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getUpdateOffsetMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Query the consumption progress of the designated queue of the
+     * consumer group to the remote.
+     * </pre>
+     */
+    public apache.rocketmq.v2.GetOffsetResponse getOffset(apache.rocketmq.v2.GetOffsetRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getGetOffsetMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Query the offset of the designated queue by the query offset policy.
+     * </pre>
+     */
+    public apache.rocketmq.v2.QueryOffsetResponse queryOffset(apache.rocketmq.v2.QueryOffsetRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getQueryOffsetMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
      * Commits or rollback one transactional message.
      * </pre>
      */
@@ -1158,6 +1444,41 @@ public final class MessagingServiceGrpc {
 
     /**
      * <pre>
+     * Update the consumption progress of the designated queue of the
+     * consumer group to the remote.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<apache.rocketmq.v2.UpdateOffsetResponse> updateOffset(
+        apache.rocketmq.v2.UpdateOffsetRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getUpdateOffsetMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * Query the consumption progress of the designated queue of the
+     * consumer group to the remote.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<apache.rocketmq.v2.GetOffsetResponse> getOffset(
+        apache.rocketmq.v2.GetOffsetRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getGetOffsetMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * Query the offset of the designated queue by the query offset policy.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<apache.rocketmq.v2.QueryOffsetResponse> queryOffset(
+        apache.rocketmq.v2.QueryOffsetRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getQueryOffsetMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
      * Commits or rollback one transactional message.
      * </pre>
      */
@@ -1202,10 +1523,14 @@ public final class MessagingServiceGrpc {
   private static final int METHODID_RECEIVE_MESSAGE = 4;
   private static final int METHODID_ACK_MESSAGE = 5;
   private static final int METHODID_FORWARD_MESSAGE_TO_DEAD_LETTER_QUEUE = 6;
-  private static final int METHODID_END_TRANSACTION = 7;
-  private static final int METHODID_NOTIFY_CLIENT_TERMINATION = 8;
-  private static final int METHODID_CHANGE_INVISIBLE_DURATION = 9;
-  private static final int METHODID_TELEMETRY = 10;
+  private static final int METHODID_PULL_MESSAGE = 7;
+  private static final int METHODID_UPDATE_OFFSET = 8;
+  private static final int METHODID_GET_OFFSET = 9;
+  private static final int METHODID_QUERY_OFFSET = 10;
+  private static final int METHODID_END_TRANSACTION = 11;
+  private static final int METHODID_NOTIFY_CLIENT_TERMINATION = 12;
+  private static final int METHODID_CHANGE_INVISIBLE_DURATION = 13;
+  private static final int METHODID_TELEMETRY = 14;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1251,6 +1576,22 @@ public final class MessagingServiceGrpc {
         case METHODID_FORWARD_MESSAGE_TO_DEAD_LETTER_QUEUE:
           serviceImpl.forwardMessageToDeadLetterQueue((apache.rocketmq.v2.ForwardMessageToDeadLetterQueueRequest) request,
               (io.grpc.stub.StreamObserver<apache.rocketmq.v2.ForwardMessageToDeadLetterQueueResponse>) responseObserver);
+          break;
+        case METHODID_PULL_MESSAGE:
+          serviceImpl.pullMessage((apache.rocketmq.v2.PullMessageRequest) request,
+              (io.grpc.stub.StreamObserver<apache.rocketmq.v2.PullMessageResponse>) responseObserver);
+          break;
+        case METHODID_UPDATE_OFFSET:
+          serviceImpl.updateOffset((apache.rocketmq.v2.UpdateOffsetRequest) request,
+              (io.grpc.stub.StreamObserver<apache.rocketmq.v2.UpdateOffsetResponse>) responseObserver);
+          break;
+        case METHODID_GET_OFFSET:
+          serviceImpl.getOffset((apache.rocketmq.v2.GetOffsetRequest) request,
+              (io.grpc.stub.StreamObserver<apache.rocketmq.v2.GetOffsetResponse>) responseObserver);
+          break;
+        case METHODID_QUERY_OFFSET:
+          serviceImpl.queryOffset((apache.rocketmq.v2.QueryOffsetRequest) request,
+              (io.grpc.stub.StreamObserver<apache.rocketmq.v2.QueryOffsetResponse>) responseObserver);
           break;
         case METHODID_END_TRANSACTION:
           serviceImpl.endTransaction((apache.rocketmq.v2.EndTransactionRequest) request,
@@ -1335,6 +1676,10 @@ public final class MessagingServiceGrpc {
               .addMethod(getReceiveMessageMethod())
               .addMethod(getAckMessageMethod())
               .addMethod(getForwardMessageToDeadLetterQueueMethod())
+              .addMethod(getPullMessageMethod())
+              .addMethod(getUpdateOffsetMethod())
+              .addMethod(getGetOffsetMethod())
+              .addMethod(getQueryOffsetMethod())
               .addMethod(getEndTransactionMethod())
               .addMethod(getTelemetryMethod())
               .addMethod(getNotifyClientTerminationMethod())

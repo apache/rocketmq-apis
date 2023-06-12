@@ -4,53 +4,61 @@
 package apache.rocketmq.v2;
 
 /**
- * Protobuf enum {@code apache.rocketmq.v2.ClientType}
+ * Protobuf enum {@code apache.rocketmq.v2.QueryOffsetPolicy}
  */
-public enum ClientType
+public enum QueryOffsetPolicy
     implements com.google.protobuf.ProtocolMessageEnum {
   /**
-   * <code>CLIENT_TYPE_UNSPECIFIED = 0;</code>
+   * <pre>
+   * Use this option if client wishes to playback all existing messages.
+   * </pre>
+   *
+   * <code>BEGINNING = 0;</code>
    */
-  CLIENT_TYPE_UNSPECIFIED(0),
+  BEGINNING(0),
   /**
-   * <code>PRODUCER = 1;</code>
+   * <pre>
+   * Use this option if client wishes to skip all existing messages.
+   * </pre>
+   *
+   * <code>END = 1;</code>
    */
-  PRODUCER(1),
+  END(1),
   /**
-   * <code>PUSH_CONSUMER = 2;</code>
+   * <pre>
+   * Use this option if time-based seek is targeted.
+   * </pre>
+   *
+   * <code>TIMESTAMP = 2;</code>
    */
-  PUSH_CONSUMER(2),
-  /**
-   * <code>SIMPLE_CONSUMER = 3;</code>
-   */
-  SIMPLE_CONSUMER(3),
-  /**
-   * <code>PULL_CONSUMER = 4;</code>
-   */
-  PULL_CONSUMER(4),
+  TIMESTAMP(2),
   UNRECOGNIZED(-1),
   ;
 
   /**
-   * <code>CLIENT_TYPE_UNSPECIFIED = 0;</code>
+   * <pre>
+   * Use this option if client wishes to playback all existing messages.
+   * </pre>
+   *
+   * <code>BEGINNING = 0;</code>
    */
-  public static final int CLIENT_TYPE_UNSPECIFIED_VALUE = 0;
+  public static final int BEGINNING_VALUE = 0;
   /**
-   * <code>PRODUCER = 1;</code>
+   * <pre>
+   * Use this option if client wishes to skip all existing messages.
+   * </pre>
+   *
+   * <code>END = 1;</code>
    */
-  public static final int PRODUCER_VALUE = 1;
+  public static final int END_VALUE = 1;
   /**
-   * <code>PUSH_CONSUMER = 2;</code>
+   * <pre>
+   * Use this option if time-based seek is targeted.
+   * </pre>
+   *
+   * <code>TIMESTAMP = 2;</code>
    */
-  public static final int PUSH_CONSUMER_VALUE = 2;
-  /**
-   * <code>SIMPLE_CONSUMER = 3;</code>
-   */
-  public static final int SIMPLE_CONSUMER_VALUE = 3;
-  /**
-   * <code>PULL_CONSUMER = 4;</code>
-   */
-  public static final int PULL_CONSUMER_VALUE = 4;
+  public static final int TIMESTAMP_VALUE = 2;
 
 
   public final int getNumber() {
@@ -67,7 +75,7 @@ public enum ClientType
    * @deprecated Use {@link #forNumber(int)} instead.
    */
   @java.lang.Deprecated
-  public static ClientType valueOf(int value) {
+  public static QueryOffsetPolicy valueOf(int value) {
     return forNumber(value);
   }
 
@@ -75,26 +83,24 @@ public enum ClientType
    * @param value The numeric wire value of the corresponding enum entry.
    * @return The enum associated with the given numeric wire value.
    */
-  public static ClientType forNumber(int value) {
+  public static QueryOffsetPolicy forNumber(int value) {
     switch (value) {
-      case 0: return CLIENT_TYPE_UNSPECIFIED;
-      case 1: return PRODUCER;
-      case 2: return PUSH_CONSUMER;
-      case 3: return SIMPLE_CONSUMER;
-      case 4: return PULL_CONSUMER;
+      case 0: return BEGINNING;
+      case 1: return END;
+      case 2: return TIMESTAMP;
       default: return null;
     }
   }
 
-  public static com.google.protobuf.Internal.EnumLiteMap<ClientType>
+  public static com.google.protobuf.Internal.EnumLiteMap<QueryOffsetPolicy>
       internalGetValueMap() {
     return internalValueMap;
   }
   private static final com.google.protobuf.Internal.EnumLiteMap<
-      ClientType> internalValueMap =
-        new com.google.protobuf.Internal.EnumLiteMap<ClientType>() {
-          public ClientType findValueByNumber(int number) {
-            return ClientType.forNumber(number);
+      QueryOffsetPolicy> internalValueMap =
+        new com.google.protobuf.Internal.EnumLiteMap<QueryOffsetPolicy>() {
+          public QueryOffsetPolicy findValueByNumber(int number) {
+            return QueryOffsetPolicy.forNumber(number);
           }
         };
 
@@ -112,12 +118,12 @@ public enum ClientType
   }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
-    return apache.rocketmq.v2.MQDomain.getDescriptor().getEnumTypes().get(7);
+    return apache.rocketmq.v2.MQDomain.getDescriptor().getEnumTypes().get(11);
   }
 
-  private static final ClientType[] VALUES = values();
+  private static final QueryOffsetPolicy[] VALUES = values();
 
-  public static ClientType valueOf(
+  public static QueryOffsetPolicy valueOf(
       com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
     if (desc.getType() != getDescriptor()) {
       throw new java.lang.IllegalArgumentException(
@@ -131,10 +137,10 @@ public enum ClientType
 
   private final int value;
 
-  private ClientType(int value) {
+  private QueryOffsetPolicy(int value) {
     this.value = value;
   }
 
-  // @@protoc_insertion_point(enum_scope:apache.rocketmq.v2.ClientType)
+  // @@protoc_insertion_point(enum_scope:apache.rocketmq.v2.QueryOffsetPolicy)
 }
 

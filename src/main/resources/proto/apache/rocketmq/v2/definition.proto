@@ -185,6 +185,7 @@ enum ClientType {
   PRODUCER = 1;
   PUSH_CONSUMER = 2;
   SIMPLE_CONSUMER = 3;
+  PULL_CONSUMER = 4;
 }
 
 enum Encoding {
@@ -345,6 +346,8 @@ enum Code {
   CLIENT_ID_REQUIRED = 40017;
   // Polling time is illegal.
   ILLEGAL_POLLING_TIME = 40018;
+  // Offset is illegal.
+  ILLEGAL_OFFSET = 40019;
 
   // Generic code indicates that the client request lacks valid authentication
   // credentials for the requested resource.
@@ -364,6 +367,8 @@ enum Code {
   TOPIC_NOT_FOUND = 40402;
   // Consumer group resource does not exist.
   CONSUMER_GROUP_NOT_FOUND = 40403;
+  // Offset not found from server.
+  OFFSET_NOT_FOUND = 40404;
 
   // Generic code representing client side timeout when connecting to, reading data from, or write data to server.
   REQUEST_TIMEOUT = 40800;
@@ -549,4 +554,15 @@ message Metric {
 
   // The endpoint that client metrics should be exported to, which is required if the switch is on.
   optional Endpoints endpoints = 2;
+}
+
+enum QueryOffsetPolicy {
+  // Use this option if client wishes to playback all existing messages.
+  BEGINNING = 0;
+
+  // Use this option if client wishes to skip all existing messages.
+  END = 1;
+
+  // Use this option if time-based seek is targeted.
+  TIMESTAMP = 2;
 }

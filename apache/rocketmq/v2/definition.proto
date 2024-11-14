@@ -270,6 +270,9 @@ message SystemProperties {
 
   // Information to identify whether this message is from dead letter queue.
   optional DeadLetterQueue dead_letter_queue = 20;
+
+  // The time which broker delay delivers to clients.
+  optional google.protobuf.Duration delay_time = 21;
 }
 
 message DeadLetterQueue {

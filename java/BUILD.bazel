@@ -43,14 +43,11 @@ java_library(
     name = "rocketmq-proto",
     srcs = [":rocketmq_proto_src"],
     deps = [
-        "@maven//:com_google_guava_guava",
-        "@maven//:com_google_protobuf_protobuf_java",
-        "@maven//:io_grpc_grpc_core",
         "@maven//:io_grpc_grpc_protobuf",
         "@maven//:io_grpc_grpc_stub",
-        "@maven//:io_grpc_grpc_api",
-        "@maven//:com_google_api_grpc_proto_google_common_protos",
-        "@maven//:javax_annotation_javax_annotation_api", # gRPC needs this in order to compile in Java 11 and Java 14
+        "@maven//:com_google_protobuf_protobuf_java_util",
+        "@maven//:com_google_protobuf_protobuf_java",
+        "@maven//:jakarta_annotation_jakarta_annotation_api", # gRPC needs this in order to compile in Java 11 and Java 14
     ],
     tags = ["maven_coordinates=org.apache.rocketmq:rocketmq-proto:{pom_version}"]
 )

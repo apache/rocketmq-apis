@@ -53,14 +53,11 @@ load("@rules_jvm_external//:defs.bzl", "maven_install")
 
 maven_install(
     artifacts = [
-        "com.google.guava:guava:31.1-jre",
-        "com.google.protobuf:protobuf-java:3.19.4",
-        "io.grpc:grpc-core:1.45.0",
-        "io.grpc:grpc-protobuf:1.45.0",
-        "io.grpc:grpc-stub:1.45.0",
-        "io.grpc:grpc-api:1.45.0",
-        "com.google.api.grpc:proto-google-common-protos:2.0.1",
-        "javax.annotation:javax.annotation-api:1.3.2"
+        "io.grpc:grpc-protobuf:1.53.0",
+        "io.grpc:grpc-stub:1.53.0",
+        "com.google.protobuf:protobuf-java-util:3.20.1",
+        "com.google.protobuf:protobuf-java:3.20.1",
+        "jakarta.annotation:jakarta.annotation-api:1.3.5",
     ],
     repositories = [
         "https://repo1.maven.org/maven2",

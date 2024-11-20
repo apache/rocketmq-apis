@@ -43,6 +43,7 @@ java_library(
     name = "rocketmq-proto",
     srcs = [":rocketmq_proto_src"],
     deps = [
+        "@maven//:com_google_guava_guava",
         "@maven//:io_grpc_grpc_protobuf",
         "@maven//:io_grpc_grpc_stub",
         "@maven//:com_google_protobuf_protobuf_java_util",

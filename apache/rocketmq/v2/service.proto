@@ -228,6 +228,7 @@ message TelemetryCommand {
     // Request client to reconnect server use the latest endpoints.
     ReconnectEndpointsCommand reconnect_endpoints_command = 8;
 
+    // Request client to unsubscribe lite topic.
     NotifyUnsubscribeLiteCommand notify_unsubscribe_lite_command = 9;
   }
 }

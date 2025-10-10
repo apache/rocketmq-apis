@@ -566,6 +566,7 @@ message Subscription {
   // Only lite push consumer
   // client-side lite subscription quota limit
   optional int32 lite_subscription_quota = 6;
+
   // Only lite push consumer
   // Maximum length limit for lite topic
   optional int32 max_lite_topic_size = 7;
@@ -573,13 +574,13 @@ message Subscription {
 
 enum LiteSubscriptionAction {
   // incremental add
-  INCREMENTAL_ADD = 0;
+  PARTIAL_ADD = 0;
   // incremental remove
-  INCREMENTAL_REMOVE = 1;
+  PARTIAL_REMOVE = 1;
   // all add
-  ALL_ADD = 3;
+  COMPLETE_ADD = 2;
   // add remove
-  ALL_REMOVE = 4;
+  COMPLETE_REMOVE = 3;
 }
 
 message Metric {

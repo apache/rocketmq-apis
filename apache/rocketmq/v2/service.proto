@@ -196,7 +196,7 @@ message RecoverOrphanedTransactionCommand {
 }
 
 message NotifyUnsubscribeLiteCommand {
-  string liteTopic = 1;
+  string lite_topic = 1;
 }
 
 message TelemetryCommand {
@@ -327,7 +327,7 @@ message SyncLiteSubscriptionRequest {
   // consumer group
   Resource group = 3;
   // lite subscription set of lite topics
-  repeated string liteTopicSet = 4;
+  repeated string lite_topic_set = 4;
   optional int64 version = 5;
 }
 

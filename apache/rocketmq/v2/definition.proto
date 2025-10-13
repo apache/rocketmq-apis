@@ -573,13 +573,9 @@ message Subscription {
 }
 
 enum LiteSubscriptionAction {
-  // incremental add
   PARTIAL_ADD = 0;
-  // incremental remove
   PARTIAL_REMOVE = 1;
-  // all add
   COMPLETE_ADD = 2;
-  // add remove
   COMPLETE_REMOVE = 3;
 }
 

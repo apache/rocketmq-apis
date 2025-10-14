@@ -24,10 +24,10 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
+
       - name: Setup Bazel
         run: |
-          sudo apt-get -qq install npm
+          sudo apt-get -qq install npm gcc-11 g++-11
           sudo npm install -g @bazel/bazelisk
       - name: Use Bazel
         if: matrix.os != 'windows'

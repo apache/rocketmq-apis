@@ -25,3 +25,6 @@ build --action_env=CXX
 build --action_env=LD_LIBRARY_PATH
 build --action_env=LLVM_CONFIG
 build --action_env=PATH
+
+build --cxxopt='-std=c++17'
+build:host --cxxopt='-std=c++17'

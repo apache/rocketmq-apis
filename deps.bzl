@@ -38,8 +38,9 @@ def github_archive(name, org, repo, ref, sha256):
             name = name,
             strip_prefix = repo + "-" + stripRef,
             urls = [
-                "https://mirror.bazel.build/github.com/%s/%s/archive/%s.tar.gz" % (org, repo, ref),
-                "https://github.com/%s/%s/archive/%s.tar.gz" % (org, repo, ref),
+                # "https://mirror.bazel.build/github.com/%s/%s/archive/%s.tar.gz" % (org, repo, ref),
+                # "https://github.com/%s/%s/archive/%s.tar.gz" % (org, repo, ref),
+                "https://github.com/%s/%s/archive/refs/tags/%s.tar.gz" % (org, repo, ref)
             ],
             sha256 = sha256,
         )
@@ -48,6 +49,6 @@ def io_grpc_grpc_java(**kwargs):
     """grpc java plugin and jars
     """
     name = "io_grpc_grpc_java"
-    ref = get_ref(name, "8eff2630828a7ec6f4980b5b46f30f875070a4e4", kwargs)  # v1.19.0 and changes up to PR #5456
-    sha256 = get_sha256(name, "f0e17fb16a404ba473429144481221e2c970c65596f65129002af3c73dcfe141", kwargs)
+    ref = get_ref(name, "v1.45.0", kwargs)  # v1.19.0 and changes up to PR #5456
+    sha256 = get_sha256(name, "83a3e094be70978cd843778a3214268714e077343fd9a5baacad31dd420304c3", kwargs)
     github_archive(name, "grpc", "grpc-java", ref, sha256)

@@ -38,7 +38,6 @@ def github_archive(name, org, repo, ref, sha256):
             name = name,
             strip_prefix = repo + "-" + stripRef,
             urls = [
-                "https://mirror.bazel.build/github.com/%s/%s/archive/%s.tar.gz" % (org, repo, ref),
                 "https://github.com/%s/%s/archive/%s.tar.gz" % (org, repo, ref),
             ],
             sha256 = sha256,

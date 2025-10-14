@@ -20,8 +20,8 @@ build --javabase=@bazel_tools//tools/jdk:remote_jdk11
 build --enable_platform_specific_config
 
 # Pass PATH, CC, CXX and LLVM_CONFIG variables from the environment.
-build --action_env=CC
-build --action_env=CXX
+build --action_env=CC=gcc-11
+build --action_env=CXX=g++-11
 build --action_env=LD_LIBRARY_PATH
 build --action_env=LLVM_CONFIG
 build --action_env=PATH

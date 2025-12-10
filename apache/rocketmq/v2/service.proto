@@ -329,6 +329,7 @@ message SyncLiteSubscriptionRequest {
   // lite subscription set of lite topics
   repeated string lite_topic_set = 4;
   optional int64 version = 5;
+  optional OffsetOption offset_option = 6;
 }
 
 message SyncLiteSubscriptionResponse {

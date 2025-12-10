@@ -600,13 +600,13 @@ enum QueryOffsetPolicy {
 
 message OffsetOption {
   oneof offset_type {
-    Special special = 1;
+    Policy policy = 1;
     int64 offset = 2;
-    int64 last_n = 3;
+    int64 tail_n = 3;
     int64 timestamp = 4;
   }
 
-  enum Special {
+  enum Policy {
     LAST = 0;
     MIN = 1;
     MAX = 2;

@@ -252,6 +252,8 @@ message ChangeInvisibleDurationRequest {
 
   // For message tracing
   string message_id = 5;
+
+  optional string lite_topic = 6;
 }
 
 message ChangeInvisibleDurationResponse {

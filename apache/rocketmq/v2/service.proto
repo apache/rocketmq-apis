@@ -254,6 +254,8 @@ message ChangeInvisibleDurationRequest {
   string message_id = 5;
 
   optional string lite_topic = 6;
+  // If true, server will not increment the retry times for this message
+  optional bool suspend = 7;
 }
 
 message ChangeInvisibleDurationResponse {

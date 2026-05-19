@@ -541,7 +541,6 @@ message Settings {
   // - Value length: 0-256 characters
   // - Total serialized size: <= 4KB
   //
-  // Example keys used by some organizations: app, env, region, zone, version, instance, owner.
   // Reserved prefix: "rocketmq." for system use.
   //
   // Server-side validation:

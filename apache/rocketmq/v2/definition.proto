@@ -364,6 +364,13 @@ enum Code {
   ILLEGAL_OFFSET = 40019;
   // Format of lite topic is illegal.
   ILLEGAL_LITE_TOPIC = 40020;
+  // Client properties validation failed. This error occurs when:
+  // - The number of properties exceeds 32.
+  // - Key length exceeds 64 characters.
+  // - Key does not match the regex pattern: [a-zA-Z][a-zA-Z0-9_.-]*
+  // - Value length exceeds 256 characters.
+  // - Total serialized size exceeds 4KB.
+  INVALID_CLIENT_PROPERTIES = 40021;
 
   // Generic code indicates that the client request lacks valid authentication
   // credentials for the requested resource.
@@ -523,6 +530,30 @@ message Settings {
   UA user_agent = 7;
 
   Metric metric = 8;
+
+  // Application-defined metadata associated with this client instance.
+  // These properties are for observability, troubleshooting, auditing and
+  // management only.
+  //
+  // Constraints:
+  // - Maximum 32 key-value pairs per client instance
+  // - Key length: 1-64 characters, must match pattern [a-zA-Z][a-zA-Z0-9_.-]*
+  // - Value length: 0-256 characters
+  // - Total serialized size: <= 4KB
+  //
+  // Reserved prefix: "rocketmq." for system use.
+  //
+  // Server-side validation:
+  // - Reject with INVALID_CLIENT_PROPERTIES if constraints are violated
+  // - Treat values as untrusted client-declared metadata
+  // - Do NOT use for security decisions (authentication/authorization)
+  //
+  // Lifecycle:
+  // - Reported once during Telemetry stream establishment via TelemetryCommand.settings
+  // - Stored in server-side client runtime
+  // - Discarded when stream/channel is closed
+  // - Exposed via admin query APIs (e.g., producerConnection, consumerConnection)
+  map<string, string> client_properties = 9;
 }
 
 message Publishing {

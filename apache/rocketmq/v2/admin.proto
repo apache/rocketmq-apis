@@ -141,6 +141,11 @@ message ListClientsResponse {
   // Consumers can use this to detect proxy restarts and invalidate
   // stale local views.
   int64 epoch = 5;
+
+  // The proxy group identifier. In clustered deployments, proxies that
+  // belong to the same group share configuration. Consumers can use this
+  // to correlate local views across proxy nodes without external config.
+  string proxy_group_id = 6;
 }
 
 message DescribeClientRequest {
@@ -192,7 +197,13 @@ message ClientDetail {
 
 service Admin {
   rpc ChangeLogLevel(ChangeLogLevelRequest) returns (ChangeLogLevelResponse) {}
+}
 
+// Dedicated service for Proxy admin operations.
+// Separated from the general Admin service to keep the surface clean as
+// the Proxy admin API grows (client queries, connection management,
+// diagnostics, etc.).
+service ProxyAdminService {
   // List online client connections on this Proxy node.
   // Returns a local view — each Proxy reports only its own clients.
   // Callers responsible for aggregating across multiple Proxy nodes.

@@ -15,6 +15,10 @@
 
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+
+import "apache/rocketmq/v2/definition.proto";
+
 package apache.rocketmq.v2;
 
 option cc_enable_arenas = true;
@@ -38,6 +42,163 @@ message ChangeLogLevelRequest {
 
 message ChangeLogLevelResponse { string remark = 1; }
 
+// --- Proxy Admin: Online Client Query ---
+
+// Filter criteria for ListClients. All fields are optional; when multiple
+// fields are set, they are combined with logical AND semantics.
+message ClientFilter {
+  // Filter by consumer group name. Applies to consumer clients only.
+  string consumer_group = 1;
+
+  // Filter by topic (clients that produce to or subscribe to this topic).
+  string topic = 2;
+
+  // Filter by client_id prefix. Useful for locating specific client instances.
+  string client_id_prefix = 3;
+
+  // Filter by client SDK language.
+  Language language = 4;
+
+  // Filter by client role (producer / consumer type).
+  ClientType role = 5;
+
+  // Filter clients whose connection was established after this timestamp.
+  google.protobuf.Timestamp connected_after = 6;
+}
+
+message ListClientsRequest {
+  // Optional filter to narrow results. If absent, all clients on the
+  // responding Proxy node are returned (up to page_size).
+  ClientFilter filter = 1;
+
+  // Maximum number of ClientInstances to return. Server enforces a cap
+  // (currently 1000). If not set or <= 0, a server default (100) is used.
+  int32 page_size = 2;
+
+  // Opaque pagination cursor returned in a previous ListClientsResponse.
+  // Empty string means start from the beginning.
+  // NOTE: client connections are highly dynamic; the cursor represents a
+  // weakly-consistent scan position. Clients that connect/disconnect during
+  // the scan may be missed or appear twice — consumers should handle dedup.
+  string next_token = 3;
+}
+
+// Runtime information for a single connected client.
+message ClientInstance {
+  // Unique client identifier assigned by the SDK.
+  string client_id = 1;
+
+  // SDK programming language.
+  Language language = 2;
+
+  // SDK version string (e.g., "5.3.1").
+  string client_version = 3;
+
+  // The Proxy endpoint this client is connected to.
+  string access_point = 4;
+
+  // Timestamp when the client established the connection.
+  google.protobuf.Timestamp connect_time = 5;
+
+  // Timestamp of the most recent heartbeat or activity from this client.
+  google.protobuf.Timestamp last_active_time = 6;
+
+  // Client role: PRODUCER, PUSH_CONSUMER, SIMPLE_CONSUMER, PULL_CONSUMER, etc.
+  ClientType role = 7;
+
+  // Consumer groups this client belongs to. Empty for producers.
+  repeated string groups = 8;
+
+  // Authenticated subject (user/RPC name) when ACL is enabled.
+  // Empty string when ACL is not configured.
+  string auth_subject = 9;
+
+  // Wire protocol this client uses.
+  enum Protocol {
+    PROTOCOL_UNSPECIFIED = 0;
+    GRPC = 1;
+    REMOTING = 2;
+  }
+  Protocol protocol = 10;
+}
+
+message ListClientsResponse {
+  // Standard response status.
+  Status status = 1;
+
+  // Page of client instances matching the filter.
+  repeated ClientInstance clients = 2;
+
+  // Opaque cursor for the next page. Empty string means no more results.
+  string next_token = 3;
+
+  // The Proxy endpoint that produced this response. In multi-proxy
+  // deployments, consumers use this to identify the source node when
+  // merging local views.
+  string proxy_endpoint = 4;
+
+  // Node epoch: the startup timestamp of the responding Proxy node.
+  // Consumers can use this to detect proxy restarts and invalidate
+  // stale local views.
+  int64 epoch = 5;
+}
+
+message DescribeClientRequest {
+  // The client_id to look up.
+  string client_id = 1;
+}
+
+// A single heartbeat observation recorded by the Proxy.
+message HeartbeatRecord {
+  // Timestamp of the heartbeat.
+  google.protobuf.Timestamp time = 1;
+
+  // The consumer groups reported in this heartbeat.
+  // (Only meaningful for consumer clients.)
+  repeated string groups = 2;
+}
+
+message ClientDetail {
+  // The client instance summary.
+  ClientInstance instance = 1;
+
+  // Negotiated Settings reported by the client via the telemetry stream.
+  // May be absent for Remoting-protocol clients that do not negotiate Settings.
+  Settings settings = 2;
+
+  // Active subscription entries (topics + filter expressions) for consumers.
+  // Empty for producers.
+  repeated SubscriptionEntry subscriptions = 3;
+
+  // Recent heartbeat records from a fixed-size ring buffer (default 8 entries).
+  // The most recent entries are kept; older ones are evicted.
+  // NOTE: On proxies with a very large number of connections, heartbeat
+  // recording may be sampled to limit memory usage.
+  repeated HeartbeatRecord recent_heartbeats = 4;
+
+  // Authorization status for this client.
+  message AuthStatus {
+    // Whether ACL is enabled on this Proxy.
+    bool acl_enabled = 1;
+
+    // Authenticated subject (user/RPC name). Empty if not authenticated.
+    string subject = 2;
+
+    // Whether the client passed authorization checks.
+    bool authorized = 3;
+  }
+  AuthStatus auth_status = 5;
+}
+
 service Admin {
   rpc ChangeLogLevel(ChangeLogLevelRequest) returns (ChangeLogLevelResponse) {}
+
+  // List online client connections on this Proxy node.
+  // Returns a local view — each Proxy reports only its own clients.
+  // Callers responsible for aggregating across multiple Proxy nodes.
+  rpc ListClients(ListClientsRequest) returns (ListClientsResponse) {}
+
+  // Get detailed information for a specific client by client_id.
+  // Returns NOT_FOUND if the client is not connected to this Proxy.
+  rpc DescribeClient(DescribeClientRequest) returns (ClientDetail) {}
 }

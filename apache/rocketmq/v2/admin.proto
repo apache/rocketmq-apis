@@ -15,6 +15,11 @@
 
 syntax = "proto3";
 
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+import "apache/rocketmq/v2/definition.proto";
+
 package apache.rocketmq.v2;
 
 option cc_enable_arenas = true;
@@ -25,6 +30,8 @@ option java_generate_equals_and_hash = true;
 option java_string_check_utf8 = true;
 option java_outer_classname = "MQAdmin";
 
+// Request to dynamically change the runtime log level of the server without a
+// restart. Mainly used for on-demand troubleshooting.
 message ChangeLogLevelRequest {
   enum Level {
     TRACE = 0;
@@ -36,8 +43,467 @@ message ChangeLogLevelRequest {
   Level level = 1;
 }
 
-message ChangeLogLevelResponse { string remark = 1; }
+message ChangeLogLevelResponse {
+  // Human-readable result of the operation.
+  string remark = 1;
+}
 
+// Request the status and metadata of a topic.
+message DescribeTopicStatusRequest {
+  Resource topic = 1;
+}
+
+message DescribeTopicStatusResponse {
+  Status status = 1;
+
+  // The message type the topic accepts, e.g. NORMAL / FIFO / DELAY /
+  // TRANSACTION. Derived from the topic configuration on the broker.
+  MessageType topic_message_type = 2;
+
+  // Optional description associated with the topic.
+  optional string description = 3;
+
+  // The time when the topic was created.
+  optional google.protobuf.Timestamp create_timestamp = 4;
+
+  // Extended attributes attached to the topic in key-value form.
+  map<string, string> tags = 5;
+}
+
+// List subscription relationships filtered by topic and/or group.
+// At least one of the two filters is expected to be set.
+message ListSubscriptionRequest {
+  optional Resource topic = 1;
+  optional Resource group = 2;
+}
+
+// A single subscription relationship between a group and a topic.
+message SubscriptionInfo {
+  Resource group = 1;
+  Resource topic = 2;
+
+  // The filter expression (TAG or SQL92) the subscription uses.
+  FilterExpression expression = 3;
+
+  // Whether there is at least one online consumer for this subscription.
+  bool online = 4;
+
+  // The last time this subscription was reported/updated.
+  google.protobuf.Timestamp last_update_timestamp = 5;
+
+  // The consumption model of the group, i.e. CLUSTERING or BROADCASTING.
+  MessageModel message_model = 6;
+
+  // Whether the subscription is consistent across all consumers of the group.
+  bool subscription_consistency = 7;
+}
+
+message ListSubscriptionResponse {
+  Status status = 1;
+  repeated SubscriptionInfo subscription_info = 2;
+}
+
+// Describe subscription details grouped per connected client. Compared to
+// ListSubscription, this returns the subscription reported by each individual
+// client, which helps diagnose inconsistent subscriptions within a group.
+message DescribeSubscriptionRequest {
+  optional Resource topic = 1;
+  optional Resource group = 2;
+}
+
+message DescribeSubscriptionResponse {
+
+  // Subscription as reported by one specific client.
+  message ClientSubscriptionInfo {
+    ClientInfo client_info = 1;
+    SubscriptionInfo subscription_info = 2;
+  }
+  Status status = 1;
+  repeated ClientSubscriptionInfo client_subscription_info = 2;
+}
+
+// Delete a subscription relationship between a group and a topic.
+message DeleteSubscriptionRequest {
+  Resource topic = 1;
+  Resource group = 2;
+
+  // The filter expression that identifies the subscription to delete.
+  FilterExpression expression = 3;
+}
+
+message DeleteSubscriptionResponse {
+  Status status = 1;
+}
+
+// Runtime information of a connected client (producer or consumer).
+message ClientInfo {
+  string client_id = 1;
+
+  // Client SDK version.
+  string version = 2;
+
+  // Programming language of the client SDK.
+  string language = 3;
+
+  // Hostname of the client.
+  string hostname = 4;
+
+  // Source IP address observed by the server.
+  string egress_ip = 5;
+
+  // Consumption model, only meaningful for consumers.
+  MessageModel message_model = 6;
+}
+
+// Consumption model of a consumer group.
+enum MessageModel {
+  MESSAGE_MODEL_UNSPECIFIED = 0;
+
+  // Messages are load-balanced across all consumers within the group.
+  CLUSTERING = 1;
+
+  // Every consumer within the group receives the full stream of messages.
+  BROADCASTING = 2;
+}
+
+// A message queue together with the process queue snapshot held by a consumer.
+message MessageQueueItem {
+  MessageQueue message_queue = 1;
+  ProcessQueueInfo process_queue_info = 2;
+}
+
+// Snapshot of a consumer-side process queue, describing local cache and
+// offset watermarks for a single message queue.
+message ProcessQueueInfo {
+  int64 commit_offset = 1;
+  int64 cached_msg_min_offset = 2;
+  int64 cached_msg_max_offset = 3;
+  int32 cached_msg_count = 4;
+  int32 cached_msg_size_in_mib = 5;
+  int64 transaction_msg_min_offset = 6;
+  int64 transaction_msg_max_offset = 7;
+  int32 transaction_msg_count = 8;
+  bool locked = 9;
+  int64 try_unlock_times = 10;
+  int64 last_lock_timestamp = 11;
+  bool dropped = 12;
+  int64 last_pull_timestamp = 13;
+  int64 last_consume_timestamp = 14;
+}
+
+// Consumption statistics reported by a consumer.
+message ConsumeStatus {
+  double receive_rt = 1;
+  double receive_tps = 2;
+  double consume_rt = 3;
+  double consume_ok_tps = 4;
+  double consume_failed_tps = 5;
+  int64 consume_failed_msgs = 6;
+}
+
+// Aggregated running information of a consumer, reported on demand.
+message ConsumerRunningInfo {
+  // Arbitrary client properties, e.g. thread pool config, consume orderly, etc.
+  map<string, string> properties = 1;
+
+  // Subscriptions keyed by topic.
+  map<string, FilterExpression> subscriptions = 2;
+
+  // Per-queue process queue snapshots.
+  repeated MessageQueueItem message_queue_table = 3;
+
+  // Consumption statistics keyed by topic.
+  map<string, ConsumeStatus> consume_status_table = 4;
+}
+
+// Query the message accumulation (lag) of a consumer group.
+message DescribeGroupAccumulationRequest {
+  Resource group = 1;
+
+  // Optional set of topics to break the accumulation down by. When empty, the
+  // aggregated accumulation of the whole group is returned.
+  repeated Resource topics = 2;
+}
+
+message DescribeGroupAccumulationResponse {
+
+  // Accumulation metrics of a group or a single topic.
+  message GroupAccumulation {
+    // Number of messages already delivered but not yet acknowledged.
+    int64 inflight_messages = 1;
+
+    // Number of messages ready to be delivered.
+    int64 ready_messages = 2;
+
+    // Total accumulation (inflight + ready).
+    int64 accumulation = 3;
+
+    // Estimated delay before the earliest ready message is delivered.
+    google.protobuf.Duration deliver_delay_time = 4;
+
+    // Timestamp of the last successful consumption.
+    int64 last_consume_timestamp = 5;
+  }
+  Status status = 1;
+
+  // Aggregated accumulation of the whole group.
+  GroupAccumulation accumulation = 2;
+
+  // Per-topic accumulation, keyed by topic name.
+  map<string, GroupAccumulation> topic_accumulation = 3;
+}
+
+// Query the time span of messages consumed by a group across its topics.
+message QueryTimeSpanRequest {
+  Resource group = 1;
+  repeated Resource topics = 2;
+}
+
+message QueryTimeSpanResponse {
+
+  // Time span of a single message queue.
+  message QueueTimeSpan {
+    MessageQueue message_queue = 1;
+
+    // Store timestamp of the earliest message in the queue.
+    int64 min_timestamp = 2;
+
+    // Store timestamp of the latest message in the queue.
+    int64 max_timestamp = 3;
+
+    // Store timestamp corresponding to the current consume offset.
+    int64 consume_timestamp = 4;
+
+    // Consumption delay in milliseconds.
+    int64 delay_time_ms = 5;
+  }
+  Status status = 1;
+  repeated QueueTimeSpan queue_time_span_list = 2;
+}
+
+// List the online consumer connections of a group.
+message ListConsumerConnectionRequest {
+  Resource group = 1;
+
+  // Optional topic filter.
+  optional Resource topic = 2;
+}
+
+message ListConsumerConnectionResponse {
+  Status status = 1;
+  repeated ClientInfo client_info = 2;
+}
+
+// Reset the consume offset of a group on a topic to the given timestamp.
+message ResetGroupOffsetRequest {
+  Resource group = 1;
+  Resource topic = 2;
+
+  // Messages stored at or after this timestamp will be re-consumed.
+  google.protobuf.Timestamp reset_timestamp = 3;
+}
+
+message ResetGroupOffsetResponse {
+  Status status = 1;
+}
+
+// Query messages of a topic by id, key or subscription within a time range.
+message ListMessageRequest {
+  Resource topic = 1;
+
+  // Maximum number of messages to return.
+  int32 max_message_nums = 2;
+
+  // Time range (inclusive begin, inclusive end) to scan.
+  google.protobuf.Timestamp begin_timestamp = 3;
+  google.protobuf.Timestamp end_timestamp = 4;
+
+  // The key used to locate messages. Exactly one should be set.
+  oneof search_key {
+    string message_id = 5;
+    string message_key = 6;
+    string subscription = 7;
+  }
+
+  // Opaque cursor for scroll-style pagination, echoed from a previous response.
+  optional string scroll_id = 8;
+
+  // Page-style pagination parameters.
+  optional int32 page_num = 9;
+  optional int32 page_size = 10;
+
+  // Restrict the query to a specific broker and queue.
+  optional string broker_name = 11;
+  optional int32 queue_id = 12;
+}
+
+message ListMessageResponse {
+  Status status = 1;
+  repeated Message messages = 2;
+
+  // Cursor to be passed back to fetch the next page.
+  string scroll_id = 3;
+}
+
+// Print the thread stack trace of a specific client, for diagnostics.
+message PrintThreadStackTraceRequest {
+  string client_id = 1;
+  Resource group = 2;
+}
+
+message PrintThreadStackTraceResponse {
+  Status status = 1;
+  optional string thread_stack_trace = 2;
+}
+
+// Ask a specific client to consume the given message once, to verify that the
+// consumer logic works as expected.
+message VerifyMessageRequest {
+  string client_id = 1;
+  Resource group = 2;
+  Resource topic = 3;
+  string message_id = 4;
+}
+
+message VerifyMessageResponse {
+  Status status = 1;
+}
+
+// Send a message from the admin side, typically used to send a test message
+// from a console.
+message AdminSendMessageRequest {
+  Resource topic = 1;
+  // Tag, which is optional.
+  optional string tag = 2;
+  // Message key
+  optional string key = 3;
+  // Message body
+  bytes body = 4;
+  // User-defined properties of the message.
+  map<string, string> user_properties = 5;
+  // System properties of the message.
+  optional SystemProperties system_properties = 6;
+}
+
+message AdminSendMessageResponse {
+  Status status = 1;
+
+  // Id assigned to the sent message.
+  string message_id = 2;
+}
+
+// Fetch the aggregated running information of a specific consumer client.
+message GetConsumerRunningInfoRequest {
+  Resource group = 1;
+  string client_id = 2;
+}
+
+message GetConsumerRunningInfoResponse {
+  Status status = 1;
+  ConsumerRunningInfo consumer_running_info = 2;
+}
+
+// Query the route data of a topic.
+message GetTopicRouteRequest {
+  // Network type used to select the proper endpoints to return.
+  enum NetworkType {
+    INTERNAL = 0;
+    INTERNET = 1;
+    INTRANET = 2;
+  }
+  Resource topic = 1;
+  NetworkType network_type = 2;
+
+  // Protocol type the client speaks, e.g. "grpc" or "remoting".
+  string protocol_type = 3;
+
+  // Whether the request comes from a streaming client.
+  bool stream_request_type = 4;
+
+  // Address of the requesting client.
+  string client_address = 5;
+}
+
+message GetTopicRouteResponse {
+  Status status = 1;
+
+  // Serialized route data (topic route table) as a JSON string.
+  string topic_route_data = 2;
+}
+
+// Request runtime statistics of the serving process (proxy/broker gateway).
+message GetProxyRuntimeStatsRequest {
+}
+
+message GetProxyRuntimeStatsResponse {
+  Status status = 1;
+  string proxy_name = 2;
+  string version = 3;
+
+  // Inbound throughput in messages per second.
+  double in_tps = 4;
+
+  // Outbound throughput in messages per second.
+  double out_tps = 5;
+
+  // Number of active connections.
+  int64 connections = 6;
+
+  // Number of connected producers.
+  int64 producers = 7;
+
+  // Number of connected consumers.
+  int64 consumers = 8;
+}
+
+// Admin exposes control-plane operations for cluster administration and
+// diagnostics over gRPC, complementing the data-plane MessagingService.
 service Admin {
+  // Dynamically change the server log level.
   rpc ChangeLogLevel(ChangeLogLevelRequest) returns (ChangeLogLevelResponse) {}
+
+  // Describe the status and metadata of a topic.
+  rpc DescribeTopicStatus(DescribeTopicStatusRequest) returns (DescribeTopicStatusResponse) {}
+
+  // List subscription relationships filtered by topic and/or group.
+  rpc ListSubscription(ListSubscriptionRequest) returns (ListSubscriptionResponse) {}
+
+  // Describe subscriptions grouped per connected client.
+  rpc DescribeSubscription(DescribeSubscriptionRequest) returns (DescribeSubscriptionResponse) {}
+
+  // Delete a subscription relationship.
+  rpc DeleteSubscription(DeleteSubscriptionRequest) returns (DeleteSubscriptionResponse) {}
+
+  // Query the message accumulation (lag) of a consumer group.
+  rpc DescribeGroupAccumulation(DescribeGroupAccumulationRequest) returns (DescribeGroupAccumulationResponse) {}
+
+  // List online consumer connections of a group.
+  rpc ListConsumerConnection(ListConsumerConnectionRequest) returns (ListConsumerConnectionResponse) {}
+
+  // Reset the consume offset of a group to a timestamp.
+  rpc ResetGroupOffset(ResetGroupOffsetRequest) returns (ResetGroupOffsetResponse) {}
+
+  // Query messages by id, key or subscription within a time range.
+  rpc QueryMessage(ListMessageRequest) returns (ListMessageResponse) {}
+
+  // Print the thread stack trace of a client.
+  rpc PrintThreadStackTrace(PrintThreadStackTraceRequest) returns (PrintThreadStackTraceResponse) {}
+
+  // Verify consumption of a message by a specific client.
+  rpc VerifyMessage(VerifyMessageRequest) returns (VerifyMessageResponse) {}
+
+  // Send a message from the admin side (e.g. a console test message).
+  rpc AdminSendMessage(AdminSendMessageRequest) returns (AdminSendMessageResponse) {}
+
+  // Fetch aggregated running information of a consumer client.
+  rpc GetConsumerRunningInfo(GetConsumerRunningInfoRequest) returns (GetConsumerRunningInfoResponse) {}
+
+  // Query the route data of a topic.
+  rpc GetTopicRoute(GetTopicRouteRequest) returns (GetTopicRouteResponse) {}
+
+  // Query the time span of messages consumed by a group.
+  rpc QueryTimeSpan(QueryTimeSpanRequest) returns (QueryTimeSpanResponse) {}
+
+  // Fetch runtime statistics of the serving process.
+  rpc GetProxyRuntimeStats(GetProxyRuntimeStatsRequest) returns (GetProxyRuntimeStatsResponse) {}
 }

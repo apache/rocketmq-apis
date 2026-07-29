@@ -383,6 +383,10 @@ message AdminSendMessageRequest {
   map<string, string> user_properties = 5;
   // System properties of the message.
   optional SystemProperties system_properties = 6;
+  // Request-scoped extension information. Unknown entries should be ignored.
+  // Known keys:
+  // - protocol_type: Protocol used by the original producer (REMOTING or GRPC_V2).
+  map<string, string> ext_info = 7;
 }
 
 message AdminSendMessageResponse {

@@ -10,6 +10,7 @@
 8. Removed MessageModel enumeration as concept of broadcasting is totally deprecated;
 9. Enums field number = 0 is redefined to meet requirement [Each enum value should end with a semicolon, not a comma. Prefer prefixing enum values instead of surrounding them in an enclosing message. The zero value enum should have the suffix UNSPECIFIED.](https://developers.google.com/protocol-buffers/docs/style)
 10. Nested enumerations are externalized due to the same guide item as above.
+11. Expanded the Admin service with control-plane RPCs for topic/subscription/consumer administration and diagnostics (DescribeTopicStatus, ListSubscription, DescribeSubscription, DeleteSubscription, DescribeGroupAccumulation, ListConsumerConnection, ResetGroupOffset, QueryMessage, PrintThreadStackTrace, VerifyMessage, AdminSendMessage, GetConsumerRunningInfo, GetTopicRoute, QueryTimeSpan, GetProxyRuntimeStats).
 
 Remaining Issues:
 How server publishes conf and conf changes to clients.

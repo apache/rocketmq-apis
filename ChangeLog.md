@@ -11,6 +11,7 @@
 9. Enums field number = 0 is redefined to meet requirement [Each enum value should end with a semicolon, not a comma. Prefer prefixing enum values instead of surrounding them in an enclosing message. The zero value enum should have the suffix UNSPECIFIED.](https://developers.google.com/protocol-buffers/docs/style)
 10. Nested enumerations are externalized due to the same guide item as above.
 11. Expanded the Admin service with control-plane RPCs for topic/subscription/consumer administration and diagnostics (DescribeTopicStatus, ListSubscription, DescribeSubscription, DeleteSubscription, DescribeGroupAccumulation, ListConsumerConnection, ResetGroupOffset, QueryMessage, PrintThreadStackTrace, VerifyMessage, AdminSendMessage, GetConsumerRunningInfo, GetTopicRoute, QueryTimeSpan, GetProxyRuntimeStats).
+12. Admin control-plane requests carry an optional `deployment_name` to address a single deployment in multi-tenant environments, and the lite topic dimension is exposed through `lite_topic` / `liteTopic` / `lite_topic_accumulation` plus the `LITE_SELECTIVE` consumption model. Admin field numbers are assigned so that the definitions stay wire compatible with Admin services already deployed against these RPCs.
 
 Remaining Issues:
 How server publishes conf and conf changes to clients.

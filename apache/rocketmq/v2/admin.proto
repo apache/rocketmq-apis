@@ -556,3 +556,446 @@ service Admin {
   // Fetch runtime statistics of the serving process.
   rpc GetProxyRuntimeStats(GetProxyRuntimeStatsRequest) returns (GetProxyRuntimeStatsResponse) {}
 }
+
+// ===========================================================================
+// RIP-2: Proxy Admin gRPC Interface Surface
+// ---------------------------------------------------------------------------
+// RIP-2 introduces a dedicated, independent Proxy Admin service so that
+// control-plane operations (online client query, runtime config, client
+// diagnostics, route-change subscriptions) are exposed over gRPC, isolated
+// from the data-plane MessagingService. It complements the existing Admin
+// service (which targets the broker control plane) and covers BOTH gRPC and
+// Remoting clients connected to the Proxy (design decision D5).
+//
+// Design decisions (see RIP-2):
+//   D1  Service placement: dedicated ProxyAdminService (Option B), separate
+//       from the data-plane MessagingService and the broker-facing Admin.
+//   D2  Authorization: ACL 2.0 resource type `proxy.admin.*`. A global
+//       `proxyAdminEnable` kill switch disables the whole surface.
+//   D3  Multi-proxy semantics: each Proxy returns its LOCAL view, tagged with
+//       `proxy_endpoint` + `epoch` so a consumer (dashboard/CLI) can dedup.
+//   D4  Pagination: cursor-based (`next_token`) for highly dynamic client
+//       lists; offset-based (`page_num`/`page_size`) for diagnostic snapshots.
+//   D5  Dual-protocol coverage: both gRPC and Remoting clients are included,
+//       distinguished by the `protocol` field of ClientInstance.
+//
+// Milestones: M1 online client query, M2 runtime config & connection
+// management, M3 POP receipt handle diagnostics, M4 batch consumption
+// diagnostics, plus a server-streaming SubscribeRouteEvents.
+// ===========================================================================
+
+// Scope of a proxy admin query. D3: a Proxy returns its local view by default;
+// cluster-wide aggregation is left to the consumer (dashboard/CLI).
+enum ProxyScope {
+  PROXY_SCOPE_UNSPECIFIED = 0;
+  // Query only the local Proxy node that serves the request.
+  PROXY_SCOPE_LOCAL_PROXY = 1;
+  // Query across all Proxy nodes (requires peer discovery; reserved).
+  PROXY_SCOPE_ALL_PROXIES = 2;
+  // Query a specific Proxy node identified by proxy_id (reserved).
+  PROXY_SCOPE_PROXY_ID = 3;
+}
+
+// The protocol a connected client speaks to the Proxy (design decision D5).
+enum ClientProtocol {
+  CLIENT_PROTOCOL_UNSPECIFIED = 0;
+  CLIENT_PROTOCOL_GRPC = 1;
+  CLIENT_PROTOCOL_REMOTING = 2;
+}
+
+// Role of a client connection, mirroring the consumer/producer taxonomy.
+enum ClientRole {
+  CLIENT_ROLE_UNSPECIFIED = 0;
+  CLIENT_ROLE_PRODUCER = 1;
+  CLIENT_ROLE_PUSH_CONSUMER = 2;
+  CLIENT_ROLE_SIMPLE_CONSUMER = 3;
+}
+
+// Route change event types emitted by SubscribeRouteEvents.
+enum RouteChangeEventType {
+  ROUTE_CHANGE_EVENT_TYPE_UNSPECIFIED = 0;
+  // A broker has come online (registered with NameServer).
+  BROKER_ONLINE = 1;
+  // A broker has gone offline (unregistered from NameServer).
+  BROKER_OFFLINE = 2;
+  // Queue count changed (read or write queue nums scaled up/down).
+  QUEUE_SCALE = 3;
+  // A new topic has been created.
+  TOPIC_CREATE = 4;
+  // A topic has been deleted.
+  TOPIC_DELETE = 5;
+  // Full route snapshot sent on initial subscription.
+  ROUTE_SNAPSHOT = 6;
+}
+
+// A single heartbeat record reported by a client telemetry stream.
+message HeartbeatRecord {
+  google.protobuf.Timestamp timestamp = 1;
+  bool success = 2;
+  string remark = 3;
+}
+
+// Authentication status of a client connection.
+message AuthStatus {
+  bool authenticated = 1;
+  string username = 2;
+  google.protobuf.Timestamp last_auth_time = 3;
+  string failure_reason = 4;
+}
+
+// Per-topic consume progress for a client.
+message ClientTopicProgress {
+  string topic = 1;
+  int64 lag = 2;
+  google.protobuf.Duration latency = 3;
+}
+
+// Aggregated consume progress for a client.
+message ClientConsumeProgress {
+  int64 lag = 1;
+  google.protobuf.Duration latency = 2;
+  repeated ClientTopicProgress topic_progress = 3;
+}
+
+// Network information of a client connection.
+message NetworkInfo {
+  string local_address = 1;
+  string remote_address = 2;
+  google.protobuf.Duration rtt = 3;
+  bool tls_enabled = 4;
+}
+
+// Basic information of a single client connection on the Proxy.
+message ClientInstance {
+  string client_id = 1;
+  Language language = 2;
+  string client_version = 3;
+  ClientProtocol protocol = 4;
+  string access_point = 5;
+  google.protobuf.Timestamp connect_time = 6;
+  google.protobuf.Timestamp last_active_time = 7;
+  ClientRole role = 8;
+  repeated string groups = 9;
+  string auth_subject = 10;
+  // Endpoint of the Proxy node that owns this local view (D3).
+  string proxy_endpoint = 11;
+  // Monotonic epoch of the Proxy node, for consumer-side dedup (D3).
+  int64 epoch = 12;
+}
+
+// Detailed information of a single client connection.
+message ClientDetail {
+  ClientInstance instance = 1;
+  Settings settings = 2;
+  repeated SubscriptionEntry subscriptions = 3;
+  repeated HeartbeatRecord recent_heartbeats = 4;
+  AuthStatus auth_status = 5;
+  ClientConsumeProgress consume_progress = 6;
+  NetworkInfo network_info = 7;
+}
+
+// Filter for ListClients.
+message ClientFilter {
+  optional Resource group = 1;
+  optional Resource topic = 2;
+  optional string client_id_prefix = 3;
+  optional Language language = 4;
+  optional ClientRole role = 5;
+  optional google.protobuf.Timestamp connected_after = 6;
+}
+
+message ListClientsRequest {
+  ClientFilter filter = 1;
+  // Server-enforced max page size (e.g. 1000).
+  int32 page_size = 2;
+  // Opaque cursor for cursor-based pagination (D4).
+  string next_token = 3;
+}
+
+message ListClientsResponse {
+  Status status = 1;
+  repeated ClientInstance clients = 2;
+  string next_token = 3;
+  string proxy_endpoint = 4;
+  int64 epoch = 5;
+}
+
+message DescribeClientRequest {
+  string client_id = 1;
+}
+
+message DescribeClientResponse {
+  Status status = 1;
+  ClientDetail client_detail = 2;
+}
+
+message ListClientsByGroupRequest {
+  Resource group = 1;
+  int32 page_size = 2;
+  string next_token = 3;
+}
+
+message ListClientsByGroupResponse {
+  Status status = 1;
+  repeated ClientInstance clients = 2;
+  string next_token = 3;
+  string proxy_endpoint = 4;
+  int64 epoch = 5;
+}
+
+message ListClientsByTopicRequest {
+  Resource topic = 1;
+  int32 page_size = 2;
+  string next_token = 3;
+}
+
+message ListClientsByTopicResponse {
+  Status status = 1;
+  repeated ClientInstance clients = 2;
+  string next_token = 3;
+  string proxy_endpoint = 4;
+  int64 epoch = 5;
+}
+
+// ---- M2: Runtime config & connection management ----
+
+// Snapshot of the proxy runtime configuration.
+message ProxyRuntimeConfig {
+  string proxy_mode = 1;
+  string rocketmq_cluster_name = 2;
+  string proxy_cluster_name = 3;
+  string proxy_name = 4;
+  string local_serve_addr = 5;
+  string namesrv_addr = 6;
+  int32 grpc_server_port = 10;
+  int32 grpc_thread_pool_nums = 11;
+  bool proxy_admin_enabled = 20;
+  int32 proxy_admin_server_port = 21;
+  int32 proxy_admin_thread_pool_nums = 22;
+  int32 max_message_size = 50;
+  google.protobuf.Duration default_invisible_time = 60;
+  google.protobuf.Duration max_invisible_time = 61;
+  google.protobuf.Duration min_invisible_time_for_recv = 62;
+  google.protobuf.Duration max_delay_time = 63;
+  bool tls_test_mode_enable = 90;
+  string tls_key_path = 91;
+  string tls_cert_path = 92;
+  string metrics_exporter_type = 100;
+  int32 metrics_prom_exporter_port = 101;
+  bool trace_on = 102;
+}
+
+message GetProxyConfigRequest {}
+
+message GetProxyConfigResponse {
+  Status status = 1;
+  ProxyRuntimeConfig config = 2;
+}
+
+message UpdateProxyConfigRequest {
+  ProxyRuntimeConfig config = 1;
+}
+
+message UpdateProxyConfigResponse {
+  Status status = 1;
+  ProxyRuntimeConfig config = 2;
+  // Field names (snake_case) that were actually changed.
+  repeated string changed_fields = 3;
+}
+
+message DisconnectClientRequest {
+  // The unique client identifier to disconnect (required).
+  string client_id = 1;
+  // Human-readable reason for the forced disconnection, used for audit (required).
+  string reason = 2;
+}
+
+message DisconnectClientResponse {
+  Status status = 1;
+  // Whether the client was found and successfully disconnected.
+  bool disconnected = 2;
+}
+
+// ---- M3: POP receipt handle diagnostics ----
+
+// POP receipt handle diagnostic info for a single unacked message.
+message PopReceiptHandleInfo {
+  string group = 1;
+  string topic = 2;
+  int32 queue_id = 3;
+  string message_id = 4;
+  int64 queue_offset = 5;
+  int32 reconsume_times = 6;
+  int32 renew_times = 7;
+  int32 renew_retry_times = 8;
+  google.protobuf.Timestamp consume_timestamp = 9;
+  string receipt_handle = 10;
+  google.protobuf.Timestamp next_visible_time = 11;
+  google.protobuf.Duration invisible_time = 12;
+  string broker_name = 13;
+  // Whether the invisible time has expired (about to be redelivered).
+  bool is_expired = 14;
+}
+
+// Group-level summary of POP receipt handles (aggregated per consumer group).
+message PopReceiptHandleGroupSummary {
+  string group = 1;
+  int32 total_handles = 2;
+  int32 total_messages = 3;
+  int64 total_renew_times = 4;
+  int64 total_renew_retry_times = 5;
+  int32 expired_handles = 6;
+}
+
+message DescribePopReceiptHandlesRequest {
+  // Consumer group name (required).
+  string group = 1;
+  // Optional topic filter - only return handles for this topic.
+  optional string topic = 2;
+  // Pagination: page number starting from 1.
+  int32 page_num = 3;
+  // Pagination: page size, max 100.
+  int32 page_size = 4;
+}
+
+message DescribePopReceiptHandlesResponse {
+  Status status = 1;
+  PopReceiptHandleGroupSummary summary = 2;
+  repeated PopReceiptHandleInfo handles = 3;
+  int32 total = 4;
+  int32 page_num = 5;
+  int32 page_size = 6;
+}
+
+// ---- M4: Batch consumption diagnostics ----
+
+// Per-client batch consumption diagnostics (per-channel aggregation).
+message BatchConsumeClientDiagnostics {
+  string client_id = 1;
+  string channel_id = 2;
+  int32 unacked_message_count = 3;
+  int32 unacked_handle_count = 4;
+  int64 total_renew_times = 5;
+  int64 total_renew_retry_times = 6;
+  int32 expired_handle_count = 7;
+  // Distribution of unacked messages by topic (topic -> count).
+  map<string, int32> topic_distribution = 8;
+  // Consumer type: PUSH or PULL (from ConsumerManager).
+  string consume_type = 9;
+  // Message model: CLUSTERING, BROADCASTING, or LITE_SELECTIVE.
+  MessageModel message_model = 10;
+  int32 receive_batch_size = 11;
+  google.protobuf.Duration long_polling_timeout = 12;
+  // Last measured RTT (from gRPC channel, -1 if unavailable).
+  google.protobuf.Duration last_rtt = 13;
+  google.protobuf.Timestamp connect_time = 14;
+}
+
+// Group-level summary of batch consumption diagnostics.
+message BatchConsumeGroupSummary {
+  string group = 1;
+  int32 total_clients = 2;
+  int32 total_unacked_messages = 3;
+  int32 total_unacked_handles = 4;
+  int32 total_expired_handles = 5;
+  int64 total_renew_times = 6;
+  int64 total_renew_retry_times = 7;
+}
+
+message DescribeBatchConsumeDiagnosticsRequest {
+  // Consumer group name (required).
+  string group = 1;
+  // Optional topic filter - only count messages for this topic.
+  optional string topic = 2;
+  // Optional client ID filter - only return diagnostics for this client.
+  optional string client_id = 3;
+  int32 page_num = 4;
+  int32 page_size = 5;
+}
+
+message DescribeBatchConsumeDiagnosticsResponse {
+  Status status = 1;
+  BatchConsumeGroupSummary summary = 2;
+  repeated BatchConsumeClientDiagnostics diagnostics = 3;
+  int32 total = 4;
+  int32 page_num = 5;
+  int32 page_size = 6;
+}
+
+// ---- Route change subscription (server-streaming) ----
+
+message BrokerInfo {
+  string cluster = 1;
+  string broker_name = 2;
+  // Map of broker_id -> broker_address.
+  map<int64, string> broker_addrs = 3;
+}
+
+message QueueInfo {
+  string broker_name = 1;
+  int32 read_queue_nums = 2;
+  int32 write_queue_nums = 3;
+  Permission perm = 4;
+}
+
+// Complete route data for a topic at a point in time.
+message TopicRouteSnapshot {
+  string topic = 1;
+  repeated BrokerInfo brokers = 2;
+  repeated QueueInfo queues = 3;
+}
+
+// A single route change detected by the proxy.
+message RouteChangeEvent {
+  RouteChangeEventType event_type = 1;
+  // Timestamp when the event was detected (epoch millis semantics via Timestamp).
+  google.protobuf.Timestamp timestamp = 2;
+  string topic = 3;
+  string cluster = 4;
+  string broker_name = 5;
+  int64 broker_id = 6;
+  string broker_address = 7;
+  int32 previous_read_queue_nums = 8;
+  int32 current_read_queue_nums = 9;
+  int32 previous_write_queue_nums = 10;
+  int32 current_write_queue_nums = 11;
+  // Full route snapshot (set only for ROUTE_SNAPSHOT events).
+  TopicRouteSnapshot route_snapshot = 12;
+}
+
+message SubscribeRouteEventsRequest {
+  // Optional: subscribe to specific topics only (empty = all topics).
+  repeated string topics = 1;
+  // Optional: subscribe to specific event types only (empty = all types).
+  repeated RouteChangeEventType event_types = 2;
+}
+
+message SubscribeRouteEventsResponse {
+  Status status = 1;
+  RouteChangeEvent event = 2;
+}
+
+// ProxyAdminService — RIP-2 control-plane interface for the RocketMQ Proxy.
+// It is intentionally separate from MessagingService so that admin query
+// traffic stays isolated from the data plane.
+service ProxyAdminService {
+  // M1: Online client query
+  rpc ListClients(ListClientsRequest) returns (ListClientsResponse) {}
+  rpc DescribeClient(DescribeClientRequest) returns (DescribeClientResponse) {}
+  rpc ListClientsByGroup(ListClientsByGroupRequest) returns (ListClientsByGroupResponse) {}
+  rpc ListClientsByTopic(ListClientsByTopicRequest) returns (ListClientsByTopicResponse) {}
+
+  // M2: Runtime config & connection management
+  rpc GetProxyConfig(GetProxyConfigRequest) returns (GetProxyConfigResponse) {}
+  rpc UpdateProxyConfig(UpdateProxyConfigRequest) returns (UpdateProxyConfigResponse) {}
+  rpc DisconnectClient(DisconnectClientRequest) returns (DisconnectClientResponse) {}
+
+  // M3: POP receipt handle diagnostics
+  rpc DescribePopReceiptHandles(DescribePopReceiptHandlesRequest) returns (DescribePopReceiptHandlesResponse) {}
+
+  // M4: Batch consumption diagnostics
+  rpc DescribeBatchConsumeDiagnostics(DescribeBatchConsumeDiagnosticsRequest) returns (DescribeBatchConsumeDiagnosticsResponse) {}
+
+  // Server-streaming route change subscription.
+  rpc SubscribeRouteEvents(SubscribeRouteEventsRequest) returns (stream SubscribeRouteEventsResponse) {}
+}

@@ -570,8 +570,14 @@ service Admin {
 // Design decisions (see RIP-2):
 //   D1  Service placement: dedicated ProxyAdminService (Option B), separate
 //       from the data-plane MessagingService and the broker-facing Admin.
-//   D2  Authorization: ACL 2.0 resource type `proxy.admin.*`. A global
-//       `proxyAdminEnable` kill switch disables the whole surface.
+//   D2  Authorization: ACL 2.0 resource types under `proxy.admin.*`, each
+//       sub-module a distinct resource for least-privilege:
+//         proxy.admin.client      (ListClients/DescribeClient/ByGroup/ByTopic)
+//         proxy.admin.config      (DescribeProxyConfig/UpdateProxyConfig)
+//         proxy.admin.connection  (KickClient/DisconnectChannel, high privilege)
+//         proxy.admin.quota       (DescribeQuota/UpdateQuota, high privilege)
+//         proxy.admin.route       (DescribeRouteTopology/SubscribeRouteEvents)
+//       A global `proxyAdminEnable` kill switch disables the whole surface.
 //   D3  Multi-proxy semantics: each Proxy returns its LOCAL view, tagged with
 //       `proxy_endpoint` + `epoch` so a consumer (dashboard/CLI) can dedup.
 //   D4  Pagination: cursor-based (`next_token`) for highly dynamic client
@@ -579,9 +585,10 @@ service Admin {
 //   D5  Dual-protocol coverage: both gRPC and Remoting clients are included,
 //       distinguished by the `protocol` field of ClientInstance.
 //
-// Milestones: M1 online client query, M2 runtime config & connection
-// management, M3 POP receipt handle diagnostics, M4 batch consumption
-// diagnostics, plus a server-streaming SubscribeRouteEvents.
+// Milestones: M1 online client query, M2 runtime config, connection control,
+// quota visualization & route/load-balance observation, M3 POP receipt handle
+// diagnostics, M4 batch consumption diagnostics, plus a server-streaming
+// SubscribeRouteEvents.
 // ===========================================================================
 
 // Scope of a proxy admin query. D3: a Proxy returns its local view by default;
@@ -665,6 +672,14 @@ message NetworkInfo {
   bool tls_enabled = 4;
 }
 
+// Publish settings reported by a producer client (mirrors SubscriptionEntry for consumers).
+message PublishSettings {
+  // Topics the producer publishes to.
+  repeated Resource topics = 1;
+  // Load balancing strategy, e.g. AVERAGE or AUTO.
+  string load_balancer = 2;
+}
+
 // Basic information of a single client connection on the Proxy.
 message ClientInstance {
   string client_id = 1;
@@ -681,6 +696,8 @@ message ClientInstance {
   string proxy_endpoint = 11;
   // Monotonic epoch of the Proxy node, for consumer-side dedup (D3).
   int64 epoch = 12;
+  // Topics this client is associated with (subscribed or publishing). RIP-2 M1 minimum set.
+  repeated string topics = 13;
 }
 
 // Detailed information of a single client connection.
@@ -692,6 +709,8 @@ message ClientDetail {
   AuthStatus auth_status = 5;
   ClientConsumeProgress consume_progress = 6;
   NetworkInfo network_info = 7;
+  // Publish settings for producer clients (mirrors subscriptions for consumers).
+  PublishSettings publish_settings = 8;
 }
 
 // Filter for ListClients.
@@ -702,6 +721,7 @@ message ClientFilter {
   optional Language language = 4;
   optional ClientRole role = 5;
   optional google.protobuf.Timestamp connected_after = 6;
+  optional google.protobuf.Timestamp connected_before = 7;
 }
 
 message ListClientsRequest {
@@ -710,6 +730,8 @@ message ListClientsRequest {
   int32 page_size = 2;
   // Opaque cursor for cursor-based pagination (D4).
   string next_token = 3;
+  // Multi-proxy aggregation scope (D3): local vs cluster-wide query.
+  ProxyScope scope = 4;
 }
 
 message ListClientsResponse {
@@ -733,6 +755,8 @@ message ListClientsByGroupRequest {
   Resource group = 1;
   int32 page_size = 2;
   string next_token = 3;
+  // Multi-proxy aggregation scope (D3).
+  ProxyScope scope = 4;
 }
 
 message ListClientsByGroupResponse {
@@ -747,6 +771,8 @@ message ListClientsByTopicRequest {
   Resource topic = 1;
   int32 page_size = 2;
   string next_token = 3;
+  // Multi-proxy aggregation scope (D3).
+  ProxyScope scope = 4;
 }
 
 message ListClientsByTopicResponse {
@@ -785,9 +811,9 @@ message ProxyRuntimeConfig {
   bool trace_on = 102;
 }
 
-message GetProxyConfigRequest {}
+message DescribeProxyConfigRequest {}
 
-message GetProxyConfigResponse {
+message DescribeProxyConfigResponse {
   Status status = 1;
   ProxyRuntimeConfig config = 2;
 }
@@ -803,20 +829,99 @@ message UpdateProxyConfigResponse {
   repeated string changed_fields = 3;
 }
 
-message DisconnectClientRequest {
-  // The unique client identifier to disconnect (required).
+message KickClientRequest {
+  // The unique client identifier to disconnect (required). RIP-2 M2 connection control.
   string client_id = 1;
   // Human-readable reason for the forced disconnection, used for audit (required).
   string reason = 2;
 }
 
-message DisconnectClientResponse {
+message KickClientResponse {
   Status status = 1;
   // Whether the client was found and successfully disconnected.
   bool disconnected = 2;
 }
 
+// Forcefully tear down a single transport channel (gRPC channel id or Remoting
+// channel id), complementing KickClient which targets a logical client_id.
+message DisconnectChannelRequest {
+  // Transport channel identifier (required).
+  string channel_id = 1;
+  // Human-readable reason for the forced disconnection, used for audit (required).
+  string reason = 2;
+}
+
+message DisconnectChannelResponse {
+  Status status = 1;
+  // Whether the channel was found and successfully disconnected.
+  bool disconnected = 2;
+}
+
+// ---- M2: Rate limiting / quota visualization (ACL resource: proxy.admin.quota) ----
+
+// Dimension a quota policy is scoped to.
+enum QuotaDimension {
+  QUOTA_DIMENSION_UNSPECIFIED = 0;
+  QUOTA_DIMENSION_NAMESPACE = 1;
+  QUOTA_DIMENSION_TOPIC = 2;
+  QUOTA_DIMENSION_GROUP = 3;
+}
+
+// A single rate-limiting / quota policy with its effective threshold and
+// recent trigger statistics. RIP-2 M2 quota visualization.
+message QuotaPolicy {
+  QuotaDimension dimension = 1;
+  // The resource the policy applies to (namespace / topic / group).
+  Resource resource = 2;
+  // Metric the quota limits, e.g. TPS or THROUGHPUT_BYTES.
+  string metric = 3;
+  // Effective threshold of the quota.
+  int64 limit = 4;
+  // Current usage within the measurement window.
+  int64 current_usage = 5;
+  // Number of times the quota was triggered in the recent window.
+  int32 recent_trigger_count = 6;
+  // Measurement window for trigger statistics.
+  google.protobuf.Duration window = 7;
+}
+
+message DescribeQuotaRequest {
+  QuotaDimension dimension = 1;
+  // The resource to query (namespace / topic / group). Empty = all.
+  Resource resource = 2;
+  // Multi-proxy aggregation scope (D3).
+  ProxyScope scope = 3;
+}
+
+message DescribeQuotaResponse {
+  Status status = 1;
+  repeated QuotaPolicy policies = 2;
+}
+
+// Controlled quota adjustment. Bound to a high-privilege ACL 2.0 action.
+message UpdateQuotaRequest {
+  QuotaPolicy policy = 1;
+  // Multi-proxy aggregation scope (D3).
+  ProxyScope scope = 2;
+}
+
+message UpdateQuotaResponse {
+  Status status = 1;
+  QuotaPolicy policy = 2;
+}
+
 // ---- M3: POP receipt handle diagnostics ----
+
+// POP lock ownership view for a (group, topic, queue) triple. RIP-2 M3 diagnostics.
+message PopLockView {
+  string group = 1;
+  string topic = 2;
+  int32 queue_id = 3;
+  // Client/consumer currently holding the POP lock.
+  string lock_owner = 4;
+  bool locked = 5;
+  google.protobuf.Timestamp acquire_time = 6;
+}
 
 // POP receipt handle diagnostic info for a single unacked message.
 message PopReceiptHandleInfo {
@@ -835,6 +940,10 @@ message PopReceiptHandleInfo {
   string broker_name = 13;
   // Whether the invisible time has expired (about to be redelivered).
   bool is_expired = 14;
+  // Consumer/client currently holding the POP lock for this message (lock view).
+  string lock_owner = 15;
+  // Trigger reason when the message is in NOT_CONSUME_YET state.
+  string not_consume_yet_reason = 16;
 }
 
 // Group-level summary of POP receipt handles (aggregated per consumer group).
@@ -845,6 +954,12 @@ message PopReceiptHandleGroupSummary {
   int64 total_renew_times = 4;
   int64 total_renew_retry_times = 5;
   int32 expired_handles = 6;
+  // Total ACK count observed for the group (POP ACK/NACK counters).
+  int64 total_ack_count = 7;
+  // Total NACK count observed for the group.
+  int64 total_nack_count = 8;
+  // POP lock ownership view per queue.
+  repeated PopLockView lock_view = 9;
 }
 
 message DescribePopReceiptHandlesRequest {
@@ -869,6 +984,15 @@ message DescribePopReceiptHandlesResponse {
 
 // ---- M4: Batch consumption diagnostics ----
 
+// Batch pull window state for a consumer channel. RIP-2 M4 diagnostics.
+message BatchPullWindowState {
+  int32 current_window_size = 1;
+  int32 min_window_size = 2;
+  int32 max_window_size = 3;
+  // Whether the window is currently expanding.
+  bool expanding = 4;
+}
+
 // Per-client batch consumption diagnostics (per-channel aggregation).
 message BatchConsumeClientDiagnostics {
   string client_id = 1;
@@ -889,6 +1013,8 @@ message BatchConsumeClientDiagnostics {
   // Last measured RTT (from gRPC channel, -1 if unavailable).
   google.protobuf.Duration last_rtt = 13;
   google.protobuf.Timestamp connect_time = 14;
+  // Batch pull window state (POP/Batch advanced semantics diagnostics).
+  BatchPullWindowState batch_window = 15;
 }
 
 // Group-level summary of batch consumption diagnostics.
@@ -975,20 +1101,64 @@ message SubscribeRouteEventsResponse {
   RouteChangeEvent event = 2;
 }
 
+// ---- M2: Route & load-balance observation (ACL resource: proxy.admin.route) ----
+
+// A Proxy -> Broker link with health / failover state. RIP-2 M2 route observation.
+message ProxyBrokerLink {
+  string proxy_endpoint = 1;
+  string broker_name = 2;
+  string broker_address = 3;
+  // Whether the link is healthy (failover / circuit-breaker state).
+  bool healthy = 4;
+  // Number of active connections on this link.
+  int32 active_connections = 5;
+}
+
+// Load distribution and region-affinity for a broker.
+message LoadBalanceInfo {
+  string broker_name = 1;
+  int32 read_queue_nums = 2;
+  int32 write_queue_nums = 3;
+  // Current load (e.g. in-flight requests or message rate).
+  int64 current_load = 4;
+  // Whether region-affinity routing is in effect for this broker.
+  bool region_affinity = 5;
+}
+
+message DescribeRouteTopologyRequest {
+  // Optional topic filter to narrow the topology view.
+  optional Resource topic = 1;
+  // Multi-proxy aggregation scope (D3).
+  ProxyScope scope = 2;
+}
+
+message DescribeRouteTopologyResponse {
+  Status status = 1;
+  // Proxy -> Broker connection topology.
+  repeated ProxyBrokerLink links = 2;
+  // Load distribution across brokers.
+  repeated LoadBalanceInfo load = 3;
+}
+
 // ProxyAdminService — RIP-2 control-plane interface for the RocketMQ Proxy.
 // It is intentionally separate from MessagingService so that admin query
 // traffic stays isolated from the data plane.
 service ProxyAdminService {
-  // M1: Online client query
+  // M1: Online client query (ACL resource: proxy.admin.client)
   rpc ListClients(ListClientsRequest) returns (ListClientsResponse) {}
   rpc DescribeClient(DescribeClientRequest) returns (DescribeClientResponse) {}
   rpc ListClientsByGroup(ListClientsByGroupRequest) returns (ListClientsByGroupResponse) {}
   rpc ListClientsByTopic(ListClientsByTopicRequest) returns (ListClientsByTopicResponse) {}
 
-  // M2: Runtime config & connection management
-  rpc GetProxyConfig(GetProxyConfigRequest) returns (GetProxyConfigResponse) {}
+  // M2: Runtime config & connection management (ACL resource: proxy.admin.config)
+  rpc DescribeProxyConfig(DescribeProxyConfigRequest) returns (DescribeProxyConfigResponse) {}
   rpc UpdateProxyConfig(UpdateProxyConfigRequest) returns (UpdateProxyConfigResponse) {}
-  rpc DisconnectClient(DisconnectClientRequest) returns (DisconnectClientResponse) {}
+  // Connection control (ACL resource: proxy.admin.connection, high privilege)
+  rpc KickClient(KickClientRequest) returns (KickClientResponse) {}
+  rpc DisconnectChannel(DisconnectChannelRequest) returns (DisconnectChannelResponse) {}
+  // Quota visualization & controlled adjustment (ACL resource: proxy.admin.quota)
+  rpc DescribeQuota(DescribeQuotaRequest) returns (DescribeQuotaResponse) {}
+  rpc UpdateQuota(UpdateQuotaRequest) returns (UpdateQuotaResponse) {}
 
   // M3: POP receipt handle diagnostics
   rpc DescribePopReceiptHandles(DescribePopReceiptHandlesRequest) returns (DescribePopReceiptHandlesResponse) {}
@@ -998,4 +1168,6 @@ service ProxyAdminService {
 
   // Server-streaming route change subscription.
   rpc SubscribeRouteEvents(SubscribeRouteEventsRequest) returns (stream SubscribeRouteEventsResponse) {}
+  // Route & load-balance observation (ACL resource: proxy.admin.route)
+  rpc DescribeRouteTopology(DescribeRouteTopologyRequest) returns (DescribeRouteTopologyResponse) {}
 }

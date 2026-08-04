@@ -21,10 +21,8 @@
     DescribeQuota/UpdateQuota/DescribeRouteTopology), M3 POP receipt handle
     diagnostics (DescribePopReceiptHandles), M4 batch consumption diagnostics
     (DescribeBatchConsumeDiagnostics), and server-streaming SubscribeRouteEvents.
-    Pagination uses page_num/page_size with a server-enforced maximum of 100
-    (aligned with RIP-2 D4); ACL 2.0 credentials ride gRPC request metadata
-    (Authorization header, RIP-1 AUTH-01 AuthCallCredentials) and do NOT enter the
-    message body; every response carries a dedicated ProxyAdminErrorCode (RIP-2 D6).
+    ACL 2.0 credentials ride gRPC request metadata (Authorization header,
+    RIP-1 AUTH-01 AuthCallCredentials) and do NOT enter the message body.
     Protocol version bumped to 2.3.0.
 
 Remaining Issues:

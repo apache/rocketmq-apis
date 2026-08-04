@@ -13,5 +13,17 @@
 11. Expanded the Admin service with control-plane RPCs for topic/subscription/consumer administration and diagnostics (DescribeTopicStatus, ListSubscription, DescribeSubscription, DeleteSubscription, DescribeGroupAccumulation, ListConsumerConnection, ResetGroupOffset, QueryMessage, PrintThreadStackTrace, VerifyMessage, AdminSendMessage, GetConsumerRunningInfo, GetTopicRoute, QueryTimeSpan, GetProxyRuntimeStats).
 12. Admin control-plane requests carry an optional `deployment_name` to address a single deployment in multi-tenant environments, and the lite topic dimension is exposed through `lite_topic` / `liteTopic` / `lite_topic_accumulation` plus the `LITE_SELECTIVE` consumption model. Admin field numbers are assigned so that the definitions stay wire compatible with Admin services already deployed against these RPCs.
 
+15. RIP-2: added a dedicated, independent `ProxyAdminService` gRPC interface surface
+    to apache/rocketmq/v2/admin.proto — M1 online client query
+    (ListClients/DescribeClient/ListClientsByGroup/ListClientsByTopic), M2 runtime
+    config / connection control / quota visualization / route observation
+    (DescribeProxyConfig/UpdateProxyConfig/KickClient/DisconnectChannel/
+    DescribeQuota/UpdateQuota/DescribeRouteTopology), M3 POP receipt handle
+    diagnostics (DescribePopReceiptHandles), M4 batch consumption diagnostics
+    (DescribeBatchConsumeDiagnostics), and server-streaming SubscribeRouteEvents.
+    ACL 2.0 credentials ride gRPC request metadata (Authorization header,
+    RIP-1 AUTH-01 AuthCallCredentials) and do NOT enter the message body.
+    Protocol version bumped to 2.3.0.
+
 Remaining Issues:
 How server publishes conf and conf changes to clients.

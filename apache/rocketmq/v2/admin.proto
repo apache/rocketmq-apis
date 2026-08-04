@@ -577,13 +577,24 @@ service Admin {
 //         proxy.admin.connection  (KickClient/DisconnectChannel, high privilege)
 //         proxy.admin.quota       (DescribeQuota/UpdateQuota, high privilege)
 //         proxy.admin.route       (DescribeRouteTopology/SubscribeRouteEvents)
+//       Credentials are carried in the gRPC REQUEST METADATA (the
+//       `Authorization` header via the RIP-1 AUTH-01 AuthCallCredentials
+//       mechanism), NOT in the request message body — auth stays decoupled
+//       from the data plane and reuses the 5.0 ACL 2.0 baseline.
 //       A global `proxyAdminEnable` kill switch disables the whole surface.
 //   D3  Multi-proxy semantics: each Proxy returns its LOCAL view, tagged with
 //       `proxy_endpoint` + `epoch` so a consumer (dashboard/CLI) can dedup.
-//   D4  Pagination: cursor-based (`next_token`) for highly dynamic client
-//       lists; offset-based (`page_num`/`page_size`) for diagnostic snapshots.
+//   D4  Pagination: RIP-2 mandates page-number paging (`page_num`/`page_size`)
+//       for the online client queries (ListClients/ByGroup/ByTopic); the
+//       server-enforced MAXIMUM page size is 100. Diagnostic snapshots (M3/M4)
+//       use the same `page_num`/`page_size` convention for consistency.
 //   D5  Dual-protocol coverage: both gRPC and Remoting clients are included,
 //       distinguished by the `protocol` field of ClientInstance.
+//   D6  Error model: transport-level failures use standard gRPC status codes
+//       (PERMISSION_DENIED for ACL 2.0 rejection, INVALID_ARGUMENT for bad
+//       input, etc.); every response additionally carries a dedicated
+//       `ProxyAdminErrorCode` (see the enum below the service) so clients can
+//       classify ProxyAdmin-specific failures without parsing Status.message.
 //
 // Milestones: M1 online client query, M2 runtime config, connection control,
 // quota visualization & route/load-balance observation, M3 POP receipt handle
@@ -726,10 +737,10 @@ message ClientFilter {
 
 message ListClientsRequest {
   ClientFilter filter = 1;
-  // Server-enforced max page size (e.g. 1000).
-  int32 page_size = 2;
-  // Opaque cursor for cursor-based pagination (D4).
-  string next_token = 3;
+  // Page number, 1-based (RIP-2 D4 mandate).
+  int32 page_num = 2;
+  // Page size; the server enforces a maximum of 100 (RIP-2 D4).
+  int32 page_size = 3;
   // Multi-proxy aggregation scope (D3): local vs cluster-wide query.
   ProxyScope scope = 4;
 }
@@ -737,9 +748,16 @@ message ListClientsRequest {
 message ListClientsResponse {
   Status status = 1;
   repeated ClientInstance clients = 2;
-  string next_token = 3;
-  string proxy_endpoint = 4;
-  int64 epoch = 5;
+  // Total number of clients matching the filter across all pages.
+  int32 total = 3;
+  // Echo of the requested page number.
+  int32 page_num = 4;
+  // Echo of the requested page size.
+  int32 page_size = 5;
+  string proxy_endpoint = 6;
+  int64 epoch = 7;
+  // Dedicated RIP-2 error code.
+  optional ProxyAdminErrorCode error_code = 8;
 }
 
 message DescribeClientRequest {
@@ -749,12 +767,15 @@ message DescribeClientRequest {
 message DescribeClientResponse {
   Status status = 1;
   ClientDetail client_detail = 2;
+  optional ProxyAdminErrorCode error_code = 3;
 }
 
 message ListClientsByGroupRequest {
   Resource group = 1;
-  int32 page_size = 2;
-  string next_token = 3;
+  // Page number, 1-based (RIP-2 D4 mandate).
+  int32 page_num = 2;
+  // Page size; server maximum is 100 (RIP-2 D4).
+  int32 page_size = 3;
   // Multi-proxy aggregation scope (D3).
   ProxyScope scope = 4;
 }
@@ -762,15 +783,20 @@ message ListClientsByGroupRequest {
 message ListClientsByGroupResponse {
   Status status = 1;
   repeated ClientInstance clients = 2;
-  string next_token = 3;
-  string proxy_endpoint = 4;
-  int64 epoch = 5;
+  int32 total = 3;
+  int32 page_num = 4;
+  int32 page_size = 5;
+  string proxy_endpoint = 6;
+  int64 epoch = 7;
+  optional ProxyAdminErrorCode error_code = 8;
 }
 
 message ListClientsByTopicRequest {
   Resource topic = 1;
-  int32 page_size = 2;
-  string next_token = 3;
+  // Page number, 1-based (RIP-2 D4 mandate).
+  int32 page_num = 2;
+  // Page size; server maximum is 100 (RIP-2 D4).
+  int32 page_size = 3;
   // Multi-proxy aggregation scope (D3).
   ProxyScope scope = 4;
 }
@@ -778,9 +804,12 @@ message ListClientsByTopicRequest {
 message ListClientsByTopicResponse {
   Status status = 1;
   repeated ClientInstance clients = 2;
-  string next_token = 3;
-  string proxy_endpoint = 4;
-  int64 epoch = 5;
+  int32 total = 3;
+  int32 page_num = 4;
+  int32 page_size = 5;
+  string proxy_endpoint = 6;
+  int64 epoch = 7;
+  optional ProxyAdminErrorCode error_code = 8;
 }
 
 // ---- M2: Runtime config & connection management ----
@@ -816,6 +845,7 @@ message DescribeProxyConfigRequest {}
 message DescribeProxyConfigResponse {
   Status status = 1;
   ProxyRuntimeConfig config = 2;
+  optional ProxyAdminErrorCode error_code = 3;
 }
 
 message UpdateProxyConfigRequest {
@@ -827,6 +857,7 @@ message UpdateProxyConfigResponse {
   ProxyRuntimeConfig config = 2;
   // Field names (snake_case) that were actually changed.
   repeated string changed_fields = 3;
+  optional ProxyAdminErrorCode error_code = 4;
 }
 
 message KickClientRequest {
@@ -840,6 +871,7 @@ message KickClientResponse {
   Status status = 1;
   // Whether the client was found and successfully disconnected.
   bool disconnected = 2;
+  optional ProxyAdminErrorCode error_code = 3;
 }
 
 // Forcefully tear down a single transport channel (gRPC channel id or Remoting
@@ -855,6 +887,7 @@ message DisconnectChannelResponse {
   Status status = 1;
   // Whether the channel was found and successfully disconnected.
   bool disconnected = 2;
+  optional ProxyAdminErrorCode error_code = 3;
 }
 
 // ---- M2: Rate limiting / quota visualization (ACL resource: proxy.admin.quota) ----
@@ -896,6 +929,7 @@ message DescribeQuotaRequest {
 message DescribeQuotaResponse {
   Status status = 1;
   repeated QuotaPolicy policies = 2;
+  optional ProxyAdminErrorCode error_code = 3;
 }
 
 // Controlled quota adjustment. Bound to a high-privilege ACL 2.0 action.
@@ -908,6 +942,7 @@ message UpdateQuotaRequest {
 message UpdateQuotaResponse {
   Status status = 1;
   QuotaPolicy policy = 2;
+  optional ProxyAdminErrorCode error_code = 3;
 }
 
 // ---- M3: POP receipt handle diagnostics ----
@@ -980,6 +1015,7 @@ message DescribePopReceiptHandlesResponse {
   int32 total = 4;
   int32 page_num = 5;
   int32 page_size = 6;
+  optional ProxyAdminErrorCode error_code = 7;
 }
 
 // ---- M4: Batch consumption diagnostics ----
@@ -1046,6 +1082,7 @@ message DescribeBatchConsumeDiagnosticsResponse {
   int32 total = 4;
   int32 page_num = 5;
   int32 page_size = 6;
+  optional ProxyAdminErrorCode error_code = 7;
 }
 
 // ---- Route change subscription (server-streaming) ----
@@ -1099,6 +1136,7 @@ message SubscribeRouteEventsRequest {
 message SubscribeRouteEventsResponse {
   Status status = 1;
   RouteChangeEvent event = 2;
+  optional ProxyAdminErrorCode error_code = 3;
 }
 
 // ---- M2: Route & load-balance observation (ACL resource: proxy.admin.route) ----
@@ -1138,6 +1176,41 @@ message DescribeRouteTopologyResponse {
   repeated ProxyBrokerLink links = 2;
   // Load distribution across brokers.
   repeated LoadBalanceInfo load = 3;
+  optional ProxyAdminErrorCode error_code = 4;
+}
+
+// Dedicated error codes for the ProxyAdminService (RIP-2 D6).
+//
+// Transport-level failures still map to standard gRPC status codes
+// (PERMISSION_DENIED for ACL 2.0 rejection, INVALID_ARGUMENT for malformed
+// requests, NOT_FOUND for missing broker resources, etc.). These
+// finer-grained codes let a client distinguish ProxyAdmin-specific failure
+// modes without parsing Status.message, and are surfaced per-RPC through the
+// `error_code` field of each response.
+enum ProxyAdminErrorCode {
+  PROXY_ADMIN_ERROR_UNSPECIFIED = 0;
+  // The requested client was not found on this (or any) proxy.
+  CLIENT_NOT_FOUND = 1;
+  // The requested transport channel was not found.
+  CHANNEL_NOT_FOUND = 2;
+  // The named proxy (scope=PROXY_ID) could not be located for aggregation (D3).
+  PROXY_NOT_FOUND = 3;
+  // The quota update was rejected (invalid threshold / insufficient privilege).
+  QUOTA_UPDATE_REJECTED = 4;
+  // The requested quota dimension/resource is not applicable.
+  QUOTA_NOT_APPLICABLE = 5;
+  // The proxy runtime config update was rejected.
+  CONFIG_UPDATE_REJECTED = 6;
+  // The route/topology snapshot is temporarily unavailable.
+  ROUTE_TOPOLOGY_UNAVAILABLE = 7;
+  // The forced disconnect/kick did not take effect.
+  DISCONNECT_FAILED = 8;
+  // A concurrent modification was detected (stale epoch / write conflict).
+  CONCURRENT_MODIFICATION = 9;
+  // The consumer group/topic currently has no POP receipt handles to report.
+  NO_POP_HANDLES = 10;
+  // The consumer group currently has no batch-consumption diagnostics.
+  NO_BATCH_DIAGNOSTICS = 11;
 }
 
 // ProxyAdminService — RIP-2 control-plane interface for the RocketMQ Proxy.
